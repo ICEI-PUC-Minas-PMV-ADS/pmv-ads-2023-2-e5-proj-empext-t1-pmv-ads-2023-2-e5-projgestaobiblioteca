@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# Gestão de Biblioteca
 
-`CURSO`
+`CURSO: Analise e Desevolvimento Sistemas`
 
-`DISCIPLINA`
+`Projeto: Desenvolvimento de um Sistema Sociotécnico Inovador`
 
-`SEMESTRE`
+`Eixo 5 `
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O projeto envolve o desenvolvimento de um sistema de biblioteca digital para a empresa, onde os colaboradores podem alugar uma variedade de livros relacionados ao setor e outros temas. Isso promoverá o aprendizado contínuo, o crescimento pessoal e profissional, além de facilitar o acesso flexível aos materiais de leitura, contribuindo para a inovação e resolução de problemas.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Alex de Souza Galdino
+* Aline Martins Cândido 
+* Isabella Carolina de Almeida Siqueira Damião
+* Pedro Luiz Braga Andrade Leite
+* Rafaela Cristina Souza de Oliveira
+* Vitória Gabriella Maffei Corrêa Rocha
 
 ## Orientador
 
-* Nome completo do professor 1
+* Professora Sandra Maria Silveira
 
 ## Instruções de utilização
 

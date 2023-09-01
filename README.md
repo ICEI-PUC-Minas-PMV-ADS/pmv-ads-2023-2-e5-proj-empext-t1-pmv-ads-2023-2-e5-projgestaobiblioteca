@@ -8,7 +8,7 @@
 
 `Eixo 5 `
 
-O projeto envolve o desenvolvimento de um sistema de biblioteca digital para a empresa, onde os colaboradores podem alugar uma variedade de livros relacionados ao setor e outros temas. Isso promoverá o aprendizado contínuo, o crescimento pessoal e profissional, além de facilitar o acesso flexível aos materiais de leitura, contribuindo para a inovação e resolução de problemas.
+O projeto envolve o desenvolvimento de um sistema de biblioteca digital para a empresa *Prevenir Assistencial LTDA*, onde os colaboradores podem alugar uma variedade de livros relacionados ao setor e outros temas. Isso promoverá o aprendizado contínuo, o crescimento pessoal e profissional, além de facilitar o acesso flexível aos materiais de leitura, contribuindo para a inovação e resolução de problemas.
 
 ## Integrantes
 

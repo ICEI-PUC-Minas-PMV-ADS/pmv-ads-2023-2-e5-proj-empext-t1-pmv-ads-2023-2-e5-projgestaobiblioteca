@@ -1,5 +1,7 @@
 # Gestão de Biblioteca
 
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/logotipo.jpeg" width="300">
+
 `CURSO: Analise e Desevolvimento Sistemas`
 
 `Projeto: Desenvolvimento de um Sistema Sociotécnico Inovador`

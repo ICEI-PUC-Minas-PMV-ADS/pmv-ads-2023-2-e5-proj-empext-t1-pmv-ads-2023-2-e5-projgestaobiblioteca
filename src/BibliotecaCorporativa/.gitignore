@@ -1,0 +1,8 @@
+.gitigonore
+
+/frontend/BibCorp-app/.angular
+/frontend/BibCorp-app/node_modules
+/frontend/BibCorp-app/.vscode
+/backend/BibCorp.API/bin
+/backend/BibCorp.API/obj
+/backend/BibCorp.API/Pages

@@ -1,5 +1,5 @@
-using BibCorp.API.Data;
-using BibCorp.API.Models;
+using BibCorp.Domain.Models.Acervos;
+using BibCorp.Persistence.Interfaces.Contexts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibCorp.API.Controllers

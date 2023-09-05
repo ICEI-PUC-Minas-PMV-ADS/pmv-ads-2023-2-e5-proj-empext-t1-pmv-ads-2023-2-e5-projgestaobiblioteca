@@ -1,32 +1,23 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AcervoComponent } from './components';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { AppComponent } from "./app.component";
+import { NavBarComponent } from "./components";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { NavBarComponent } from './components/navBar/navBar.component';
-import {  MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MenuSideBarComponent } from './components/menuSideBar/menuSideBar.component';
+import { NgbCollapseModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AcervoComponent,
-    MenuSideBarComponent
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    NgbModule
-
+    NgbModule,
+    NgbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent],

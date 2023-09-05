@@ -1,0 +1,2 @@
+
+export * from './navBar.component'

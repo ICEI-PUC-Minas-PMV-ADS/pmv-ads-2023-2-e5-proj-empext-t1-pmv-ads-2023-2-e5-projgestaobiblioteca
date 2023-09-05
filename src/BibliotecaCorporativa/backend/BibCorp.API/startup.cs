@@ -1,4 +1,4 @@
-using BibCorp.API.Data;
+using BibCorp.Persistence.Interfaces.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -42,7 +42,7 @@ namespace ProEventos.API
 
             app.UseAuthorization();
 
-            app.UseCors( cors => 
+            app.UseCors( cors =>
                 cors.AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyMethod()

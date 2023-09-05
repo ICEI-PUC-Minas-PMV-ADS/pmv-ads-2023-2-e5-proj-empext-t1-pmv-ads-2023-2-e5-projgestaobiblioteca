@@ -8,11 +8,21 @@ import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
 
-  constructor(ngbConfig: NgbConfig) {
-    ngbConfig.animation = true;
+  constructor(
+//    private loginLogoutService: LoginLogoutService
+  ) {}
+
+  ngOnInit(): void {
+  //  this.setCurrentUser();
   }
 
-  title = 'BibCorp-app';
+/*  public setCurrentUser(): void {
+    let user = {} as Users;
 
-  showFiller = false;
+    if (localStorage.getItem(Constants.LOCAL_STORAGE_NAME))
+      user = JSON.parse(localStorage.getItem(Constants.LOCAL_STORAGE_NAME) ?? '{}');
+
+    if (user)
+      this.loginLogoutService.setCurrentUser(user);
+  } */
 }

@@ -28,7 +28,14 @@ Com a facilidade proporcionada pelo formato digital, os funcionários podem aces
 
 ## Relação com a Extensão Universitária
 
-A implantação da biblioteca corporativa também se alinha com os princípios da extensão universitária, que envolve a aplicação do conhecimento acadêmico para fins práticos e benefícios sociais. Ao estabelecer esse sistema de aprendizado e desenvolvimento, a empresa não apenas promove o crescimento de seus colaboradores, mas também compartilha recursos educacionais de maneira semelhante aos objetivos da extensão universitária. A disseminação de conhecimento dentro e fora do ambiente acadêmico contribui para a melhoria da sociedade como um todo.
+A implantação da plataforma de gestão da biblioteca corporativa da Prevenir Assistencial LTDA é alinhada aos princípios da extensão universitária, aplicando conhecimento acadêmico em benefício social. Os principais benefícios incluem:
+
+- *Para Gestores e Usuários da Biblioteca Corporativa:* A plataforma melhora a gestão do acervo, permitindo curadoria de títulos relevantes para a equipe e facilitando o acesso a uma variedade de livros para o desenvolvimento pessoal e profissional.
+
+- *Para a Equipe do Projeto/Alunos Desenvolvedores:* A equipe tem a oportunidade de aplicar seus conhecimentos acadêmicos na prática, enriquecendo sua experiência educacional e preparando-os para desafios no mercado de trabalho.
+
+- *Contribuição para Todos os Atores da Extensão Universitária:* O projeto estabelece uma conexão concreta entre universidade e a comunidade empresarial, beneficiando gestores, usuários e estudantes. Isso demonstra como a extensão universitária pode gerar impacto social, unindo teoria e prática para o benefício de todos os envolvidos.
+
 
 ## Descrição do Parceiro
 

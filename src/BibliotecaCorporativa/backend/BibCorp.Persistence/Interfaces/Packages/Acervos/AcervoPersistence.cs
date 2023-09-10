@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+using BibCorp.Domain.Models.Acervos;
+using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
-using BibCorp.Domain.Models.Acervos;
+using Microsoft.EntityFrameworkCore;
 
 namespace BibCorp.Persistence.Interfaces.Packages.Acervos
 {
   public class AcervoPersistence : SharedPersistence, IAcervoPersistence
   {
     private readonly BibCorpContext _context;
-    private readonly DashboardCargos _dashCargo = new();
 
     public AcervoPersistence(BibCorpContext context) : base(context)
     {
@@ -21,9 +19,9 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
     public async Task<IEnumerable<Acervo>> GetAllAcervosAsync()
     {
       IQueryable<Acervo> query = _context.Acervos
-          .Include(a => a.Patrimonio)
+          .Include(a => a.Patrimonios)
           .AsNoTracking()
-          .OrderBy(c => c.Id);
+          .OrderBy(a => a.Id);
 
       return await query.ToListAsync();
     }
@@ -31,34 +29,20 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
     public async Task<Acervo> GetAcervoByIdAsync(int acervoId)
     {
       IQueryable<Acervo> query = _context.Acervos
-         .Include(a => a.Patrimonio);
+         .Include(a => a.Patrimonios)
                 .AsNoTracking()
-                .Where(c => a.Id == cargoId);
+                .Where(a => a.Id == acervoId);
 
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Cargo>> GetCargosByDepartamentoIdAsync(int departamentoId)
+    public async Task<IEnumerable<Acervo>> GetAcervosByISBNAsync(string ISBN)
     {
-      IQueryable<Cargo> query = _context.Cargos
-          .Include(c => c.Empresa)
-          .Include(c => c.Departamento)
-          .Include(c => c.Funcionarios);
-
-      if (departamentoId == 0)
-      {
-        query = query
+      IQueryable<Acervo> query = _context.Acervos
+          .Include(a => a.Patrimonios)
             .AsNoTracking()
-            .OrderBy(c => c.Id);
-      }
-      else
-      {
-        query = query
-            .AsNoTracking()
-            .Where(c => c.DepartamentoId == departamentoId)
-            .OrderBy(c => c.Id);
-
-      }
+            .Where(a => a.ISBN == ISBN)
+            .OrderBy(a => a.ISBN);
 
       return await query.ToListAsync();
     }

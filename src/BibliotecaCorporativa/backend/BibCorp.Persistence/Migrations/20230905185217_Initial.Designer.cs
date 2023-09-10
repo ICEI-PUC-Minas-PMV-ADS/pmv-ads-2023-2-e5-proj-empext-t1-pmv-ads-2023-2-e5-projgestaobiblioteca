@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20230903223152_Initial")]
+    [Migration("20230905185217_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,34 +27,28 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AnoPublicacao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CapaUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Edicao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Editora")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("EmprestimoAcervoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("EmprestimoAcervoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("EmprestimoPatrimonioId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("EmprestimoPatrimonioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ISBN")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PatrimonioId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PatrimonioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdeDisponivel")
                         .HasColumnType("INTEGER");
@@ -66,18 +60,19 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Resumo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SubTitulo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Titulo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ISBN");
+
+                    b.HasIndex("PatrimonioId");
 
                     b.HasIndex("EmprestimoAcervoId", "EmprestimoPatrimonioId");
 
@@ -86,22 +81,19 @@ namespace BibCorp.Persistence.Migrations
 
             modelBuilder.Entity("BibCorp.Domain.Models.Emprestimos.Emprestimo", b =>
                 {
-                    b.Property<string>("AcervoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("AcervoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("PatrimonioId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PatrimonioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("DataDevolucao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataEmprestimo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataPrevistaDevolucao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Devolvido")
@@ -117,7 +109,6 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("AcervoId", "PatrimonioId");
@@ -138,58 +129,49 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Coluna")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataAtualizacao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataCadastro")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataIndisponibilidade")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DetalheOrgiem")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("EmprestimoAcervoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("EmprestimoAcervoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("EmprestimoPatrimonioId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("EmprestimoPatrimonioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ISBN")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Localizacao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Origem")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Posicao")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Prateleira")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Sala")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AcervoId");
+
+                    b.HasIndex("ISBN");
 
                     b.HasIndex("EmprestimoAcervoId", "EmprestimoPatrimonioId");
 

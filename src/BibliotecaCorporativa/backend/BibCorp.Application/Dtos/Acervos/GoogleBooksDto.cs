@@ -1,10 +1,9 @@
-using System.Collections;
-using BibCorp.Domain.Models.Patrimonios;
+using BibCorp.Application.Dto.Patrimonios;
 
 
-namespace BibCorp.Domain.Models.Acervos
+namespace BibCorp.Application.Dto.Acervos
 {
-    public class Acervo
+  public class AcervoGoogleBooksDto
     {
         public int Id { get; set; }
         public int PatrimonioId { get; set; }
@@ -19,7 +18,7 @@ namespace BibCorp.Domain.Models.Acervos
         public int QtdeDisponivel { get; set; }
         public int QtdeEmTransito { get; set; }
         public int QtdeEmprestada { get; set; }
-        public IEnumerable<Patrimonio> Patrimonios { get; set; }
+        public IEnumerable<PatrimonioDto> Patrimonios { get; set; }
 
     }
 }

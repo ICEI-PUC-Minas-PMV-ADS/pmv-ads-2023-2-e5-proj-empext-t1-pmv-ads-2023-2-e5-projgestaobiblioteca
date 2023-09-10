@@ -1,0 +1,149 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using BibCorp.Application.Dto.Acervos;
+using BibCorp.Application.Services.Contracts.Acervos;
+using BibCorp.Domain.Models.Acervos;
+using BibCorp.Persistence.Interfaces.Contracts.Acervos;
+
+namespace BibCorp.Application.Services.Packages.Acervos
+{
+  public class AcervoService : IAcervoService
+  {
+    private readonly IAcervoPersistence _acervoPersistence;
+    private readonly IMapper _mapper;
+    public AcervoService(
+        IAcervoPersistence acervoPersistence,
+        IMapper mapper)
+    {
+      _acervoPersistence = acervoPersistence;
+      _mapper = mapper;
+    }
+    public async Task<AcervoDto> CreateAcervo(AcervoDto acervoDto)
+    {
+      try
+      {
+        var acervo = _mapper.Map<Acervo>(acervoDto);
+
+        _acervoPersistence.Create<Acervo>(acervo);
+
+        if (await _acervoPersistence.SaveChangesAsync())
+        {
+          var acervoRetorno = await _acervoPersistence.GetAcervoByIdAsync(acervo.Id);
+
+          return _mapper.Map<AcervoDto>(acervoRetorno);
+        }
+
+        return null;
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<bool> DeleteAcervo(int acervoId)
+    {
+      try
+      {
+        var acervo = await _acervoPersistence.GetAcervoByIdAsync(acervoId);
+
+        if (acervo == null)
+          throw new Exception("Acervo para deleção náo foi encontrado!");
+
+        _acervoPersistence.Delete<Acervo>(acervo);
+
+        return await _acervoPersistence.SaveChangesAsync();
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception(e.Message);
+      }
+    }
+    public async Task<IEnumerable<AcervoDto>> GetAllAcervosAsync()
+    {
+      try
+      {
+        var acervos = await _acervoPersistence.GetAllAcervosAsync();
+
+        if (acervos == null) return null;
+
+        var acervosMappper = _mapper.Map<AcervoDto[]>(acervos);
+
+        return acervosMappper;
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<AcervoDto> GetAcervoByIdAsync(int acervoId)
+    {
+      try
+      {
+        var acervo = await _acervoPersistence.GetAcervoByIdAsync(acervoId);
+
+        if (acervo == null) return null;
+
+        var acervoMapper = _mapper.Map<AcervoDto>(acervo);
+
+        return acervoMapper;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<AcervoDto> UpdateAcervo(int acervoId, AcervoDto acervoDto)
+    {
+      try
+      {
+        var acervo = await _acervoPersistence.GetAcervoByIdAsync(acervoId);
+
+        if (acervo == null) return null;
+
+        var acervoUpdate = _mapper.Map(acervoDto, acervo);
+
+        _acervoPersistence.Update<Acervo>(acervoUpdate);
+
+        if (await _acervoPersistence.SaveChangesAsync())
+        {
+          var acervoMapper = await _acervoPersistence.GetAcervoByIdAsync(acervoUpdate.Id);
+          return _mapper.Map<AcervoDto>(acervoMapper);
+        }
+
+        return null;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+
+    public async Task<IEnumerable<AcervoDto>> GetAcervosByISBNAsync(string ISBN)
+    {
+      try
+      {
+        var acervo = await _acervoPersistence.GetAcervosByISBNAsync(ISBN);
+
+        if (acervo == null) return null;
+
+        var acervoMapper = _mapper.Map<AcervoDto[]>(acervo);
+
+        return acervoMapper;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+  }
+}

@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BibCorp.Persistence.Interfaces.Contracts.Shared;
 using BibCorp.Persistence.Interfaces.Contexts;
+using BibCorp.Persistence.Interfaces.Contracts.Shared;
 
 namespace BibCorp.Persistence.Interfaces.Packages.Shared
 {

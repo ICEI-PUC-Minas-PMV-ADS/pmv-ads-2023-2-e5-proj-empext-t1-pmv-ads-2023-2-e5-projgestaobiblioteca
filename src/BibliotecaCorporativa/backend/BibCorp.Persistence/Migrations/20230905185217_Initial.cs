@@ -14,15 +14,15 @@ namespace BibCorp.Persistence.Migrations
                 name: "Emprestimos",
                 columns: table => new
                 {
-                    AcervoId = table.Column<string>(type: "TEXT", nullable: false),
-                    PatrimonioId = table.Column<string>(type: "TEXT", nullable: false),
+                    AcervoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PatrimonioId = table.Column<int>(type: "INTEGER", nullable: false),
                     Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true),
                     Devolvido = table.Column<bool>(type: "INTEGER", nullable: false),
-                    DataEmprestimo = table.Column<string>(type: "TEXT", nullable: false),
-                    DataPrevistaDevolucao = table.Column<string>(type: "TEXT", nullable: false),
+                    DataEmprestimo = table.Column<string>(type: "TEXT", nullable: true),
+                    DataPrevistaDevolucao = table.Column<string>(type: "TEXT", nullable: true),
                     QtdeDiasEmprestimo = table.Column<int>(type: "INTEGER", nullable: false),
-                    DataDevolucao = table.Column<string>(type: "TEXT", nullable: false),
+                    DataDevolucao = table.Column<string>(type: "TEXT", nullable: true),
                     QtdeDiasAtraso = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -36,20 +36,20 @@ namespace BibCorp.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    PatrimonioId = table.Column<string>(type: "TEXT", nullable: false),
-                    ISBN = table.Column<string>(type: "TEXT", nullable: false),
-                    Titulo = table.Column<string>(type: "TEXT", nullable: false),
-                    SubTitulo = table.Column<string>(type: "TEXT", nullable: false),
-                    Resumo = table.Column<string>(type: "TEXT", nullable: false),
-                    AnoPublicacao = table.Column<string>(type: "TEXT", nullable: false),
-                    Editora = table.Column<string>(type: "TEXT", nullable: false),
-                    Edicao = table.Column<string>(type: "TEXT", nullable: false),
-                    CapaUrl = table.Column<string>(type: "TEXT", nullable: false),
+                    PatrimonioId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ISBN = table.Column<string>(type: "TEXT", nullable: true),
+                    Titulo = table.Column<string>(type: "TEXT", nullable: true),
+                    SubTitulo = table.Column<string>(type: "TEXT", nullable: true),
+                    Resumo = table.Column<string>(type: "TEXT", nullable: true),
+                    AnoPublicacao = table.Column<string>(type: "TEXT", nullable: true),
+                    Editora = table.Column<string>(type: "TEXT", nullable: true),
+                    Edicao = table.Column<string>(type: "TEXT", nullable: true),
+                    CapaUrl = table.Column<string>(type: "TEXT", nullable: true),
                     QtdeDisponivel = table.Column<int>(type: "INTEGER", nullable: false),
                     QtdeEmTransito = table.Column<int>(type: "INTEGER", nullable: false),
                     QtdeEmprestada = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmprestimoAcervoId = table.Column<string>(type: "TEXT", nullable: true),
-                    EmprestimoPatrimonioId = table.Column<string>(type: "TEXT", nullable: true)
+                    EmprestimoAcervoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    EmprestimoPatrimonioId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,21 +67,21 @@ namespace BibCorp.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Localizacao = table.Column<string>(type: "TEXT", nullable: false),
-                    Sala = table.Column<string>(type: "TEXT", nullable: false),
-                    Coluna = table.Column<string>(type: "TEXT", nullable: false),
-                    Prateleira = table.Column<string>(type: "TEXT", nullable: false),
-                    Posicao = table.Column<string>(type: "TEXT", nullable: false),
-                    ISBN = table.Column<string>(type: "TEXT", nullable: false),
-                    Origem = table.Column<string>(type: "TEXT", nullable: false),
-                    DetalheOrgiem = table.Column<string>(type: "TEXT", nullable: false),
+                    Localizacao = table.Column<string>(type: "TEXT", nullable: true),
+                    Sala = table.Column<string>(type: "TEXT", nullable: true),
+                    Coluna = table.Column<string>(type: "TEXT", nullable: true),
+                    Prateleira = table.Column<string>(type: "TEXT", nullable: true),
+                    Posicao = table.Column<string>(type: "TEXT", nullable: true),
+                    ISBN = table.Column<string>(type: "TEXT", nullable: true),
+                    Origem = table.Column<string>(type: "TEXT", nullable: true),
+                    DetalheOrgiem = table.Column<string>(type: "TEXT", nullable: true),
                     Ativo = table.Column<bool>(type: "INTEGER", nullable: false),
-                    DataCadastro = table.Column<string>(type: "TEXT", nullable: false),
-                    DataAtualizacao = table.Column<string>(type: "TEXT", nullable: false),
-                    DataIndisponibilidade = table.Column<string>(type: "TEXT", nullable: false),
+                    DataCadastro = table.Column<string>(type: "TEXT", nullable: true),
+                    DataAtualizacao = table.Column<string>(type: "TEXT", nullable: true),
+                    DataIndisponibilidade = table.Column<string>(type: "TEXT", nullable: true),
                     AcervoId = table.Column<int>(type: "INTEGER", nullable: true),
-                    EmprestimoAcervoId = table.Column<string>(type: "TEXT", nullable: true),
-                    EmprestimoPatrimonioId = table.Column<string>(type: "TEXT", nullable: true)
+                    EmprestimoAcervoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    EmprestimoPatrimonioId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,6 +104,16 @@ namespace BibCorp.Persistence.Migrations
                 columns: new[] { "EmprestimoAcervoId", "EmprestimoPatrimonioId" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Acervos_ISBN",
+                table: "Acervos",
+                column: "ISBN");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Acervos_PatrimonioId",
+                table: "Acervos",
+                column: "PatrimonioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patrimonios_AcervoId",
                 table: "Patrimonios",
                 column: "AcervoId");
@@ -112,6 +122,11 @@ namespace BibCorp.Persistence.Migrations
                 name: "IX_Patrimonios_EmprestimoAcervoId_EmprestimoPatrimonioId",
                 table: "Patrimonios",
                 columns: new[] { "EmprestimoAcervoId", "EmprestimoPatrimonioId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patrimonios_ISBN",
+                table: "Patrimonios",
+                column: "ISBN");
         }
 
         /// <inheritdoc />

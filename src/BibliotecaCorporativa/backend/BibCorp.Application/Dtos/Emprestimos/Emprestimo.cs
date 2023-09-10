@@ -1,17 +1,13 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BibCorp.Domain.Models.Acervos;
-using BibCorp.Domain.Models.Patrimonios;
+using BibCorp.Application.Dto.Acervos;
+using BibCorp.Application.Dto.Patrimonios;
 
-namespace BibCorp.Domain.Models.Emprestimos
+namespace BibCorp.Application.Dto.Emprestimos
 {
-    public class Emprestimo
+    public class EmprestimoDto
     {
         public int Id { get; set; }
         public string UserName { get; set; }
+
         public bool Devolvido { get; set; }
         public string DataEmprestimo { get; set; }
         public string DataPrevistaDevolucao { get; set; }
@@ -19,8 +15,8 @@ namespace BibCorp.Domain.Models.Emprestimos
         public string DataDevolucao { get; set; }
         public int QtdeDiasAtraso { get; set; }
         public int AcervoId { get; set; }
-        public IEnumerable<Acervo> Acervos { get; set; }
+        public IEnumerable<AcervoDto> Acervos { get; set; }
         public int PatrimonioId { get; set; }
-        public IEnumerable<Patrimonio> Patrimonios { get; set; }
+        public IEnumerable<PatrimonioDto> Patrimonios { get; set; }
     }
 }

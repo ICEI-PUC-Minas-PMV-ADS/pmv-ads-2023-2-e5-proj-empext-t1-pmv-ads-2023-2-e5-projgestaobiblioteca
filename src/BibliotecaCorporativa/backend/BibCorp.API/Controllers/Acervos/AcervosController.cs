@@ -7,14 +7,14 @@ namespace BibCorp.API.Controllers.Acervos;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AcervoController : ControllerBase
+public class AcervosController : ControllerBase
 {
   private readonly IAcervoService _acervoService;
   private readonly HttpClient _httpClient = new();
   private AcervoGoogleBooksDto _googleBooksDto = new();
   private readonly AcervoDto _acervoDto = new();
 
-  public AcervoController
+  public AcervosController
   (
       IAcervoService acervoService
   )

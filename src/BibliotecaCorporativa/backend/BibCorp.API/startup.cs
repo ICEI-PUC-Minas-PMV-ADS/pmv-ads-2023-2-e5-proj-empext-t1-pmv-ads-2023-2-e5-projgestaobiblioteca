@@ -1,7 +1,11 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
 using BibCorp.Application.Services.Contracts.Acervos;
+using BibCorp.Application.Services.Contracts.Emprestimos;
+using BibCorp.Application.Services.Contracts.Patrimonios;
 using BibCorp.Application.Services.Packages.Acervos;
+using BibCorp.Application.Services.Packages.Emprestimos;
+using BibCorp.Application.Services.Packages.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
@@ -78,9 +82,9 @@ namespace ProEventos.API
 
       //Injeção dos serviços de persistencias
       services
-          .AddScoped<IAcervoService, AcervoService>();
-      //               .AddScoped<IPatrimonioService, PatrimonioService>()
-      //               .AddScoped<IEmprestimoService, EmprestimoService>();
+          .AddScoped<IAcervoService, AcervoService>()
+          .AddScoped<IPatrimonioService, PatrimonioService>()
+          .AddScoped<IEmprestimoService, EmprestimoService>();
 
 
       //Injeção das interfaces de Persistencias

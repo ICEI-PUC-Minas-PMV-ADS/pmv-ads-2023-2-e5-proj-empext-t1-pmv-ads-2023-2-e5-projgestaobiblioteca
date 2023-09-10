@@ -25,14 +25,13 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| O sistema deverá permitir o Login de funcionários | ALTA | 
+|RF-001| O sistema deverá permitir o Login de usuários | ALTA | 
 |RF-002| O sistema deverá permitir a recuperação de senha   | MÉDIA |
-|RF-003| O sistema deverá permitir o cadastro de usuários (CRUD)   | ALTA |
+|RF-003| O sistema deverá permitir o cadastro/atualização de usuários (CRUD)   | ALTA |
 |RF-004| O sistema deverá permitir o gerenciamento do acervo (CRUD)   | ALTA |
 |RF-005| O sistema deverá permitir o gerenciamento de emprestimos (CRUD)   | ALTA |
-|RF-006| O sistema deverá registrar os livros lidos pelo usuario (CRUD)   | MÉDIA |
-|RF-007| O sistema deverá mostrar um dashboard com informações relevantes   | ALTA |
-|RF-008| O sistema deverá permitir a atualização do usuario   | MÉDIA |
+|RF-006| O sistema deverá registrar os livros lidos pelo usuario   | MÉDIA |
+|RF-007| O sistema deverá mostrar um dashboard com informações relevantes ao administrador   | ALTA |
 
 ### Requisitos não Funcionais
 

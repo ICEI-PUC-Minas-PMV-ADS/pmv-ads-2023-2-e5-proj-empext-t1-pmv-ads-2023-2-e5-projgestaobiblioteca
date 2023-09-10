@@ -12,7 +12,10 @@ o	Descreva brevemente a arquitetura definida para o projeto e as tecnologias a s
 
 ## Project Model Canvas
 
-Colocar a imagem do modelo construído apresentando a proposta de solução.
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/ProjetoGestaoBibliotecaCorporativaCanvas.png>>
+</br>
 
 > **Links Úteis**:
 > Disponíveis em material de apoio do projeto

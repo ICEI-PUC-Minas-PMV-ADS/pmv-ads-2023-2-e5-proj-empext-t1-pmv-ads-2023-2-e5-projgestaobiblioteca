@@ -8,7 +8,7 @@ Na medida em que o mercado e as demandas evoluem, os funcionários precisam se m
 
 ## Problema
 
-A ausência de uma biblioteca interna de aluguel de livros na empresa prejudica o acesso dos colaboradores a materiais de aprendizado variados e de qualidade. Isso limita as oportunidades de desenvolvimento profissional e pessoal, além de dificultar a troca de conhecimentos entre os funcionários e desestimular a cultura de aprendizado contínuo.
+A dificuldade na gestão da biblioteca na empresa prejudica o acesso dos colaboradores a materiais de aprendizado variados e de qualidade. Isso limita as oportunidades de desenvolvimento profissional e pessoal, além de dificultar a troca de conhecimentos entre os funcionários e desestimular a cultura de aprendizado contínuo.
 
 ## Objetivos
 

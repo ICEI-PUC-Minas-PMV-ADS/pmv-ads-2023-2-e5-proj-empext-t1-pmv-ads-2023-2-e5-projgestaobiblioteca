@@ -1,0 +1,75 @@
+<app-titulo [titulo]="'Patrimonios'"></app-titulo>
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <label class="mr-2">Filtro: </label>
+    <input
+    type="text"
+    class="form-control mr-2"
+    placeholder="buscar"
+    [(ngModel)]="filtroLista"
+    >
+  </div>
+</div>
+<!-- <h3>Filtro: {{filtroLista}}</h3> -->
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>
+        <button type="button" class="btn btn-outline-light btn-sm"
+        (click)="alterarImagem()">
+        <i class="{{!exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+          {{!exibirImagem ? 'exibir' : 'ocultar'}}
+        </button>
+      </th>
+      <th>#</th>
+      <th>Titulo</th>
+      <th>Local</th>
+      <th>ISBN</th>
+      <th>Ativo</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="patrimonios && patrimonios.length">
+    <tr *ngFor="let patrimonio of patrimoniosFiltrados">
+      <td>
+        <img [collapse]="!exibirImagem"
+             [isAnimated]="true"
+          src="../../../assets/PlaceHolder.png"
+          [style.width.px]="larguraImagem"
+          [style.margin.px]="margemImagem"
+        >
+      </td>
+      <td>{{patrimonio.id}}</td>
+      <td>{{patrimonio.titulo}}</td>
+      <td>{{patrimonio.local}}</td>
+      <td>{{patrimonio.isbn}}</td>
+      <td>{{patrimonio.ativo}}</td>
+      <!-- <td>{{patrimonio.emprestimos[0].nome | uppercase}}</td> -->
+      <td>
+        <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!patrimonios.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum Patrimonio encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- {{eventos | json}} -->
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar este Patrimonio?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
+  </div>
+</ng-template>

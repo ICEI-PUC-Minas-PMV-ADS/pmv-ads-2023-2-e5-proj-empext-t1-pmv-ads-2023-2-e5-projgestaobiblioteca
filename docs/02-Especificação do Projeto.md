@@ -23,7 +23,7 @@
 |RF-004| O sistema deverá permitir o gerenciamento do acervo (CRUD)   | ALTA |
 |RF-005| O sistema deverá permitir o gerenciamento de emprestimos (CRUD)   | ALTA |
 |RF-006| O sistema deverá registrar os livros lidos pelo usuario   | MÉDIA |
-|RF-007| O sistema deverá mostrar um dashboard com informações relevantes ao administrador   | ALTA |
+|RF-007| O sistema deverá mostrar um Dashboard com informações relevantes ao administrador   | ALTA |
 
 ### Requisitos não Funcionais
 
@@ -40,7 +40,7 @@
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01|O projeto deverá ser entregue até o final do EIXO-5 (02/2023) |
+|01|O projeto deverá ser entregue até o final do EIXO-05 (02/2023) |
 |02| Deve ser desenvolvido um módulo de backend em C#        |
 
 

@@ -15,6 +15,7 @@ namespace BibCorp.Persistence.Interfaces.Contexts
     public DbSet<Acervo> Acervos { get; set; }
     public DbSet<Patrimonio> Patrimonios { get; set; }
     public DbSet<Emprestimo> Emprestimos { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,6 +36,9 @@ namespace BibCorp.Persistence.Interfaces.Contexts
       {
         patrimonio.HasIndex(p => p.ISBN);
       });
+
+      modelBuilder.Entity<Emprestimo>()
+                .HasKey(E => new {E.PatrimonioId, E.UsuarioId});
     }
   }
 }

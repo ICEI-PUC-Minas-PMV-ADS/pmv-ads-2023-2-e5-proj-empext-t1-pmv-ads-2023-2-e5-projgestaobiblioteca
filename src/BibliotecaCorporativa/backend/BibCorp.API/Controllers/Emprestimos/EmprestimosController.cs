@@ -23,9 +23,9 @@ public class EmprestimosController : ControllerBase
 
 
   /// <summary>
-  /// Obtém os dados de todas os emprestimos cadastrados na empresa
+  /// Obtém os dados de todos os empréstimos cadastrados na empresa
   /// </summary>
-  /// <response code="200">Dados do emprestimo cadastrados</response>
+  /// <response code="200">Dados dos empréstimos cadastrados</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -36,22 +36,22 @@ public class EmprestimosController : ControllerBase
     {
       var emprestimos = await _emprestimoService.GetAllEmprestimosAsync();
 
-      if (emprestimos == null) return NoContent();
+      if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados");
 
       return Ok(emprestimos);
     }
     catch (Exception e)
     {
 
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar emprestimos. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimos. Erro: {e.Message}");
     }
   }
 
   /// <summary>
-  /// Obtém os dados de um emprestimo específico
+  /// Obtém os dados de um empréstimo específico
   /// </summary>
-  /// <param name="emprestimoId">Identificador do acervo</param>
-  /// <response code="200">Dados do acervo consultado</response>
+  /// <param name="emprestimoId">Identificador do empréstimo</param>
+  /// <response code="200">Dados do empréstimo consultado</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -62,21 +62,21 @@ public class EmprestimosController : ControllerBase
     {
       var emprestimo = await _emprestimoService.GetEmprestimoByIdAsync(emprestimoId);
 
-      if (emprestimo == null) return NoContent();
+      if (emprestimo == null) return NotFound("Não existe empréstimo cadastrado para o Id informado");
 
       return Ok(emprestimo);
     }
     catch (Exception e)
     {
 
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar emprestimo por Id. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimo por Id. Erro: {e.Message}");
     }
   }
 
   /// <summary>
-  /// Realiza a inclusão de um novo emprestimo
+  /// Realiza a inclusão de um novo empréstimo
   /// </summary>
-  /// <response code="200">Emprestimo cadastrado com sucesso</response>
+  /// <response code="200">Empréstimo cadastrado com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -89,20 +89,20 @@ public class EmprestimosController : ControllerBase
 
       if (createdEmprestimo != null) return Ok(createdEmprestimo);
 
-      return NoContent();
+      return BadRequest("Ocorreu um erro ao tentar incluir o empréstimo");
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adiconar emprestimo. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adicionar empréstimo. Erro: {e.Message}");
     }
   }
 
   /// <summary>
-  /// Realiza a atualização dos dados de um patrimonio
+  /// Realiza a atualização dos dados de um empréstimo
   /// </summary>
-  /// <param name="emprestimoId">Identificador do emprestimo</param>
-  /// <param name="emprestimoDto">Emprestimo Cadastrado</param>
-  /// <response code="200">Emprestimo atualizado com sucesso</response>
+  /// <param name="emprestimoId">Identificador do empréstimo</param>
+  /// <param name="emprestimoDto">Empréstimo cadastrado</param>
+  /// <response code="200">Empréstimo atualizado com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -113,7 +113,7 @@ public class EmprestimosController : ControllerBase
     {
       var emprestimo = await _emprestimoService.UpdateEmprestimo(emprestimoId, emprestimoDto);
 
-      if (emprestimo == null) return NoContent();
+      if (emprestimo == null) return NotFound("Não existe empréstimo cadastrado para o Id informado");
 
       return Ok(emprestimo);
     }
@@ -124,10 +124,10 @@ public class EmprestimosController : ControllerBase
   }
 
   /// <summary>
-  /// Realiza a exclusão de um acervo
+  /// Realiza a exclusão de um empréstimo
   /// </summary>
-  /// <param name="emprestimoId">Identificador do acervo</param>
-  /// <response code="200">Acervo excluído com sucesso</response>
+  /// <param name="emprestimoId">Identificador do empréstimo</param>
+  /// <response code="200">Empréstimo excluído com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -142,12 +142,12 @@ public class EmprestimosController : ControllerBase
       }
       else
       {
-        return BadRequest("Falha na exclusão do emprestimo.");
+        return BadRequest("Ocorreu um erro ao tentar excluir o empréstimo");
       }
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir emprestimo. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir empréstimo. Erro: {e.Message}");
     }
 
   }

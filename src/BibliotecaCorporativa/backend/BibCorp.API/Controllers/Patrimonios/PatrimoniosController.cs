@@ -21,9 +21,9 @@ public class PatrimoniosController : ControllerBase
 
 
   /// <summary>
-  /// Obtém os dados de todas os patrimonios cadastrados na empresa
+  /// Obtém os dados de todos os patrimônios cadastrados na empresa
   /// </summary>
-  /// <response code="200">Dados do patrimonio cadastrados</response>
+  /// <response code="200">Dados dos patrimônios cadastrados</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -34,22 +34,22 @@ public class PatrimoniosController : ControllerBase
     {
       var patrimonios = await _patrimonioService.GetAllPatrimoniosAsync();
 
-      if (patrimonios == null) return NoContent();
+      if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados");
 
       return Ok(patrimonios);
     }
     catch (Exception e)
     {
 
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimonios. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimônios. Erro: {e.Message}");
     }
   }
 
   /// <summary>
-  /// Obtém os dados de um acervo específico
+  /// Obtém os dados de um patrimônio específico
   /// </summary>
-  /// <param name="patrimonioId">Identificador do acervo</param>
-  /// <response code="200">Dados do acervo consultado</response>
+  /// <param name="patrimonioId">Identificador do patrimônio</param>
+  /// <response code="200">Dados do patrimônio consultado</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -60,21 +60,21 @@ public class PatrimoniosController : ControllerBase
     {
       var patrimonio = await _patrimonioService.GetPatrimonioByIdAsync(patrimonioId);
 
-      if (patrimonio == null) return NoContent();
+      if (patrimonio == null) return NotFound("Não existe patrimônio cadastrado para o Id informado");
 
       return Ok(patrimonio);
     }
     catch (Exception e)
     {
 
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimonio por Id. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimônio por Id. Erro: {e.Message}");
     }
   }
 
   /// <summary>
-  /// Realiza a inclusão de um novo patrimonio
+  /// Realiza a inclusão de um novo patrimônio
   /// </summary>
-  /// <response code="200">Patrimonio cadastrado com sucesso</response>
+  /// <response code="200">Patrimônio cadastrado com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -87,20 +87,20 @@ public class PatrimoniosController : ControllerBase
 
       if (createdPatrimonio != null) return Ok(createdPatrimonio);
 
-      return NoContent();
+      return BadRequest("Ocorreu um erro ao tentar incluir o patrimônio");
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adiconar patrimonio. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adicionar patrimonio. Erro: {e.Message}");
     }
   }
 
   /// <summary>
-  /// Realiza a atualização dos dados de um patrimonio
+  /// Realiza a atualização dos dados de um patrimônio
   /// </summary>
-  /// <param name="patrimoniId">Identificador do patrimonio</param>
-  /// <param name="patrimonioDto">Patrimonio Cadastrado</param>
-  /// <response code="200">Acervo atualizado com sucesso</response>
+  /// <param name="patrimoniId">Identificador do patrimônio</param>
+  /// <param name="patrimonioDto">Patrimônio Cadastrado</param>
+  /// <response code="200">Patrimônio atualizado com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -111,7 +111,7 @@ public class PatrimoniosController : ControllerBase
     {
       var patrimonio = await _patrimonioService.UpdatePatrimonio(patrimonioId, patrimonioDto);
 
-      if (patrimonio == null) return NoContent();
+      if (patrimonio == null) return NotFound("Não existe patrimônio cadastrado para o Id informado");
 
       return Ok(patrimonio);
     }
@@ -122,10 +122,10 @@ public class PatrimoniosController : ControllerBase
   }
 
   /// <summary>
-  /// Realiza a exclusão de um acervo
+  /// Realiza a exclusão de um patrimônio
   /// </summary>
-  /// <param name="patrimonioId">Identificador do acervo</param>
-  /// <response code="200">Acervo excluído com sucesso</response>
+  /// <param name="patrimonioId">Identificador do patrimônio</param>
+  /// <response code="200">Patrimônio excluído com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -140,12 +140,12 @@ public class PatrimoniosController : ControllerBase
       }
       else
       {
-        return BadRequest("Falha na exclusão do patrimonio.");
+        return BadRequest("Ocorreu um erro ao tentar excluir o patrimônio");
       }
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir patrimonio. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir patrimônio. Erro: {e.Message}");
     }
 
   }

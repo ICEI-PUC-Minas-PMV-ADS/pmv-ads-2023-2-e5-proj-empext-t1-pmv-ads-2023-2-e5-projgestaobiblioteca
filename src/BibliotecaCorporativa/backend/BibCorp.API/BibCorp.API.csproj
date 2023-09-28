@@ -27,4 +27,9 @@
     <ProjectReference Include="..\BibCorp.Application\BibCorp.Application.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
 </Project>

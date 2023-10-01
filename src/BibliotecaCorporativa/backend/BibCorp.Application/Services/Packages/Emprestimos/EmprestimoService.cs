@@ -48,7 +48,7 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
         var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
 
         if (emprestimo == null)
-          throw new Exception("Emprestimo para deleção náo foi encontrado!");
+          throw new Exception("Emprestimo para deleção não foi encontrado!");
 
         _emprestimoPersistence.Delete<Emprestimo>(emprestimo);
 

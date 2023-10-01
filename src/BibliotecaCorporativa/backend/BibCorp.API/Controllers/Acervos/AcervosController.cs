@@ -24,9 +24,9 @@ public class AcervosController : ControllerBase
 
 
   /// <summary>
-  /// Obtém os dados de todas os acervos cadastrado na empresa
+  /// Obtém os dados de todos os acervos cadastrado na empresa
   /// </summary>
-  /// <response code="200">Dados do acervo cadastrados</response>
+  /// <response code="200">Dados dos acervos cadastrados</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
@@ -37,7 +37,7 @@ public class AcervosController : ControllerBase
     {
       var acervos = await _acervoService.GetAllAcervosAsync();
 
-      if (acervos == null) return NoContent();
+      if (acervos == null) return NotFound("Não existem acervos cadastrados");
 
       return Ok(acervos);
     }
@@ -63,7 +63,7 @@ public class AcervosController : ControllerBase
     {
       var acervo = await _acervoService.GetAcervoByIdAsync(acervoid);
 
-      if (acervo == null) return NoContent();
+      if (acervo == null) return NotFound("Não existe acervo cadastrado para o Id informado");
 
       return Ok(acervo);
     }
@@ -75,7 +75,7 @@ public class AcervosController : ControllerBase
   }
 
   /// <summary>
-  /// Obtém os dados dos acervos associados aum ISBN
+  /// Obtém os dados dos acervos associados à um ISBN
   /// </summary>
   /// <param name="ISBN">Identificador do acervo</param>
   /// <response code="200">Dados do acervo consultado</response>
@@ -89,14 +89,14 @@ public class AcervosController : ControllerBase
     {
       var acervos = await _acervoService.GetAcervosByISBNAsync(ISBN);
 
-      if (acervos == null) return NoContent();
+      if (acervos == null) return NotFound("Não existe acervos associados ao ISBN informado");
 
       return Ok(acervos);
     }
     catch (Exception e)
     {
 
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervo por Id. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervo por ISBN. Erro: {e.Message}");
     }
   }
   /// <summary>
@@ -115,11 +115,11 @@ public class AcervosController : ControllerBase
 
       if (createdAcervo != null) return Ok(createdAcervo);
 
-      return NoContent();
+      return BadRequest("Ocorreu um erro ao tentar incluir o acervo");
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adiconar acervo. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adicionar acervo. Erro: {e.Message}");
     }
   }
 
@@ -127,7 +127,7 @@ public class AcervosController : ControllerBase
   /// Realiza a atualização dos dados de um acervo
   /// </summary>
   /// <param name="acervoId">Identificador do acervo</param>
-  /// <param name="acervoDto">Acervi Cadastrado</param>
+  /// <param name="acervoDto">Acervo cadastrado</param>
   /// <response code="200">Acervo atualizado com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
@@ -139,7 +139,7 @@ public class AcervosController : ControllerBase
     {
       var acervo = await _acervoService.UpdateAcervo(acervoId, acervoDto);
 
-      if (acervo == null) return NoContent();
+      if (acervo == null) return NotFound("Não existe acervo cadastrado para o Id informado");
 
       return Ok(acervo);
     }
@@ -168,7 +168,7 @@ public class AcervosController : ControllerBase
       }
       else
       {
-        return BadRequest("Falha na exclusão do acervo.");
+        return BadRequest("Ocorreu um erro ao tentar excluir o acervo");
       }
     }
     catch (Exception e)

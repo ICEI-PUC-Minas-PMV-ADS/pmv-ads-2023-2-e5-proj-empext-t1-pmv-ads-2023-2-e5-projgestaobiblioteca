@@ -11,9 +11,9 @@ namespace BibCorp.Application.Dto.Patrimonios
         public string Sala { get; set; }
         [Display(Name = "Código da Coluna")]
         public string Coluna { get; set; }
-        [Display(Name = "Código da Patreleira")]
+        [Display(Name = "Código da Prateleira")]
         public string Prateleira { get; set; }
-        [Display(Name = "Pposição")]
+        [Display(Name = "Posição")]
         public string Posicao { get; set; }
         public string ISBN { get; set; }
         [Display(Name = "Origem do Patrimônio")]

@@ -49,7 +49,7 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
         var patrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
 
         if (patrimonio == null)
-          throw new Exception("Patrimonio para deleção náo foi encontrado!");
+          throw new Exception("Patrimonio para deleção não foi encontrado");
 
         _patrimonioPersistence.Delete<Patrimonio>(patrimonio);
 
@@ -102,11 +102,11 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
     {
       try
       {
-        var ptrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
+        var patrimonio = await _patrimonioPersistence.GetPatrimonioByIdAsync(patrimonioId);
 
-        if (ptrimonio == null) return null;
+        if (patrimonio == null) return null;
 
-        var patrimonioUpdate = _mapper.Map(patrimoioDto, ptrimonio);
+        var patrimonioUpdate = _mapper.Map(patrimoioDto, patrimonio);
 
         _patrimonioPersistence.Update<Patrimonio>(patrimonioUpdate);
 

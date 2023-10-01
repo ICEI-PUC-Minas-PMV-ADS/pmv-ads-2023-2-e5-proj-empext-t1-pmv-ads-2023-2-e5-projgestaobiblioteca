@@ -17,7 +17,7 @@ using BibCorp.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace ProEventos.API
+namespace BibCorp.API
 {
   public class Startup
   {
@@ -100,9 +100,9 @@ namespace ProEventos.API
       {
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema Biblioteca Corporativa Prevenir Assistencial LTDA" });
 
-//       var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-//        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-//        options.IncludeXmlComments(xmlPath);
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        options.IncludeXmlComments(xmlPath);
       });
     }
 

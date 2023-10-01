@@ -63,7 +63,7 @@ O diagrama de casos de uso é o próximo passo após a elicitação de requisito
 
 </br>
 <p align="center">
-<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/DiagramadeCasosdeUso.png>>
+<img src=/Users/Lica/Documents/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/docs/img/Diagramadecasodeuso.rasc.png/>>
 </br>
 
 

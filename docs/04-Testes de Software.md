@@ -157,6 +157,53 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **When** a rota DELETE api/Patrimonios/{patrimonioId} for executada
 **Then** o status code 200 deve ser retornado
 **And** o patrimônio deve ser excluído no banco de dados
+
+## Usuarios<br>
+
+**CTF16: GET api/Usuarios - Executando a rota sem informar nenhum parâmetro**<br>
+
+**Given** que nenhum parâmetro seja informado<br>
+**When** a rota GET api/Usuarios for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter um array de objetos para cada usuario cadastrado no banco de dados<br>
+
+**CTF17: POST api/Usuarios - Realizando a requisição informando os dados obrigatórios corretamente**<br>
+
+**Given** que as propriedades obrigatórias sejam informados no request body<br>
+**When** a rota POST api/Usuarios for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do usuario cadastrado conforme as informações enviadas na requisição<br>
+**And** o usuario cadastrado deve ser inserido no banco de dados<br>
+
+**CTF18: GET api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
+
+**Given** um usuarioId válido (existente) seja informado como parâmetro<br>
+**When** a rota GET api/Usuarios/{usuarioId} for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do usuario informado como parâmetro<br>
+
+**CTF19: GET api/Usuarios/{nome}/nome - Executando a rota informando um nome válido (existente)**<br>
+
+**Given** um nome válido (existente) seja informado como parâmetro<br>
+**When** a rota GET api/Usuarios/{nome}/nome for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do nome informado como parâmetro<br>
+
+**CTF20: PUT api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente) e todos os dados obrigatórios**<br>
+
+**Given** um usuarioId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos<br>
+**When** a rota PUT api/Usuarios/{usuarioId} for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do usuario alterado<br>
+**And** os dados do usuario devem ser atualizados no banco de dados conforme os dados enviados na requisição<br>
+
+**CTF21: DELETE api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
+
+**Given** um usuarioId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Usuarios/{usuarioId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o usuario deve ser excluído no banco de dados<br>
+
  
 # Evidências de Testes de Software
 
@@ -354,3 +401,60 @@ Acervo excluído no banco de dados:
 <img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/DELETEAcervo4.png>
 </p>
 </br>
+
+## Usuarios
+
+**CTF16: GET api/Usuarios - Executando a rota sem informar nenhum parâmetro**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** que nenhum parâmetro seja informado
+**When** a rota GET api/Usuarios for executada
+**Then** o status code 200 deve ser retornado
+**And** o response body deve conter um array de objetos para cada usuario cadastrado no banco de dados
+
+**Evidencias:**
+</br>
+<p align="center">
+<img src=![GetAll](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/assets/124921806/f0b82df9-1d91-462a-9e21-7162cfcb504d)
+>
+</p>
+</br>
+
+**CTF17: POST api/Usuarios - Realizando a requisição informando os dados obrigatórios corretamente**<br>
+
+**Given** que as propriedades obrigatórias sejam informados no request body<br>
+**When** a rota POST api/Usuarios for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do usuario cadastrado conforme as informações enviadas na requisição<br>
+**And** o usuario cadastrado deve ser inserido no banco de dados<br>
+
+**CTF18: GET api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
+
+**Given** um usuarioId válido (existente) seja informado como parâmetro<br>
+**When** a rota GET api/Usuarios/{usuarioId} for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do usuario informado como parâmetro<br>
+
+**CTF19: GET api/Usuarios/{nome}/nome - Executando a rota informando um nome válido (existente)**<br>
+
+**Given** um nome válido (existente) seja informado como parâmetro<br>
+**When** a rota GET api/Usuarios/{nome}/nome for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do nome informado como parâmetro<br>
+
+**CTF20: PUT api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente) e todos os dados obrigatórios**<br>
+
+**Given** um usuarioId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos<br>
+**When** a rota PUT api/Usuarios/{usuarioId} for executada<br>
+**Then** o status code 200 deve ser retornado<br>
+**And** o response body deve conter os dados do usuario alterado<br>
+**And** os dados do usuario devem ser atualizados no banco de dados conforme os dados enviados na requisição<br>
+
+**CTF21: DELETE api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
+
+**Given** um usuarioId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Usuarios/{usuarioId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o usuario deve ser excluído no banco de dados<br>

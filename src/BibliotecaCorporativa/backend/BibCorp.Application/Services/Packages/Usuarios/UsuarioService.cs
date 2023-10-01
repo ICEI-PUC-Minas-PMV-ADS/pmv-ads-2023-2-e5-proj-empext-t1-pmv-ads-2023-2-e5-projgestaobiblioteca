@@ -1,29 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProEventos.Application.Contratos;
-using ProEventos.Domain.Biblioteca;
-using ProEventos.Persistence.Contratos;
+using AutoMapper;
+using BibCorp.Application.Services.Contracts.Usuarios;
+using BibCorp.Domain.Models.Usuarios;
+using BibCorp.Persistence.Interfaces.Contracts.Shared;
+using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 
-namespace ProEventos.Application
+namespace BibCorp.Application.Services.Packages.Usuarios
 {
-    public class UsuarioService : IUsuariosService
+    public class UsuarioService : IUsuarioService
     {
-        private readonly IGeralPersist _geralPersist;
+        // private readonly IGeralPersist _geralPersist;
+        // private readonly IUsuarioPersist _usuarioPersist;
+
+        // public UsuarioService(IGeralPersist geralPersist, IUsuarioPersist usuarioPersist)
+        // {
+        //     _usuarioPersist = usuarioPersist;
+        //     _geralPersist = geralPersist;
+
+        // }
+        private readonly ISharedPersistence _geralPersist;
         private readonly IUsuarioPersist _usuarioPersist;
 
-        public UsuarioService(IGeralPersist geralPersist, IUsuarioPersist usuarioPersist)
+        public UsuarioService(ISharedPersistence geralPersist, IUsuarioPersist usuarioPersist)
         {
             _usuarioPersist = usuarioPersist;
             _geralPersist = geralPersist;
-            
+
         }
         public async Task<Usuario> AddUsuario(Usuario model)
         {
             try
             {
-                _geralPersist.Add<Usuario>(model);
+                _geralPersist.Create<Usuario>(model);
                 if (await _geralPersist.SaveChangesAsync())
                 {
                     //opcional pois vc pode ou não retornar algo após salvar mudanças.
@@ -33,7 +40,7 @@ namespace ProEventos.Application
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
         }
@@ -57,7 +64,7 @@ namespace ProEventos.Application
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
         }
@@ -72,11 +79,11 @@ namespace ProEventos.Application
 
                 _geralPersist.Delete<Usuario>(usuario);
                 return await _geralPersist.SaveChangesAsync();
-                
+
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
         }
@@ -92,7 +99,7 @@ namespace ProEventos.Application
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
         }
@@ -108,7 +115,7 @@ namespace ProEventos.Application
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
         }
@@ -124,7 +131,7 @@ namespace ProEventos.Application
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
         }

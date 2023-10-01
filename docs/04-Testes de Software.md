@@ -199,9 +199,9 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 
 **CTF21: DELETE api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
 
-**Given** um usuarioId válido (existente) seja informado como parâmetro <br>
-**When** a rota DELETE api/Usuarios/{usuarioId} for executada <br>
-**Then** o status code 200 deve ser retornado <br>
+**Given** um usuarioId válido (existente) seja informado como parâmetro<br>
+**When** a rota DELETE api/Usuarios/{usuarioId} for executada<br>
+**Then** o status code 200 deve ser retornado<br>
 **And** o usuario deve ser excluído no banco de dados<br>
 
  

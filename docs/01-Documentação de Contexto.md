@@ -44,4 +44,3 @@ A empresa Prevenir Assistencial LTDA atua predominantemente no ramo funerário, 
 Neste momento, a organização encontra-se em um processo de expansão, buscando ampliar ainda mais sua presença no mercado. Com um quadro de aproximadamente 100 funcionários, a empresa reconhece a importância de investir no desenvolvimento e bem-estar de sua equipe.
 
 A introdução da biblioteca corporativa reflete o comprometimento da empresa em fornecer recursos de aprendizado que vão além das capacitações formais, enriquecendo a jornada profissional de seus colaboradores. Isso é especialmente relevante em um setor que demanda sensibilidade, conhecimento técnico e habilidades interpessoais. A parceria entre a empresa e a equipe responsável pelo projeto visa criar um ambiente que facilite o acesso ao conhecimento, contribuindo para o crescimento pessoal e profissional dos funcionários enquanto a organização continua sua trajetória de expansão.
-

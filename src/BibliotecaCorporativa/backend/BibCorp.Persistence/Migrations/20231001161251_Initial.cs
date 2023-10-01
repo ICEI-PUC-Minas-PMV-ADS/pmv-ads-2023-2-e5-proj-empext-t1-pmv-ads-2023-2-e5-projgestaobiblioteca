@@ -11,6 +11,22 @@ namespace BibCorp.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "TEXT", nullable: true),
+                    Localizacao = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Senha = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Emprestimos",
                 columns: table => new
                 {
@@ -23,11 +39,17 @@ namespace BibCorp.Persistence.Migrations
                     DataPrevistaDevolucao = table.Column<string>(type: "TEXT", nullable: true),
                     QtdeDiasEmprestimo = table.Column<int>(type: "INTEGER", nullable: false),
                     DataDevolucao = table.Column<string>(type: "TEXT", nullable: true),
-                    QtdeDiasAtraso = table.Column<int>(type: "INTEGER", nullable: false)
+                    QtdeDiasAtraso = table.Column<int>(type: "INTEGER", nullable: false),
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Emprestimos", x => new { x.AcervoId, x.PatrimonioId });
+                    table.ForeignKey(
+                        name: "FK_Emprestimos_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +136,11 @@ namespace BibCorp.Persistence.Migrations
                 column: "PatrimonioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Emprestimos_UsuarioId",
+                table: "Emprestimos",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patrimonios_AcervoId",
                 table: "Patrimonios",
                 column: "AcervoId");
@@ -140,6 +167,9 @@ namespace BibCorp.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Emprestimos");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
         }
     }
 }

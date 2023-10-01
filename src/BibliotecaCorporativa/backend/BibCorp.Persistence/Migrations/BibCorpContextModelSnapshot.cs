@@ -108,7 +108,12 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("AcervoId", "PatrimonioId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Emprestimos");
                 });
@@ -175,11 +180,41 @@ namespace BibCorp.Persistence.Migrations
                     b.ToTable("Patrimonios");
                 });
 
+            modelBuilder.Entity("BibCorp.Domain.Models.Usuarios.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Localizacao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Senha")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("BibCorp.Domain.Models.Acervos.Acervo", b =>
                 {
                     b.HasOne("BibCorp.Domain.Models.Emprestimos.Emprestimo", null)
                         .WithMany("Acervos")
                         .HasForeignKey("EmprestimoAcervoId", "EmprestimoPatrimonioId");
+                });
+
+            modelBuilder.Entity("BibCorp.Domain.Models.Emprestimos.Emprestimo", b =>
+                {
+                    b.HasOne("BibCorp.Domain.Models.Usuarios.Usuario", null)
+                        .WithMany("Emprestimos")
+                        .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("BibCorp.Domain.Models.Patrimonios.Patrimonio", b =>
@@ -203,6 +238,11 @@ namespace BibCorp.Persistence.Migrations
                     b.Navigation("Acervos");
 
                     b.Navigation("Patrimonios");
+                });
+
+            modelBuilder.Entity("BibCorp.Domain.Models.Usuarios.Usuario", b =>
+                {
+                    b.Navigation("Emprestimos");
                 });
 #pragma warning restore 612, 618
         }

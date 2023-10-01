@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using BibCorp.Domain.Models.Emprestimos;
 
-namespace BibCorp.Domain.Models.Usuarios
+namespace BibCorp.Application.Dtos.Usuarios
 {
-    public class Usuario
+    public class UsuarioDto
     {
         public int Id { get; set; }
         public string? Nome { get; set; }

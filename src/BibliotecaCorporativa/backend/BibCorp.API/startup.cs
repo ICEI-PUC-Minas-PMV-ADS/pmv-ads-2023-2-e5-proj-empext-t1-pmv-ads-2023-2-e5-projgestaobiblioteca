@@ -3,19 +3,23 @@ using System.Text.Json.Serialization;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
+using BibCorp.Application.Services.Contracts.Usuarios;
 using BibCorp.Application.Services.Packages.Acervos;
 using BibCorp.Application.Services.Packages.Emprestimos;
 using BibCorp.Application.Services.Packages.Patrimonios;
+using BibCorp.Application.Services.Packages.Usuarios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contracts.Shared;
+using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorp.Persistence.Interfaces.Packages.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Patrimonios;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ProEventos.Persistence;
 
 namespace ProEventos.API
 {
@@ -84,7 +88,8 @@ namespace ProEventos.API
       services
           .AddScoped<IAcervoService, AcervoService>()
           .AddScoped<IPatrimonioService, PatrimonioService>()
-          .AddScoped<IEmprestimoService, EmprestimoService>();
+          .AddScoped<IEmprestimoService, EmprestimoService>()
+          .AddScoped<IUsuarioService, UsuarioService>();
 
 
       //Injeção das interfaces de Persistencias
@@ -92,6 +97,7 @@ namespace ProEventos.API
           .AddScoped<IAcervoPersistence, AcervoPersistence>()
           .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>()
           .AddScoped<IEmprestimoPersistence, EmprestimoPersistence>()
+          .AddScoped<IUsuarioPersist, UsuarioPersist>()
           .AddScoped<ISharedPersistence, SharedPersistence>();
 
 

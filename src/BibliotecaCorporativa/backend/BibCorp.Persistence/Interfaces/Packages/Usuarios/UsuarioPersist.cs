@@ -1,37 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BibCorp.Domain.Models.Usuarios;
+using BibCorp.Persistence.Interfaces.Contexts;
+using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
+using BibCorp.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
-using ProEventos.Domain.Biblioteca;
-using ProEventos.Persistence.Contextos;
-using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence
 {
     public class UsuarioPersist : IUsuarioPersist
     {
-        // private readonly BibliotecaContext _context;
-        // public UsuarioPersist(BibliotecaContext context)
-        // {
-        //     _context = context;
-            
-        // }
-        private readonly ProEventosContext _context;
-        public UsuarioPersist(ProEventosContext context)
+
+        private readonly BibCorpContext _context;
+        public UsuarioPersist(BibCorpContext context)
         {
             _context = context;
-            
+
         }
 
         public async Task<Usuario[]> GetAllUsuariosAsync(bool includePatrimonios = false)
         {
             IQueryable<Usuario> query = _context.Usuarios;
 
-            //CAUSARA PROBLEMAS ?
             if (includePatrimonios)
             {
-                query = query.Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonio);
+                query = query.Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonios);
             }
 
             query = query.AsNoTracking().OrderBy(u => u.Id);
@@ -46,7 +37,7 @@ namespace ProEventos.Persistence
             //CAUSARA PROBLEMAS ?
             if (includePatrimonios)
             {
-                query = query.Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonio);
+                query = query.Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonios);
             }
 
             query = query.AsNoTracking().OrderBy(u => u.Id).Where(u => u.Nome.ToLower().Contains(nome.ToLower()));
@@ -61,7 +52,7 @@ namespace ProEventos.Persistence
             //CAUSARA PROBLEMAS ?
             if (includePatrimonios)
             {
-                query = query.Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonio);
+                query = query.Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonios);
             }
 
             query = query.AsNoTracking().OrderBy(u => u.Id).Where(u => u.Id == usuarioId);

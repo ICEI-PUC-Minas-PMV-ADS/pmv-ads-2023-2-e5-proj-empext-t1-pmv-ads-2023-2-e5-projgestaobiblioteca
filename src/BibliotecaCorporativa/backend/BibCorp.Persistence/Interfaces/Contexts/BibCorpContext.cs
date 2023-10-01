@@ -2,6 +2,7 @@
 using BibCorp.Domain.Models.Acervos;
 using BibCorp.Domain.Models.Emprestimos;
 using BibCorp.Domain.Models.Patrimonios;
+using BibCorp.Domain.Models.Usuarios;
 using Microsoft.EntityFrameworkCore;
 
 namespace BibCorp.Persistence.Interfaces.Contexts
@@ -37,8 +38,8 @@ namespace BibCorp.Persistence.Interfaces.Contexts
         patrimonio.HasIndex(p => p.ISBN);
       });
 
-      modelBuilder.Entity<Emprestimo>()
-                .HasKey(E => new {E.PatrimonioId, E.UsuarioId});
+      // modelBuilder.Entity<Emprestimo>()
+      //           .HasKey(E => new {E.PatrimonioId, E.UsuarioId});
     }
   }
 }

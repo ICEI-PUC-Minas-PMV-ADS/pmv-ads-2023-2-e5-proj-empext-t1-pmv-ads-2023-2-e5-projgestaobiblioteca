@@ -3,21 +3,25 @@ using System.Text.Json.Serialization;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
+using BibCorp.Application.Services.Contracts.Usuarios;
 using BibCorp.Application.Services.Packages.Acervos;
 using BibCorp.Application.Services.Packages.Emprestimos;
 using BibCorp.Application.Services.Packages.Patrimonios;
+using BibCorp.Application.Services.Packages.Usuarios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contracts.Shared;
+using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorp.Persistence.Interfaces.Packages.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Patrimonios;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ProEventos.Persistence;
 
-namespace BibCorp.API
+namespace ProEventos.API
 {
   public class Startup
   {
@@ -84,7 +88,8 @@ namespace BibCorp.API
       services
           .AddScoped<IAcervoService, AcervoService>()
           .AddScoped<IPatrimonioService, PatrimonioService>()
-          .AddScoped<IEmprestimoService, EmprestimoService>();
+          .AddScoped<IEmprestimoService, EmprestimoService>()
+          .AddScoped<IUsuarioService, UsuarioService>();
 
 
       //Injeção das interfaces de Persistencias
@@ -92,6 +97,7 @@ namespace BibCorp.API
           .AddScoped<IAcervoPersistence, AcervoPersistence>()
           .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>()
           .AddScoped<IEmprestimoPersistence, EmprestimoPersistence>()
+          .AddScoped<IUsuarioPersist, UsuarioPersist>()
           .AddScoped<ISharedPersistence, SharedPersistence>();
 
 
@@ -100,9 +106,9 @@ namespace BibCorp.API
       {
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema Biblioteca Corporativa Prevenir Assistencial LTDA" });
 
-        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-        options.IncludeXmlComments(xmlPath);
+//       var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+//        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+//        options.IncludeXmlComments(xmlPath);
       });
     }
 

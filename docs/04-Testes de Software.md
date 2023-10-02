@@ -65,7 +65,7 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **Then** o status code 200 deve ser retornado <br>
 **And** o response body deve conter os dados do acervo informado como parâmetro <br>
 
-**CTF4: PUT api/Acervos/{acervoId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+**CTF4: PUT api/Acervos/{acervoId} - Executando a rota informando um acervoId válido (existente) e todos os dados obrigatórios**
 
 **Given** um acervoId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos <br>
 **When** a rota PUT api/Acervos/{acervoId} for executada <br>
@@ -75,10 +75,10 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 
 **CTF5: DELETE api/Acervos/{acervoId} - Executando a rota informando um acervoId válido (existente)**
 
-**Given** um acervoId válido (existente) seja informado como parâmetro
-**When** a rota DELETE api/Acervos/{acervoId} for executada
-**Then** o status code 200 deve ser retornado
-**And** o acervo deve ser excluído no banco de dados
+**Given** um acervoId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Acervos/{acervoId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o acervo deve ser excluído no banco de dados <br>
 
 ## Empréstimos
 
@@ -97,14 +97,14 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **And** o response body deve conter os dados do empréstimo cadastrado conforme as informações enviadas na requisição <br>
 **And** o empréstimo cadastrado deve ser inserido no banco de dados <br>
 
-**CTF8: GET api/Emprestimos/{emprestimoId} - Executando a rota informando um acervoId válido (existente)**
+**CTF8: GET api/Emprestimos/{emprestimoId} - Executando a rota informando um emprestimoId válido (existente)**
 
 **Given** um emprestimoId válido (existente) seja informado como parâmetro <br>
 **When** a rota GET api/Emprestimos/{emprestimoId} for executada <br>
 **Then** o status code 200 deve ser retornado <br>
 **And** o response body deve conter os dados do empréstimo informado como parâmetro <br>
 
-**CTF9: PUT api/Emprestimos/{emprestimoId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+**CTF9: PUT api/Emprestimos/{emprestimoId} - Executando a rota informando um emprestimoId válido (existente) e todos os dados obrigatórios**
 
 **Given** um emprestimoId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos <br>
 **When** a rota PUT api/Emprestimos/{emprestimoId} for executada <br>
@@ -112,12 +112,12 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **And** o response body deve conter os dados do empréstimo alterado <br>
 **And** os dados do empréstimo devem ser atualizados no banco de dados conforme os dados enviados na requisição <br>
 
-**CTF10: DELETE api/Emprestimos/{emprestimoId} - Executando a rota informando um acervoId válido (existente)**
+**CTF10: DELETE api/Emprestimos/{emprestimoId} - Executando a rota informando um emprestimoId válido (existente)**
 
-**Given** um emprestimoId válido (existente) seja informado como parâmetro
-**When** a rota DELETE api/Emprestimos/{emprestimoId} for executada
-**Then** o status code 200 deve ser retornado
-**And** o empréstimo deve ser excluído no banco de dados
+**Given** um emprestimoId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Emprestimos/{emprestimoId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o empréstimo deve ser excluído no banco de dados <br>
 
 ## Patrimônios
 
@@ -136,14 +136,14 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **And** o response body deve conter os dados do patrimônio cadastrado conforme as informações enviadas na requisição <br>
 **And** o patrimônio cadastrado deve ser inserido no banco de dados <br>
 
-**CTF13: GET api/Patrimonios/{patrimonioId} - Executando a rota informando um acervoId válido (existente)**
+**CTF13: GET api/Patrimonios/{patrimonioId} - Executando a rota informando um patrimonioId válido (existente)**
 
 **Given** um patrimonioId válido (existente) seja informado como parâmetro <br>
 **When** a rota GET api/Patrimonios/{patrimonioId} for executada <br>
 **Then** o status code 200 deve ser retornado <br>
 **And** o response body deve conter os dados do patrimônio informado como parâmetro <br>
 
-**CTF14: PUT api/Patrimonios/{patrimonioId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+**CTF14: PUT api/Patrimonios/{patrimonioId} - Executando a rota informando um patrimonioId válido (existente) e todos os dados obrigatórios**
 
 **Given** um patrimonioId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos <br>
 **When** a rota PUT api/Patrimonios/{patrimonioId} for executada <br>
@@ -151,23 +151,23 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **And** o response body deve conter os dados do patrimônio alterado <br>
 **And** os dados do patrimônio devem ser atualizados no banco de dados conforme os dados enviados na requisição <br>
 
-**CTF15: DELETE api/Patrimonios/{patrimonioId} - Executando a rota informando um acervoId válido (existente)**
+**CTF15: DELETE api/Patrimonios/{patrimonioId} - Executando a rota informando um patrimonioId válido (existente)**
 
-**Given** um patrimonioId válido (existente) seja informado como parâmetro
-**When** a rota DELETE api/Patrimonios/{patrimonioId} for executada
-**Then** o status code 200 deve ser retornado
-**And** o patrimônio deve ser excluído no banco de dados
+**Given** um patrimonioId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Patrimonios/{patrimonioId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o patrimônio deve ser excluído no banco de dados <br>
 
-## Usuarios<br>
+## Usuarios
 
-**CTF16: GET api/Usuarios - Executando a rota sem informar nenhum parâmetro**<br>
+**CTF16: GET api/Usuarios - Executando a rota sem informar nenhum parâmetro**
 
 **Given** que nenhum parâmetro seja informado<br>
 **When** a rota GET api/Usuarios for executada<br>
 **Then** o status code 200 deve ser retornado<br>
 **And** o response body deve conter um array de objetos para cada usuario cadastrado no banco de dados<br>
 
-**CTF17: POST api/Usuarios - Realizando a requisição informando os dados obrigatórios corretamente**<br>
+**CTF17: POST api/Usuarios - Realizando a requisição informando os dados obrigatórios corretamente**
 
 **Given** que as propriedades obrigatórias sejam informados no request body<br>
 **When** a rota POST api/Usuarios for executada<br>
@@ -175,21 +175,21 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **And** o response body deve conter os dados do usuario cadastrado conforme as informações enviadas na requisição<br>
 **And** o usuario cadastrado deve ser inserido no banco de dados<br>
 
-**CTF18: GET api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
+**CTF18: GET api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**
 
 **Given** um usuarioId válido (existente) seja informado como parâmetro<br>
 **When** a rota GET api/Usuarios/{usuarioId} for executada<br>
 **Then** o status code 200 deve ser retornado<br>
 **And** o response body deve conter os dados do usuario informado como parâmetro<br>
 
-**CTF19: GET api/Usuarios/{nome}/nome - Executando a rota informando um nome válido (existente)**<br>
+**CTF19: GET api/Usuarios/{nome}/nome - Executando a rota informando um nome válido (existente)**
 
 **Given** um nome válido (existente) seja informado como parâmetro<br>
 **When** a rota GET api/Usuarios/{nome}/nome for executada<br>
 **Then** o status code 200 deve ser retornado<br>
 **And** o response body deve conter os dados do nome informado como parâmetro<br>
 
-**CTF20: PUT api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente) e todos os dados obrigatórios**<br>
+**CTF20: PUT api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente) e todos os dados obrigatórios**
 
 **Given** um usuarioId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos<br>
 **When** a rota PUT api/Usuarios/{usuarioId} for executada<br>
@@ -197,7 +197,7 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **And** o response body deve conter os dados do usuario alterado<br>
 **And** os dados do usuario devem ser atualizados no banco de dados conforme os dados enviados na requisição<br>
 
-**CTF21: DELETE api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**<br>
+**CTF21: DELETE api/Usuarios/{usuarioId} - Executando a rota informando um usuarioId válido (existente)**
 
 **Given** um usuarioId válido (existente) seja informado como parâmetro<br>
 **When** a rota DELETE api/Usuarios/{usuarioId} for executada<br>
@@ -313,7 +313,7 @@ Resposta da requisição:
 </p>
 </br>
 
-**CTF4: PUT api/Acervos/{acervoId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+**CTF4: PUT api/Acervos/{acervoId} - Executando a rota informando um acervoId válido (existente) e todos os dados obrigatórios**
 
 **Status do caso de teste:** Aprovado
 
@@ -363,10 +363,10 @@ Dados do acervo atualizados no banco de dados:
 **Status do caso de teste:** Aprovado
 
 **BDD:**<br/><br/>
-**Given** um acervoId válido (existente) seja informado como parâmetro
-**When** a rota DELETE api/Acervos/{acervoId} for executada
-**Then** o status code 200 deve ser retornado
-**And** o acervo deve ser excluído no banco de dados
+**Given** um acervoId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Acervos/{acervoId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o acervo deve ser excluído no banco de dados <br>
 
 **Evidências:**
 
@@ -569,13 +569,13 @@ Emprestimo inserido no banco de dados:
 </p>
 </br>
 
-**CTF3: GET api/Acervos/{acervoId} - Executando a rota informando um acervoId válido (existente)**
+**CTF3: GET api/Emprestimos/{emprestimoId} - Executando a rota informando um emprestimoId válido (existente)**
 
 **Status do caso de teste:** Aprovado
 
 **BDD:**<br/><br/>
 **Given** um emprestimoId válido (existente) seja informado como parâmetro <br>
-**When** a rota GET api/Acervos/{acervoId} for executada <br>
+**When** a rota GET api/Emprestimos/{emprestimoId} for executada <br>
 **Then** o status code 200 deve ser retornado <br>
 **And** o response body deve conter os dados do emprestimo informado como parâmetro <br>
 
@@ -596,7 +596,7 @@ Resposta da requisição:
 </p>
 </br>
 
-**CTF4: PUT api/Acervos/{acervoId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+**CTF4: PUT api/Emprestimos/{emprestimoId} - Executando a rota informando um emprestimoId válido (existente) e todos os dados obrigatórios**
 
 **Status do caso de teste:** Aprovado
 
@@ -641,7 +641,7 @@ Dados do emprestimo atualizados no banco de dados:
 </p>
 </br>
 
-**CTF5: DELETE api/Emprestimos/{emprestimoId} - Executando a rota informando um acervoId válido (existente)**
+**CTF5: DELETE api/Emprestimos/{emprestimoId} - Executando a rota informando um emprestimoId válido (existente)**
 
 **Status do caso de teste:** Aprovado
 

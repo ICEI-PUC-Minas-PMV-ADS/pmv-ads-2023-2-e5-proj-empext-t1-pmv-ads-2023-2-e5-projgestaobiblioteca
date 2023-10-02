@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BibCorp.Application.Dtos.Usuarios;
+using BibCorp.Application.Services.Contracts.Usuarios;
+using BibCorp.Domain.Models.Usuarios;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProEventos.Persistence;
-using ProEventos.Domain;
-using ProEventos.Persistence.Contextos;
-using ProEventos.Application.Contratos;
-using Microsoft.AspNetCore.Http;
-using ProEventos.Domain.Biblioteca;
 
-namespace ProEventos.API.Controllers
-{
+namespace BibCorp.API.Controllers.Usuarios;
+
     [ApiController]
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
     {
-        private readonly IUsuariosService _usuarioService;
+        private readonly IUsuarioService _usuarioService;
 
-        public UsuariosController(IUsuariosService usuarioService)
+        public UsuariosController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
         }
@@ -114,8 +106,8 @@ namespace ProEventos.API.Controllers
         {
             try
             {
-                return await _usuarioService.DeleteUsuario(id) ? 
-                       Ok("Deletado") : 
+                return await _usuarioService.DeleteUsuario(id) ?
+                       Ok("Deletado") :
                        BadRequest("Usuario não deletado");
             }
             catch (Exception ex)
@@ -125,4 +117,4 @@ namespace ProEventos.API.Controllers
             }
         }
     }
-}
+

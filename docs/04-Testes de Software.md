@@ -502,3 +502,186 @@ Acervo excluído no banco de dados:
 ![Delete2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/assets/124921806/2b244661-21cc-4631-aa88-42658fc9efe4)
 
 </br>
+
+## Empréstimos 
+
+**CTF1: GET api/Emprestimo - Executando a rota sem informar nenhum parâmetro**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** que nenhum parâmetro seja informado <br>
+**When** a rota GET api/Emprestimo for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter um array de objetos para cada emprestimo cadastrado no banco de dados <br>
+
+**Evidências:**
+
+Executando a rota sem informar nenhum parâmetro:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/GETEmprestimos1.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/GETEmprestimos2.png>
+</p>
+</br>
+
+**CTF2: POST api/Emprestimos - Realizando a requisição informando os dados obrigatórios corretamente**</br>
+
+**Status do caso de teste:** Aprovado
+
+**BDD**:</br></br>
+
+**Given** que as propriedades obrigatórias sejam informados no request body <br>
+**When** a rota POST api/Emprestimos for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter os dados do emprestimo cadastrado conforme as informações enviadas na requisição <br>
+**And** o emprestimo cadastrado deve ser inserido no banco de dados <br>
+
+Evidências:
+Executando a rota informando os dados obrigatórios:
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTEmprestimos1.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTEmprestimos2.png>
+</p>
+</br>
+
+Emprestimo inserido no banco de dados:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTEmprestimos3.png>
+</p>
+</br>
+
+**CTF3: GET api/Acervos/{acervoId} - Executando a rota informando um acervoId válido (existente)**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** um emprestimoId válido (existente) seja informado como parâmetro <br>
+**When** a rota GET api/Acervos/{acervoId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter os dados do emprestimo informado como parâmetro <br>
+
+**Evidências:**
+
+Executando a rota informando um Id válido (existente) como parâmetro:
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/GETIDEmprestimos1.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/GETIDEmprestimos1.png>
+</p>
+</br>
+
+**CTF4: PUT api/Acervos/{acervoId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** um emprestimoId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos <br>
+**When** a rota PUT api/Emprestimos/{emprestimoId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter os dados do emprestimo alterado <br>
+**And** os dados do emprestimo devem ser atualizados no banco de dados conforme os dados enviados na requisição <br>
+
+**Evidências:**
+
+Dados do emprestimo 3 no banco de dados antes da alteração:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTEmprestimos1.png>
+</p>
+</br>
+
+Executando a rota para atualizar a edição username:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTEmprestimos2.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTEmprestimos3.png>
+</p>
+</br>
+
+Dados do emprestimo atualizados no banco de dados:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTEmprestimos4.png>
+</p>
+</br>
+
+**CTF5: DELETE api/Emprestimos/{emprestimoId} - Executando a rota informando um acervoId válido (existente)**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** um emprestimoId válido (existente) seja informado como parâmetro
+**When** a rota DELETE api/Emprestimos/{emprestimoId} for executada
+**Then** o status code 200 deve ser retornado
+**And** o empréstimo deve ser excluído no banco de dados
+
+**Evidências:**
+
+Dados do empréstimo 1 no banco de dados antes da exclusão:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELEmprestimos1.png>
+</p>
+</br>
+
+Executando a rota para excluir o empréstimo:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELEmprestimos2.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELEmprestimos3.png>
+</p>
+</br>
+
+Emprestimo excluído no banco de dados:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELEmprestimos5.png>
+</p>
+
+

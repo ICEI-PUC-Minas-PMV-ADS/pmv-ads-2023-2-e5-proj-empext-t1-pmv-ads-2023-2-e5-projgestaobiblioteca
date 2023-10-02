@@ -57,7 +57,7 @@ Visão geral da interação do usuário com as funcionalidades que fazem parte d
 
 - Ao clicar na foto do usuário, aparecerá um Dropdown com as opções "Perfil", "Favoritos" e "Sair", que ao serem clicados, redirecionarão o usuário ás suas respectivas páginas.
 
-![](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca)
+![Dropdown de perfil](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Home%20-%20dropdown%20perfil.png)
 
 ## Detalhes - Livro
 

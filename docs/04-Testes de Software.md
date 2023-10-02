@@ -684,4 +684,187 @@ Emprestimo excluído no banco de dados:
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELEmprestimos5.png>
 </p>
 
+## Patrimônio
 
+**CTF1: GET api/Patrimonios- Executando a rota sem informar nenhum parâmetro**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** que nenhum parâmetro seja informado <br>
+**When** a rota GET api/Patrimonios for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter um array de objetos para cada patrimonio cadastrado no banco de dados <br>
+
+**Evidências:**
+
+Executando a rota sem informar nenhum parâmetro:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTPatrimonios1.png>
+</p>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTPatrimonios2.png>
+</p>
+
+**CTF2: POST api/Patrimonios - Realizando a requisição informando os dados obrigatórios corretamente**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** que as propriedades obrigatórias sejam informados no request body <br>
+**When** a rota POST api/Patrimonios for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter os dados do patrimonio cadastrado conforme as informações enviadas na requisição <br>
+**And** o patrimonio cadastrado deve ser inserido no banco de dados <br>
+
+**Evidências:**
+
+Executando a rota informando os dados obrigatórios:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTPatrimonios1.png>
+</p>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTPatrimonios2.png>
+</p>
+
+ Patrimonio inserido no banco de dados:
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/POSTPatrimonio3.png>
+</p>
+</br>
+
+**CTF3: GET api/Patrimonio/{patrimonioId} - Executando a rota informando um patrimonioId válido (existente)**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** um patrimonioId válido (existente) seja informado como parâmetro <br>
+**When** a rota GET api/Patrimonio/{patrimonioId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter os dados do patrimonio informado como parâmetro <br>
+
+**Evidências:**
+
+Executando a rota informando um Id válido (existente) como parâmetro:
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/GETIDPatrimonios1.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/GETIDPatrimonios2.png>
+</p>
+</br>
+
+**CTF4: PUT api/Patrimonio/{patrimonioId} - Executando a rota informando um funcionarioId válido (existente) e todos os dados obrigatórios**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** um patrimonioId válido (existente) seja informado como parâmetro e que no request body todos os dados obrigatórios sejam preenchidos <br>
+**When** a rota PUT api/Patrimonio/{patrimonioId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter os dados do patrimonio alterado <br>
+**And** os dados do patrimonio devem ser atualizados no banco de dados conforme os dados enviados na requisição <br>
+
+**Evidências:**
+
+Dados do patrimonio 1 no banco de dados antes da alteração:
+
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTPatrimonio1.png>
+</p>
+</br>
+
+Executando a rota para atualizar a edição do campo prateleira:
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTPatrimonio2.png>
+</p>
+</br>
+
+
+Resposta da requisição:
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTPatrimonio3.png>
+</p>
+</br>
+
+Dados do patrimonio atualizados no banco de dados:
+
+ </br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/PUTPatrimonio4.png>
+</p>
+</br>
+
+**CTF5: DELETE api/Patrimonios/{patrimonioId} - Executando a rota informando um acervoId válido (existente)**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** um patrimonioId válido (existente) seja informado como parâmetro <br>
+**When** a rota DELETE api/Patrimonios/{patrimonioId} for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o patrimonio deve ser excluído no banco de dados <br>
+
+**Evidências:**
+
+Dados do patrimonio 3 no banco de dados antes da exclusão:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELPatrimonio1.png>
+</p>
+</br>
+
+Executando a rota para excluir o patrimonio:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELPatrimonio2.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELPatrimonio3.png>
+</p>
+</br>
+
+
+Patrimônio excluído no banco de dados:
+
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DELPatrimonio4.png>
+</p>
+</br>

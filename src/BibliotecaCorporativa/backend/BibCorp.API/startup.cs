@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using BibCopr.Persistence.Interfaces.Packages.Usuarios;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
@@ -18,6 +17,7 @@ using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorp.Persistence.Interfaces.Packages.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Patrimonios;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
+using BibCorp.Persistence.Interfaces.Packages.Usuarios;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;

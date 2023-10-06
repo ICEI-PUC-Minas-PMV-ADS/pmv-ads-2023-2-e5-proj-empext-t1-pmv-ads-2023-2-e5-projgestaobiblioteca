@@ -4,7 +4,7 @@ using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace BibCopr.Persistence.Interfaces.Packages.Usuarios
+namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
 {
     public class UsuarioPersistence : SharedPersistence, IUsuarioPersistence
     {
@@ -34,7 +34,7 @@ namespace BibCopr.Persistence.Interfaces.Packages.Usuarios
         }
 
         public async Task<Usuario> GetUsuarioByUserNameAsync(string userName)
-        
+
         {
             IQueryable<Usuario> query = _context.Users;
 

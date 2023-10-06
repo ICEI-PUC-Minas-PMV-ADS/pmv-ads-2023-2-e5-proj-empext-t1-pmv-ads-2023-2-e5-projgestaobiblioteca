@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BibCorp.Domain.Enum;
 
 namespace BibCorp.Domain.Models.Patrimonios
 {
@@ -14,7 +11,7 @@ namespace BibCorp.Domain.Models.Patrimonios
         public string Prateleira { get; set; }
         public string Posicao { get; set; }
         public string ISBN { get; set; }
-        public string Origem { get; set; }
+        public Origem Origem { get; set; }
         public string DetalheOrgiem { get; set; }
         public bool Ativo { get; set; }
         public string DataCadastro { get; set; }

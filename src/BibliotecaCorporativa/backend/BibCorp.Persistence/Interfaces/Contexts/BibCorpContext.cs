@@ -1,12 +1,22 @@
 
 using BibCorp.Domain.Models.Acervos;
 using BibCorp.Domain.Models.Emprestimos;
+using BibCorp.Domain.Models.Identity;
 using BibCorp.Domain.Models.Patrimonios;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BibCorp.Persistence.Interfaces.Contexts
 {
-  public class BibCorpContext : DbContext
+  public class BibCorpContext : IdentityDbContext<Usuario,
+                                                     Papel,
+                                                     int,
+                                                     IdentityUserClaim<int>,
+                                                     UsuarioPapel,
+                                                     IdentityUserLogin<int>,
+                                                     IdentityRoleClaim<int>,
+                                                     IdentityUserToken<int>>
   {
     public BibCorpContext(DbContextOptions<BibCorpContext> options) : base(options)
     {
@@ -20,18 +30,34 @@ namespace BibCorp.Persistence.Interfaces.Contexts
     {
       base.OnModelCreating(modelBuilder);
 
-      modelBuilder.Entity<Emprestimo>(empresa =>
+    modelBuilder.Entity<UsuarioPapel>(
+      usuarioPapel =>
       {
-        empresa.HasKey(e => new { e.AcervoId, e.PatrimonioId });
+        usuarioPapel.HasKey(cf => new { cf.UserId, cf.RoleId });
+
+        usuarioPapel.HasOne(cf => cf.Papel)
+                        .WithMany(f => f.UsuariosPapeis)
+                        .HasForeignKey(cf => cf.RoleId)
+                        .IsRequired();
+
+        usuarioPapel.HasOne(cf => cf.Usuario)
+                        .WithMany(f => f.UsuariosPapeis)
+                        .HasForeignKey(cf => cf.UserId)
+                        .IsRequired();
       });
 
-      modelBuilder.Entity<Acervo>( acervo =>
+      modelBuilder.Entity<Emprestimo>(emprestimo =>
+      {
+        emprestimo.HasKey(e => new { e.AcervoId, e.PatrimonioId });
+      });
+
+      modelBuilder.Entity<Acervo>(acervo =>
       {
         acervo.HasIndex(a => a.PatrimonioId);
         acervo.HasIndex(a => a.ISBN);
       });
 
-      modelBuilder.Entity<Patrimonio>( patrimonio =>
+      modelBuilder.Entity<Patrimonio>(patrimonio =>
       {
         patrimonio.HasIndex(p => p.ISBN);
       });

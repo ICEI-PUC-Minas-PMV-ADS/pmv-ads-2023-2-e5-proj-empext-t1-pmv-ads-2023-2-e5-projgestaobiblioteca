@@ -43,7 +43,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       IQueryable<Emprestimo> query = _context.Emprestimos
           .Include(e => e.Patrimonios)
             .AsNoTracking()
-            .Where(e => e.UserName == userName)
+            .Where(e => e.Usuario.UserName == userName)
             .OrderBy(e => e.Id);
 
       return await query.ToListAsync();

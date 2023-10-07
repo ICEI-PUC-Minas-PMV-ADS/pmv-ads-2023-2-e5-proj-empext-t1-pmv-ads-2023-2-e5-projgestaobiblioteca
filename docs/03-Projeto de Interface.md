@@ -1,130 +1,138 @@
 
 # Projeto de Interface
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
 Visão geral da interação do usuário com as funcionalidades que fazem parte do sistema sociotécnico (protótipo de telas).
 
-## Login
+## Telas públicas/compartilhadas
+ *Estas são as telas visíveis e acessíveis para todos os usuários.*
 
-- Esta é a primeira tela ao abrir o site.
-- Será utilizado "nome de usuário" (como um apelido) e senha para acesso.
-- O usuário poderá Recuperar sua senha, se cadastrar ou Acessar o acervo(sem necessidade de realizar o login).
+### 1) Login
 
+- Ao acessar o site, essa é a tela inicial que você encontrará.
+- Utilize um "nome de usuário" (como um apelido) e senha para entrar na plataforma.
+- Os usuários têm a possibilidade de recuperar sua senha, se cadastrar ou acessar o acervo como usuário convidado.
 
 ![Tela de Login](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Login.png)
 
-## Cadastre-se
+### 2) Cadastre-se
 
-- Tela de cadastro, contendo os campos para Nome Completo, Nome de Usuario, Telefone e senha.
-- O usuário poderá Realizar o Login ou Acessar o acervo(sem necessidade de realizar o login).
+- Esta tela é dedicada ao cadastro, onde você preenche os campos de Nome Completo, Nome de Usuário, Telefone e Senha.
+- Os usuários têm a escolha de realizar o login com suas credenciais, caso já tenha um cadastro, ou acessar o acervo como usuário convidado.
 
 ![Tela de Cadastro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Cadastro.png)
 
-## Home - Modo de Convidado
+## Telas de Usuário convidado/visitante 
+  *Esta é a área onde usuários que não fizeram login ou não possuem uma conta, podem acessar o acervo e utilizar o filtro de pesquisa.*
 
-- Este é o modo do usuário acessar o acervo, sem a necessidade de realizar o Login.
+### 1) Home
+
+- Ao clicar em "Acessar o Acervo" na tela de login, você será direcionado para a tela inicial, onde pode utilizar o filtro de pesquisa, explorar o acervo e, se já tiver um cadastro, fazer login.
 
 ![Home - Modo Convidado](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Home%20-%20guest.png)
 
-## Home - Usuário Logado
+### 2) Home - Filtros de Pesquisa
 
-- Neste modo o usuário pode acessar o acervo, seu perfil, seus livros favoritos, realizar reserva de obras, etc.
-
-![Home - Usuário já está logado](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-logado.png)
-
-## Home - Filtros de Pesquisa
-
-- Filtro de pesquisa é uma forma costumizada de realizar consulta no acervo, trazendo apenas os resultados relevantes para o que você está procurando.
+- O filtro de pesquisa é uma maneira personalizada de explorar o acervo, mostrando somente os resultados relevantes para a busca do usuário.
 
 ![Home - Filtros para pesquisa no acervo](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Home%20-%20Filtros.png)
 
-## Home - Resultados de pesquisa ao acervo (Usuário)
+## Telas de Usuários Logados 
+  *Essas telas contêm funcionalidades e informações que exigem autenticação do Usuário.*
 
-- Após utilizar o Filtro de Pesquisa, será retornado as obras de acordo com o que você selecionou no Filtro.
-- Nesta tela será possível visualizar o status do livro (disponível ou indisponível), favoritar ou desfavoritar obras e visualizar detalhes sobre determinado livro.
+### 1) Home 
+
+- Após o usuário fazer login, esta é a primeira tela que ele encontrará.
+- Você terá acesso ao acervo, seu perfil, seus livros favoritos, poderá fazer reservas de obras, renovar reservas e muito mais a partir desta tela inicial.
+
+![Home - Usuário já está logado](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-logado.png)
+
+### 2) Home - Resultados de pesquisa ao acervo 
+
+- Depois de definir suas preferências no Filtro, uma seleção personalizada de obras que se alinham com suas escolhas será apresentada.
+- Nessa tela, é possível verificar a disponibilidade de um livro, adicioná-lo à lista de favoritos ou removê-lo, e explorar detalhes sobre cada obra.
 
 ![Home - Pesquisa ao acervo (Usuário)](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/pesquisa-acervo-usuario.png)
 
-## Home - Resultados de pesquisa ao acervo (Administrador)
+### 3) Detalhes - Livro
 
-- Após utilizar o Filtro de Pesquisa, será retornado as obras de acordo com o que você selecionou no Filtro.
-- Nesta tela será possível visualizar o status do livro (disponível ou indisponível), visualizar detalhes sobre determinado livro, visualizar a preteleira onde o livro se encontra, e o Menu (Drawer) que é adaptado para atender ás necessidades do Administrador.
-
-![Home - Pesquisa ao acervo (Administrador)](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/pesquisa-acervo-admin.png)
-
-## Home - Dropdown de perfil
-
-- Ao clicar na foto do usuário, aparecerá um Dropdown com as opções "Perfil", "Favoritos" e "Sair", que ao serem clicados, redircionarão o usuário ás suas respectivas páginas.
-
-![Dropdown de perfil](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-dropdown-perfil.png)
-
-## Detalhes - Livro
-
-- Tela de preview de determinado livro.
-- Contém a capa, o nome e o autor do livro.
-- Caso haja outras obras desse mesmo autor, haverá uma sessão de "Mais obras desse Autor".
-- Status do livro.
-- Botão de Reservar.
-- Um overview contendo Data de Publicação, Editora, Número de Páginas e uma sinopse do livro.
-- Campo para adicionar comentários.
-- Comentários de outros leitores.
+- Esta é a tela de prévia que apresenta informações sobre um livro em particular.
+- Inclui a capa, o título e o autor do livro.
+- Se houver mais obras do mesmo autor, serão destacadas na seção "Mais obras deste Autor".
+- Indica se o livro está disponível ou indisponível.
+- Permite aos usuários reservar o livro (botão Reservar).
+- Fornece uma visão geral com a Data de Publicação, Editora, Número de Páginas e uma sinopse.
+- Área onde é possível adicionar comentários pessoais sobre o livro.
+- Exibe comentários feitos por outros leitores sobre o livro.
 
 ![Detalhes - Livro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/preview-comentarios.png)
 
-## Livros favoritos
+### 4) Livros favoritos
 
-- Nesta tela, é mostrado os livros que o usuário tem interesse, ou seja, os livros favoritados por ele.
-- Botão para visualizar os detalhes de cada livro e o status dele.
+- Nesta tela, você pode ver os livros que são de interesse para o usuário, ou seja, os que foram marcados como favoritos por ele.
+- Há um botão disponível para visualizar os detalhes e o status de cada livro individualmente.
 
 ![Livros favoritos](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/favoritos.png)
 
-## Perfil do usuário
+### 5) Home - Dropdown de perfil
 
-- Tela contendo Foto do Usuário, podendo atualiza-la.
-- Campo com a quantidade de livros já lidos.
-- Poderá atualizar Nome de Usuário e Telefone. 
+- Quando você clica na foto do usuário, um menu suspenso é exibido, oferecendo as opções de "Perfil" e "Sair". Ao selecionar uma dessas opções, você será redirecionado para a página correspondente.
+
+![Dropdown de perfil](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-dropdown-perfil.png)
+
+### 6) Perfil do usuário
+
+- Esta tela apresenta a foto do usuário, que pode ser atualizada.
+- Inclui um campo que exibe a quantidade de livros já lidos.
+- Os usuários podem atualizar o Nome de Usuário e o Telefone.
 
 ![Perfil do usuário](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/perfil-do-usuario.png)
 
-## Minhas Reservas
+### 7) Minhas Reservas
 
-- Tela para visualizar livros Emprestados (já devolvidos), livros que estão com Emprestimo Ativo e livros com Entrega em Atraso.
-- Nesta mesma tela, você poderá acessar os livros Favoritos e os que você já pegou Emprestado.
-- Também outras duas opções muito importantes: Renovar Emprestimo e Alterar Local de Coleta do Livro.
+- Nesta tela, é possível visualizar os livros já devolvidos, os que estão com empréstimo ativo e aqueles com entrega em atraso.
+- Também estão disponíveis duas opções cruciais: renovar empréstimo e alterar local de coleta do livro.
+
 
 ![Minhas Reservas](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/minhas-reservas.png)
 
-## Alterar local de coleta
+### 8) Alterar local de coleta
 
-- Nesta tela (modal), será possível visualizar o Local de entrega, e alterar o local de coleta.
+-Nesta tela (modal), você pode visualizar o local de entrega e tem a opção de alterar o local de coleta.
 
 ![Alterar local de coleta](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/alterar-local.png)
 
-## Home - Administrador
+### 9) Reservar
 
-- Nesta tela, será possível ver o Menu (Drawer) com as opções específicas para o Administrador, e alguns dashboards com informações relevantes e que agilizem o controle da biblioteca.
-
-![Home - Administrador](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-admin.png)
-
-## Reservar
-
-- Nesta tela (modal), será possível selecionar o Local de entrega e o local de coleta da Reserva. 
+- Nesta tela (modal), você tem a opção de escolher tanto o local de entrega quanto o local de coleta para a reserva.
 
 ![Reservar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/reservar.png)
 
-## Renovar
+### 10) Renovar
 
-- Nesta tela (modal), será possível visualizar o livro a ser renovado, selecionar em um Radio Button se você deseja manter o local da coleta ou alterá-lo.
-- Se o usuário escolher alterar, aparecerá a opção de Alterar o local de coleta.
+- Nesta tela (modal), você pode visualizar o livro que deseja renovar. Há um campo com opção de Radio Button que permite escolher se deseja manter o local de coleta ou alterá-lo.
+- Se o usuário optar por alterar o local de coleta, será exibida a opção para fazer essa modificação.
 
 ![Renovar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/renovar.png)
 
-## Confirmação de Reserva
+### 11) Confirmação de Reserva
 
-- Nesta tela (modal), o usuário verá a confirmação da sua reserva, e o aviso de que a entrega será feita em até 48h.
+- Nesta tela (modal), o usuário verá a confirmação da reserva. Também será exibido um aviso informando que a entrega será feita em até 48 horas.
 
 ![Confirmação de Reserva](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/confirmacao-reserva.png)
 
+## Telas de Administrador 
+  *Esta é a área onde os Administradores da biblioteca têm permissões e controles mais amplos sobre o sistema em comparação com os usuários regulares.* 
 
+### 1) Home - Administrador
+
+- Nesta tela, os administradores têm acesso ao Menu (Drawer) contendo opções específicas e a diversos dashboards que fornecem informações relevantes, agilizando o controle e gestão eficientes da biblioteca.
+
+![Home - Administrador](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-admin.png)
+
+### 2) Home - Resultados de pesquisa ao acervo (Administrador)
+
+- Após aplicar suas preferências no Filtro de Pesquisa, você verá uma seleção personalizada de obras que correspondem às suas escolhas.
+- Nesta tela, é possível visualizar o status do livro (disponível ou indisponível), explorar detalhes sobre cada obra e verificar em qual prateleira o livro está localizado. Além disso, o Menu (Drawer) está adaptado para atender às necessidades do Administrador.
+
+![Home - Pesquisa ao acervo (Administrador)](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/pesquisa-acervo-admin.png)
 

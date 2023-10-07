@@ -94,3 +94,37 @@ Visão geral da interação do usuário com as funcionalidades que fazem parte d
 - Também outras duas opções muito importantes: Renovar Emprestimo e Alterar Local de Coleta do Livro.
 
 ![Minhas Reservas](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/minhas-reservas.png)
+
+## Alterar local de coleta
+
+- Nesta tela (modal), será possível visualizar o Local de entrega, e alterar o local de coleta.
+
+![Alterar local de coleta](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/alterar-local.png)
+
+## Home - Administrador
+
+- Nesta tela, será possível ver o Menu (Drawer) com as opções específicas para o Administrador, e alguns dashboards com informações relevantes e que agilizem o controle da biblioteca.
+
+![Home - Administrador](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/home-admin.png)
+
+## Reservar
+
+- Nesta tela (modal), será possível selecionar o Local de entrega e o local de coleta da Reserva. 
+
+![Reservar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/reservar.png)
+
+## Renovar
+
+- Nesta tela (modal), será possível visualizar o livro a ser renovado, selecionar em um Radio Button se você deseja manter o local da coleta ou alterá-lo.
+- Se o usuário escolher alterar, aparecerá a opção de Alterar o local de coleta.
+
+![Renovar](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/renovar.png)
+
+## Confirmação de Reserva
+
+- Nesta tela (modal), o usuário verá a confirmação da sua reserva, e o aviso de que a entrega será feita em até 48h.
+
+![Confirmação de Reserva](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/confirmacao-reserva.png)
+
+
+

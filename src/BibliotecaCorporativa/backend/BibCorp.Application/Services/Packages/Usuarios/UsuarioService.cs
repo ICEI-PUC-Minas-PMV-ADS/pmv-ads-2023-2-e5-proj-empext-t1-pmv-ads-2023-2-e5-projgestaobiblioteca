@@ -1,140 +1,195 @@
 using AutoMapper;
+using BibCorp.Application.Dtos.Usuarios;
 using BibCorp.Application.Services.Contracts.Usuarios;
 using BibCorp.Domain.Models.Usuarios;
 using BibCorp.Persistence.Interfaces.Contracts.Shared;
 using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BibCorp.Application.Services.Packages.Usuarios
 {
-    public class UsuarioService : IUsuarioService
+  public class UsuarioService : IUsuarioService
+  {
+    private readonly UserManager<Usuario> _userManager;
+    private readonly SignInManager<Usuario> _signInManager;
+    private readonly IMapper _mapper;
+    private readonly ISharedPersistence _geralPersistence;
+    private readonly IUsuarioPersistence _usuarioPersistence;
+
+    public UsuarioService(
+        UserManager<Usuario> userManager,
+        SignInManager<Usuario> signInManager,
+        IMapper mapper,
+        ISharedPersistence geralPersist,
+        IUsuarioPersistence usuarioPersist)
     {
-        // private readonly IGeralPersist _geralPersist;
-        // private readonly IUsuarioPersist _usuarioPersist;
-
-        // public UsuarioService(IGeralPersist geralPersist, IUsuarioPersist usuarioPersist)
-        // {
-        //     _usuarioPersist = usuarioPersist;
-        //     _geralPersist = geralPersist;
-
-        // }
-        private readonly ISharedPersistence _geralPersist;
-        private readonly IUsuarioPersist _usuarioPersist;
-
-        public UsuarioService(ISharedPersistence geralPersist, IUsuarioPersist usuarioPersist)
-        {
-            _usuarioPersist = usuarioPersist;
-            _geralPersist = geralPersist;
-
-        }
-        public async Task<Usuario> AddUsuario(Usuario model)
-        {
-            try
-            {
-                _geralPersist.Create<Usuario>(model);
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    //opcional pois vc pode ou não retornar algo após salvar mudanças.
-                    return await _usuarioPersist.GetUsuarioByIdAsync(model.Id, false);
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<Usuario> UpdateUsuario(int usuarioId, Usuario model)
-        {
-            try
-            {
-                var usuario = await _usuarioPersist.GetUsuarioByIdAsync(usuarioId, false);
-                if(usuario == null) return null;
-
-                model.Id = usuario.Id;
-
-                _geralPersist.Update(model);
-                if (await _geralPersist.SaveChangesAsync())
-                {
-                    //opcional pois vc pode ou não retornar algo após salvar mudanças.
-                    return await _usuarioPersist.GetUsuarioByIdAsync(model.Id, false);
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<bool> DeleteUsuario(int usuarioId)
-        {
-            try
-            {
-                var usuario = await _usuarioPersist.GetUsuarioByIdAsync(usuarioId, false);
-                if(usuario == null) throw new Exception("Usuario para Deletar não encontrado");
-
-
-                _geralPersist.Delete<Usuario>(usuario);
-                return await _geralPersist.SaveChangesAsync();
-
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<Usuario[]> GetAllUsuariosByNomeAsync(string nome, bool includePalestrantes = false)
-        {
-            try
-            {
-                var usuarios = await _usuarioPersist.GetAllUsuariosByNomeAsync(nome, includePalestrantes);
-                if(usuarios == null) return null;
-
-                return usuarios;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<Usuario[]> GetAllUsuariosAsync(bool includePalestrantes = false)
-        {
-            try
-            {
-                var usuarios = await _usuarioPersist.GetAllUsuariosAsync(includePalestrantes);
-                if(usuarios == null) return null;
-
-                return usuarios;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<Usuario> GetUsuarioByIdAsync(int usuarioId, bool includePalestrantes = false)
-        {
-            try
-            {
-                var usuarios = await _usuarioPersist.GetUsuarioByIdAsync(usuarioId, includePalestrantes);
-                if(usuarios == null) return null;
-
-                return usuarios;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
+      _usuarioPersistence = usuarioPersist;
+      _userManager = userManager;
+      _signInManager = signInManager;
+      _mapper = mapper;
+      _geralPersistence = geralPersist;
 
     }
+    public async Task<UsuarioUpdateDto> CreateUsuario(UsuarioDto usuarioDto)
+    {
+      try
+      {
+        var usuario = _mapper.Map<Usuario>(usuarioDto);
+        var usurarioCriado = await _userManager.CreateAsync(usuario, usuarioDto.Password);
+
+        if (usurarioCriado.Succeeded)
+        {
+          return _mapper.Map<UsuarioUpdateDto>(usuario);
+        }
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao criar a Conta. Erro: {e.Message}");
+      }
+
+      return null;
+    }
+
+    public async Task<UsuarioUpdateDto> UpdateUsuario(int usuarioId, UsuarioUpdateDto usuarioUpdateDto)
+    {
+      try
+      {
+        var usuario = await _usuarioPersistence.GetUsuarioByIdAsync(usuarioId);
+
+
+        if (usuario == null) return null;
+
+        usuarioUpdateDto.Id = usuario.Id;
+
+        _mapper.Map(usuarioUpdateDto, usuario);
+
+        if (usuarioUpdateDto.Password != null)
+        {
+          var token = await _userManager.GeneratePasswordResetTokenAsync(usuario);
+
+          await _userManager.ResetPasswordAsync(usuario, token, usuarioUpdateDto.Password);
+        }
+
+        _usuarioPersistence.Update<Usuario>(usuario);
+
+        if (await _usuarioPersistence.SaveChangesAsync())
+        {
+          //opcional pois vc pode ou não retornar algo após salvar mudanças.
+          var usuarioRetorno = await _usuarioPersistence.GetUsuarioByIdAsync(usuarioUpdateDto.Id);
+
+          return _mapper.Map<UsuarioUpdateDto>(usuarioRetorno);
+        }
+        return null;
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao alterar Contas e token. Erro: {e.Message}");
+      }
+    }
+
+    public async Task<IEnumerable<UsuarioDto>> GetAllUsuariosByNomeAsync(string nome)
+    {
+      try
+      {
+        var usuarios = await _usuarioPersistence.GetAllUsuariosByNomeAsync(nome);
+
+        if (usuarios == null) return null;
+
+        return _mapper.Map<UsuarioDto[]>(usuarios);
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao recuperar Contas por nome. Erro: {e.Message}");
+      }
+    }
+
+    public async Task<IEnumerable<UsuarioDto>> GetAllUsuariosAsync()
+    {
+      try
+      {
+        var usuarios = await _usuarioPersistence.GetAllUsuariosAsync();
+
+        if (usuarios == null) return null;
+
+        return _mapper.Map<UsuarioDto[]>(usuarios);
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao recuperar Contas. Erro: {e.Message}");
+      }
+    }
+
+    public async Task<UsuarioDto> GetUsuarioByIdAsync(int usuarioId)
+    {
+      try
+      {
+        var usuario = await _usuarioPersistence.GetUsuarioByIdAsync(usuarioId);
+
+        if (usuario == null) return null;
+
+        return _mapper.Map<UsuarioDto>(usuario);
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao recuperar Conta por Id da conta. Erro: {e.Message}");
+      }
+    }
+
+    public async Task<UsuarioUpdateDto> GetUsuarioByUserNameAsync(string userName)
+    {
+      try
+      {
+        var usuario = await _usuarioPersistence.GetUsuarioByUserNameAsync(userName);
+
+        if (usuario == null) return null;
+
+        return _mapper.Map<UsuarioUpdateDto>(usuario);
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao recuperar Conta por UserName. Erro: {e.Message}");
+      }
+    }
+
+    public async Task<bool> VerificarUsuarioExisteAsync(string userName)
+    {
+      try
+      {
+        return await _userManager
+            .Users
+            .AnyAsync(user => user.UserName.ToLower() == userName.ToLower());
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao verificar se a conta existe. Erro: {e.Message}");
+      }
+    }
+
+    public async Task<SignInResult> CompararSenhaUsuarioAsync(UsuarioUpdateDto usuarioUpdateDto, string senha)
+    {
+      try
+      {
+        var usuario = await _userManager
+            .Users
+            .SingleOrDefaultAsync(
+                usuario => usuario.UserName.ToLower() == usuarioUpdateDto.UserName.ToLower()
+            );
+
+        return await _signInManager.CheckPasswordSignInAsync(usuario, senha, false);
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception($"Falha ao validar Conta e Senha. Erro: {e.Message}");
+      }
+    }
+  }
 }

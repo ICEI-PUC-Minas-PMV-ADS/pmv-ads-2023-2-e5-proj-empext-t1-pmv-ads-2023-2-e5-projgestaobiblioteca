@@ -1,18 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BibCorp.Domain.Models.Usuarios;
+using BibCorp.Application.Dtos.Usuarios;
+using Microsoft.AspNetCore.Identity;
 
 namespace BibCorp.Application.Services.Contracts.Usuarios
 {
     public interface IUsuarioService
     {
-        Task<Usuario> AddUsuario(Usuario model);
-        Task<Usuario> UpdateUsuario(int usuarioId, Usuario model);
-        Task<bool> DeleteUsuario(int usuarioId);
-        Task<Usuario[]> GetAllUsuariosByNomeAsync(string nome, bool includePatrimonios = false);
-        Task<Usuario[]> GetAllUsuariosAsync(bool includePatrimonios = false);
-        Task<Usuario> GetUsuarioByIdAsync(int usuarioId, bool includePatrimonios = false);
+        Task<UsuarioUpdateDto> CreateUsuario(UsuarioDto usuarioDto);
+        Task<UsuarioUpdateDto> UpdateUsuario(int usuarioId, UsuarioUpdateDto usuarioUpdateDto);
+        Task<IEnumerable<UsuarioDto>> GetAllUsuariosByNomeAsync(string nome);
+        Task<IEnumerable<UsuarioDto>> GetAllUsuariosAsync();
+        Task<UsuarioDto> GetUsuarioByIdAsync(int usuarioId);
+        Task<SignInResult> CompararSenhaUsuarioAsync(UsuarioUpdateDto usuarioUpdateDto, string password);
+        Task<bool> VerificarUsuarioExisteAsync(string userName);
+        Task<UsuarioUpdateDto> GetUsuarioByUserNameAsync(string userName);
     }
 }

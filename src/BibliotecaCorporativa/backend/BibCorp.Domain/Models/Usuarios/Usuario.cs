@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BibCorp.Domain.Models.Emprestimos;
+using Microsoft.AspNetCore.Identity;
 
 namespace BibCorp.Domain.Models.Usuarios
 {
-    public class Usuario
+    public class Usuario: IdentityUser<int>
     {
-        public int Id { get; set; }
-        public string? Nome { get; set; }
-        public string? Localizacao { get; set; }
-        public string? Email { get; set; }
-        public string? Senha { get; set; }
-        public IEnumerable<Emprestimo>? Emprestimos { get; set; }
+        public string Nome { get; set; }
+        public string Localizacao { get; set; }
+        public IEnumerable<Emprestimo> Emprestimos { get; set; }
+        public IEnumerable<UsuarioPapel> UsuariosPapeis { get; set; }
     }
 }

@@ -1,13 +1,15 @@
-using System.Reflection;
+using System.Text;
 using System.Text.Json.Serialization;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
 using BibCorp.Application.Services.Contracts.Usuarios;
+using BibCorp.Application.Services.Packages;
 using BibCorp.Application.Services.Packages.Acervos;
 using BibCorp.Application.Services.Packages.Emprestimos;
 using BibCorp.Application.Services.Packages.Patrimonios;
 using BibCorp.Application.Services.Packages.Usuarios;
+using BibCorp.Domain.Models.Usuarios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
@@ -17,11 +19,15 @@ using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 using BibCorp.Persistence.Interfaces.Packages.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Patrimonios;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
+using BibCorp.Persistence.Interfaces.Packages.Usuarios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using ProEventos.Persistence;
 
-namespace ProEventos.API
+
+namespace BibiCorp.API
 {
   public class Startup
   {
@@ -41,35 +47,35 @@ namespace ProEventos.API
       );
 
       // Injeção Identity
-      //            services
-      //                .AddIdentityCore<User>(options =>
-      //                {
-      //                    options.Password.RequireDigit = false;
-      //                    options.Password.RequireNonAlphanumeric = false;
-      //                    options.Password.RequireLowercase = false;
-      //                    options.Password.RequireUppercase = false;
-      //                    options.Password.RequiredLength = 4;
-      //                })
-      //                .AddRoles<Role>()
-      //               .AddRoleManager<RoleManager<Role>>()
-      //              .AddSignInManager<SignInManager<User>>()
-      //                .AddRoleValidator<RoleValidator<Role>>()
-      //                .AddEntityFrameworkStores<OnPeopleContext>()
-      //                .AddDefaultTokenProviders();
+      services
+        .AddIdentityCore<Usuario>(options =>
+          {
+            options.Password.RequireDigit = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequiredLength = 4;
+          })
+        .AddRoles<Papel>()
+        .AddRoleManager<RoleManager<Papel>>()
+        .AddSignInManager<SignInManager<Usuario>>()
+        .AddRoleValidator<RoleValidator<Papel>>()
+        .AddEntityFrameworkStores<BibCorpContext>()
+        .AddDefaultTokenProviders();
 
       //Injeção de autenticação
-      //            services
-      //                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-      //                .AddJwtBearer(options =>
-      //                {
-      //                    options.TokenValidationParameters = new TokenValidationParameters
-      //                    {
-      //                       ValidateIssuerSigningKey = true,
-      //                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokenkey"])),
-      //                        ValidateIssuer = false,
-      //                        ValidateAudience = false
-      //                    };
-      //                });
+      services
+        .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+          {
+            options.TokenValidationParameters = new TokenValidationParameters
+              {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokenkey"])),
+                ValidateIssuer = false,
+                ValidateAudience = false
+              };
+          });
 
       //Injeção das controllers
       services
@@ -89,7 +95,8 @@ namespace ProEventos.API
           .AddScoped<IAcervoService, AcervoService>()
           .AddScoped<IPatrimonioService, PatrimonioService>()
           .AddScoped<IEmprestimoService, EmprestimoService>()
-          .AddScoped<IUsuarioService, UsuarioService>();
+          .AddScoped<IUsuarioService, UsuarioService>()
+          .AddScoped<ITokenService, TokenService>();
 
 
       //Injeção das interfaces de Persistencias
@@ -97,7 +104,7 @@ namespace ProEventos.API
           .AddScoped<IAcervoPersistence, AcervoPersistence>()
           .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>()
           .AddScoped<IEmprestimoPersistence, EmprestimoPersistence>()
-          .AddScoped<IUsuarioPersist, UsuarioPersist>()
+          .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
           .AddScoped<ISharedPersistence, SharedPersistence>();
 
 

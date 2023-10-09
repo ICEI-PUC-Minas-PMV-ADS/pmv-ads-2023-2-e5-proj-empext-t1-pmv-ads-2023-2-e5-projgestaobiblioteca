@@ -13,8 +13,5 @@ namespace BibCorp.API.Extensions.Users
             return int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
 
-        public static Boolean GetMasterClaim(this ClaimsPrincipal user) {
-            return user.FindFirst(ClaimTypes.Actor)?.Value == "Master";
-        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 using BibCorp.Application.Services.Contracts.Acervos;
@@ -42,7 +43,8 @@ namespace BibiCorp.API
     public void ConfigureServices(IServiceCollection services)
     {
       // Injeção do DBCONTEXT no projeto
-      services.AddDbContext<BibCorpContext>(
+      services
+        .AddDbContext<BibCorpContext>(
           context => context.UseSqlite(Configuration.GetConnectionString("Default"))
       );
 
@@ -71,7 +73,7 @@ namespace BibiCorp.API
             options.TokenValidationParameters = new TokenValidationParameters
               {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokenkey"])),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
                 ValidateIssuer = false,
                 ValidateAudience = false
               };
@@ -107,16 +109,44 @@ namespace BibiCorp.API
           .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
           .AddScoped<ISharedPersistence, SharedPersistence>();
 
+      services
+          .AddCors();
 
       services
-      .AddSwaggerGen(options =>
-      {
-        options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema Biblioteca Corporativa Prevenir Assistencial LTDA" });
+          .AddSwaggerGen(options =>
+          {
+              options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema BibCorp" });
 
-//       var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-//        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-//        options.IncludeXmlComments(xmlPath);
-      });
+              var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+              var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+              options.IncludeXmlComments(xmlPath);
+
+              options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+              {
+                  Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
+                                  Exemplo: 'Bearer 12345abcdef'",
+                  Name = "Authorization",
+                  In = ParameterLocation.Header,
+                  Type = SecuritySchemeType.ApiKey,
+                  Scheme = "Bearer"
+              });
+
+              options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+              {
+                  {
+                      new OpenApiSecurityScheme {
+                          Reference = new OpenApiReference {
+                              Type = ReferenceType.SecurityScheme,
+                              Id = "Bearer"
+                          },
+                          Scheme = "oauth2",
+                          Name = "Bearer",
+                          In = ParameterLocation.Header
+                      },
+                      new List<string>()
+                  }
+              });
+          });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -133,6 +163,7 @@ namespace BibiCorp.API
 
       app.UseRouting();
 
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseCors(cors =>

@@ -2,7 +2,6 @@ using AutoMapper;
 using BibCorp.Application.Dtos.Usuarios;
 using BibCorp.Application.Services.Contracts.Usuarios;
 using BibCorp.Domain.Models.Usuarios;
-using BibCorp.Persistence.Interfaces.Contracts.Shared;
 using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,21 +13,18 @@ namespace BibCorp.Application.Services.Packages.Usuarios
     private readonly UserManager<Usuario> _userManager;
     private readonly SignInManager<Usuario> _signInManager;
     private readonly IMapper _mapper;
-    private readonly ISharedPersistence _geralPersistence;
     private readonly IUsuarioPersistence _usuarioPersistence;
 
     public UsuarioService(
         UserManager<Usuario> userManager,
         SignInManager<Usuario> signInManager,
         IMapper mapper,
-        ISharedPersistence geralPersist,
         IUsuarioPersistence usuarioPersist)
     {
       _usuarioPersistence = usuarioPersist;
       _userManager = userManager;
       _signInManager = signInManager;
       _mapper = mapper;
-      _geralPersistence = geralPersist;
 
     }
     public async Task<UsuarioUpdateDto> CreateUsuario(UsuarioDto usuarioDto)
@@ -42,6 +38,8 @@ namespace BibCorp.Application.Services.Packages.Usuarios
         {
           return _mapper.Map<UsuarioUpdateDto>(usuario);
         }
+
+        return null;
       }
       catch (Exception e)
       {
@@ -49,19 +47,16 @@ namespace BibCorp.Application.Services.Packages.Usuarios
         throw new Exception($"Falha ao criar a Conta. Erro: {e.Message}");
       }
 
-      return null;
     }
 
-    public async Task<UsuarioUpdateDto> UpdateUsuario(int usuarioId, UsuarioUpdateDto usuarioUpdateDto)
+    public async Task<UsuarioUpdateDto> UpdateUsuario(UsuarioUpdateDto usuarioUpdateDto)
     {
       try
       {
-        var usuario = await _usuarioPersistence.GetUsuarioByIdAsync(usuarioId);
+        var usuario = await _usuarioPersistence.GetUsuarioByUserNameAsync(usuarioUpdateDto.UserName);
 
 
         if (usuario == null) return null;
-
-        usuarioUpdateDto.Id = usuario.Id;
 
         _mapper.Map(usuarioUpdateDto, usuario);
 
@@ -77,7 +72,7 @@ namespace BibCorp.Application.Services.Packages.Usuarios
         if (await _usuarioPersistence.SaveChangesAsync())
         {
           //opcional pois vc pode ou não retornar algo após salvar mudanças.
-          var usuarioRetorno = await _usuarioPersistence.GetUsuarioByIdAsync(usuarioUpdateDto.Id);
+          var usuarioRetorno = await _usuarioPersistence.GetUsuarioByUserNameAsync(usuario.UserName);
 
           return _mapper.Map<UsuarioUpdateDto>(usuarioRetorno);
         }
@@ -162,9 +157,8 @@ namespace BibCorp.Application.Services.Packages.Usuarios
     {
       try
       {
-        return await _userManager
-            .Users
-            .AnyAsync(user => user.UserName.ToLower() == userName.ToLower());
+        return await _userManager.Users
+                                 .AnyAsync(user => user.UserName.ToLower() == userName.ToLower());
       }
       catch (Exception e)
       {
@@ -177,11 +171,10 @@ namespace BibCorp.Application.Services.Packages.Usuarios
     {
       try
       {
-        var usuario = await _userManager
-            .Users
-            .SingleOrDefaultAsync(
-                usuario => usuario.UserName.ToLower() == usuarioUpdateDto.UserName.ToLower()
-            );
+        var usuario = await _userManager.Users
+                                        .SingleOrDefaultAsync(
+                                          usuario => usuario.UserName.ToLower() == usuarioUpdateDto.UserName.ToLower()
+                                        );
 
         return await _signInManager.CheckPasswordSignInAsync(usuario, senha, false);
       }

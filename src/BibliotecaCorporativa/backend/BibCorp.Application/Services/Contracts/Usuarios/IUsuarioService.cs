@@ -6,7 +6,7 @@ namespace BibCorp.Application.Services.Contracts.Usuarios
     public interface IUsuarioService
     {
         Task<UsuarioUpdateDto> CreateUsuario(UsuarioDto usuarioDto);
-        Task<UsuarioUpdateDto> UpdateUsuario(int usuarioId, UsuarioUpdateDto usuarioUpdateDto);
+        Task<UsuarioUpdateDto> UpdateUsuario(UsuarioUpdateDto usuarioUpdateDto);
         Task<IEnumerable<UsuarioDto>> GetAllUsuariosByNomeAsync(string nome);
         Task<IEnumerable<UsuarioDto>> GetAllUsuariosAsync();
         Task<UsuarioDto> GetUsuarioByIdAsync(int usuarioId);

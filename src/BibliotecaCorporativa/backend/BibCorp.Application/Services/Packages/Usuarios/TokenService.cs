@@ -27,7 +27,7 @@ public class TokenService: ITokenService
             _userManager = userManager;
             _mapper = mapper;
             _config = config;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokenkey"]));
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Tokenkey"]));
         }
         public async Task<string> CreateToken(UsuarioUpdateDto usuarioUpdateDto)
         {

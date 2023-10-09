@@ -1,12 +1,12 @@
 ﻿using BibCorp.API.Extensions.Users;
 using BibCorp.Application.Dtos.Usuarios;
 using BibCorp.Application.Services.Contracts.Usuarios;
-using BibCorp.Domain.Models.Usuarios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibCorp.API.Controllers.Usuarios;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class UsuariosController : ControllerBase
@@ -23,6 +23,7 @@ public class UsuariosController : ControllerBase
   }
 
   [HttpGet("GetUserName")]
+  [AllowAnonymous]
   public async Task<IActionResult> GetUsuarioByUserName()
   {
     try
@@ -77,7 +78,7 @@ public class UsuariosController : ControllerBase
 
       var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
 
-      if (usuario == null || claimUsuario.Id != usuario.Id) return Unauthorized();
+      if (usuario == null) return Unauthorized();
 
       return Ok(usuario);
     }
@@ -110,8 +111,9 @@ public class UsuariosController : ControllerBase
     }
   }
 
-  [HttpPost("CriarUsuario")]
-  public async Task<IActionResult> CriarUsuario(UsuarioDto usuarioDto)
+  [HttpPost("CreateUsuario")]
+  [AllowAnonymous]
+  public async Task<IActionResult> CreateUsuario(UsuarioDto usuarioDto)
   {
     try
     {
@@ -137,7 +139,7 @@ public class UsuariosController : ControllerBase
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao cadastrar conta. Erro: {e.Message}");
+      return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao cadastrar conta. Erro: {e.Message}");
     }
   }
 
@@ -151,43 +153,12 @@ public class UsuariosController : ControllerBase
 
       if (usuario == null) return Unauthorized("Conta não cadastrada");
 
-      var userValidation = await _usuarioService.CompararSenhaUsuarioAsync(usuario, usuarioLoginDto.Password);
+      var validacaoUsuario = await _usuarioService.CompararSenhaUsuarioAsync(usuario, usuarioLoginDto.Password);
 
-      if (!userValidation.Succeeded)
+      if (!validacaoUsuario.Succeeded)
       {
         return Unauthorized("Conta ou Senha inválidos");
       }
-
-      return Ok(new
-      {
-        userName = usuario.UserName,
-        nomeCompleto = usuario.Nome,
-        id = usuario.Id,
-        token = _tokenService.CreateToken(usuario).Result
-      });
-    }
-    catch (Exception e)
-    {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao realizar Login. Erro: {e.Message}");
-    }
-  }
-
-  [HttpPut("AlterarUsuario")]
-  public async Task<IActionResult> UsuarioUpdate(int id, UsuarioUpdateDto usuarioUpdateDto)
-  {
-    try
-    {
-      var claimUser = await _usuarioService.GetUsuarioByIdAsync(User.GetUserIdClaim());
-
-      if (claimUser == null) return Unauthorized();
-
-      var usuario = await _usuarioService.UpdateUsuario(id, usuarioUpdateDto);
-
-      if (usuario == null) return Unauthorized("Conta inválida para atualização.");
-
-      var usuarioChanged = await _usuarioService.UpdateUsuario(usuario.Id, usuarioUpdateDto);
-
-      if (usuarioChanged == null) return NoContent();
 
       return Ok(new
       {
@@ -197,10 +168,31 @@ public class UsuariosController : ControllerBase
         token = _tokenService.CreateToken(usuario).Result
       });
     }
+    catch (Exception e)
+    {
+      return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao realizar Login. Erro: {e.Message}");
+    }
+  }
+
+  [HttpPut("UpdateUsuario")]
+  public async Task<IActionResult> UpdateUsuario(UsuarioUpdateDto usuarioUpdateDto)
+  {
+    try
+    {
+      var claimUsuario = _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+
+      if (claimUsuario == null) return Unauthorized();
+
+      var usuario = await _usuarioService.UpdateUsuario(usuarioUpdateDto);
+
+      if (usuario == null) return NoContent();
+
+      return Ok(usuario);
+    }
     catch (Exception ex)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError,
-          $"Erro ao tentar atualizar usuarios. Erro: {ex.Message}");
+      return StatusCode(StatusCodes.Status500InternalServerError,
+          $"Erro ao tentar atualizar conta. Erro: {ex.Message}");
     }
   }
 }

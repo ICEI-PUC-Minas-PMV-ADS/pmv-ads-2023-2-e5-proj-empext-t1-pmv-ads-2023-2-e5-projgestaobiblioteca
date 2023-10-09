@@ -18,10 +18,7 @@ namespace BibCorp.Persistence.Interfaces.Contexts
                                                   IdentityRoleClaim<int>,
                                                   IdentityUserToken<int>>
   {
-    public BibCorpContext(DbContextOptions<BibCorpContext> options) : base(options)
-    {
-
-    }
+    public BibCorpContext(DbContextOptions<BibCorpContext> options) : base(options) {  }
     public DbSet<Acervo> Acervos { get; set; }
     public DbSet<Patrimonio> Patrimonios { get; set; }
     public DbSet<Emprestimo> Emprestimos { get; set; }

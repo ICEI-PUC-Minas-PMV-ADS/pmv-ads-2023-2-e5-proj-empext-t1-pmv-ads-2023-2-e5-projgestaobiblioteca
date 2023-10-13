@@ -1,5 +1,17 @@
-<app-navBar></app-navBar>
+<mat-drawer-container class="bibcorp-container " autosize  [class.drawer-opened]="drawer.opened">
+  <mat-drawer #drawer class="bibcorp-drawer  bibcorp-bg-white" mode="side"  opened="true">
+    <mat-toolbar class="header">
+      <img src="../assets/Images/thumbnail_logotipo.png" width="250px"  alt="Logotipo Prevenir" >
+      <p class="bibcorp-titulo bibcorp-primary">Biblioteca Corporativa</p>
+      <app-navBar></app-navBar>
+    </mat-toolbar>
+  </mat-drawer>
+  <mat-drawer-content  class="bibcorp-container">
+    <app-Principal></app-Principal>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
 
-<div class="container bg-dark">
-  <router-outlet></router-outlet>
-</div>
+
+<!--
+-->

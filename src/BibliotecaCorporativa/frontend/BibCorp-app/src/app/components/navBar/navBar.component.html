@@ -1,37 +1,24 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">BibCorp</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 		(click)="isCollapsed = !isCollapsed"
-		[attr.aria-expanded]="!isCollapsed" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Acervo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Emprestimo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sobre</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">alexsgaldino</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Perfil</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Sair</a>
-          </div>
-        </li>
-      </ul>
+<div class="bibcorp-container-drawer">
+
+  <nav>
+    <div class="container mt-3">
+      <a class="nav-link p-2" href="#">
+        <mat-icon class="iconBadge mr-1">home</mat-icon>
+        Home
+      </a>
+      <a class="nav-link p-2" href="#">
+        <mat-icon class="iconBadge mr-1">library_books</mat-icon>
+        Acervos
+      </a>
+      <a class="nav-link p-2" href="#">
+        <mat-icon class="iconBadge mr-1">book</mat-icon>
+        Patrimônio
+      </a>    
+      <a class="nav-link p-2" href="#">
+        <mat-icon class="iconBadge mr-1">dvr</mat-icon>
+        Reservas
+      </a>    
     </div>
-  </div>
-</nav>
+  </nav>
+  
+</div>

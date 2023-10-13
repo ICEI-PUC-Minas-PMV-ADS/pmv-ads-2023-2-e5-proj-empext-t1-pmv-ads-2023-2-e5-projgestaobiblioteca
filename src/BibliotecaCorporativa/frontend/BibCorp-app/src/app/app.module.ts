@@ -1,23 +1,36 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
-import { AppComponent } from "./app.component";
-import { NavBarComponent } from "./components";
-import { BrowserModule } from "@angular/platform-browser";
-import { AppRoutingModule } from "./app-routing.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbCollapseModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { AppComponent } from './app.component'
+import { BrowserModule } from '@angular/platform-browser'
+import { AppRoutingModule } from './app-routing.module'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatIconModule } from '@angular/material/icon'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { FormsModule } from '@angular/forms'
+
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
+import { NavBarComponent } from './components'
+import { PrincipalComponent } from './components/Principal/Principal.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     NgbModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent],

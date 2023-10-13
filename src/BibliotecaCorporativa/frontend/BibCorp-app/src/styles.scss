@@ -37,16 +37,46 @@ $theme: mat.define-light-theme((
 
 /* Importing Bootstrap SCSS file. */
 
+@import '~bootstrap/dist/css/bootstrap.min.css';
 @import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 
 
 /* Importing Bootstrap SCSS file. */
 
 
-//Configurações personalizadas
+//Configurações Collors
+.bibcorp-primary {
+  color: #0D4880;
+}
+
+.bibcorp-secondary {
+  color: #092e54;
+}
+
+// Configurações background
+.bibcorp-bg-primary {
+  background-color: #0D4880;
+  opacity: .9;
+}
+
+.bibcorp-bg-secondary {
+  background-color: #092e54;
+  opacity: .9;
+}
+
+.bibcorp-bg-white {
+  background-color: white;
+  opacity: .9;
+}
+
+.bibcorp-bg-white2 {
+  background-color: #e6e3f4;
+  opacity: .9;
+}
 
 .iconBadge {
-  transform: scale(3.5);
+  transform: scale(1.3);
+  color: black;
 }
 
 .iconDash {
@@ -62,7 +92,11 @@ $theme: mat.define-light-theme((
   margin-top: 50px;
 }
 
-.titulo {
+.bibcorp-titulo {
+  font-size: 1.5rem;
+}
+
+.bibcorp-titulo2 {
   font-size: 1.8rem;
 }
 
@@ -90,10 +124,18 @@ $theme: mat.define-light-theme((
   .border-left-#{$i} {
     border-left: 0.8rem solid $colors
   }
-
-  ;
 }
-
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-image{
+  background: url("./assets/Images/backgroundImageBibCorp.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.bibcorp-container {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}

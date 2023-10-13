@@ -179,15 +179,21 @@ public class UsuariosController : ControllerBase
   {
     try
     {
-      var claimUsuario = _usuarioService.GetUsuarioByUserNameAsync(User.GetUserNameClaim());
+      var claimUserName = User.GetUserNameClaim();
 
-      if (claimUsuario == null) return Unauthorized();
+      if (claimUserName == null) return Unauthorized();
 
       var usuario = await _usuarioService.UpdateUsuario(usuarioUpdateDto);
 
       if (usuario == null) return NoContent();
 
-      return Ok(usuario);
+      return Ok(new
+      {
+        userName = usuario.UserName,
+        nome = usuario.Nome,
+        id = usuario.Id,
+        token = _tokenService.CreateToken(usuario).Result
+      });
     }
     catch (Exception ex)
     {

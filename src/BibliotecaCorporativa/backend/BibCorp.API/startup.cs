@@ -1,4 +1,3 @@
-using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 using BibCorp.Application.Services.Contracts.Acervos;
@@ -24,6 +23,7 @@ using BibCorp.Persistence.Interfaces.Packages.Usuarios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -109,44 +109,16 @@ namespace BibiCorp.API
           .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
           .AddScoped<ISharedPersistence, SharedPersistence>();
 
-      services
-          .AddCors();
 
       services
-          .AddSwaggerGen(options =>
-          {
-              options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema BibCorp" });
+      .AddSwaggerGen(options =>
+      {
+        options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema Biblioteca Corporativa Prevenir Assistencial LTDA" });
 
-              var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-              var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-              options.IncludeXmlComments(xmlPath);
-
-              options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-              {
-                  Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
-                                  Exemplo: 'Bearer 12345abcdef'",
-                  Name = "Authorization",
-                  In = ParameterLocation.Header,
-                  Type = SecuritySchemeType.ApiKey,
-                  Scheme = "Bearer"
-              });
-
-              options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-              {
-                  {
-                      new OpenApiSecurityScheme {
-                          Reference = new OpenApiReference {
-                              Type = ReferenceType.SecurityScheme,
-                              Id = "Bearer"
-                          },
-                          Scheme = "oauth2",
-                          Name = "Bearer",
-                          In = ParameterLocation.Header
-                      },
-                      new List<string>()
-                  }
-              });
-          });
+//       var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+//        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+//        options.IncludeXmlComments(xmlPath);
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

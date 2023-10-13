@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-navBar',
@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navBar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-  public isCollapsed = true;
+  public isCollapsed = true
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  logout() {
+
+  }
 }

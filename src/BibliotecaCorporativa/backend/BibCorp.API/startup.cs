@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Reflection;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
@@ -23,7 +24,6 @@ using BibCorp.Persistence.Interfaces.Packages.Usuarios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -45,7 +45,7 @@ namespace BibiCorp.API
       // Injeção do DBCONTEXT no projeto
       services
         .AddDbContext<BibCorpContext>(
-          context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+          context => context.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
       );
 
       // Injeção Identity
@@ -115,9 +115,9 @@ namespace BibiCorp.API
       {
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema Biblioteca Corporativa Prevenir Assistencial LTDA" });
 
-//       var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-//        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-//        options.IncludeXmlComments(xmlPath);
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        options.IncludeXmlComments(xmlPath);
       });
     }
 

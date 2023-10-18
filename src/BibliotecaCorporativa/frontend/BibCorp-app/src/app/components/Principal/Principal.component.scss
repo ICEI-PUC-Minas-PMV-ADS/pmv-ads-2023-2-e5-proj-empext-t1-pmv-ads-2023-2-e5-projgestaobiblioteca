@@ -1,32 +1,9 @@
-.bibcorp-content {
-  margin: 1%;
-  width: 83%;
-  height: 95.9%;
-}
-
-.bibcorp-header {
-  border-top-right-radius: 20px;
-}
 
 .bibcorp-body {
-  flex: 13;
   border-bottom-right-radius: 20px;
 }
 
-.bibcorp-container
-{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.bibcorp-btn-group {
-  padding: 10px;
-  margin: 20px;
-}
-
 .bibcorp-select {
-  padding: 15px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
@@ -37,7 +14,5 @@
 }
 
 .bibcorp-dropdown {
-  margin: 26px;
-  padding: 10px;
   border-radius: 20px;
 }

@@ -141,8 +141,10 @@ namespace BibiCorp.API
       app.UseCors(cors =>
           cors.AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowAnyMethod()
+              .AllowAnyOrigin()
               );
+
+      app.UseHttpsRedirection();  
 
       app.UseEndpoints(endpoints =>
       {

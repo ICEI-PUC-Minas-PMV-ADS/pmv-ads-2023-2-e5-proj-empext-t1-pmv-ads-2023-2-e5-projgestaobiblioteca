@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core'
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,11 @@ import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  constructor(
-//    private loginLogoutService: LoginLogoutService
+  constructor (
+    //    private loginLogoutService: LoginLogoutService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   //  this.setCurrentUser();
   }
 

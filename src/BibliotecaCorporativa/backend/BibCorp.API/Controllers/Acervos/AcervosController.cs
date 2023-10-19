@@ -57,11 +57,11 @@ public class AcervosController : ControllerBase
   /// <response code="500">Erro interno</response>
 
   [HttpGet("{acervoId}")]
-  public async Task<IActionResult> GetAcervoById(int acervoid)
+  public async Task<IActionResult> GetAcervoById(int acervoId)
   {
     try
     {
-      var acervo = await _acervoService.GetAcervoByIdAsync(acervoid);
+      var acervo = await _acervoService.GetAcervoByIdAsync(acervoId);
 
       if (acervo == null) return NotFound("Não existe acervo cadastrado para o Id informado");
 

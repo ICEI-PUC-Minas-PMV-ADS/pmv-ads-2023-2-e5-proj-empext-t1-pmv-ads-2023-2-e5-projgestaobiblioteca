@@ -1,19 +1,18 @@
-<div class=" p-5">
-  <mat-drawer-container class="rounded-5" [class.drawer-opened]="drawer.opened">
-    <mat-drawer #drawer mode="side" opened="true" class="opacity-100 p-0 m-0">
-      <mat-toolbar>
-        <img src="../assets/Images/thumbnail_logotipo.png" width="250px" alt="Logotipo Prevenir" (click)="drawer.close()" class="ms-4">
-        <p class="bibcorp-titulo bibcorp-primary text-center">BibCorp</p>
-        <p class="bibcorp-secondary text-center">Biblioteca Corporativa</p>
-        <app-navBar></app-navBar>
-      </mat-toolbar>
+<div class="container-fluid p-4">
+  <mat-drawer-container class="rounded-5 p-0 m-0" [class.drawer-opened]="drawer.opened" autosize>
+    <mat-drawer #drawer mode="side" opened="true" class="p-0 m-0">
+      <img src="../assets/Images/thumbnail_logotipo.png" width="250px" height="200px" alt="Logotipo Prevenir" class="m-0 p-0 ms-4"
+        (click)="drawer.close()">
+      <p class="bibcorp-titulo bibcorp-primary text-center  m-0 p-0">BibCorp</p>
+      <p class="bibcorp-secondary text-center">Biblioteca Corporativa</p>
+      <app-navBar></app-navBar>
     </mat-drawer>
     <mat-drawer-content>
-      <div *ngIf="!drawer.opened" class="p-3">
+      <div *ngIf="!drawer.opened" class="m-0 p-3">
         <div class="container-fluid d-flex flex-row">
           <div>
-            <img src="../assets/Images/thumbnail_logotipo.png" width="75px" alt="Logotipo Prevenir"  (click)="drawer.toggle()">
-            
+            <img src="../assets/Images/thumbnail_logotipo.png" width="75px" alt="Logotipo Prevenir"
+              (click)="drawer.toggle()">
           </div>
           <div>
             <P class="bibcorp-titulo2 bibcorp-primary">BibCorp</P>
@@ -23,12 +22,8 @@
           </div>
         </div>
       </div>
-      <app-Principal></app-Principal>
+      <app-principal></app-principal>
       <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container>
 </div>
-
-
-<!--
--->

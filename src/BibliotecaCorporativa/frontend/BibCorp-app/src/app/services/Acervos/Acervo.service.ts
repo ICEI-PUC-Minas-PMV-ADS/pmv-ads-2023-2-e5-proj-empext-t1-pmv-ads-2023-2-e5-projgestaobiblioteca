@@ -14,7 +14,7 @@ export class AcervoService {
     private http: HttpClient
   ) { }
 
-  public getAcervos (): Observable<Acervo[]> {
+  public getAcervos (filtrarPor?: String, TipoFiltro?: String): Observable<Acervo[]> {
     console.log(this.baseURL)
     return this.http.get<Acervo[]>(this.baseURL)
                .pipe(take(3));

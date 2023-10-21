@@ -41,6 +41,16 @@ $theme: mat.define-light-theme((
 @import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 
 
+// regular style toast
+@import 'ngx-toastr/toastr';
+
+// if you'd like to use it without importing all of bootstrap it requires
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+// boostrap 5
+@import 'ngx-toastr/toastr-bs5-alert';
+
 /* Importing Bootstrap SCSS file. */
 
 
@@ -107,9 +117,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .bibcorp-titulo {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .bibcorp-titulo2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }

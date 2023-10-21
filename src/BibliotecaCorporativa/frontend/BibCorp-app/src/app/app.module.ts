@@ -16,8 +16,13 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatToolbarModule } from '@angular/material/toolbar'
 
+import { ToastrModule } from 'ngx-toastr'
+import { NgxSpinnerModule } from 'ngx-spinner'
 
-import { NavBarComponent, PrincipalComponent } from './components'
+import { 
+  NavBarComponent, 
+  PrincipalComponent 
+} from './components'
 
 @NgModule({
   declarations: [
@@ -37,7 +42,14 @@ import { NavBarComponent, PrincipalComponent } from './components'
     MatIconModule,
     MatInputModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgxSpinnerModule, 
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

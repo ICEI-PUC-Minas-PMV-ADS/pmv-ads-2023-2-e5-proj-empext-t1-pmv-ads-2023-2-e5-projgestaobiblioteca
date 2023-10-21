@@ -4,7 +4,7 @@
       <div class="flex-fill ">
         <div class="input-group m-0 ">
           <div class="input-group-prepend ">
-            <select class="bibcorp-select text-black border-0 p-3 " id="pesquisarPor">
+            <select class="bibcorp-select text-black border-0 p-1 ms-1 " id="pesquisarPor">
               <option value="Tudo">Tudo</option>
               <option value="Titulo">Título</option>
               <option value="Sinopse">Sinopse</option>
@@ -35,13 +35,13 @@
 </div>
 <div class="contianer bibcorp-box m-0 ps-3">
   <div class="p-3">
-    <p class="bibcorp-titulo2 ">Recentemente Adicionado:</p>
-    <div class="row" *ngIf="acervos && acervosRecentes.length">
-      <div class="col-4"  *ngFor="let acervo of acervosRecentes">
-        <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 20rem;">
+    <p class="h4">Recentemente Adicionado:</p>
+    <div class="row" *ngIf="acervosRecentes && acervosRecentes.length">
+      <div class="col"  *ngFor="let acervo of acervosRecentes">
+        <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
           <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
           <div class="card-body">
-            <h4 class="card-title">{{acervo.subTitulo}}</h4>
+            <p class="h4 card-title">{{acervo.subTitulo}}</p>
             <p class="card-text">{{acervo.resumo}}</p>
             <p class="card-text">{{acervo.editora}}</p>
           </div>
@@ -51,13 +51,13 @@
         <h4>Nenhum acervo adicionado recentemente encontrado!</h4>
       </div>
       <div class="mt-5">
-        <p class="bibcorp-titulo2 ">Lidos Recentemente:</p>
-        <div class="row" *ngIf="acervos && acervosLidos.length">
+        <p class="h4">Lidos Recentemente:</p>
+        <div class="row" *ngIf="acervosLidos && acervosLidos.length">
           <div class="col"  *ngFor="let acervo of acervosLidos">
-            <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
               <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
               <div class="card-body">
-                <h4 class="card-title">{{acervo.subTitulo}}</h4>
+                <p class="h4 card-title">{{acervo.subTitulo}}</p>
                 <p class="card-text">{{acervo.resumo}}</p>
                 <p class="card-text">{{acervo.editora}}</p>
               </div>
@@ -71,3 +71,12 @@
     </div>
   </div>
 </div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+>
+  <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

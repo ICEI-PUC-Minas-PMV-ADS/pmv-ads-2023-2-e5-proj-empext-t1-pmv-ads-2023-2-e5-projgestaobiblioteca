@@ -1,30 +1,30 @@
-<div class="d-flex flex-row bibcorp-bg-secondary m-0 p-0">
-  <div class="col-2 col-sm-3 col-md-4 ">
-    <mat-toolbar class="rounded-5 p-0 m-3">
-      <div class="flex-fill ">
+<div class="d-flex flex-row bibcorp-bg-secondary m-0 p-3">
+  <div class="col-2 col-sm-3 col-md-4 m-0 p-0">
+    <div class="rounded-5 ">
+      <div class="flex-fill m-0 p-0">
         <div class="input-group m-0 ">
           <div class="input-group-prepend ">
-            <select class="bibcorp-select text-black border-0 p-1 ms-1 " id="pesquisarPor">
-              <option value="Tudo">Tudo</option>
-              <option value="Titulo">Título</option>
-              <option value="Sinopse">Sinopse</option>
-              <option value="Autor">Autor</option>
+            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa" (change)="filtroLista">
+              <option [value]=1>Tudo</option>
+              <option [value]=2>Autor</option>
+              <option [value]=3>Sinopse</option>
+              <option [value]=4>Título</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 p-0" placeholder="argumento">
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="filtroLista">
           <!-- (input)="companyFilter($event.target)"-->
-          <button mat-icon-button class="bibcorp-search bg-white text-black border-0">
+          <div class="bibcorp-search bg-white text-white border-0 pt-1">
             <mat-icon class="matIcon">search</mat-icon>
-          </button>
+          </div>
         </div>
       </div>
-    </mat-toolbar>
+    </div>
   </div>
-  <div class="col-2 dropdown mt-3 ms-auto" >
+  <div class="col-2 dropdown ms-auto" >
     <button class="btn dropdown-toggle bg-white text-black bibcorp-dropdown" type="button" data-bs-toggle="dropdown"
       aria-expanded="false">
       <img src="../../../assets/Images/backgroundImageBibCorp.jpg" class="rounded-circle"
-        style="width: 50px; height: 50px;" alt="Avatar" />
+        style="width: 25px; height: 25px;" alt="Avatar" />
       alexGaldino
     </button>
     <ul class="dropdown-menu">

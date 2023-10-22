@@ -5,6 +5,7 @@ export interface Acervo {
   patrimonioId: number
   iSBN: string
   titulo: string
+  autor: string
   subTitulo: string
   resumo: string
   anoPublicacao: string

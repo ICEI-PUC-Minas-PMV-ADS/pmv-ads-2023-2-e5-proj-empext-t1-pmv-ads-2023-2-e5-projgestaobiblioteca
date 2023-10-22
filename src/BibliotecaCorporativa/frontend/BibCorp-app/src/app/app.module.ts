@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 
 import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgSelectModule } from '@ng-select/ng-select'
+
+import { NgxSpinnerModule } from 'ngx-spinner'
+import { ToastrModule } from 'ngx-toastr'
 
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatIconModule } from '@angular/material/icon'
@@ -16,8 +20,6 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatToolbarModule } from '@angular/material/toolbar'
 
-import { ToastrModule } from 'ngx-toastr'
-import { NgxSpinnerModule } from 'ngx-spinner'
 
 import { 
   NavBarComponent, 
@@ -43,6 +45,7 @@ import {
     MatInputModule,
     MatSidenavModule,
     MatToolbarModule,
+    NgSelectModule,
     NgxSpinnerModule, 
     ToastrModule.forRoot({
       timeOut: 10000,

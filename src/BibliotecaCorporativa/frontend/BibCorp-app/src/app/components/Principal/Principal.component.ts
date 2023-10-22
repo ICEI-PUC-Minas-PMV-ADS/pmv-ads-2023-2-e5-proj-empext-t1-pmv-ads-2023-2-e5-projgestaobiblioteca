@@ -16,10 +16,56 @@ export class PrincipalComponent implements OnInit {
   public acervosRecentes: Acervo[] = []
   public acervosLidos: Acervo[] = []
 
+  public  opcaoPesquisa: number = 1
+
+  public pesquisarTudo = false
+  public pesquisarPorAutor: boolean = false
+  public pesquisarPorTitulo: boolean = false
+  public pesquisarPorResumo: boolean = false
+
+  private _filtroLista = ''
+
+  public get filtroLista() {
+    return this._filtroLista
+  }
+
+  public set filtroLista(value: string) {
+    this._filtroLista = value
+    this.acervosRecentes = this.filtroLista ? this.filtrarAcervos(this.filtroLista) : this.acervos
+    this.acervosLidos = this.filtroLista ? this.filtrarAcervos(this.filtroLista) : this.acervos
+  }
+  
+  public filtrarAcervos(filtrarPor: string): any {
+    this.pesquisarTudo = false
+    this.pesquisarPorAutor = false
+    this.pesquisarPorTitulo = false
+    this.pesquisarPorResumo = false
+
+    if (this.opcaoPesquisa == 2)
+      this.pesquisarPorAutor = true
+    else if (this.opcaoPesquisa == 3)
+      this.pesquisarPorResumo = true
+    else if (this.opcaoPesquisa == 4)
+      this.pesquisarPorTitulo = true
+    else
+      this.pesquisarTudo = true
+
+    filtrarPor = filtrarPor.toLocaleLowerCase()
+    console.log("opcaoPesquisa", this.opcaoPesquisa)
+    return this.acervos.filter(
+      (acervo: {titulo: string, subTitulo: string, autor: string, resumo: string}) => 
+        ((this.pesquisarTudo || this.pesquisarPorTitulo) && acervo.titulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1) ||
+        ((this.pesquisarTudo || this.pesquisarPorTitulo) && acervo.subTitulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1) ||
+//         ((this.pesquisarTudo || this.pesquisarPorAuotr) && acervo.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1)  ||
+        ((this.pesquisarTudo || this.pesquisarPorResumo) && acervo.resumo.toLocaleLowerCase().indexOf(filtrarPor) !== -1)
+    )
+  }
+
   public argumentoAlterado: Subject<string> = new Subject<string>();
 
   public filtroAcervo(event: any): void {
     if (this.argumentoAlterado.observers.length === 0) {
+      console.log("aqui")
       this.spinnerService.show()
       this.argumentoAlterado
         .pipe(debounceTime(1500))
@@ -53,6 +99,7 @@ export class PrincipalComponent implements OnInit {
 
   public ngOnInit (): void {
     this.spinnerService.show()
+    console.log("opcaoPesquisa", this.opcaoPesquisa)
 
     this.getAcervos()
   }

@@ -24,13 +24,17 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { 
   NavBarComponent, 
   PrincipalComponent 
-} from './components'
+} from './components';
+import { LoginComponent } from './components/login/login.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    LoginComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

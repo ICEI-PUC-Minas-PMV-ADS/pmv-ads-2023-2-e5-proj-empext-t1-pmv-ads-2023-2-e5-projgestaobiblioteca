@@ -13,12 +13,16 @@ import { FormsModule } from '@angular/forms'
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
 import { NavBarComponent } from './components'
 import { PrincipalComponent } from './components/Principal/Principal.component'
+import { LoginComponent } from './components/login/login.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    LoginComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
 export * from './acervo'
 export * from './navBar'
-export * from './principal'
+export * from './Principal'
+export * from './login'
+export * from './cadastroUsuario'

@@ -1,5 +1,6 @@
 
 using BibCorp.Application.Dto.Acervos;
+using BibCorp.Persistence.Utilities.Pages.Class;
 
 namespace BibCorp.Application.Services.Contracts.Acervos
 {
@@ -11,5 +12,6 @@ namespace BibCorp.Application.Services.Contracts.Acervos
         Task<AcervoDto> CreateAcervo(AcervoDto acervoDto);
         Task<AcervoDto> UpdateAcervo (int acervoId, AcervoDto acervoDto);
         Task<bool> DeleteAcervo(int acervoId);
+        Task<ListaDePaginas<AcervoDto>> GetAcervosRecentesAsync(ParametrosPaginacao parametrosPaginacao);
     }
 }

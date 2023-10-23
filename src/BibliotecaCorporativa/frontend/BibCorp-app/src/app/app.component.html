@@ -1,6 +1,6 @@
-<div class="container-fluid p-4">
+<div class="container-fluid p-4" *ngIf="showDrawer()">
   <mat-drawer-container class="rounded-5 p-0 m-0" [class.drawer-opened]="drawer.opened" autosize>
-    <mat-drawer #drawer mode="side" opened="true" class="p-0 m-0">
+    <mat-drawer #drawer mode="side" opened=true class="p-0 m-0">
       <img src="../assets/Images/thumbnail_logotipo.png" width="200px" height="150px" alt="Logotipo Prevenir" class="m-0 p-0 ms-4"
         (click)="drawer.close()">
       <p class="bibcorp-titulo bibcorp-primary text-center  m-0 p-0">BibCorp</p>
@@ -8,7 +8,7 @@
       <app-navBar></app-navBar>
     </mat-drawer>
     <mat-drawer-content>
-      <div *ngIf="!drawer.opened" class="m-0 p-1">
+      <div *ngIf="!drawer.opened" class="m-0 p-1"> 
         <div class="container-fluid d-flex flex-row">
           <div>
             <img src="../assets/Images/thumbnail_logotipo.png" width="70px" alt="Logotipo Prevenir"
@@ -25,4 +25,8 @@
       <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container>
+</div>
+
+<div class="container-fluid p-4" *ngIf="!showDrawer()">
+    <router-outlet></router-outlet>
 </div>

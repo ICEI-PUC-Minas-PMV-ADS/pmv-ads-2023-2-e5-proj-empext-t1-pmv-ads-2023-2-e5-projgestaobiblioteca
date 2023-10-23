@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
-import { Component, type OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { ToastrService } from 'ngx-toastr'
 import { Subject, debounceTime } from 'rxjs'
 import { Acervo } from 'src/app/models'
 import { AcervoService } from 'src/app/services'
+import { Paginacao, ResultadoPaginado } from 'src/app/util'
 
 @Component({
   selector: 'app-principal',
@@ -15,80 +16,40 @@ export class PrincipalComponent implements OnInit {
   public acervos: Acervo[] = []
   public acervosRecentes: Acervo[] = []
   public acervosLidos: Acervo[] = []
+  public acervosRecentesCategoria: Acervo[] = []
 
-  public  opcaoPesquisa: number = 1
+  public paginacao: Paginacao[] = []
 
-  public pesquisarTudo = false
-  public pesquisarPorAutor: boolean = false
-  public pesquisarPorTitulo: boolean = false
-  public pesquisarPorResumo: boolean = false
+  public generos: String[] = []
 
-  private _filtroLista = ''
+  public opcaoPesquisa: string = 'Todos' 
+  public opcaoGeneroRecentes: string = 'Todos'
+  public argumento: string = ''
 
-  public get filtroLista() {
-    return this._filtroLista
-  }
+  public filtroAcervo(): void {
+    console.log ('Filtro: ', this.argumento, ' ', this.opcaoGeneroRecentes, ' ', this.opcaoPesquisa )
+    this.spinnerService.show()
+    
+    this.acervoService
+    .getAcervosRecentes(1, 4, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
+    .subscribe(
+      (retorno: ResultadoPaginado<Acervo[]>) => {
+        this.acervosRecentes = retorno.resultado
 
-  public set filtroLista(value: string) {
-    this._filtroLista = value
-    this.acervosRecentes = this.filtroLista ? this.filtrarAcervos(this.filtroLista) : this.acervos
-    this.acervosLidos = this.filtroLista ? this.filtrarAcervos(this.filtroLista) : this.acervos
-  }
-  
-  public filtrarAcervos(filtrarPor: string): any {
-    this.pesquisarTudo = false
-    this.pesquisarPorAutor = false
-    this.pesquisarPorTitulo = false
-    this.pesquisarPorResumo = false
+        for (var acervo of this.acervosRecentes)
+          this.generos.push(acervo.genero)
 
-    if (this.opcaoPesquisa == 2)
-      this.pesquisarPorAutor = true
-    else if (this.opcaoPesquisa == 3)
-      this.pesquisarPorResumo = true
-    else if (this.opcaoPesquisa == 4)
-      this.pesquisarPorTitulo = true
-    else
-      this.pesquisarTudo = true
+        this.generos = this.generos.filter((genero, i) => this.generos.indexOf(genero) === i)
 
-    filtrarPor = filtrarPor.toLocaleLowerCase()
-    console.log("opcaoPesquisa", this.opcaoPesquisa)
-    return this.acervos.filter(
-      (acervo: {titulo: string, subTitulo: string, autor: string, resumo: string}) => 
-        ((this.pesquisarTudo || this.pesquisarPorTitulo) && acervo.titulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1) ||
-        ((this.pesquisarTudo || this.pesquisarPorTitulo) && acervo.subTitulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1) ||
-//         ((this.pesquisarTudo || this.pesquisarPorAuotr) && acervo.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1)  ||
-        ((this.pesquisarTudo || this.pesquisarPorResumo) && acervo.resumo.toLocaleLowerCase().indexOf(filtrarPor) !== -1)
+        this.acervosLidos = retorno.resultado
+      },
+      (error: any) => {
+        console.log("aqui 2")
+        this.toastrService.error("Erro ao carregar Acervos", 'Erro!');
+        console.error(error)
+      }
     )
-  }
-
-  public argumentoAlterado: Subject<string> = new Subject<string>();
-
-  public filtroAcervo(event: any): void {
-    if (this.argumentoAlterado.observers.length === 0) {
-      console.log("aqui")
-      this.spinnerService.show()
-      this.argumentoAlterado
-        .pipe(debounceTime(1500))
-        .subscribe(
-          filtrarPor => {
-            this.acervoService
-              .getAcervos(filtrarPor)
-              .subscribe(
-                (acervos: Acervo[]) => {
-                  this.acervos = acervos;
-                },
-                (error: any) => {
-                  console.log("aqui")
-                  this.toastrService.error("Erro ao filtrar Acervos", 'Erro!');
-                  console.error(error);
-                }
-              )
-            .add(() => this.spinnerService.hide());
-          }
-        )
-    }
-
-    this.argumentoAlterado.next(event.value)
+    .add(() => this.spinnerService.hide())
   }
 
   constructor (
@@ -98,25 +59,28 @@ export class PrincipalComponent implements OnInit {
   ) { }
 
   public ngOnInit (): void {
-    this.spinnerService.show()
-    console.log("opcaoPesquisa", this.opcaoPesquisa)
-
-    this.getAcervos()
+    this.getAcervosRecentes()
   }
 
-  public getAcervos (): void {
+  public getAcervosRecentes (): void {
+    this.spinnerService.show()
+
     this.acervoService
-    .getAcervos()
+    .getAcervosRecentes(1, 4, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
     .subscribe(
-      (acervos: Acervo[]) => {
-        this.acervos = acervos
-        this.acervosRecentes = acervos
-        this.acervosLidos = acervos
-        console.log(this.acervos)
+      (retorno: ResultadoPaginado<Acervo[]>) => {
+        this.acervosRecentes = retorno.resultado
+
+        for (var acervo of this.acervosRecentes)
+          this.generos.push(acervo.genero)
+
+        this.generos = this.generos.filter((genero, i) => this.generos.indexOf(genero) === i)
+
+        this.acervosLidos = retorno.resultado
       },
       (error: any) => {
         console.log("aqui 2")
-        this.toastrService.error("Erro ao carrgar Acervos", 'Erro!');
+        this.toastrService.error("Erro ao carregar Acervos", 'Erro!');
         console.error(error)
       }
     )

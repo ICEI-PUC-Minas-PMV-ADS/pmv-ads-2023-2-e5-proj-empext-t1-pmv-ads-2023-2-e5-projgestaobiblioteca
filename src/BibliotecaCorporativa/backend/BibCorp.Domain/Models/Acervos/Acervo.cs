@@ -12,9 +12,14 @@ namespace BibCorp.Domain.Models.Acervos
         public string Titulo { get; set; }
         public string SubTitulo { get; set; }
         public string Resumo { get; set; }
+        public string Autor { get; set; }
         public string AnoPublicacao { get; set; }
         public string Editora { get; set; }
         public string Edicao { get; set; }
+
+        // Campo DataCriacao no forma AAAAMMDD
+        public string DataCriacao { get; set; }
+        public string Genero { get; set; }
         public string CapaUrl { get; set; }
         public int QtdeDisponivel { get; set; }
         public int QtdeEmTransito { get; set; }

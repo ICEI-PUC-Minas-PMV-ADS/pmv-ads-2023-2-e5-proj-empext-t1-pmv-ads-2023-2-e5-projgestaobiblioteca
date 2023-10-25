@@ -3,6 +3,7 @@ using System;
 using BibCorp.Persistence.Interfaces.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    partial class BibCorpContextModelSnapshot : ModelSnapshot
+    [Migration("20231022185613_NovosCampos")]
+    partial class NovosCampos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");

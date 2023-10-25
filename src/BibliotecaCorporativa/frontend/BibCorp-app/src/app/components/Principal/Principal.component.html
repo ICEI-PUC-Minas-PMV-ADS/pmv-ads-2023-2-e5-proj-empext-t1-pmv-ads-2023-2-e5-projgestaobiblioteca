@@ -1,82 +1,102 @@
+<div class="container-fluid m-0 p-0">
+  <div class="d-flex flex-row bibcorp-bg-primary m-0 p-2">
+    <div class="col-10">
+      <div class="h2 text-white">
+        Home Page
+      </div>
+    </div>
+    <div class="col-1 dropdown ms-auto me-5 p-2">
+      <button class="btn dropdown-toggle bg-white text-black bibcorp-dropdown" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img src="../../../assets/Images/backgroundImageBibCorp.jpg" class="rounded-circle"
+          style="width: 25px; height: 25px;" alt="Avatar" />
+        alexGaldino
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item bg-secondary active" href="#">Perfil</a></li>
+        <li><a class="dropdown-item bg-secondary active" ngbDropdownModule (click)="logout()">Sair</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class="d-flex flex-row bibcorp-bg-secondary m-0 p-3">
-  <div class="col-2 col-sm-3 col-md-4 m-0 p-0">
+  <div class="col">
     <div class="rounded-5 ">
       <div class="flex-fill m-0 p-0">
         <div class="input-group m-0 ">
           <div class="input-group-prepend ">
-            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa" (change)="filtroLista">
-              <option [value]=1>Tudo</option>
-              <option [value]=2>Autor</option>
-              <option [value]=3>Sinopse</option>
-              <option [value]=4>Título</option>
+            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa" (change)="filtroAcervo()">
+              <option [ngValue]="'Todos'">Todos</option>
+              <option [ngValue]="'Autor'">Autor</option>
+              <option [ngValue]="'Resumo'">Resumo</option>
+              <option [ngValue]="'Titulo'">Título</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="filtroLista">
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento" (change)="filtroAcervo()">
           <!-- (input)="companyFilter($event.target)"-->
-          <div class="bibcorp-search bg-white text-white border-0 pt-1">
+          <button class="bibcorp-search bg-black text-white border-0 pt-1" (click)="filtroAcervo()">
             <mat-icon class="matIcon">search</mat-icon>
-          </div>
+          </button>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-2 dropdown ms-auto" >
-    <button class="btn dropdown-toggle bg-white text-black bibcorp-dropdown" type="button" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      <img src="../../../assets/Images/backgroundImageBibCorp.jpg" class="rounded-circle"
-        style="width: 25px; height: 25px;" alt="Avatar" />
-      alexGaldino
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item bg-secondary active" href="#">Perfil</a></li>
-      <li><a class="dropdown-item bg-secondary active" ngbDropdownModule (click)="logout()">Sair</a></li>
-    </ul>
-  </div>
 </div>
 <div class="contianer bibcorp-box m-0 ps-3">
   <div class="p-3">
-    <p class="h4">Recentemente Adicionado:</p>
+    <div class="d-flex flex-row">
+      <div class="col">
+        <p class="h4">Recentemente Adicionado:</p>
+      </div>
+      <div>
+        Gêneros:
+        <select class="border-0 text-black p-2 ms-1 " id="Genero" [(ngModel)]="opcaoGeneroRecentes" (change)="filtroAcervo()">
+          <option [ngValue]="'Todos'">Todos</option>
+          <option *ngFor="let genero of generos" [ngValue]="genero">{{genero}}</option>
+        </select>
+      </div>  
+    </div>
     <div class="row" *ngIf="acervosRecentes && acervosRecentes.length">
-      <div class="col"  *ngFor="let acervo of acervosRecentes">
+      <div class="col" *ngFor="let acervo of acervosRecentes">
         <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
-          <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
+          <div class="card-header bibcorp-bg-secondary">
+            <P class="h5">{{acervo.titulo}}</P>
+            <P class="h7">{{acervo.autor}}</P>
+          </div>
           <div class="card-body">
             <p class="h4 card-title">{{acervo.subTitulo}}</p>
-            <p class="card-text">{{acervo.resumo}}</p>
+            <textarea matInput style="min-height: 150px; min-width: 100%;" class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
+            <p class="card-text">{{acervo.genero}}</p>
             <p class="card-text">{{acervo.editora}}</p>
           </div>
         </div>
       </div>
+    </div>
       <div *ngIf="!acervosRecentes.length" colspan="8" class="text-center">
         <h4>Nenhum acervo adicionado recentemente encontrado!</h4>
       </div>
       <div class="mt-5">
         <p class="h4">Lidos Recentemente:</p>
         <div class="row" *ngIf="acervosLidos && acervosLidos.length">
-          <div class="col"  *ngFor="let acervo of acervosLidos">
+          <div class="col" *ngFor="let acervo of acervosLidos">
             <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
               <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
               <div class="card-body">
                 <p class="h4 card-title">{{acervo.subTitulo}}</p>
-                <p class="card-text">{{acervo.resumo}}</p>
+                <textarea matInput style="min-height: 150px; min-width: 100%;" class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
+                <p class="card-text">{{acervo.genero}}</p>
                 <p class="card-text">{{acervo.editora}}</p>
               </div>
             </div>
           </div>
-          <div *ngIf="!acervosLidos.length" colspan="8" class="text-center">
-            <h4>Nenhum acervo lido recentemente encontrado!</h4>
-          </div>
+        </div>
+        <div *ngIf="!acervosLidos.length" colspan="8" class="text-center">
+          <h4>Nenhum acervo lido recentemente encontrado!</h4>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="square-jelly-box"
->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
   <p style="font-size: 20px; color: white">Carregando...</p>
 </ngx-spinner>

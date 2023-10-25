@@ -21,14 +21,17 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatToolbarModule } from '@angular/material/toolbar'
 
 
-import { 
-  NavBarComponent, 
-  PrincipalComponent 
+import {
+  NavBarComponent,
+  PrincipalComponent
 } from './components';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
 import { LoginService } from './services/Login/Login.service'
 import { UsuarioService } from './services/Usuario/Usuario.service'
+import { MinhasReservasComponent } from './components/minhasReservas/minhasReservas.component'
+import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service'
+import { PerfilComponent } from './components/perfil/perfil.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { UsuarioService } from './services/Usuario/Usuario.service'
     NavBarComponent,
     PrincipalComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    MinhasReservasComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -53,17 +58,18 @@ import { UsuarioService } from './services/Usuario/Usuario.service'
     MatSidenavModule,
     MatToolbarModule,
     NgSelectModule,
-    NgxSpinnerModule, 
+    NgxSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-      progressBar: true,
+      progressBar: true
     })
   ],
   providers: [
     LoginService,
-    UsuarioService
+    UsuarioService,
+    MinhasReservasService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

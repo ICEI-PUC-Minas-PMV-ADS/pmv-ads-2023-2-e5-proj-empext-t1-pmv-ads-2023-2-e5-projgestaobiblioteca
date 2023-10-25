@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr'
 import { Subject, debounceTime } from 'rxjs'
 import { Acervo } from 'src/app/models'
 import { AcervoService } from 'src/app/services'
+import { LoginService } from 'src/app/services/Usuarios/Login'
 import { Paginacao, ResultadoPaginado } from 'src/app/util'
 
 @Component({
@@ -55,7 +56,9 @@ export class PrincipalComponent implements OnInit {
   constructor (
     private acervoService: AcervoService,
     private toastrService: ToastrService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private loginService: LoginService,
+    private router: Router
   ) { }
 
   public ngOnInit (): void {
@@ -85,5 +88,11 @@ export class PrincipalComponent implements OnInit {
       }
     )
     .add(() => this.spinnerService.hide())
+  }
+
+   public logout(): void{
+    this.loginService.logout();
+    this.router.navigateByUrl('/login');
+
   }
 }

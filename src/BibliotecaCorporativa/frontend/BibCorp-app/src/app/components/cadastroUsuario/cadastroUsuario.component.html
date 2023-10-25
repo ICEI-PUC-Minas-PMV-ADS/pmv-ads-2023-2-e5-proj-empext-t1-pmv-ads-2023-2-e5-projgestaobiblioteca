@@ -8,31 +8,71 @@
     </div>
     <div class="form-container">
        <div class="form-inner">
-          <form class="cadastro" [formGroup]="form">
+          <form #cadastroForm="ngForm" class="cadastro" [formGroup]="form" (ngSubmit)="register()">
              <div class="field">
                 <label for="Nome">Nome completo</label>
-                <input type="text" id="Nome" class="form-control" [ngClass]="{'is-invalid': form.get('nome')?.errors && form.get('nome')?.touched }" placeholder="Nome completo" required>
+                <input
+                [(ngModel)]="model.nome"
+                name="nome" 
+                type="text" 
+                id="Nome" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('nome')?.errors && form.get('nome')?.touched }" 
+                formControlName="nome" 
+                placeholder="Nome completo" 
+                required
+                >
              </div>
              <div class="invalid-feedback">
                Nome completo é obrigatório
             </div>
              <div class="field">
                 <label for="Usuario">Nome de usuário</label>
-                <input type="text" id="Usuario" class="form-control" [ngClass]="{'is-invalid': form.get('userName')?.errors && form.get('userName')?.touched }" placeholder="Nome de usuário" required>
+                <input
+                [(ngModel)]="model.userName"
+                name="userName" 
+                type="text" 
+                id="Usuario" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('userName')?.errors && form.get('userName')?.touched }" 
+                formControlName="userName" 
+                placeholder="Nome de usuário" 
+                required
+                >
              </div>
              <div class="invalid-feedback">
                Nome do usuário é obrigatório
             </div>
              <div class="field">
                 <label for="Telefone">Telefone</label>
-                <input type="text" id="Telefone" class="form-control" [ngClass]="{'is-invalid': form.get('telefone')?.errors && form.get('telefone')?.touched }" placeholder="(00) 9000-0000" required>
+                <input
+                name="telefone"
+                [(ngModel)]="model.telefone" 
+                type="text" 
+                id="Telefone" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('telefone')?.errors && form.get('telefone')?.touched }" 
+                formControlName="telefone" 
+                placeholder="(00) 9000-0000" 
+                required
+                >
              </div>
              <div class="invalid-feedback">
                Telefone é obrigatório
             </div>
              <div class="field">
                 <label for="Senha">Senha</label>
-                <input type="password" id="Senha" class="form-control" [ngClass]="{'is-invalid': form.get('password')?.errors && form.get('password')?.touched }" placeholder="Senha" required>
+                <input 
+                name="password"
+                [(ngModel)]="model.password" 
+                type="password" 
+                id="Senha" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('password')?.errors && form.get('password')?.touched }" 
+                formControlName="password" 
+                placeholder="Senha" 
+                required
+                >
              </div>
              <div class="invalid-feedback">
                Senha é obrigatória
@@ -47,7 +87,7 @@
                   Já tem uma conta? <a [routerLink]="['/login']">Faça login</a>
                </div>
                <div id="acessar-acervo" routerLinkActive="active">
-                  <a [routerLink]="['/acervo']">Acessar o acervo</a>  
+                  <a [routerLink]="['/principal']">Acessar o acervo</a>  
                </div>
              </div>
           </form>

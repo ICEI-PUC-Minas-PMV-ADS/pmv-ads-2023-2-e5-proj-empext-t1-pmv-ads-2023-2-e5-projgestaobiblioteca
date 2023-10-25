@@ -27,8 +27,8 @@ import {
 } from './components';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
-import { LoginService } from './services/Login/Login.service'
-import { UsuarioService } from './services/Usuario/Usuario.service'
+import { LoginService } from './services/Usuarios/Login/Login.service'
+import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/CadastroUsuario.service'
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ import { UsuarioService } from './services/Usuario/Usuario.service'
   ],
   providers: [
     LoginService,
-    UsuarioService
+    CadastroUsuarioService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

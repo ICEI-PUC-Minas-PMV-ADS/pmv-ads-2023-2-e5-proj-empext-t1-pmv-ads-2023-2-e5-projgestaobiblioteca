@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Component, type OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { ToastrService } from 'ngx-toastr'
 import { Subject, debounceTime } from 'rxjs'
 import { Acervo } from 'src/app/models'
 import { AcervoService } from 'src/app/services'
+import { LoginService } from 'src/app/services/Usuarios/Login'
 
 @Component({
   selector: 'app-principal',
@@ -94,7 +96,9 @@ export class PrincipalComponent implements OnInit {
   constructor (
     private acervoService: AcervoService,
     private toastrService: ToastrService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private loginService: LoginService,
+    private router: Router
   ) { }
 
   public ngOnInit (): void {
@@ -121,5 +125,11 @@ export class PrincipalComponent implements OnInit {
       }
     )
     .add(() => this.spinnerService.hide())
+  }
+
+   public logout(): void{
+    this.loginService.logout();
+    this.router.navigateByUrl('/login');
+
   }
 }

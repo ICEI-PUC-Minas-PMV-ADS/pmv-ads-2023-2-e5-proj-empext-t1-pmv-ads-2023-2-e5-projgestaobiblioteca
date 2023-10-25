@@ -27,11 +27,16 @@ import {
 } from './components';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
+<<<<<<< HEAD
 import { LoginService } from './services/Login/Login.service'
 import { UsuarioService } from './services/Usuario/Usuario.service'
 import { MinhasReservasComponent } from './components/minhasReservas/minhasReservas.component'
 import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service'
 import { PerfilComponent } from './components/perfil/perfil.component'
+=======
+import { LoginService } from './services/Usuarios/Login/Login.service'
+import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/CadastroUsuario.service'
+>>>>>>> 8607b1e160238f91c20c0551bac6f9727448c3c6
 
 @NgModule({
   declarations: [
@@ -68,8 +73,12 @@ import { PerfilComponent } from './components/perfil/perfil.component'
   ],
   providers: [
     LoginService,
+<<<<<<< HEAD
     UsuarioService,
     MinhasReservasService
+=======
+    CadastroUsuarioService
+>>>>>>> 8607b1e160238f91c20c0551bac6f9727448c3c6
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

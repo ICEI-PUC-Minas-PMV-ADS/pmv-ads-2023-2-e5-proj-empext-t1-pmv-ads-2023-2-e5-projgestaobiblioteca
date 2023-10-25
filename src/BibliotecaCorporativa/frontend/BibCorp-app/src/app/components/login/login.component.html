@@ -10,27 +10,50 @@
     </div>
     <div class="form-container">
        <div class="form-inner">
-          <form class="login" [formGroup]="form">
+          <form #loginForm="ngForm" class="login" [formGroup]="form" (ngSubmit)="login()">
              <div class="field">
                <label for="Usuario">Nome de usuário</label>
-               <input type="text" id="Usuario" class="form-control" [ngClass]="{'is-invalid': form.get('userName')?.errors && form.get('userName')?.touched }" formControlName="userName" placeholder="Nome de usuário" required>
-             </div>
-             <div class="invalid-feedback">
+               <input
+               [(ngModel)]="model.userName" 
+               name="userName"
+               type="text" 
+               id="Usuario" 
+               class="form-control" 
+               [ngClass]="{'is-invalid': form.get('userName')?.errors && form.get('userName')?.touched }" 
+               formControlName="userName" 
+               placeholder="Nome de usuário" 
+               required
+               >
+
+               <div class="invalid-feedback">
                   Nome do usuário é obrigatório
              </div>
+            </div>
+            
              <div class="field">
                <label for="Senha">Senha</label>
-               <input type="password" id="Senha" class="form-control" [ngClass]="{'is-invalid': form.get('password')?.errors && form.get('password')?.touched }" formControlName="password" placeholder="Senha" required>
+               <input
+               [(ngModel)]="model.password"  
+               name="password"
+               type="password" 
+               id="Senha" 
+               class="form-control" 
+               [ngClass]="{'is-invalid': form.get('password')?.errors && form.get('password')?.touched }" 
+               formControlName="password" 
+               placeholder="Senha" 
+               required
+               >
+
+               <div class="invalid-feedback">
+                  Senha é obrigatória
              </div>
-             <div class="invalid-feedback">
-               Senha é obrigatória
-          </div>
+            </div>
              <div class="pass-link">
                <a [routerLink]="['/login']">Recuperar senha</a>
              </div>
              <div class="field btn">
                 <div class="btn-layer"></div>
-                <input type="submit" value="Login" [disabled]="!form.valid" >
+                <input type="submit" value="Login" [disabled]="loginForm.invalid" >
              </div>
 
              <div class="signup-link">
@@ -38,7 +61,7 @@
                   Novo por aqui? <a [routerLink]="['/cadastroUsuario']">Cadastre-se</a>
                </div>
                <div id="acessar-acervo">
-                  <a [routerLink]="['/acervo']">Acessar o acervo</a>  
+                  <a [routerLink]="['/principal']">Acessar o acervo</a>  
                </div>
              </div>
           </form>

@@ -3,6 +3,7 @@ using System;
 using BibCorp.Persistence.Interfaces.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    partial class BibCorpContextModelSnapshot : ModelSnapshot
+    [Migration("20231023221124_DetalhesLivro")]
+    partial class DetalhesLivro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
@@ -30,6 +33,9 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CapaUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comentarios")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataCriacao")

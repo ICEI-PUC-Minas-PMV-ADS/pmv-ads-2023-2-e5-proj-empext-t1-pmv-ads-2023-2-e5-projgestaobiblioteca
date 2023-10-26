@@ -20,15 +20,16 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatToolbarModule } from '@angular/material/toolbar'
 
-
 import { 
   NavBarComponent, 
   PrincipalComponent 
 } from './components';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
-import { LoginService } from './services/Login/Login.service'
-import { UsuarioService } from './services/Usuario/Usuario.service'
+import { LoginService } from './services/Usuarios/Login/Login.service'
+import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/CadastroUsuario.service'
+import { DetalhesComponent } from './components/detalhes/detalhes.component'
+
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UsuarioService } from './services/Usuario/Usuario.service'
     NavBarComponent,
     PrincipalComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    DetalhesComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,7 @@ import { UsuarioService } from './services/Usuario/Usuario.service'
   ],
   providers: [
     LoginService,
-    UsuarioService
+    CadastroUsuarioService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

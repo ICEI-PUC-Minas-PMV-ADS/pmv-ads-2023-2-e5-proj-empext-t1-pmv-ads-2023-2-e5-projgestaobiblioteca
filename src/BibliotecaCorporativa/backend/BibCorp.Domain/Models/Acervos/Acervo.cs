@@ -16,6 +16,8 @@ namespace BibCorp.Domain.Models.Acervos
         public string AnoPublicacao { get; set; }
         public string Editora { get; set; }
         public string Edicao { get; set; }
+        public int QtdPaginas { get; set; }
+        public string Comentarios { get; set; }
 
         // Campo DataCriacao no forma AAAAMMDD
         public string DataCriacao { get; set; }

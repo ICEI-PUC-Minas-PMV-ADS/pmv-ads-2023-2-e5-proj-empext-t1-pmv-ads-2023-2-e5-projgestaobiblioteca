@@ -14,6 +14,8 @@ export interface Acervo {
   editora: string
   edicao: string
   capaUrl: string
+  qtdPaginas: number
+  comentarios: string
   qtdeDisponivel: number
   qtdeEmTransito: number
   qtdeEmprestada: number

@@ -34,6 +34,8 @@ namespace BibCorp.Application.Dto.Acervos
     [Display(Name = "Gênero"),
     Required(ErrorMessage = "Campo {0} deverá ser informado!")]
     public string Genero { get; set; }
+    public int QtdPaginas { get; set; }
+    public string Comentarios { get; set; }
     public string CapaUrl { get; set; }
     public int QtdeDisponivel { get; set; }
     public int QtdeEmTransito { get; set; }

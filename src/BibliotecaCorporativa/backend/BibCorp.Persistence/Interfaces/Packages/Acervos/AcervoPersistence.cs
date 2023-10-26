@@ -54,30 +54,78 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
           .AsNoTracking()
           .OrderByDescending(a => a.DataCriacao);
 
-      if (parametrosPaginacao.Argumento != null)
-        if (parametrosPaginacao.PesquisarPor == "Autor")
+      if (parametrosPaginacao.Genero == "Todos")
+      {
+        if (parametrosPaginacao.Argumento != null)
+        {
+          if (parametrosPaginacao.PesquisarPor == "Autor")
+          {
+            query = _context.Acervos
+              .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+          }
+          else if (parametrosPaginacao.PesquisarPor == "Resumo")
+          {
+            query = _context.Acervos
+              .Where(a => a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+          }
+          else if (parametrosPaginacao.PesquisarPor == "Titulo")
+          {
+            query = _context.Acervos
+              .Where(a => a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+          }
+          else
+          {
+            query = _context.Acervos
+              .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+          }
+        }
+      }
+      else if (parametrosPaginacao.Genero != null)
+      {
+        if (parametrosPaginacao.Argumento != null)
+        {
+          if (parametrosPaginacao.PesquisarPor == "Autor")
+          {
+            query = _context.Acervos
+              .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
+                          a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+          }
+          else if (parametrosPaginacao.PesquisarPor == "Resumo")
+          {
+            query = _context.Acervos
+              .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
+                          a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+          }
+          else if (parametrosPaginacao.PesquisarPor == "Titulo")
+          {
+            query = _context.Acervos
+              .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
+                          (a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                           a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower())));
+          }
+          else
+          {
+            query = _context.Acervos
+              .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
+                          (a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
+                          a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower())));
+          }
+        }
+        else
+        {
           query = _context.Acervos
-            .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-            else if (parametrosPaginacao.PesquisarPor == "Resumo")
-              query = _context.Acervos
-                .Where(a => a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-            else if (parametrosPaginacao.PesquisarPor == "Titulo")
-              query = _context.Acervos
-                .Where(a => a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                            a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-            else
-              query = _context.Acervos
-                .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                            a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                            a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
-                            a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
+            .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()));
 
-      if (parametrosPaginacao.Genero != "Todos" && parametrosPaginacao.Genero != null)
-        query = _context.Acervos
-          .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()));
+        }
+      }
 
       return await ListaDePaginas<Acervo>.CriarPaginaAsync(query, parametrosPaginacao.NumeroDaPagina, parametrosPaginacao.tamanhoDaPagina);
-
     }
   }
 

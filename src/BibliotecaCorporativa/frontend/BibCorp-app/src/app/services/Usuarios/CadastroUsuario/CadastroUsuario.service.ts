@@ -9,8 +9,9 @@ import { LoginService } from '../Login/Login.service'
     providedIn: 'root'
   })
 
-export class UsuarioService{
-  public baseURL = environment.apiURL + 'Usuarios';
+export class CadastroUsuarioService{
+
+  public baseURL = environment.apiURL + 'Usuarios/';
 
   public userLoged  = {} as Usuario;
 
@@ -23,8 +24,8 @@ export class UsuarioService{
     return this.http
       .post<Usuario>(this.baseURL + "CreateUsuario", model)
       .pipe(take(1),
-        map((userReturn: Usuario) => {
-          const user = userReturn;
+        map((response: Usuario) => {
+          const user = response;
           if (user)
             this.loginService.setCurrentUser(user)
         })

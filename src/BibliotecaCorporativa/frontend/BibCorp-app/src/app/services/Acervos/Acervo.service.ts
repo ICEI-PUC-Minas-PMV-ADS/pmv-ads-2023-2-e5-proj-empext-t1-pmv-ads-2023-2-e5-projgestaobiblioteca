@@ -1,7 +1,9 @@
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+/* eslint-disable eqeqeq */
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, map, take } from 'rxjs'
-import { Acervo } from 'src/app/models/Acervos/Acervo'
+import { type Observable, map, take } from 'rxjs'
+import { type Acervo } from 'src/app/models/Acervos/Acervo'
 import { ResultadoPaginado } from 'src/app/util'
 import { environment } from 'src/assets/environments/environments'
 
@@ -25,30 +27,32 @@ export class AcervoService {
     console.log(this.baseURL)
     const resultadoPaginado: ResultadoPaginado<Acervo[]> = new ResultadoPaginado<Acervo[]>()
 
-    let parametrosHttp = new HttpParams;
+    let parametrosHttp = new HttpParams()
 
     if (pagina != null && itensPorPagina != null) {
-      parametrosHttp = parametrosHttp.append("numeroDaPagina", pagina.toString())
-      parametrosHttp = parametrosHttp.append("tamanhoDaPagina", itensPorPagina.toString())
-      parametrosHttp = parametrosHttp.append("pesquisarPor", pesquisarPor)
-      parametrosHttp = parametrosHttp.append("genero", genero)
+      parametrosHttp = parametrosHttp.append('numeroDaPagina', pagina.toString())
+      parametrosHttp = parametrosHttp.append('tamanhoDaPagina', itensPorPagina.toString())
+      parametrosHttp = parametrosHttp.append('pesquisarPor', pesquisarPor)
+      parametrosHttp = parametrosHttp.append('genero', genero)
     }
 
-    if (argumento != null && argumento != '')
-      parametrosHttp = parametrosHttp.append("argumento", argumento)
+    if (argumento != null && argumento != '') {
+      parametrosHttp = parametrosHttp.append('argumento', argumento)
+    }
 
     return this.http
-      .get<Acervo[]>( `${this.baseURL}/Recentes`, { observe: "response", params: parametrosHttp } )
+      .get<Acervo[]>(`${this.baseURL}/Recentes`, { observe: 'response', params: parametrosHttp })
       .pipe(
         take(3),
         map((response: any) => {
           resultadoPaginado.resultado = response.body
 
+          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
           if (response.headers.has('Paginacao')) {
             resultadoPaginado.paginacao = JSON.parse(response.headers.get('Paginacao'))
           }
 
           return resultadoPaginado
-        }));
+        }))
   }
 }

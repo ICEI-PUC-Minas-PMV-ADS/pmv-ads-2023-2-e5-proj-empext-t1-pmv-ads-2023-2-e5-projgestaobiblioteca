@@ -29,6 +29,15 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("CapaUrl")
                         .HasColumnType("TEXT");
 
+<<<<<<< Updated upstream
+=======
+                    b.Property<string>("Comentarios")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DataCriacao")
+                        .HasColumnType("TEXT");
+
+>>>>>>> Stashed changes
                     b.Property<string>("Edicao")
                         .HasColumnType("TEXT");
 
@@ -45,6 +54,9 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PatrimonioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QtdPaginas")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdeDisponivel")

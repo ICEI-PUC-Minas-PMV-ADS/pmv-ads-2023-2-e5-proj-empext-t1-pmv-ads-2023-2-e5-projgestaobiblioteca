@@ -1,0 +1,58 @@
+<div class="form-inline">
+  <!-- <form action="" class="form-inline"> -->
+    <div class="form-group mb-2">
+      <label class="mr-2">Filtro:</label>
+      <input type="text" class="form-control mr-2 w-auto" placeholder="Buscar" [(ngModel)]="filtroLista">
+      <!-- <button class="btn btn-outline-success ">Buscar</button> -->
+    </div>
+  <!-- </form> -->
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th><button type="button" class="btn btn-outline-primary btn-sm"
+          (click)="altImg()">
+          {{showImg ? 'Ocultar Capas' : 'Exibir Capas'}}
+        </button></th>
+        <th>#Id</th>
+        <th>Nome</th>
+        <th>ISBN</th>
+        <th>Genero</th>
+        <th>Categoria</th>
+        <th>Disponibilidade</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="patrimonio && patrimonio.length">
+      <tr *ngFor="let livro of patrimonioFiltrados">
+        <td><img
+          [collapse]="!showImg"
+          [isAnimated]="true"
+          src="/assets/{{livro.capa}}" alt=""
+          [style.width.px]="wImg"
+          [style.margin.px]="mImg"> <!--Property Binding ! comandos entre [] -->
+        </td>
+        <td>{{livro.livroId}}</td> <!--Interpolação com Bind a patrimonio -->
+        <td>{{livro.nome}}</td>
+        <td>{{livro.isbn}}</td>
+        <td>{{livro.genero}}</td>
+        <td>{{livro.categoria}}</td>
+        <td>{{livro.disponibilidade}}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm me-2">Editar</button>
+          <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!patrimonioFiltrados.length">
+      <tr>
+        <td colspan="8" class="text-center">
+          <h4>NENHUM LIVRO ENCONTRADO</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- <div *ngFor="let livro of patrimonio">
+
+  </div> -->

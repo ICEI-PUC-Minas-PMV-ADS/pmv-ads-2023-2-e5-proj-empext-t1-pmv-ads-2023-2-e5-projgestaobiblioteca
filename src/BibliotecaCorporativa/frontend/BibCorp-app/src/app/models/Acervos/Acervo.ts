@@ -7,8 +7,10 @@ export interface Acervo {
   titulo: string
   autor: string
   subTitulo: string
+  genero: string
   resumo: string
   anoPublicacao: string
+  dataCriacao: String
   editora: string
   edicao: string
   capaUrl: string

@@ -1,15 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core'
-import { type Observable, take } from 'rxjs'
-import { type Acervo } from 'src/app/models/Acervos/Acervo'
+import { Observable, map, take } from 'rxjs'
+import { Acervo } from 'src/app/models/Acervos/Acervo'
+import { ResultadoPaginado } from 'src/app/util'
 import { environment } from 'src/assets/environments/environments'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AcervoService {
-  baseURL = environment.apiURL + 'Acervos'
+  baseURL = environment.apiURL + 'Acervo'
 
   constructor (
     private readonly http: HttpClient
@@ -19,5 +19,36 @@ export class AcervoService {
     console.log(this.baseURL)
     return this.http.get<Acervo[]>(this.baseURL)
       .pipe(take(3))
+  }
+
+  public getAcervosRecentes (pagina?: number, itensPorPagina?: number, argumento?: string, pesquisarPor: string = 'Todos', genero: string = 'Todos'): Observable<ResultadoPaginado<Acervo[]>> {
+    console.log(this.baseURL)
+    const resultadoPaginado: ResultadoPaginado<Acervo[]> = new ResultadoPaginado<Acervo[]>()
+
+    let parametrosHttp = new HttpParams;
+
+    if (pagina != null && itensPorPagina != null) {
+      parametrosHttp = parametrosHttp.append("numeroDaPagina", pagina.toString())
+      parametrosHttp = parametrosHttp.append("tamanhoDaPagina", itensPorPagina.toString())
+      parametrosHttp = parametrosHttp.append("pesquisarPor", pesquisarPor)
+      parametrosHttp = parametrosHttp.append("genero", genero)
+    }
+
+    if (argumento != null && argumento != '')
+      parametrosHttp = parametrosHttp.append("argumento", argumento)
+
+    return this.http
+      .get<Acervo[]>( `${this.baseURL}/Recentes`, { observe: "response", params: parametrosHttp } )
+      .pipe(
+        take(3),
+        map((response: any) => {
+          resultadoPaginado.resultado = response.body
+
+          if (response.headers.has('Paginacao')) {
+            resultadoPaginado.paginacao = JSON.parse(response.headers.get('Paginacao'))
+          }
+
+          return resultadoPaginado
+        }));
   }
 }

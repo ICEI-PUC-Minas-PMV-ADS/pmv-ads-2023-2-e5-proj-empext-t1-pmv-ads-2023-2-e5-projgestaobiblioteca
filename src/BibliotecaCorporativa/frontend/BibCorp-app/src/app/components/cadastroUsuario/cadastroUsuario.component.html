@@ -1,0 +1,111 @@
+
+<div class="wrapper">
+    <div class="title-text">
+      <img src="../assets/Images/thumbnail_logotipo.png" width="250px"  alt="Logotipo Prevenir" >
+       <div class="mensagem-orientacao">
+         <p>Cadastre-se</p>
+        </div>
+    </div>
+    <div class="form-container">
+       <div class="form-inner">
+          <form #cadastroForm="ngForm" class="cadastro" [formGroup]="form" (ngSubmit)="register()">
+             <div class="field">
+                <label for="Nome">Nome completo</label>
+                <input
+                [(ngModel)]="model.nome"
+                name="nome" 
+                type="text" 
+                id="Nome" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('nome')?.errors && form.get('nome')?.touched }" 
+                formControlName="nome" 
+                placeholder="Nome completo" 
+                required
+                >
+             </div>
+             <div class="invalid-feedback">
+               Nome completo é obrigatório
+            </div>
+             <div class="field">
+                <label for="Usuario">Nome de usuário</label>
+                <input
+                [(ngModel)]="model.userName"
+                name="userName" 
+                type="text" 
+                id="Usuario" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('userName')?.errors && form.get('userName')?.touched }" 
+                formControlName="userName" 
+                placeholder="Nome de usuário" 
+                required
+                >
+             </div>
+             <div class="invalid-feedback">
+               Nome do usuário é obrigatório
+            </div>
+             <div class="field">
+                <label for="Telefone">Telefone</label>
+                <input
+                name="telefone"
+                [(ngModel)]="model.telefone" 
+                type="text" 
+                id="Telefone" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('telefone')?.errors && form.get('telefone')?.touched }" 
+                formControlName="telefone" 
+                placeholder="(00) 9000-0000" 
+                required
+                >
+             </div>
+             <div class="invalid-feedback">
+               Telefone é obrigatório
+            </div>
+             <div class="field">
+                <label for="Senha">Senha</label>
+                <input 
+                name="password"
+                [(ngModel)]="model.password" 
+                type="password" 
+                id="Senha" 
+                class="form-control" 
+                [ngClass]="{'is-invalid': form.get('password')?.errors && form.get('password')?.touched }" 
+                formControlName="password" 
+                placeholder="Senha" 
+                required
+                >
+             </div>
+             <div class="invalid-feedback">
+               Senha é obrigatória
+            </div>
+             <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Cadastre-se">
+             </div>
+
+             <div class="login-link">
+               <div routerLinkActive="active">
+                  Já tem uma conta? <a [routerLink]="['/login']">Faça login</a>
+               </div>
+               <div id="acessar-acervo" routerLinkActive="active">
+                  <a [routerLink]="['/principal']">Acessar o acervo</a>  
+               </div>
+             </div>
+          </form>
+          <form action="#" class="signup">
+             <div class="field">
+                <input type="text" placeholder="Email Address" required>
+             </div>
+             <div class="field">
+                <input type="password" placeholder="Password" required>
+             </div>
+             <div class="field">
+                <input type="password" placeholder="Confirm password" required>
+             </div>
+             <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Signup">
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>

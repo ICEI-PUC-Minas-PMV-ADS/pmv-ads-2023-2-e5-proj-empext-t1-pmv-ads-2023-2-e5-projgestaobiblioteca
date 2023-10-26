@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser'
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 
 import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -26,7 +26,9 @@ import {
   PrincipalComponent 
 } from './components';
 import { LoginComponent } from './components/login/login.component';
-import { CadastroComponent } from './components/cadastro/cadastro.component'
+import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
+import { LoginService } from './services/Usuarios/Login/Login.service'
+import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/CadastroUsuario.service'
 
 @NgModule({
   declarations: [
@@ -34,13 +36,14 @@ import { CadastroComponent } from './components/cadastro/cadastro.component'
     NavBarComponent,
     PrincipalComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroUsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbCollapseModule,
     NgbModule,
@@ -58,7 +61,10 @@ import { CadastroComponent } from './components/cadastro/cadastro.component'
       progressBar: true,
     })
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    CadastroUsuarioService
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

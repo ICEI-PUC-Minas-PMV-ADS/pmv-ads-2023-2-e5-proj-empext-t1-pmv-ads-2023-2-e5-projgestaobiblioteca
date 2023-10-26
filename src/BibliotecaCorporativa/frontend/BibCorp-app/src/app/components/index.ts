@@ -1,5 +1,4 @@
-
-export * from './acervo';
+export * from './acervo'
 export * from './navBar'
 export * from './Principal'
 export * from './login'

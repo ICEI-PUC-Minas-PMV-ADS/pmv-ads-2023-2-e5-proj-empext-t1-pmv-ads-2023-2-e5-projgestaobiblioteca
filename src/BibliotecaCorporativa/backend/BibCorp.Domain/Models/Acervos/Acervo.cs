@@ -12,6 +12,7 @@ namespace BibCorp.Domain.Models.Acervos
         public string Titulo { get; set; }
         public string SubTitulo { get; set; }
         public string Resumo { get; set; }
+        public string Autor { get; set; }
         public string AnoPublicacao { get; set; }
         public string Editora { get; set; }
         public string Edicao { get; set; }

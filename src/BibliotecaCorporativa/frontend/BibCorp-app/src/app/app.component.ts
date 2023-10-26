@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,17 @@ import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  constructor(
-//    private loginLogoutService: LoginLogoutService
+  constructor (
+    //    private loginLogoutService: LoginLogoutService
+    private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   //  this.setCurrentUser();
+  }
+
+  showDrawer():boolean{
+    return this.router.url != '/login' && this.router.url != '/cadastroUsuario';  
   }
 
 /*  public setCurrentUser(): void {

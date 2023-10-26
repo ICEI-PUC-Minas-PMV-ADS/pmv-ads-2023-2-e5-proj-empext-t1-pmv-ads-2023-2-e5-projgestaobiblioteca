@@ -1,2 +1,1 @@
-
-export * from './acervo.component';
+export * from './acervo.component'

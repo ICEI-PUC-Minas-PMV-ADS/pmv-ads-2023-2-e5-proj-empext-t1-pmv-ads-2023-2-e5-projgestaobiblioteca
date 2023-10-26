@@ -41,6 +41,16 @@ $theme: mat.define-light-theme((
 @import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 
 
+// regular style toast
+@import 'ngx-toastr/toastr';
+
+// if you'd like to use it without importing all of bootstrap it requires
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+// boostrap 5
+@import 'ngx-toastr/toastr-bs5-alert';
+
 /* Importing Bootstrap SCSS file. */
 
 
@@ -51,6 +61,38 @@ $theme: mat.define-light-theme((
 
 .bibcorp-secondary {
   color: #092e54;
+}
+
+
+
+.iconBadge {
+  transform: scale(1.3);
+  color: #0D4880;
+}
+
+
+@for $i from 0 through 20 {
+  $colors: rgb(random(255), random(255), random(255));
+
+  .text-color-#{$i} {
+    color: $colors
+  }
+
+  .bg-color-#{$i} {
+    background-color: $colors
+  }
+
+  .border-left-#{$i} {
+    border-left: 0.8rem solid $colors
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bibcorp-bg-image{
+  background: url("./assets/Images/backgroundImageBibCorp.jpg") no-repeat center center;
+  background-size: cover;
 }
 
 // Configurações background
@@ -74,68 +116,10 @@ $theme: mat.define-light-theme((
   opacity: .9;
 }
 
-.iconBadge {
-  transform: scale(1.3);
-  color: black;
-}
-
-.iconDash {
-  transform: scale(3);
-}
-
-.imageLogo {
-  width: 100%;
-}
-
-.imageLateral {
-  width: 100%;
-  margin-top: 50px;
-}
-
 .bibcorp-titulo {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .bibcorp-titulo2 {
-  font-size: 1.8rem;
-}
-
-.imageDetail {
-  width: 200px;
-}
-
-.rounded-circle {
-  width: 170px;
-  height: 170px;
-  cursor: pointer;
-}
-
-@for $i from 0 through 20 {
-  $colors: rgb(random(255), random(255), random(255));
-
-  .text-color-#{$i} {
-    color: $colors
-  }
-
-  .bg-color-#{$i} {
-    background-color: $colors
-  }
-
-  .border-left-#{$i} {
-    border-left: 0.8rem solid $colors
-  }
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.bg-image{
-  background: url("./assets/Images/backgroundImageBibCorp.jpg") no-repeat center center;
-  background-size: cover;
-}
-
-.bibcorp-container {
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
+  font-size: 1.5rem;
 }

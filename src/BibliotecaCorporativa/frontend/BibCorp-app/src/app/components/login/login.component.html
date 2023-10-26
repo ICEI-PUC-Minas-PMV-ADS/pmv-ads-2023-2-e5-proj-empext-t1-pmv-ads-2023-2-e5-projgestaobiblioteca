@@ -1,0 +1,62 @@
+<div class="wrapper">
+    <div class="title-text">
+      <img src="../assets/Images/thumbnail_logotipo.png" width="250px"  alt="Logotipo Prevenir" >
+       <div class="mensagem-boasvindas">
+        <p class="bibcorp-titulo bibcorp-primary">Seja Bem-vindo!</p>
+       </div>
+       <div class="mensagem-orientacao">
+         <p>Preencha os seus dados de login para acessar</p>
+        </div>
+    </div>
+    <div class="form-container">
+       <div class="form-inner">
+          <form class="login" [formGroup]="form">
+             <div class="field">
+               <label for="Usuario">Nome de usuário</label>
+               <input type="text" id="Usuario" class="form-control" [ngClass]="{'is-invalid': form.get('userName')?.errors && form.get('userName')?.touched }" formControlName="userName" placeholder="Nome de usuário" required>
+             </div>
+             <div class="invalid-feedback">
+                  Nome do usuário é obrigatório
+             </div>
+             <div class="field">
+               <label for="Senha">Senha</label>
+               <input type="password" id="Senha" class="form-control" [ngClass]="{'is-invalid': form.get('password')?.errors && form.get('password')?.touched }" formControlName="password" placeholder="Senha" required>
+             </div>
+             <div class="invalid-feedback">
+               Senha é obrigatória
+          </div>
+             <div class="pass-link">
+               <a [routerLink]="['/login']">Recuperar senha</a>
+             </div>
+             <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Login" [disabled]="!form.valid" >
+             </div>
+
+             <div class="signup-link">
+               <div >
+                  Novo por aqui? <a [routerLink]="['/cadastroUsuario']">Cadastre-se</a>
+               </div>
+               <div id="acessar-acervo">
+                  <a [routerLink]="['/acervo']">Acessar o acervo</a>  
+               </div>
+             </div>
+          </form>
+          <form action="#" class="signup">
+             <div class="field">
+                <input type="text" placeholder="Email Address" required>
+             </div>
+             <div class="field">
+                <input type="password" placeholder="Password" required>
+             </div>
+             <div class="field">
+                <input type="password" placeholder="Confirm password" required>
+             </div>
+             <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Cadastre-se">
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>

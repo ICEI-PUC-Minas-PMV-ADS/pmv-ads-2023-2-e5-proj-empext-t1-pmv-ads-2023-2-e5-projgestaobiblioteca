@@ -26,10 +26,10 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("AnoPublicacao")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CapaUrl")
+                    b.Property<string>("Autor")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Comentarios")
+                    b.Property<string>("CapaUrl")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataCriacao")
@@ -46,6 +46,9 @@ namespace BibCorp.Persistence.Migrations
 
                     b.Property<int?>("EmprestimoPatrimonioId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Genero")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ISBN")
                         .HasColumnType("TEXT");

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20231009202804_Initial")]
-    partial class Initial
+    [Migration("20231022182622_Initial-Identity")]
+    partial class InitialIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,13 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("AnoPublicacao")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Autor")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("CapaUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DataCriacao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Edicao")

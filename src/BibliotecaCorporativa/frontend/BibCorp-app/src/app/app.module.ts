@@ -1,14 +1,24 @@
 import { AppComponent } from './app.component'
-import { BrowserModule } from '@angular/platform-browser'
+
 import { AppRoutingModule } from './app-routing.module'
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserModule } from '@angular/platform-browser'
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
+
 import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgSelectModule } from '@ng-select/ng-select'
+
+import { NgxSpinnerModule } from 'ngx-spinner'
+import { ToastrModule } from 'ngx-toastr'
 
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
-import { FormsModule } from '@angular/forms'
+import { MatToolbarModule } from '@angular/material/toolbar'
 
 import { 
   NavBarComponent, 
@@ -34,14 +44,28 @@ import { DetalhesComponent } from './components/detalhes/detalhes.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     NgbCollapseModule,
+    NgbModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatToolbarModule,
+    NgSelectModule,
+    NgxSpinnerModule, 
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+    })
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    UsuarioService
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

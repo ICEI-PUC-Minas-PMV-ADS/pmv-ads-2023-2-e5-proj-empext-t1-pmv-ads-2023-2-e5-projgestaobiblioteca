@@ -1,20 +1,22 @@
 
+using BibCorp.API.Packages.Extensions.Pages;
 using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Services.Contracts.Acervos;
+using BibCorp.Persistence.Utilities.Pages.Class;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibCorp.API.Controllers.Acervos;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AcervosController : ControllerBase
+public class AcervoController : ControllerBase
 {
   private readonly IAcervoService _acervoService;
   private readonly HttpClient _httpClient = new();
   private AcervoGoogleBooksDto _googleBooksDto = new();
   private readonly AcervoDto _acervoDto = new();
 
-  public AcervosController
+  public AcervoController
   (
       IAcervoService acervoService
   )
@@ -57,11 +59,11 @@ public class AcervosController : ControllerBase
   /// <response code="500">Erro interno</response>
 
   [HttpGet("{acervoId}")]
-  public async Task<IActionResult> GetAcervoById(int acervoid)
+  public async Task<IActionResult> GetAcervoById(int acervoId)
   {
     try
     {
-      var acervo = await _acervoService.GetAcervoByIdAsync(acervoid);
+      var acervo = await _acervoService.GetAcervoByIdAsync(acervoId);
 
       if (acervo == null) return NotFound("Não existe acervo cadastrado para o Id informado");
 
@@ -176,6 +178,33 @@ public class AcervosController : ControllerBase
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir acervo. Erro: {e.Message}");
     }
 
+  }
+
+  /// <summary>
+  /// Obtém os dados dos acervos cadastrados recentemente na emrpesa
+  /// </summary>
+  /// <response code="200">Dados dos acervos cadastrados</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("Recentes")]
+  public async Task<IActionResult> GetAcervosRecentes([FromQuery]ParametrosPaginacao parametrosPaginacao)
+  {
+    try
+    {
+      var acervos = await _acervoService.GetAcervosRecentesAsync(parametrosPaginacao);
+
+      if (acervos == null) return NotFound("Não existem acervos cadastrados");
+
+      Response.IncluirPaginacao(acervos.PaginaCorrente, acervos.TamanhoDaPagina, acervos.ContadorTotal, acervos.TotalDePaginas);
+
+      return Ok(acervos);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
+    }
   }
 
 /*

@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-<<<<<<< Updated upstream
-const routes: Routes = [];
-=======
 import { AcervoComponent, CadastroUsuarioComponent, LoginComponent, PrincipalComponent, DetalhesComponent } from './components';
 
 const routes: Routes = [
@@ -16,7 +13,6 @@ const routes: Routes = [
   { path: '', redirectTo: 'detalhes', pathMatch: 'full'},
 
 ];
->>>>>>> Stashed changes
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

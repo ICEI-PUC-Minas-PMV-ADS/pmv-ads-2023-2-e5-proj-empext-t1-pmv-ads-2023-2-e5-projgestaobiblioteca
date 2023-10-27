@@ -29,8 +29,8 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-no-bg text-start mt-2 ms-3">
-  <span class="mr-2" href="#">&larr;</span> Voltar aos resultados
+<button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
+  <span class="mr-2" routerLink="principal">>&larr;</span> Voltar aos resultados
 </button>
 
 <!-- Container de informações do livro -->
@@ -71,7 +71,7 @@
                               <td>{{i+1}}</td>
                               <td class="change-color">{{patrimonio.id}}</td>
                               <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
+                              <td><button class="btn btn-orange reserve-button" routerLink="emprestar">Emprestar</button></td>
                           </tr>
                       </tbody>
                   </table>

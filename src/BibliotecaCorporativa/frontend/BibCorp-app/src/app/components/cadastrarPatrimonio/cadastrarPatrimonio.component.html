@@ -1,0 +1,95 @@
+<div class="container-fluid mt-0 ms-0 pt-0 ps-0">
+    <div class="bibcorp-bg-secondary">
+        <div class="row">
+            <div class="col col-sm-6 col-md-8">
+                <h2 class="text-start p-3"
+                    style="color: white; font-family: Helvetica Neue, Arial, sans-serif; font-size: 26px;">Cadastrar Patrimômio</h2>
+            </div>
+            <div class="col col-sm-1 col-lg-2 d-md-2 ms-auto">
+                <div class="d-flex">
+                    <div class="row">
+                        <div class="dropdown mt-2">
+                            <button class="btn dropdown-toggle bg-white text-black bibcorp-dropdown" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../../../assets/Images/backgroundImageBibCorp.jpg" class="rounded-circle"
+                                    style="width: 50px; height: 50px;" alt="Avatar" />
+                                alexGaldino
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item bg-secondary active" href="#">Perfil</a></li>
+                                <li><a class="dropdown-item bg-secondary active" href="#">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
+    <span class="mr-2" routerLink="principal">&larr;</span> Voltar
+  </button>
+
+  <div class="container mt-4">
+    <form>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="number" class="form-control" id="id" placeholder="ID">
+                </div>
+                <div class="mb-3">
+                    <label for="isbn" class="form-label">ISBN</label>
+                    <input type="number" class="form-control" id="isbn" placeholder="ISBN">
+                </div>
+                <div class="mb-3">
+                    <label for="coluna" class="form-label">Coluna</label>
+                    <input type="text" class="form-control" id="coluna" placeholder="Coluna">
+                </div>
+                <div class="mb-3">
+                    <label for="localizacao" class="form-label">Localização</label>
+                    <input type="text" class="form-control" id="localizacao" placeholder="Localização">
+                </div>
+                <div class="mb-3">
+                    <label for="posicao" class="form-label">Posição</label>
+                    <input type="text" class="form-control" id="posicao" placeholder="Posição">
+                </div>
+                <div class="mb-3">
+                    <label for="prateleira" class="form-label">Prateleira</label>
+                    <input type="text" class="form-control" id="prateleira" placeholder="Prateleira">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="sala" class="form-label">Sala</label>
+                    <input type="text" class="form-control" id="sala" placeholder="Sala">
+                </div>
+                <div class="mb-3">
+                    <label for="data-atualizacao" class="form-label">Data de Atualização</label>
+                    <input type="date" class="form-control" id="data-atualizacao">
+                </div>
+                <div class="mb-3">
+                    <label for="data-cadastro" class="form-label">Data de Cadastro</label>
+                    <input type="date" class="form-control" id="data-cadastro">
+                </div>
+                <div class="mb-3">
+                    <label for="data-indisponibilidade" class="form-label">Data de Indisponibilidade</label>
+                    <input type="date" class="form-control" id="data-indisponibilidade">
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status">
+                        <option value="ativo">Disponível</option>
+                        <option value="inativo">Indisponível</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" style="float: right;">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br>

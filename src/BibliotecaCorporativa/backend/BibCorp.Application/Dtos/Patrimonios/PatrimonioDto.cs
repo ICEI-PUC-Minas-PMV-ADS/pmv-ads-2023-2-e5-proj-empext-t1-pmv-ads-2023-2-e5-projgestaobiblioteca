@@ -16,11 +16,7 @@ namespace BibCorp.Application.Dto.Patrimonios
         [Display(Name = "Posição")]
         public string Posicao { get; set; }
         public string ISBN { get; set; }
-        [Display(Name = "Origem do Patrimônio")]
-        public string Origem { get; set; }
-        [Display(Name = "Detalhe")]
-        public string DetalheOrgiem { get; set; }
-        public bool Ativo { get; set; }
+        public bool Status { get; set; }
         public string DataCadastro { get; set; }
         public string DataAtualizacao { get; set; }
         public string DataIndisponibilidade { get; set; }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20231022182622_Initial-Identity")]
-    partial class InitialIdentity
+    [Migration("20231026223941_integration-2")]
+    partial class integration2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,9 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("CapaUrl")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Comentarios")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DataCriacao")
                         .HasColumnType("TEXT");
 
@@ -50,10 +53,13 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<int?>("EmprestimoPatrimonioId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Genero")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ISBN")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PatrimonioId")
+                    b.Property<int>("QtdPaginas")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdeDisponivel")
@@ -77,8 +83,6 @@ namespace BibCorp.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ISBN");
-
-                    b.HasIndex("PatrimonioId");
 
                     b.HasIndex("EmprestimoAcervoId", "EmprestimoPatrimonioId");
 

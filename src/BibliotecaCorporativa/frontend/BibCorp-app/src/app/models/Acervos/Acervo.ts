@@ -19,5 +19,5 @@ export interface Acervo {
   qtdeDisponivel: number
   qtdeEmTransito: number
   qtdeEmprestada: number
-  patrimonio: Patrimonio[]
+  patrimonios: Patrimonio[]
 }

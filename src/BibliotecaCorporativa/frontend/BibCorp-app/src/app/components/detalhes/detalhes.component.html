@@ -1,33 +1,6 @@
-<div class="container-fluid mt-0 ms-0 pt-0 ps-0">
-  <div class="bibcorp-bg-secondary">
-      <div class="row">
-          <!-- Substituído a barra de pesquisa pelo título "Detalhes do Livro" -->
-          <div class="col col-sm-6 col-md-8">
-              <h2 class="text-start p-3"
-                  style="color: white; font-family: Helvetica Neue, Arial, sans-serif; font-size: 26px;">Detalhes do
-                  Livro</h2>
-          </div>
-          <div class="col col-sm-1 col-lg-2 d-md-2 ms-auto">
-              <div class="d-flex">
-                  <div class="row">
-                      <div class="dropdown mt-2">
-                          <button class="btn dropdown-toggle bg-white text-black bibcorp-dropdown" type="button"
-                              data-bs-toggle="dropdown" aria-expanded="false">
-                              <img src="../../../assets/Images/backgroundImageBibCorp.jpg" class="rounded-circle"
-                                  style="width: 50px; height: 50px;" alt="Avatar" />
-                              alexGaldino
-                          </button>
-                          <ul class="dropdown-menu">
-                              <li><a class="dropdown-item bg-secondary active" href="#">Perfil</a></li>
-                              <li><a class="dropdown-item bg-secondary active" href="#">Sair</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+<app-titlebar
+  [title]="'Detalhe Acervo'"
+></app-titlebar>
 
 <button type="button" class="btn btn-no-bg text-start mt-2 ms-3">
   <span class="mr-2" href="#">&larr;</span> Voltar aos resultados
@@ -67,35 +40,11 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Disponível</td>
+                          <tr *ngFor="let patrimonio of acervo.patrimonios; let i = index">
+                              <td>{{i+1}}</td>
+                              <td class="change-color">{{patrimonio.id}}</td>
+                              <td class="status">{{patrimonio.status}}</td>
                               <td><button class="btn btn-orange reserve-button" >Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Indisponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Indisponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Indisponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
                           </tr>
                       </tbody>
                   </table>

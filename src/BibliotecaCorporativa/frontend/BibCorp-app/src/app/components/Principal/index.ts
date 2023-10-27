@@ -1,1 +1,1 @@
-export * from './Principal.component'
+export * from './principal.component'

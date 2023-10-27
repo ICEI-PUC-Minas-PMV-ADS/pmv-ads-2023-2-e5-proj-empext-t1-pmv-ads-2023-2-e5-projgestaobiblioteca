@@ -88,9 +88,5 @@ export class PrincipalComponent implements OnInit {
     .add(() => this.spinnerService.hide())
   }
 
-   public logout(): void{
-    this.loginService.logout();
-    this.router.navigateByUrl('/login');
 
-  }
 }

@@ -52,7 +52,6 @@ namespace BibCorp.Persistence.Interfaces.Contexts
 
       modelBuilder.Entity<Acervo>(acervo =>
       {
-        acervo.HasIndex(a => a.PatrimonioId);
         acervo.HasIndex(a => a.ISBN);
       });
 

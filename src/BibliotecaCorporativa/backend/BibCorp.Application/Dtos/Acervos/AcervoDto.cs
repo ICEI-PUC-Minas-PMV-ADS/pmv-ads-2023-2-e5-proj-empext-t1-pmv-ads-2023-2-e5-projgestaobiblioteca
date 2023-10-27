@@ -7,7 +7,6 @@ namespace BibCorp.Application.Dto.Acervos
   public class AcervoDto
   {
     public int Id { get; set; }
-    public int PatrimonioId { get; set; }
     public string ISBN { get; set; }
     [Display(Name = "Título do Acervo"),
       Required(ErrorMessage = "Campo {0} deverá ser informado!")]

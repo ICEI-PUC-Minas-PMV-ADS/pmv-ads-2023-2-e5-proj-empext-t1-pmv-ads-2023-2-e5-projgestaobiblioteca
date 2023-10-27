@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20231022185613_NovosCampos")]
-    partial class NovosCampos
+    [Migration("20231026092718_integration-1")]
+    partial class integration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CapaUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comentarios")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataCriacao")
@@ -57,6 +60,9 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PatrimonioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QtdPaginas")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdeDisponivel")

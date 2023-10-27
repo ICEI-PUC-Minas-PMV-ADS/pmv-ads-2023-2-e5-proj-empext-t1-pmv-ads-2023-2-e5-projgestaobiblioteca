@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BibCorp.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class integration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -198,9 +198,14 @@ namespace BibCorp.Persistence.Migrations
                     Titulo = table.Column<string>(type: "TEXT", nullable: true),
                     SubTitulo = table.Column<string>(type: "TEXT", nullable: true),
                     Resumo = table.Column<string>(type: "TEXT", nullable: true),
+                    Autor = table.Column<string>(type: "TEXT", nullable: true),
                     AnoPublicacao = table.Column<string>(type: "TEXT", nullable: true),
                     Editora = table.Column<string>(type: "TEXT", nullable: true),
                     Edicao = table.Column<string>(type: "TEXT", nullable: true),
+                    QtdPaginas = table.Column<int>(type: "INTEGER", nullable: false),
+                    Comentarios = table.Column<string>(type: "TEXT", nullable: true),
+                    DataCriacao = table.Column<string>(type: "TEXT", nullable: true),
+                    Genero = table.Column<string>(type: "TEXT", nullable: true),
                     CapaUrl = table.Column<string>(type: "TEXT", nullable: true),
                     QtdeDisponivel = table.Column<int>(type: "INTEGER", nullable: false),
                     QtdeEmTransito = table.Column<int>(type: "INTEGER", nullable: false),

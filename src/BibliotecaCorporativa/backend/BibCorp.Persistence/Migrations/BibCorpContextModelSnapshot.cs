@@ -32,6 +32,9 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("CapaUrl")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Comentarios")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DataCriacao")
                         .HasColumnType("TEXT");
 
@@ -52,9 +55,6 @@ namespace BibCorp.Persistence.Migrations
 
                     b.Property<string>("ISBN")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("PatrimonioId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdPaginas")
                         .HasColumnType("INTEGER");
@@ -80,8 +80,6 @@ namespace BibCorp.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ISBN");
-
-                    b.HasIndex("PatrimonioId");
 
                     b.HasIndex("EmprestimoAcervoId", "EmprestimoPatrimonioId");
 

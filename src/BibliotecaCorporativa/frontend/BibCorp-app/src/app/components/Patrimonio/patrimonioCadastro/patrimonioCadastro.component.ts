@@ -4,12 +4,12 @@ import { PatrimonioService } from 'src/app/services/Patrimonios';
 
 
 @Component({
-  selector: 'app-cadastrarPatrimonio',
-  templateUrl: './cadastrarPatrimonio.component.html',
-  styleUrls: ['./cadastrarPatrimonio.component.scss']
+  selector: 'app-patrimonioCadastro',
+  templateUrl: './patrimonioCadastro.component.html',
+  styleUrls: ['./patrimonioCadastro.component.scss']
 })
 
-export class CadastrarPatrimonioComponent {
+export class PatrimonioCadastroComponent {
 
   //constructor(private patrimonioService: PatrimonioService,
     //private toastrService: ToastrService,

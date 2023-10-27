@@ -6,13 +6,13 @@ import { AcervoService } from 'src/app/services';
 import { Router } from '@angular/router'
 
 @Component({
-  selector: 'app-detalhes',
-  templateUrl: './detalhes.component.html',
-  styleUrls: ['./detalhes.component.scss']
+  selector: 'app-acervoDetalhe',
+  templateUrl: './acervoDetalhe.component.html',
+  styleUrls: ['./acervoDetalhe.component.scss']
 })
 
 
-export class DetalhesComponent implements OnInit {
+export class AcervoDetalheComponent implements OnInit {
   public acervo: Acervo 
   public comentarios: string
 

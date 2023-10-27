@@ -67,34 +67,10 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
+                          <tr *ngFor="let patrimonio of acervo.patrimonios; let i=index;">
+                              <td>{{i+1}}</td>
+                              <td class="change-color">{{patrimonio.id}}</td>
                               <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button" >Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Indisponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Indisponível</td>
-                              <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td class="change-color">hgfgcgcgcccg</td>
-                              <td class="status">Indisponível</td>
                               <td><button class="btn btn-orange reserve-button">Emprestar</button></td>
                           </tr>
                       </tbody>

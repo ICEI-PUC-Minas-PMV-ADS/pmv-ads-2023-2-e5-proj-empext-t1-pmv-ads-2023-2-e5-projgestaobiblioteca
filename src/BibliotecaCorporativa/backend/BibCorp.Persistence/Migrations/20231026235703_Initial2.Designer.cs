@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20231022182622_Initial-Identity")]
-    partial class InitialIdentity
+    [Migration("20231026235703_Initial2")]
+    partial class Initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,9 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("CapaUrl")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Comentarios")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DataCriacao")
                         .HasColumnType("TEXT");
 
@@ -50,10 +53,16 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<int?>("EmprestimoPatrimonioId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Genero")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ISBN")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PatrimonioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QtdPaginas")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdeDisponivel")
@@ -136,9 +145,6 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<int?>("AcervoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Coluna")
                         .HasColumnType("TEXT");
 
@@ -149,9 +155,6 @@ namespace BibCorp.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataIndisponibilidade")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DetalheOrgiem")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("EmprestimoAcervoId")
@@ -166,9 +169,6 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("Localizacao")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Origem")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Posicao")
                         .HasColumnType("TEXT");
 
@@ -177,6 +177,9 @@ namespace BibCorp.Persistence.Migrations
 
                     b.Property<string>("Sala")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

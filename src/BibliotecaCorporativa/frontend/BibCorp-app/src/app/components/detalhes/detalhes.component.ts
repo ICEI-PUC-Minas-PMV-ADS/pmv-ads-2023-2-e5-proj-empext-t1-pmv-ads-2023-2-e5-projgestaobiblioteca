@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Acervo } from 'src/app/models';
+import { Acervo, Patrimonio } from 'src/app/models';
 import { AcervoService } from 'src/app/services';
 
 @Component({

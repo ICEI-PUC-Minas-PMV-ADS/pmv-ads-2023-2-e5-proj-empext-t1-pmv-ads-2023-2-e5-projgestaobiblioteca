@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Acervo } from 'src/app/models';
+import { Acervo, Patrimonio } from 'src/app/models';
 import { AcervoService } from 'src/app/services';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-detalhes',
   templateUrl: './detalhes.component.html',
   styleUrls: ['./detalhes.component.scss']
 })
+
+
 export class DetalhesComponent implements OnInit {
   public acervo: Acervo 
   public comentarios: string
 
   constructor(private acervoService: AcervoService,
     private toastrService: ToastrService,
+    private router: Router,
     private spinnerService: NgxSpinnerService) { }
 
   public ngOnInit(): void {

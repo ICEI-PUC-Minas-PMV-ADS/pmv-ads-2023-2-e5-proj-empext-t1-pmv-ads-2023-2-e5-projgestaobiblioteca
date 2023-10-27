@@ -4,4 +4,4 @@ export * from './Principal'
 export * from './login'
 export * from './cadastroUsuario'
 export * from './detalhes'
-
+export * from './cadastrarPatrimonio'

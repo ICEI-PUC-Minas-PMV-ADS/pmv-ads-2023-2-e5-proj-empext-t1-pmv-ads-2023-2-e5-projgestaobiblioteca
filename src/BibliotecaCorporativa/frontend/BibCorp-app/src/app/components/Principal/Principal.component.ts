@@ -49,7 +49,7 @@ export class PrincipalComponent implements OnInit {
     this.spinnerService.show()
 
     this.acervoService
-    .getAcervosRecentes(1, 5, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
+    .getAcervosRecentes(1, 4, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
     .subscribe(
       (retorno: ResultadoPaginado<Acervo[]>) => {
         this.acervosRecentes = retorno.resultado

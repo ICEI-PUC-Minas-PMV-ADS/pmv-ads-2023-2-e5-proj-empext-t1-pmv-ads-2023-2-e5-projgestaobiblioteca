@@ -6,9 +6,7 @@ export interface Patrimonio {
   prateleira: string
   posicao: string
   iSBN: string
-  origem: string
-  detalheOrgiem: string
-  ativo: boolean
+  status: boolean
   dataCadastro: string
   dataAtualizacao: string
   dataIndisponibilidade: string

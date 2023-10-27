@@ -23,6 +23,18 @@ export class AcervoService {
       .pipe(take(3))
   }
 
+  public getAcervoById (id: number): Observable<Acervo> {
+    console.log(this.baseURL)
+    return this.http.get<Acervo>(`${this.baseURL}/${id}`)
+               .pipe(take(3));
+  }
+
+  public updateAcervo (id: number, acervo: Acervo): Observable<Acervo> {
+    console.log(this.baseURL)
+    return this.http.put<Acervo>(`${this.baseURL}/${id}`, acervo)
+               .pipe(take(3));
+  }
+
   public getAcervosRecentes (pagina?: number, itensPorPagina?: number, argumento?: string, pesquisarPor: string = 'Todos', genero: string = 'Todos'): Observable<ResultadoPaginado<Acervo[]>> {
     console.log(this.baseURL)
     const resultadoPaginado: ResultadoPaginado<Acervo[]> = new ResultadoPaginado<Acervo[]>()

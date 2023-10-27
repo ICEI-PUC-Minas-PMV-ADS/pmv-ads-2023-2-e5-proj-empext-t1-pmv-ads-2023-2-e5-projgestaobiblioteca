@@ -20,15 +20,19 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatToolbarModule } from '@angular/material/toolbar'
 
-
-import { 
-  NavBarComponent, 
-  PrincipalComponent 
+import {
+  NavBarComponent,
+  PrincipalComponent
 } from './components';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
 import { LoginService } from './services/Usuarios/Login/Login.service'
 import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/CadastroUsuario.service'
+import { DetalhesComponent } from './components/detalhes/detalhes.component'
+import { MinhasReservasComponent } from './components/minhasReservas/minhasReservas.component'
+import { PerfilComponent } from './components/perfil/perfil.component'
+import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service'
+
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/Cada
     NavBarComponent,
     PrincipalComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    DetalhesComponent,
+    MinhasReservasComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,7 @@ import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/Cada
     MatSidenavModule,
     MatToolbarModule,
     NgSelectModule,
-    NgxSpinnerModule, 
+    NgxSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
@@ -63,7 +70,8 @@ import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/Cada
   ],
   providers: [
     LoginService,
-    CadastroUsuarioService
+    CadastroUsuarioService,
+    MinhasReservasService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

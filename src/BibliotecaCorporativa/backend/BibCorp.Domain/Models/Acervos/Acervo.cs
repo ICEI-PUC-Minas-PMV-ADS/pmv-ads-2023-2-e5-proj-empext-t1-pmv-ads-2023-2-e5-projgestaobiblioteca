@@ -7,7 +7,6 @@ namespace BibCorp.Domain.Models.Acervos
     public class Acervo
     {
         public int Id { get; set; }
-        public int PatrimonioId { get; set; }
         public string ISBN { get; set; }
         public string Titulo { get; set; }
         public string SubTitulo { get; set; }
@@ -16,6 +15,8 @@ namespace BibCorp.Domain.Models.Acervos
         public string AnoPublicacao { get; set; }
         public string Editora { get; set; }
         public string Edicao { get; set; }
+        public int QtdPaginas { get; set; }
+        public string Comentarios { get; set; }
 
         // Campo DataCriacao no forma AAAAMMDD
         public string DataCriacao { get; set; }

@@ -31,7 +31,8 @@ import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/Cada
 import { DetalhesComponent } from './components/detalhes/detalhes.component'
 import { MinhasReservasComponent } from './components/minhasReservas/minhasReservas.component'
 import { PerfilComponent } from './components/perfil/perfil.component'
-import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service'
+import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service';
+import { CadastrarPatrimonioComponent } from './components/cadastrarPatrimonio/cadastrarPatrimonio.component'
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { MinhasReservasService } from './services/minhasReservas/minhasReservas.
     CadastroUsuarioComponent,
     DetalhesComponent,
     MinhasReservasComponent,
-    PerfilComponent
+    PerfilComponent,
+    CadastrarPatrimonioComponent
   ],
   imports: [
     BrowserModule,

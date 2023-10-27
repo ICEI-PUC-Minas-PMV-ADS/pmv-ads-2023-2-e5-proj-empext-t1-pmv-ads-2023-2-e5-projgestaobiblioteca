@@ -33,6 +33,7 @@ import { PerfilComponent } from './components/perfil/perfil.component'
 import { LoginService } from './services/Usuarios/Login'
 import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario'
 import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service'
+import { CadastrarPatrimonioComponent } from './components/cadastrarPatrimonio/cadastrarPatrimonio.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MinhasReservasService } from './services/minhasReservas/minhasReservas.
     DetalhesComponent,
     MinhasReservasComponent,
     PerfilComponent,
-    TitlebarComponent
+    TitlebarComponent,
+    CadastrarPatrimonioComponent
   ],
   imports: [
     BrowserModule,

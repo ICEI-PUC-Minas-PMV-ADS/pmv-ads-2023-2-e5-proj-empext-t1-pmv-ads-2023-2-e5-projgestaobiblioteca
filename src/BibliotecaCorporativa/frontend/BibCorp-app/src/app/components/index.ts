@@ -5,4 +5,4 @@ export * from './login'
 export * from './cadastroUsuario'
 export * from './detalhes'
 export * from './titlebar'
-
+export * from './cadastrarPatrimonio'

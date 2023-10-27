@@ -13,7 +13,7 @@
         alexGaldino
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item bg-secondary active" href="#">Perfil</a></li>
+        <li><a class="dropdown-item bg-secondary active" routerLink="perfil">Perfil</a></li>
         <li><a class="dropdown-item bg-secondary active" ngbDropdownModule (click)="logout()">Sair</a></li>
       </ul>
     </div>
@@ -25,16 +25,18 @@
       <div class="flex-fill m-0 p-0">
         <div class="input-group m-0 ">
           <div class="input-group-prepend ">
-            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa" (change)="filtroAcervo()">
+            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa"
+              (change)="filtroAcervo()">
               <option [ngValue]="'Todos'">Todos</option>
               <option [ngValue]="'Autor'">Autor</option>
               <option [ngValue]="'Resumo'">Resumo</option>
               <option [ngValue]="'Titulo'">Título</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento" (change)="filtroAcervo()">
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento"
+            (change)="filtroAcervo()">
           <!-- (input)="companyFilter($event.target)"-->
-          <button class="bibcorp-search bg-black text-white border-0 pt-1" (click)="filtroAcervo()">
+          <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroAcervo()">
             <mat-icon class="matIcon">search</mat-icon>
           </button>
         </div>
@@ -50,11 +52,12 @@
       </div>
       <div>
         Gêneros:
-        <select class="border-0 text-black p-2 ms-1 " id="Genero" [(ngModel)]="opcaoGeneroRecentes" (change)="filtroAcervo()">
+        <select class="border-0 text-black p-2 ms-1 " id="Genero" [(ngModel)]="opcaoGeneroRecentes"
+          (change)="filtroAcervo()">
           <option [ngValue]="'Todos'">Todos</option>
           <option *ngFor="let genero of generos" [ngValue]="genero">{{genero}}</option>
         </select>
-      </div>  
+      </div>
     </div>
     <div class="row" *ngIf="acervosRecentes && acervosRecentes.length">
       <div class="col" *ngFor="let acervo of acervosRecentes">
@@ -65,36 +68,38 @@
           </div>
           <div class="card-body">
             <p class="h4 card-title">{{acervo.subTitulo}}</p>
-            <textarea matInput style="min-height: 150px; min-width: 100%;" class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
+            <textarea matInput style="min-height: 150px; min-width: 100%;"
+              class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
             <p class="card-text">{{acervo.genero}}</p>
             <p class="card-text">{{acervo.editora}}</p>
           </div>
         </div>
       </div>
     </div>
-      <div *ngIf="!acervosRecentes.length" colspan="8" class="text-center">
-        <h4>Nenhum acervo adicionado recentemente encontrado!</h4>
-      </div>
-      <div class="mt-5">
-        <p class="h4">Lidos Recentemente:</p>
-        <div class="row" *ngIf="acervosLidos && acervosLidos.length">
-          <div class="col" *ngFor="let acervo of acervosLidos">
-            <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
-              <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
-              <div class="card-body">
-                <p class="h4 card-title">{{acervo.subTitulo}}</p>
-                <textarea matInput style="min-height: 150px; min-width: 100%;" class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
-                <p class="card-text">{{acervo.genero}}</p>
-                <p class="card-text">{{acervo.editora}}</p>
-              </div>
+    <div *ngIf="!acervosRecentes.length" colspan="8" class="text-center">
+      <h4>Nenhum acervo adicionado recentemente encontrado!</h4>
+    </div>
+    <div class="mt-5">
+      <p class="h4">Lidos Recentemente:</p>
+      <div class="row" *ngIf="acervosLidos && acervosLidos.length">
+        <div class="col" *ngFor="let acervo of acervosLidos">
+          <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
+            <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
+            <div class="card-body">
+              <p class="h4 card-title">{{acervo.subTitulo}}</p>
+              <textarea matInput style="min-height: 150px; min-width: 100%;"
+                class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
+              <p class="card-text">{{acervo.genero}}</p>
+              <p class="card-text">{{acervo.editora}}</p>
             </div>
           </div>
         </div>
-        <div *ngIf="!acervosLidos.length" colspan="8" class="text-center">
-          <h4>Nenhum acervo lido recentemente encontrado!</h4>
-        </div>
+      </div>
+      <div *ngIf="!acervosLidos.length" colspan="8" class="text-center">
+        <h4>Nenhum acervo lido recentemente encontrado!</h4>
       </div>
     </div>
+  </div>
 </div>
 
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">

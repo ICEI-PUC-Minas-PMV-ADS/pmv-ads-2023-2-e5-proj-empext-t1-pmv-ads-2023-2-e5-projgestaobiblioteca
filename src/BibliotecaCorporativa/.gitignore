@@ -6,3 +6,4 @@ obj
 .angular
 node_modules
 /backend/BibCorp.API/Pages
+bibcorpdb.db

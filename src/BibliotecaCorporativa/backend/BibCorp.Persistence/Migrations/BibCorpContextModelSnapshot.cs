@@ -56,9 +56,6 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PatrimonioId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("QtdPaginas")
                         .HasColumnType("INTEGER");
 
@@ -83,8 +80,6 @@ namespace BibCorp.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ISBN");
-
-                    b.HasIndex("PatrimonioId");
 
                     b.HasIndex("EmprestimoAcervoId", "EmprestimoPatrimonioId");
 

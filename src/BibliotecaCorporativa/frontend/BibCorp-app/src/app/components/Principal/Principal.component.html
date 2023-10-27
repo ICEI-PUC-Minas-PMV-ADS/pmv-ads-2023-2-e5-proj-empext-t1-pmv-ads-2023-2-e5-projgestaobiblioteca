@@ -60,20 +60,20 @@
       </div>
     </div>
     <div class="row" *ngIf="acervosRecentes && acervosRecentes.length">
-      <div class="col" *ngFor="let acervo of acervosRecentes">
-        <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
-          <div class="card-header bibcorp-bg-secondary">
-            <P class="h5">{{acervo.titulo}}</P>
-            <P class="h7">{{acervo.autor}}</P>
+      <div class="col" *ngFor="let acervo of acervosRecentes; let i = index;">
+          <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
+            <div class="card-header bibcorp-bg-secondary">
+              <P class="h5">{{acervo.titulo}}</P>
+              <P class="h7">{{acervo.autor}}</P>
+            </div>
+            <div class="card-body">
+              <p class="h4 card-title">{{acervo.subTitulo}}</p>
+              <textarea matInput style="min-height: 150px; min-width: 100%;"
+                class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
+              <p class="card-text">{{acervo.genero}}</p>
+              <p class="card-text">{{acervo.editora}}</p>
+            </div>
           </div>
-          <div class="card-body">
-            <p class="h4 card-title">{{acervo.subTitulo}}</p>
-            <textarea matInput style="min-height: 150px; min-width: 100%;"
-              class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
-            <p class="card-text">{{acervo.genero}}</p>
-            <p class="card-text">{{acervo.editora}}</p>
-          </div>
-        </div>
       </div>
     </div>
     <div *ngIf="!acervosRecentes.length" colspan="8" class="text-center">

@@ -29,29 +29,7 @@ export class PrincipalComponent implements OnInit {
   public argumento: string = ''
 
   public filtroAcervo(): void {
-    console.log ('Filtro: ', this.argumento, ' ', this.opcaoGeneroRecentes, ' ', this.opcaoPesquisa )
-    this.spinnerService.show()
-    
-    this.acervoService
-    .getAcervosRecentes(1, 4, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
-    .subscribe(
-      (retorno: ResultadoPaginado<Acervo[]>) => {
-        this.acervosRecentes = retorno.resultado
-
-        for (var acervo of this.acervosRecentes)
-          this.generos.push(acervo.genero)
-
-        this.generos = this.generos.filter((genero, i) => this.generos.indexOf(genero) === i)
-
-        this.acervosLidos = retorno.resultado
-      },
-      (error: any) => {
-        console.log("aqui 2")
-        this.toastrService.error("Erro ao carregar Acervos", 'Erro!');
-        console.error(error)
-      }
-    )
-    .add(() => this.spinnerService.hide())
+    this.getAcervosRecentes()
   }
 
   constructor (
@@ -64,23 +42,42 @@ export class PrincipalComponent implements OnInit {
 
   public ngOnInit (): void {
     this.getAcervosRecentes()
+    this.getAcervos()
   }
 
   public getAcervosRecentes (): void {
     this.spinnerService.show()
 
     this.acervoService
-    .getAcervosRecentes(1, 4, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
+    .getAcervosRecentes(1, 5, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
     .subscribe(
       (retorno: ResultadoPaginado<Acervo[]>) => {
         this.acervosRecentes = retorno.resultado
+      },
+      (error: any) => {
+        console.log("aqui 2")
+        this.toastrService.error("Erro ao carregar Acervos", 'Erro!');
+        console.error(error)
+      }
+    )
+    .add(() => this.spinnerService.hide())
+  }
 
-        for (var acervo of this.acervosRecentes)
+  public getAcervos(): void {
+    this.spinnerService.show()
+
+    this.acervoService
+    .getAcervos()
+    .subscribe(
+      (retorno: Acervo[]) => {
+        this.acervos = retorno
+
+        for (var acervo of this.acervos)
           this.generos.push(acervo.genero)
 
         this.generos = this.generos.filter((genero, i) => this.generos.indexOf(genero) === i)
 
-        this.acervosLidos = retorno.resultado
+        this.acervosLidos = retorno
       },
       (error: any) => {
         console.log("aqui 2")

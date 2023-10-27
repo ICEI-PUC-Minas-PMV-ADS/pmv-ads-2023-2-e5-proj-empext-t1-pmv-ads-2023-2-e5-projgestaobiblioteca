@@ -7,7 +7,6 @@ namespace BibCorp.Domain.Models.Acervos
     public class Acervo
     {
         public int Id { get; set; }
-        public int PatrimonioId { get; set; }
         public string ISBN { get; set; }
         public string Titulo { get; set; }
         public string SubTitulo { get; set; }

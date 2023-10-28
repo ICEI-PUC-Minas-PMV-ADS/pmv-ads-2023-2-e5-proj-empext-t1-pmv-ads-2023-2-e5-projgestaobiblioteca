@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { PatrimonioDetalheComponent } from "./patrimonioDetalhes.component";
-
+import { PatrimonioDetalheComponent } from "./patrimonioDetalhe.component";
 
 describe("PatrimonioDetalheComponent", () => {
   let component: PatrimonioDetalheComponent;

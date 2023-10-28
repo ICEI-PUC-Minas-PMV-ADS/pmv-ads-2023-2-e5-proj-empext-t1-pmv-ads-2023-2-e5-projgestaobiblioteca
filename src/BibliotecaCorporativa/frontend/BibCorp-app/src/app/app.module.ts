@@ -14,9 +14,11 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from "ngx-toastr";
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -25,7 +27,6 @@ import {
   CadastroUsuarioComponent,
   LoginComponent,
   NavBarComponent,
-  PatrimonioCadastroComponent,
   PatrimonioComponent,
   PatrimonioDetalheComponent,
   PatrimonioListaComponent,
@@ -47,7 +48,6 @@ import { AcervoDetalheComponent } from "./components/acervo/acervoDetalhe";
     LoginComponent,
     NavBarComponent,
     PatrimonioDetalheComponent,
-    PatrimonioCadastroComponent,
     PatrimonioListaComponent,
     PatrimonioComponent,
     PrincipalComponent,
@@ -64,9 +64,11 @@ import { AcervoDetalheComponent } from "./components/acervo/acervoDetalhe";
     HttpClientModule,
     NgbCollapseModule,
     NgbModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
     MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,

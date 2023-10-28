@@ -12,7 +12,6 @@ import {
 } from "./components";
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
 import { PerfilComponent } from "./components/perfil/perfil.component";
-import { PatrimonioCadastroComponent } from "./components/patrimonio/patrimonioCadastro/patrimonioCadastro.component";
 import { AcervoDetalheComponent } from "./components/acervo/acervoDetalhe";
 
 const routes: Routes = [
@@ -24,13 +23,16 @@ const routes: Routes = [
   { path: "solicitacoes", component: MinhasReservasComponent },
   { path: "perfil", component: PerfilComponent },
 
-  { path: 'patrimonios', redirectTo: 'patrimonios/lista', pathMatch: 'full' },
-  { path: 'patrimonios', component: PatrimonioComponent,
+  { path: "patrimonios", redirectTo: "patrimonios/lista", pathMatch: "full" },
+  {
+    path: "patrimonios",
+    component: PatrimonioComponent,
     children: [
-      { path: 'detalhe/:id', component: PatrimonioDetalheComponent },
-      { path: 'novo', component: PatrimonioCadastroComponent },
-      { path: 'lista', component: PatrimonioListaComponent },
-    ] },
+      { path: "detalhe/:id", component: PatrimonioDetalheComponent },
+      { path: "novo", component: PatrimonioDetalheComponent },
+      { path: "lista", component: PatrimonioListaComponent },
+    ],
+  },
 
   { path: "**", redirectTo: "principal", pathMatch: "full" },
   { path: "", redirectTo: "principal", pathMatch: "full" },

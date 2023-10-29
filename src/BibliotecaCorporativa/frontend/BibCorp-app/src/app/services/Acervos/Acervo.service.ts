@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { type Observable, map, take } from 'rxjs'
@@ -11,7 +9,7 @@ import { environment } from 'src/assets/environments/environments'
   providedIn: 'root'
 })
 export class AcervoService {
-  baseURL = environment.apiURL + 'Acervo'
+  baseURL = environment.apiURL + 'Acervo/'
 
   constructor (
     private readonly http: HttpClient
@@ -25,13 +23,13 @@ export class AcervoService {
 
   public getAcervoById (id: number): Observable<Acervo> {
     console.log(this.baseURL)
-    return this.http.get<Acervo>(`${this.baseURL}/${id}`)
+    return this.http.get<Acervo>(`${this.baseURL}${id}`)
                .pipe(take(3));
   }
 
   public updateAcervo (id: number, acervo: Acervo): Observable<Acervo> {
     console.log(this.baseURL)
-    return this.http.put<Acervo>(`${this.baseURL}/${id}`, acervo)
+    return this.http.put<Acervo>(`${this.baseURL}${id}`, acervo)
                .pipe(take(3));
   }
 
@@ -53,13 +51,12 @@ export class AcervoService {
     }
 
     return this.http
-      .get<Acervo[]>(`${this.baseURL}/Recentes`, { observe: 'response', params: parametrosHttp })
+      .get<Acervo[]>(`${this.baseURL}Recentes`, { observe: 'response', params: parametrosHttp })
       .pipe(
         take(3),
         map((response: any) => {
           resultadoPaginado.resultado = response.body
 
-          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
           if (response.headers.has('Paginacao')) {
             resultadoPaginado.paginacao = JSON.parse(response.headers.get('Paginacao'))
           }
@@ -67,4 +64,5 @@ export class AcervoService {
           return resultadoPaginado
         }))
   }
+
 }

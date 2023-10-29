@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BibCorp.Domain.Models.Acervos;
 
 namespace BibCorp.Domain.Models.Patrimonios
 {
@@ -18,5 +19,7 @@ namespace BibCorp.Domain.Models.Patrimonios
         public string DataCadastro { get; set; }
         public string DataAtualizacao { get; set; }
         public string DataIndisponibilidade { get; set; }
+        public int? AcervoId { get; set; }
+        public Acervo Acervo { get; set; }
     }
 }

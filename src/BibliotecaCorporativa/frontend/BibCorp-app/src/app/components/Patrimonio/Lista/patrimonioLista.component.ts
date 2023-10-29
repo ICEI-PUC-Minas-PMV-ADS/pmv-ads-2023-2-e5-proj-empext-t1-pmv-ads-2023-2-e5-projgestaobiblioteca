@@ -1,57 +1,122 @@
-import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { BsModalRef } from 'ngx-bootstrap/modal'
+
+import { NgxSpinnerService } from 'ngx-spinner'
+import { ToastrService } from 'ngx-toastr'
+
+import { Patrimonio } from 'src/app/models'
+import { PatrimonioService } from 'src/app/services'
+import { Paginacao, ResultadoPaginado } from 'src/app/util'
+import { DeleteModalComponent } from '../../deleteModal/deleteModal.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-patrimonio',
   templateUrl: './patrimonioLista.component.html',
   styleUrls: ['./patrimonioLista.component.scss']
 })
+
+
 export class PatrimonioListaComponent implements OnInit {
-  public Patrimonio: any = []
+  animal: string;
+  name: string;
+
+  public modalRef: BsModalRef
+
+  public patrimonios: Patrimonio[] = []
   public PatrimonioFiltrados: any = []
-  wImg: number = 50
-  mImg: number = 2
-  showImg: boolean = true
-  private _filtroLista: string = ''
 
-  public get filtroLista (): string {
-    return this._filtroLista
+  public paginacao = {} as Paginacao;
+
+  public patrimonioId = 0
+  public patrimonioISBN = ''
+
+  public argumento: string = ''
+  public opcaoPesquisa: string = 'Todos' 
+
+  public exibirImagem: boolean = true
+
+  filtroPatrimonio () {
+    console.log("Filtro")
+    this.getPatrimonios()
   }
 
-  public set filtroLista (value: string) {
-    this._filtroLista = value
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    this.PatrimonioFiltrados = this.filtroLista ? this.filtrarPatrimonio(this.filtroLista) : this.Patrimonio
-  }
-
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  filtrarPatrimonio (filtro: string) {
-    filtro = filtro.toLocaleLowerCase()
-    return this.Patrimonio.filter((l: { nome: string, genero: string, categoria: string }) =>
-    // eslint-disable-next-line @typescript-eslint/prefer-includes
-      l.nome.toLocaleLowerCase().indexOf(filtro) !== -1 ||
-        l.genero.toLocaleLowerCase().includes(filtro) ||
-        l.categoria.toLocaleLowerCase().includes(filtro))
-  }
-
-  constructor (private http: HttpClient) {}
+  constructor (
+    private router: Router,
+    public dialog: MatDialog,
+    private patrimonioService: PatrimonioService,
+    private spinnerService: NgxSpinnerService,
+    private toastrService: ToastrService
+    ) {}
 
   ngOnInit (): void {
-    this.getPatrimonio()
+    this.getPatrimonios()
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  altImg () {
-    this.showImg = !this.showImg
+  alterarImagem () {
+    this.exibirImagem = !this.exibirImagem
   }
 
-  public getPatrimonio (): void {
-    this.http.get('https://localhost:7289/Biblioteca').subscribe(
-      response => {
-        this.Patrimonio = response
-        this.PatrimonioFiltrados = this.Patrimonio
+  public getPatrimonios(): void {
+    this.spinnerService.show()
+
+    this.patrimonioService
+    .getPatrimoniosPaginacao(this.paginacao.paginaCorrente, this.paginacao.itensPorPagina, this.argumento, this.opcaoPesquisa)
+    .subscribe(
+      (retorno: ResultadoPaginado<Patrimonio[]>) => {
+        this.patrimonios = retorno.resultado
+        this.paginacao = retorno.paginacao
       },
-      error => { console.log(error) }
+      (error: any) => {
+        console.log("aqui 2")
+        this.toastrService.error("Erro ao carregar Acervos", 'Erro!');
+        console.error(error)
+      }
     )
+    .add(() => this.spinnerService.hide())
+  }
+
+  public  abrirModal(event: any, patrimonioId: number, patrimonioISBN:string): void {
+    event.stopPropagation();
+    this.patrimonioId = patrimonioId;
+    this.patrimonioISBN = patrimonioISBN;
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      data: {nomePagina:"Patrimônios", id: this.patrimonioId, argumento: this.patrimonioISBN},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+      if(result)
+        this.confirmarDelecao()
+    });
+  }
+
+  public confirmarDelecao(): void {
+    this.spinnerService.show()
+
+
+    this.patrimonioService
+      .deletePatrimonio(this.patrimonioId)
+      .subscribe(
+        (result: any ) => {
+          if (result == null)
+            this.toastrService.error('Patrimonio não pode se excluída.', "Erro!")
+
+          if (result.message == 'OK') {
+            this.toastrService.success('Patrimonio excluído com sucesso', 'Excluído!')
+            this.getPatrimonios()
+          }
+        },
+          (error: any) => {
+            this.toastrService.error(error.error, `Erro! Status ${error.status}`)
+            console.error(error);
+          }
+        )
+      .add(() => this.spinnerService.show());
+  }
+
+  public editarPatrimonio(patrimonioId: number): void {
+    this.router.navigate([`patrimonios/detalhe/${patrimonioId}`])
   }
 }

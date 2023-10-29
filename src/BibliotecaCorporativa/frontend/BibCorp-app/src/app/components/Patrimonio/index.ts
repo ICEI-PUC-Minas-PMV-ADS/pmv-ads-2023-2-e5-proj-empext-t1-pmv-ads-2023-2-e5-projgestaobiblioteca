@@ -1,4 +1,3 @@
-export * from "./patrimonioLista";
-export * from "./patrimonioDetalhe"
-export * from "./patrimonioCadastro"
-export * from "./patrimonio.component"
+export * from "./Lista";
+export * from "./detalhe";
+export * from "./patrimonio.component";

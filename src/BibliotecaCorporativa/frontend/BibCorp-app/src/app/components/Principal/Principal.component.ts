@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+
 import { NgxSpinnerService } from 'ngx-spinner'
 import { ToastrService } from 'ngx-toastr'
-import { Subject, debounceTime } from 'rxjs'
+
 import { Acervo } from 'src/app/models'
 import { AcervoService } from 'src/app/services'
-import { LoginService } from 'src/app/services/Usuarios/Login'
+
 import { Paginacao, ResultadoPaginado } from 'src/app/util'
 
 @Component({
@@ -35,9 +35,7 @@ export class PrincipalComponent implements OnInit {
   constructor (
     private acervoService: AcervoService,
     private toastrService: ToastrService,
-    private spinnerService: NgxSpinnerService,
-    private loginService: LoginService,
-    private router: Router
+    private spinnerService: NgxSpinnerService
   ) { }
 
   public ngOnInit (): void {

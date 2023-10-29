@@ -1,4 +1,5 @@
 using BibCorp.Application.Dto.Patrimonios;
+using BibCorp.Persistence.Utilities.Pages.Class;
 
 namespace BibCorp.Application.Services.Contracts.Patrimonios
 {
@@ -10,5 +11,6 @@ namespace BibCorp.Application.Services.Contracts.Patrimonios
         Task<PatrimonioDto> CreatePatrimonio(PatrimonioDto patrimonioDto);
         Task<PatrimonioDto> UpdatePatrimonio (int patrimonioId, PatrimonioDto patrimonioDto);
         Task<bool> DeletePatrimonio(int patrimonioId);
+        Task<ListaDePaginas<PatrimonioDto>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao);
     }
 }

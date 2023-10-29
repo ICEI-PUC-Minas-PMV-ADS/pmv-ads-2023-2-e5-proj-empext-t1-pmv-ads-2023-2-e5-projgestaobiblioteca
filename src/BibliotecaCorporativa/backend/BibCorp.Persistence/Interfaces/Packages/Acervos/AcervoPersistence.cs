@@ -47,6 +47,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
 
       return await query.ToListAsync();
     }
+    
     public async Task<ListaDePaginas<Acervo>> GetAcervosRecentesAsync(ParametrosPaginacao parametrosPaginacao)
     {
       IQueryable<Acervo> query = _context.Acervos

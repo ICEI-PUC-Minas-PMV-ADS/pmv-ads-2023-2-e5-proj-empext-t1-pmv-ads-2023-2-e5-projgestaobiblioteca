@@ -38,7 +38,6 @@ $theme: mat.define-light-theme((
 /* Importing Bootstrap SCSS file. */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 
 
 // regular style toast
@@ -50,6 +49,7 @@ $theme: mat.define-light-theme((
 @import 'bootstrap/scss/mixins';
 // boostrap 5
 @import 'ngx-toastr/toastr-bs5-alert';
+@import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 
 /* Importing Bootstrap SCSS file. */
 
@@ -128,3 +128,39 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bibcorp-titulo2 {
   font-size: 1.5rem;
 }
+
+// Botão Voltar
+.btn-no-bg {
+  color: darkgray; 
+  border: none; 
+  padding-left: 20px; 
+  padding-top: 20px;
+}
+
+// Botão Voltar - mouse passando por cima
+.btn-no-bg:hover {
+  color: black;
+}  
+
+.bibcorp-body {
+  border-bottom-right-radius: 20px;
+}
+
+.bibcorp-select {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.bibcorp-search {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.bibcorp-dropdown {
+  border-radius: 20px;
+}
+
+.bibcorp-box {
+  min-height: 500px;
+}
+

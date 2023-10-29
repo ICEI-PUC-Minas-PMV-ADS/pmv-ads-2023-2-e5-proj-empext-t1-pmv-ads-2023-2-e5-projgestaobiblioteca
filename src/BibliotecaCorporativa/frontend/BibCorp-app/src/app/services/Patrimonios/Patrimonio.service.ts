@@ -1,8 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { type Observable, take } from 'rxjs'
-import { type Patrimonio } from 'src/app/models/Patrimonios/Patrimonio'
+import { Observable, take, map } from 'rxjs'
+import { Patrimonio } from 'src/app/models/Patrimonios/Patrimonio'
+import { ResultadoPaginado } from 'src/app/util'
 import { environment } from 'src/assets/environments/environments'
 
 @Injectable({
@@ -33,6 +33,42 @@ export class PatrimonioService {
 
   public savePatrimonio(patrimonio: Patrimonio): Observable<Patrimonio> {
     return this.http.put<Patrimonio>(`${this.baseURL}${patrimonio.id}`, patrimonio)
+    .pipe(take(3));
+  }
+
+  public getPatrimoniosPaginacao (pagina?: number, itensPorPagina?: number, argumento?: string, pesquisarPor: string = 'Todos', genero: string = 'Todos'): Observable<ResultadoPaginado<Patrimonio[]>> {
+    console.log(this.baseURL)
+    const resultadoPaginado: ResultadoPaginado<Patrimonio[]> = new ResultadoPaginado<Patrimonio[]>()
+
+    let parametrosHttp = new HttpParams()
+
+    if (pagina != null && itensPorPagina != null) {
+      parametrosHttp = parametrosHttp.append('numeroDaPagina', pagina.toString())
+      parametrosHttp = parametrosHttp.append('tamanhoDaPagina', itensPorPagina.toString())
+      parametrosHttp = parametrosHttp.append('pesquisarPor', pesquisarPor)
+      parametrosHttp = parametrosHttp.append('genero', genero)
+    }
+
+    if (argumento != null && argumento != '') {
+      parametrosHttp = parametrosHttp.append('argumento', argumento)
+    }
+
+    return this.http
+    .get<Patrimonio[]>(`${this.baseURL}Paginacao`, { observe: 'response', params: parametrosHttp })
+    .pipe(
+      take(3),
+      map((response: any) => {
+        resultadoPaginado.resultado = response.body
+        if (response.headers.has('Paginacao')) {
+          resultadoPaginado.paginacao = JSON.parse(response.headers.get('Paginacao'))
+        }
+
+        return resultadoPaginado
+      }))
+  }
+  
+  public deletePatrimonio(patrimonioId:number): Observable<any> {
+    return this.http.delete(`${this.baseURL}${patrimonioId}?patrimonio=${patrimonioId}`)
     .pipe(take(3));
   }
 }

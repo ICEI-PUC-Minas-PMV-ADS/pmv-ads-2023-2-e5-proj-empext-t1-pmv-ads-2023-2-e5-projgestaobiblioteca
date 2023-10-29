@@ -1,6 +1,8 @@
 
+using BibCorp.API.Packages.Extensions.Pages;
 using BibCorp.Application.Dto.Patrimonios;
 using BibCorp.Application.Services.Contracts.Patrimonios;
+using BibCorp.Persistence.Utilities.Pages.Class;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibCorp.API.Controllers.Patrimonios;
@@ -148,5 +150,33 @@ public class PatrimoniosController : ControllerBase
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir patrimônio. Erro: {e.Message}");
     }
 
+  }
+
+  
+  /// <summary>
+  /// Obtém os dados dos patrimonios cadastrados na emrpesa com recurso de paginacao
+  /// </summary>
+  /// <response code="200">Dados dos patrimonios cadastrados</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("Paginacao")]
+  public async Task<IActionResult> GetPatrimoniosPaginacao([FromQuery]ParametrosPaginacao parametrosPaginacao)
+  {
+    try
+    {
+      var patrimonios = await _patrimonioService.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
+
+      if (patrimonios == null) return NotFound("Não existem patrimonios cadastrados");
+
+      Response.IncluirPaginacao(patrimonios.PaginaCorrente, patrimonios.TamanhoDaPagina, patrimonios.ContadorTotal, patrimonios.TotalDePaginas);
+
+      return Ok(patrimonios);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
+    }
   }
 }

@@ -4,6 +4,7 @@ using BibCorp.Application.Dto.Patrimonios;
 using BibCorp.Application.Services.Contracts.Patrimonios;
 using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
+using BibCorp.Persistence.Utilities.Pages.Class;
 
 namespace BibCorp.Application.Services.Packages.Patrimonios
 {
@@ -139,6 +140,30 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
       }
       catch (Exception e)
       {
+        throw new Exception(e.Message);
+      }
+    }
+    public async Task<ListaDePaginas<PatrimonioDto>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
+    {
+      try
+      {
+        var patrimonios = await _patrimonioPersistence.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
+        Console.WriteLine("AquiService");
+
+        if (patrimonios == null) return null;
+
+        var patrimoniosMappper = _mapper.Map<ListaDePaginas<PatrimonioDto>>(patrimonios);
+
+        patrimoniosMappper.PaginaCorrente = patrimonios.PaginaCorrente;
+        patrimoniosMappper.TotalDePaginas = patrimonios.TotalDePaginas;
+        patrimoniosMappper.TamanhoDaPagina = patrimonios.TamanhoDaPagina;
+        patrimoniosMappper.ContadorTotal = patrimonios.ContadorTotal;
+
+        return patrimoniosMappper;
+      }
+      catch (Exception e)
+      {
+
         throw new Exception(e.Message);
       }
     }

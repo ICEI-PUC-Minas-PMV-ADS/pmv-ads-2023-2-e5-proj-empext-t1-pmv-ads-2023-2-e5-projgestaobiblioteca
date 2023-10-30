@@ -234,6 +234,14 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **When** o botão Login for acionado <br>
 **Then** uma mensagem de erro deve ser apresentada <br>
 
+## Detalhes do Acervo
+
+**CTS1: Tela sendo populada com os livros cadastrados no Banco de Dados**
+
+**Given** o usuário deseja saber mais sobre determinado livro <br>
+**When** o botão de Detalhes for acionado, nos resultados de pesquisa <br>
+**Then** consegue visualizar as informações do livro escolhido <br>
+
 # Evidências de Testes de Software
 
 ## [Backend] - Testes de unidade (automatizados)
@@ -1017,4 +1025,23 @@ Botão Login acionado:
 </p>
 </br>
 
+## Detalhes do Acervo
 
+**CTS1: Tela sendo populada com os livros cadastrados no Banco de Dados**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** o usuário deseja saber mais sobre determinado livro <br>
+**When** o botão de Detalhes for acionado, nos resultados de pesquisa <br>
+**Then** consegue visualizar as informações do livro escolhido <br>
+
+**Evidências:**
+
+Usuário visualiza as infromações do livro:
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Detalhes-evidencia.png>
+</p>
+</br>

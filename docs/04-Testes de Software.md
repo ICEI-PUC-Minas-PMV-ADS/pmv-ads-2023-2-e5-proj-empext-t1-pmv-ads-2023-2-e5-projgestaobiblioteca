@@ -211,14 +211,14 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **CTS1: Usuário - Cadastrando um usuário com sucesso**
 
 **Given** as informações obrigatórios sejam informadas no formulário de cadastro <br>
-**When** o botão Cadastra-se for acionado <br>
+**When** o botão Cadastre-se for acionado <br>
 **Then** o usuário deve ser registrado <br>
 **And** o usuário deve ser direcionado para a tela principal do site <br>
 
 **CTS2: Usuário - Tentando cadastrar um usuário sem informar todos os dados obrigatórios**
 
 **Given** alguma informação obrigatória não seja informada no formulário de cadastro <br>
-**When** o botão Cadastra-se for acionado <br>
+**When** o botão Cadastre-se for acionado <br>
 **Then** o usuário não deve ser registrado <br>
 **And** uma mensagem de erro deve ser apresentada <br>
 
@@ -895,32 +895,126 @@ Patrimônio excluído no banco de dados:
 
 </br>
 
+## [Frontend] - Testes de Sistema
+
 ## Usuários
 
-**CTF1: GET api/Acervos - Executando a rota sem informar nenhum parâmetro**
+**CTS1: Usuário - Cadastrando um usuário com sucesso**
 
 **Status do caso de teste:** Aprovado
 
 **BDD:**<br/><br/>
-**Given** que nenhum parâmetro seja informado <br>
-**When** a rota GET api/Acervos for executada <br>
-**Then** o status code 200 deve ser retornado <br>
-**And** o response body deve conter um array de objetos para cada acervo cadastrado no banco de dados <br>
+**Given** as informações obrigatórios sejam informadas no formulário de cadastro <br>
+**When** o botão Cadastre-se for acionado <br>
+**Then** o usuário deve ser registrado <br>
+**And** o usuário deve ser direcionado para a tela principal do site <br>
 
 **Evidências:**
 
-Executando a rota sem informar nenhum parâmetro:
+Preenchendo as informações obrigatórias no formulário e clicando no botão Cadastre-se:
 
 </br>
 <p align="center">
-<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/GETAcervo1.png>
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaCadastroUsuario1.png>
 </p>
 </br>
 
-Resposta da requisição:
+Usuário direcionado para a tela principal:
 
 </br>
 <p align="center">
-<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/GETAcervo2.png>
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaCadastroUsuario2.png>
 </p>
 </br>
+
+Usuário registrado no banco de dados:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaCadastroUsuario3.png>
+</p>
+</br>
+
+**CTS2: Usuário - Tentando cadastrar um usuário sem informar todos os dados obrigatórios**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** alguma informação obrigatória não seja informada no formulário de cadastro <br>
+**When** o botão Cadastre-se for acionado <br>
+**Then** o usuário não deve ser registrado <br>
+**And** uma mensagem de erro deve ser apresentada <br>
+
+**Evidências:**
+
+Informação obrigatória não informada e botão Cadastre-se acionado:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaCadastroUsuario4.png>
+</p>
+</br>
+
+**CTS3: Usuário - Realizando o login com sucesso**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** as informações de um usuário cadastrado sejam informadas corretamente no formulário de login <br>
+**When** o botão Login for acionado <br>
+**Then** o usuário deve ser direcionado para a tela principal do site <br>
+
+**Evidências:**
+
+Usuário 'RafaelaTeste' cadastrado no banco de dados:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaCadastroUsuario3.png>
+</p>
+</br>
+
+Preenchendo as informações do usuário cadastrado no formulário de login:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaLogin1.png>
+</p>
+</br>
+
+Usuário logado e direcionado para a tela principal:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaLogin2.png>
+</p>
+</br>
+
+**CTS4: Usuário - Tentando realizar o login para um usuário não cadastrado**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** as informações de um usuário não cadastrado sejam informadas no formulário de login <br>
+**When** o botão Login for acionado <br>
+**Then** uma mensagem de erro deve ser apresentada <br>
+
+**Evidências:**
+
+Usuário 'RafaelaTeste1' não cadastrado no banco de dados:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaLogin3.png>
+</p>
+</br>
+
+Botão Login acionado:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/TelaLogin4.png>
+</p>
+</br>
+
+

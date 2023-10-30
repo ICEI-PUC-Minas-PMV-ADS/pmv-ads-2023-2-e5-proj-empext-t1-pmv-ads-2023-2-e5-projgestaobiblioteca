@@ -204,7 +204,36 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 **Then** o status code 200 deve ser retornado<br>
 **And** o usuario deve ser excluído no banco de dados<br>
 
- 
+## [Frontend] - Testes de Sistema
+
+## Usuários
+
+**CTS1: Usuário - Cadastrando um usuário com sucesso**
+
+**Given** as informações obrigatórios sejam informadas no formulário de cadastro <br>
+**When** o botão Cadastra-se for acionado <br>
+**Then** o usuário deve ser registrado <br>
+**And** o usuário deve ser direcionado para a tela principal do site <br>
+
+**CTS2: Usuário - Tentando cadastrar um usuário sem informar todos os dados obrigatórios**
+
+**Given** alguma informação obrigatória não seja informada no formulário de cadastro <br>
+**When** o botão Cadastra-se for acionado <br>
+**Then** o usuário não deve ser registrado <br>
+**And** uma mensagem de erro deve ser apresentada <br>
+
+**CTS3: Usuário - Realizando o login com sucesso**
+
+**Given** as informações de um usuário cadastrado sejam informadas corretamente no formulário de login <br>
+**When** o botão Login for acionado <br>
+**Then** o usuário deve ser direcionado para a tela principal do site <br>
+
+**CTS4: Usuário - Tentando realizar o login para um usuário não cadastrado**
+
+**Given** as informações de um usuário não cadastrado sejam informadas no formulário de login <br>
+**When** o botão Login for acionado <br>
+**Then** uma mensagem de erro deve ser apresentada <br>
+
 # Evidências de Testes de Software
 
 ## [Backend] - Testes de unidade (automatizados)
@@ -864,4 +893,34 @@ Patrimônio excluído no banco de dados:
 ![Delete1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/assets/124921806/cfed5058-cc44-48c5-a6a4-666a0c63753b)
 ![Delete2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/assets/124921806/2b244661-21cc-4631-aa88-42658fc9efe4)
 
+</br>
+
+## Usuários
+
+**CTF1: GET api/Acervos - Executando a rota sem informar nenhum parâmetro**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** que nenhum parâmetro seja informado <br>
+**When** a rota GET api/Acervos for executada <br>
+**Then** o status code 200 deve ser retornado <br>
+**And** o response body deve conter um array de objetos para cada acervo cadastrado no banco de dados <br>
+
+**Evidências:**
+
+Executando a rota sem informar nenhum parâmetro:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/GETAcervo1.png>
+</p>
+</br>
+
+Resposta da requisição:
+
+</br>
+<p align="center">
+<img src=https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/main/docs/img/GETAcervo2.png>
+</p>
 </br>

@@ -1032,9 +1032,9 @@ Botão Login acionado:
 **Status do caso de teste:** Aprovado
 
 **BDD:**<br/><br/>
-**Given** o usuário deseja saber mais sobre determinado livro <br>
-**When** o botão de Detalhes for acionado, nos resultados de pesquisa <br>
-**Then** consegue visualizar as informações do livro escolhido <br>
+**Given** o usuário esteja na tela principal do site <br>
+**When** o botão de Detalhes for acionado nos resultados de pesquisa <br>
+**Then** as informações do livro selecionado devem ser apresentadas conforme o registro existente no banco de dados <br>
 
 **Evidências:**
 

@@ -10,20 +10,23 @@ import { Constants } from 'src/app/util/constants';
   })
 
 export class LoginService{
+  public baseURL = environment.apiURL + 'Usuarios/'
   
   private currentUserSource = new ReplaySubject<Usuario>(1);
   public currentUser$ = this.currentUserSource.asObservable();
   
-  baseURL = environment.apiURL + 'Usuarios/'
 
   constructor(private http: HttpClient) { }
 
   public login(model: any): Observable<void>{
-    return this.http.post<Usuario>(this.baseURL + 'login', model).pipe(
-      take(1),
-      map((response: Usuario) => {
-        const usuario = response;
-        if(usuario){
+    console.log(model)
+    return this.http
+      .post<Usuario>(this.baseURL + 'Login', model)
+      .pipe(
+        take(1),
+        map((response: Usuario) => {
+          const usuario = response;
+          if(usuario){
             this.setCurrentUser(usuario)
         }
       })
@@ -31,14 +34,13 @@ export class LoginService{
   }
 
   public setCurrentUser(usuario: Usuario): void{
-    localStorage.setItem('usuario', JSON.stringify(usuario));
+    localStorage.setItem(Constants.LOCAL_STORAGE_NAME, JSON.stringify(usuario));
     this.currentUserSource.next(usuario);
   }
 
   public logout(): void{
-    localStorage.removeItem('usuario');
+    localStorage.removeItem(Constants.LOCAL_STORAGE_NAME);
     this.currentUserSource.next(null as any);
     this.currentUserSource.complete();
   }
- 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { LoginService } from 'src/app/services';
 
 @Component({
   selector: 'app-navBar',
@@ -9,12 +10,17 @@ import { Router } from '@angular/router'
 export class NavBarComponent implements OnInit {
   public isCollapsed = true
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+    ) { }
 
   ngOnInit() {
   }
 
-  logout() {
+  public logout(): void{
+    this.loginService.logout();
+    this.router.navigateByUrl('usuarios/login');
 
   }
 }

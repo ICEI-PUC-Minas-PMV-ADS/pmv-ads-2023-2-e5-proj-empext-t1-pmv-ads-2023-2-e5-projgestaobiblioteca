@@ -6,7 +6,7 @@ export class Usuario{
     email: string
     password: string
     userName:string
-    telefone:string
+    phoneNumber:string
     Emprestimos: Emprestimo[]
     token: string
 }

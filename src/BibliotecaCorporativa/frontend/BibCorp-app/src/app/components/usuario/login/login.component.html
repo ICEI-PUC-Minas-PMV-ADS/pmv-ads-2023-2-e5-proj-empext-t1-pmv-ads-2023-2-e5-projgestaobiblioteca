@@ -1,0 +1,41 @@
+<div class="wrapper">
+    <div class="title-text">
+      <img src="../assets/Images/thumbnail_logotipo.png" width="250px"  alt="Logotipo Prevenir" >
+       <div class="mensagem-boasvindas">
+        <p class="bibcorp-titulo bibcorp-primary">Seja Bem-vindo!</p>
+       </div>
+       <div class="mensagem-orientacao">
+         <p>Preencha os seus dados de login para acessar</p>
+        </div>
+    </div>
+    <div class="form-container">
+       <div class="form-inner">
+          <form #loginForm="ngForm" class="login" [formGroup]="formLogin" (ngSubmit)="login()">
+            <mat-form-field class="col-12 mt-5" appearance="fill">
+               <mat-label>Nome de Usuairo:</mat-label>
+               <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
+               <mat-error class="invalid-feedback">{{messageReturned(ctrF.userName, '')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12" appearance="fill">
+               <mat-label>Senha:</mat-label>
+               <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
+               <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
+            </mat-form-field>
+            <div class="pass-link m-0">
+               <a [routerLink]="['/login']">Recuperar senha</a>
+            </div>
+            <button class="btn btn-primary m-0 " [disabled]="!formLogin.valid">
+               Entrar
+            </button>
+             <div class="signup-link mt-2" >
+               <div >
+                  Novo por aqui? <a routerLink="/usuarios/cadastro">Cadastre-se</a>
+               </div>
+               <div id="acessar-acervo">
+                  <a routerLink="/principal">Acessar o acervo</a>  
+               </div>
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>

@@ -149,6 +149,7 @@ public class UsuariosController : ControllerBase
   {
     try
     {
+      Console.WriteLine(usuarioLoginDto);
       var usuario = await _usuarioService.GetUsuarioByUserNameAsync(usuarioLoginDto.UserName);
 
       if (usuario == null) return Unauthorized("Conta não cadastrada");

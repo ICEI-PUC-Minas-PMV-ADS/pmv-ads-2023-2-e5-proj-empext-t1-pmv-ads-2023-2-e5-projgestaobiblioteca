@@ -35,58 +35,68 @@
   </button>
 </div>
 
-<div style="min-height: 500px;">
-  <table class="table table-striped table-hover table-light ">
-    <thead class="table-primary">
-      <tr>
-        <th class="d-none d-md-table-cell d-flex justify-center">
-          <a class="text-white" (click)="alterarImagem()">
-            <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_off'}}</mat-icon>
-          </a>
-        </th>
-        <th>#</th>
-        <th>ISBN</th>
-        <th class="d-none d-md-table-cell">Localização</th>
-        <th>Sala</th>
-        <th>coluna</th>
-        <th>Prateleira</th>
-        <th>Posição</th>
-        <th>Status</th>
-        <th>Opções</th>
-      </tr>
-    </thead>
-    <tbody *ngIf="patrimonios && patrimonios.length">
-      <tr *ngFor="let patrimonio of patrimonios" (click)="editarPatrimonio(patrimonio.id)" style="cursor: pointer">
-        <td>
-          <img [(ngbCollapse)]="!exibirImagem" src="../../../../assets/Images/capaDefault.png" alt=""
-            [style.width.px]="30" [style.margin.px]="2">
-        </td>
-        <td>{{patrimonio.id}}</td>
-        <td>{{patrimonio.isbn}}</td>
-        <td>{{patrimonio.localizacao}}</td>
-        <td>{{patrimonio.sala}}</td>
-        <td>{{patrimonio.coluna}}</td>
-        <td>{{patrimonio.prateleira}}</td>
-        <td>{{patrimonio.posicao}}</td>
-        <td>{{(patrimonio.status) ? 'Empresatado' : 'Liberado'}}</td>
-        <td>
-          <div class="btn-group mx-1">
-            <a  class="text-danger" (click)="abrirModal($event, patrimonio.id, patrimonio.isbn)">
-              <mat-icon>delete</mat-icon>
+<div class="card rounded-3 shadow-sm p-0 mt-0 bg-white">
+
+
+  <div style="min-height: 500px;">
+    <table class="table table-striped table-hover table-light rounded-3 ">
+      <thead class="table-primary">
+        <tr>
+          <th class="d-none d-md-table-cell d-flex justify-center">
+            <a class="text-white" (click)="alterarImagem()">
+              <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_off'}}</mat-icon>
             </a>
-          </div>
+          </th>
+          <th>#</th>
+          <th>ISBN</th>
+          <th class="d-none d-md-table-cell">Localização</th>
+          <th>Sala</th>
+          <th>coluna</th>
+          <th>Prateleira</th>
+          <th>Posição</th>
+          <th>Status</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="patrimonios && patrimonios.length">
+        <tr *ngFor="let patrimonio of patrimonios" (click)="editarPatrimonio(patrimonio.id)" style="cursor: pointer">
+          <td>
+            <img [(ngbCollapse)]="!exibirImagem" src="../../../../assets/Images/capaDefault.png" alt=""
+              [style.width.px]="30" [style.margin.px]="2">
+          </td>
+          <td>{{patrimonio.id}}</td>
+          <td>{{patrimonio.isbn}}</td>
+          <td>{{patrimonio.localizacao}}</td>
+          <td>{{patrimonio.sala}}</td>
+          <td>{{patrimonio.coluna}}</td>
+          <td>{{patrimonio.prateleira}}</td>
+          <td>{{patrimonio.posicao}}</td>
+          <td>{{(patrimonio.status) ? 'Empresatado' : 'Liberado'}}</td>
+          <td>
+            <div class="btn-group mx-1">
+              <a class="text-danger" (click)="abrirModal($event, patrimonio.id, patrimonio.isbn)">
+                <mat-icon>delete</mat-icon>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!patrimonios.length">
+        <td colspan="12" class="text-center" class="text-center">
+          <h4>Nenhum patrimônio encontrado</h4>
         </td>
-      </tr>
-    </tbody>
-    <tfoot *ngIf="!patrimonios.length">
-      <td colspan="12" class="text-center" class="text-center">
-        <h4>Nenhum patrimônio encontrado</h4>
-      </td>
-    </tfoot>
-  </table>
-</div>
+      </tfoot>
+    </table>
+  </div>
+  <div class="card-footer d-flex p-1 m-0 bibcorp-bg-primary" *ngIf="patrimonios.length">
+    <div class="justify-content-center m-auto p-0 m-0 mt-3">
+      <ngb-pagination [collectionSize]="paginacao.itensPorPagina" [page]="paginacao.paginaCorrente"
+        [maxSize]="paginacao.totalDePaginas" [rotate]="true" [boundaryLinks]="true" [ellipses]="false"
+        (pageChange)="alteracaoDePagina($event)"></ngb-pagination>
+    </div>
+  </div>
 
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
-  <p style="font-size: 20px; color: white">Carregando...</p>
-</ngx-spinner>
 
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+  </ngx-spinner>

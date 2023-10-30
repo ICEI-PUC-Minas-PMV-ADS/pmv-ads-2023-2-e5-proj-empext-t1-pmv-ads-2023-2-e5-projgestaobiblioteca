@@ -9,42 +9,43 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
-import { NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap";
+import {
+  NgbCollapseModule,
+  NgbPaginationModule,
+} from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
 
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 
-
-
 import {
   CadastroUsuarioComponent,
+  DeleteModalComponent,
   LoginComponent,
   NavBarComponent,
   PatrimonioComponent,
   PatrimonioDetalheComponent,
   PatrimonioListaComponent,
+  PerfilComponent,
   PrincipalComponent,
   TitlebarComponent,
+  UsuarioComponent,
 } from "./components";
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
-import { PerfilComponent } from "./components/perfil/perfil.component";
-import { LoginService } from "./services/Usuarios/Login";
-import { CadastroUsuarioService } from "./services/Usuarios/CadastroUsuario";
+import { LoginService } from "./services/Login";
 import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.service";
 import { AcervoDetalheComponent } from "./components/acervo/acervoDetalhe";
-import { PatrimonioService } from "./services";
-import { MatDialogModule } from '@angular/material/dialog';
-import { DeleteModalComponent } from "./components/deleteModal/deleteModal.component";
+import { PatrimonioService, UsuarioService } from "./services";
 import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
@@ -62,6 +63,7 @@ import { MatButtonModule } from "@angular/material/button";
     MinhasReservasComponent,
     PerfilComponent,
     TitlebarComponent,
+    UsuarioComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -83,6 +85,7 @@ import { MatButtonModule } from "@angular/material/button";
     MatToolbarModule,
     NgSelectModule,
     NgxSpinnerModule,
+    NgbPaginationModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -92,15 +95,14 @@ import { MatButtonModule } from "@angular/material/button";
     }),
   ],
   providers: [
-    CadastroUsuarioService, 
-    LoginService, 
-    MinhasReservasService, 
+    UsuarioService,
+    LoginService,
+    MinhasReservasService,
     NgxSpinnerService,
     PatrimonioService,
     ToastrService,
   ],
-  bootstrap: [
-    AppComponent],
+  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

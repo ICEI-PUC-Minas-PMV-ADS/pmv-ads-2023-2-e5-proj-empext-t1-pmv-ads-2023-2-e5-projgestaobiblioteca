@@ -1,0 +1,53 @@
+<div class="wrapper">
+   <div class="title-text">
+      <img src="../assets/Images/thumbnail_logotipo.png" width="200px" alt="Logotipo Prevenir">
+      <div class="mensagem-orientacao">
+         <p>Cadastre-se</p>
+      </div>
+   </div>
+   <div class="form-container">
+      <div class="form-inner">
+         <form #cadastroForm="ngForm" class="cadastro" [formGroup]="formCadastro" (ngSubmit)="register()">
+            <div class="mt-5">
+               <mat-form-field class="col-12" appearance="fill">
+                  <mat-label>Nome completo:</mat-label>
+                  <input matInput type="text" formControlName="nome" [ngClass]="fieldValidator(ctrF.nome)">
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.nome, '')}}</mat-error>
+               </mat-form-field>
+               <mat-form-field class="col-12" appearance="fill">
+                  <mat-label>Nome de usuário:</mat-label>
+                  <input matInput type="text" formControlName="userName" [ngClass]="fieldValidator(ctrF.userName)">
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.userName, '')}}</mat-error>
+               </mat-form-field>
+               <mat-form-field class="col-12" appearance="fill">
+                  <mat-label>Telefone:</mat-label>
+                  <input matInput type="text" formControlName="phoneNumber" [ngClass]="fieldValidator(ctrF.phoneNumber)">
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
+               </mat-form-field>
+               <mat-form-field class="col-12" appearance="fill">
+                  <mat-label>e-mail:</mat-label>
+                  <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.email, '')}}</mat-error>
+               </mat-form-field>
+               <mat-form-field class="col-12" appearance="fill">
+                  <mat-label>Senha:</mat-label>
+                  <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
+               </mat-form-field>
+               <button class="btn btn-primary m-0 " [disabled]="!formCadastro.valid">
+                  Cadastre-se
+               </button>
+               <div class="login-link mt-2">
+                  <div routerLinkActive="active">
+                     Já tem uma conta? <a [routerLink]="['/usuarios/login']">Faça login</a>
+                  </div>
+                  <div id="acessar-acervo" routerLinkActive="active">
+                     <a [routerLink]="['/principal']">Acessar o acervo</a>
+                  </div>
+               </div>
+            </div>
+
+         </form>
+      </div>
+   </div>
+</div>

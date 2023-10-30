@@ -1,6 +1,9 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap'
+import { Usuario } from './models';
+import { LoginService } from './services';
+import { Constants } from './util';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +12,26 @@ import { NgbConfig } from '@ng-bootstrap/ng-bootstrap'
 })
 export class AppComponent {
   constructor (
-    //    private loginLogoutService: LoginLogoutService
+    private loginService: LoginService,
     private router: Router
   ) {}
 
   ngOnInit (): void {
-  //  this.setCurrentUser();
+    this.setCurrentUser();
   }
 
   showDrawer():boolean{
-    return this.router.url != '/login' && this.router.url != '/cadastroUsuario';  
+    return this.router.url != '/usuarios/login' && this.router.url != '/usuarios/cadastro';  
+
   }
 
-/*  public setCurrentUser(): void {
-    let user = {} as Users;
+  public setCurrentUser(): void {
+    let usuario = {} as Usuario;
 
     if (localStorage.getItem(Constants.LOCAL_STORAGE_NAME))
-      user = JSON.parse(localStorage.getItem(Constants.LOCAL_STORAGE_NAME) ?? '{}');
+    usuario = JSON.parse(localStorage.getItem(Constants.LOCAL_STORAGE_NAME) ?? '{}');
 
-    if (user)
-      this.loginLogoutService.setCurrentUser(user);
-  } */
+    if (usuario)
+      this.loginService.setCurrentUser(usuario);
+  } 
 }

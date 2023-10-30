@@ -238,9 +238,9 @@ Foram implementados 24 testes de unidade automatizados, que cobrem os principais
 
 **CTS1: Tela sendo populada com os livros cadastrados no Banco de Dados**
 
-**Given** o usuário deseja saber mais sobre determinado livro <br>
-**When** o botão de Detalhes for acionado, nos resultados de pesquisa <br>
-**Then** consegue visualizar as informações do livro escolhido <br>
+**Given** o usuário esteja na tela principal do site <br>
+**When** o botão de Detalhes for acionado nos resultados de pesquisa <br>
+**Then** as informações do livro selecionado devem ser apresentadas conforme o registro existente no banco de dados <br>
 
 # Evidências de Testes de Software
 

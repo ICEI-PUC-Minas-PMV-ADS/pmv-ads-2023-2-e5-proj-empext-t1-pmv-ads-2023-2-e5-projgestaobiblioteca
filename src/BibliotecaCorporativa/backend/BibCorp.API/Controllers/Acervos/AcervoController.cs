@@ -89,9 +89,7 @@ public class AcervoController : ControllerBase
   {
     try
     {
-      var acervos = await _acervoService.GetAcervosByISBNAsync(ISBN);
-
-      if (acervos == null) return NotFound("Não existe acervos associados ao ISBN informado");
+      var acervos = await _acervoService.GetAcervoByISBNAsync(ISBN);
 
       return Ok(acervos);
     }
@@ -113,6 +111,11 @@ public class AcervoController : ControllerBase
   {
     try
     {
+      Console.WriteLine("create Acervo");
+      var acervo = await _acervoService.GetAcervoByISBNAsync(acervoDto.ISBN);
+
+      if (acervo != null) return BadRequest("Já existe um Acervo com o ISBN informado");
+      
       var createdAcervo = await _acervoService.CreateAcervo(acervoDto);
 
       if (createdAcervo != null) return Ok(createdAcervo);
@@ -207,6 +210,32 @@ public class AcervoController : ControllerBase
     }
   }
 
+  /// <summary>
+  /// Obtém os dados dos acervos cadastrados na emrpesa
+  /// </summary>
+  /// <response code="200">Dados dos acervos cadastrados</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("Paginacao")]
+  public async Task<IActionResult> GetAcervosPaginacao([FromQuery]ParametrosPaginacao parametrosPaginacao)
+  {
+    try
+    {
+      var acervos = await _acervoService.GetAcervosRecentesAsync(parametrosPaginacao);
+
+      if (acervos == null) return NotFound("Não existem acervos cadastrados");
+
+      Response.IncluirPaginacao(acervos.PaginaCorrente, acervos.TamanhoDaPagina, acervos.ContadorTotal, acervos.TotalDePaginas);
+
+      return Ok(acervos);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
+    }
+  }
 /*
   /// <summary>
   /// Realiza a consulta dos acervos no Google Books

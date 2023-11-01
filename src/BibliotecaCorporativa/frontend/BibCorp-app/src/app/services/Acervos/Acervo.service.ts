@@ -27,10 +27,26 @@ export class AcervoService {
                .pipe(take(3));
   }
 
-  public updateAcervo (id: number, acervo: Acervo): Observable<Acervo> {
+  public getAcervoByISBN (isbn: string): Observable<Acervo> {
     console.log(this.baseURL)
-    return this.http.put<Acervo>(`${this.baseURL}${id}`, acervo)
+    return this.http.get<Acervo>(`${this.baseURL}${isbn}/ISBN`)
                .pipe(take(3));
+  }
+
+  public createAcervo(acervo: Acervo): Observable<Acervo> {
+    return this.http.post<Acervo>(this.baseURL, acervo)
+    .pipe(take(3));
+  }
+
+  public saveAcervo (acervo: Acervo): Observable<Acervo> {
+    console.log(this.baseURL)
+    return this.http.put<Acervo>(`${this.baseURL}${acervo.id}`, acervo)
+               .pipe(take(3));
+  }
+
+  public deleteAcervo(acervoId:number): Observable<any> {
+    return this.http.delete(`${this.baseURL}${acervoId}?acervo=${acervoId}`)
+    .pipe(take(3));
   }
 
   public getAcervosRecentes (pagina?: number, itensPorPagina?: number, argumento?: string, pesquisarPor: string = 'Todos', genero: string = 'Todos'): Observable<ResultadoPaginado<Acervo[]>> {
@@ -52,6 +68,38 @@ export class AcervoService {
 
     return this.http
       .get<Acervo[]>(`${this.baseURL}Recentes`, { observe: 'response', params: parametrosHttp })
+      .pipe(
+        take(3),
+        map((response: any) => {
+          resultadoPaginado.resultado = response.body
+
+          if (response.headers.has('Paginacao')) {
+            resultadoPaginado.paginacao = JSON.parse(response.headers.get('Paginacao'))
+          }
+
+          return resultadoPaginado
+        }))
+  }
+
+  public getAcervosPaginacao (pagina?: number, itensPorPagina?: number, argumento?: string, pesquisarPor: string = 'Todos', genero: string = 'Todos'): Observable<ResultadoPaginado<Acervo[]>> {
+    console.log(this.baseURL)
+    const resultadoPaginado: ResultadoPaginado<Acervo[]> = new ResultadoPaginado<Acervo[]>()
+
+    let parametrosHttp = new HttpParams()
+
+    if (pagina != null && itensPorPagina != null) {
+      parametrosHttp = parametrosHttp.append('numeroDaPagina', pagina.toString())
+      parametrosHttp = parametrosHttp.append('tamanhoDaPagina', itensPorPagina.toString())
+      parametrosHttp = parametrosHttp.append('pesquisarPor', pesquisarPor)
+      parametrosHttp = parametrosHttp.append('genero', genero)
+    }
+
+    if (argumento != null && argumento != '') {
+      parametrosHttp = parametrosHttp.append('argumento', argumento)
+    }
+
+    return this.http
+      .get<Acervo[]>(`${this.baseURL}Paginacao`, { observe: 'response', params: parametrosHttp })
       .pipe(
         take(3),
         map((response: any) => {

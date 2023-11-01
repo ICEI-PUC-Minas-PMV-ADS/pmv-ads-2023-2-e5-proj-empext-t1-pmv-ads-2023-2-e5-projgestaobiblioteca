@@ -21,6 +21,16 @@ export class PatrimonioService {
       .pipe(take(3))
   }
 
+  public getPatrimoniosByISBN (isbn: string): Observable<Patrimonio[]> {
+    return this.http.get<Patrimonio[]>(`${this.baseURL}${isbn}/ISBN`)
+      .pipe(take(3))
+  }
+
+  public getPatrimoniosLivres (isbn: string): Observable<Patrimonio[]> {
+    return this.http.get<Patrimonio[]>(`${this.baseURL}Livres/${isbn}`)
+      .pipe(take(3))
+  }
+
   public getPatrimonioById(patrimonioId: number): Observable<Patrimonio> {
     return this.http.get<Patrimonio>(`${this.baseURL}${patrimonioId}`)
     .pipe(take(3));

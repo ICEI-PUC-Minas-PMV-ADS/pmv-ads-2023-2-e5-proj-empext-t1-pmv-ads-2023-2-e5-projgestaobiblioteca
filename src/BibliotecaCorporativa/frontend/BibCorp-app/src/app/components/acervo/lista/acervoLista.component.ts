@@ -2,74 +2,67 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 
-import { BsModalRef } from "ngx-bootstrap/modal";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { Patrimonio } from "src/app/models";
-import { PatrimonioService } from "src/app/services";
+import { Acervo } from "src/app/models";
+import { AcervoService } from "src/app/services";
 import { Paginacao, ResultadoPaginado } from "src/app/util";
 import { DeleteModalComponent } from "../../shared";
 
 
 @Component({
-  selector: "app-patrimonioLista",
-  templateUrl: "./patrimonioLista.component.html",
-  styleUrls: ["./patrimonioLista.component.scss"],
+  selector: "app-acervoLista",
+  templateUrl: "./acervoLista.component.html",
+  styleUrls: ["./acervoLista.component.scss"],
 })
-export class PatrimonioListaComponent implements OnInit {
-  animal: string;
-  name: string;
-
-  public modalRef: BsModalRef;
-
-  public patrimonios: Patrimonio[] = [];
-  public PatrimonioFiltrados: any = [];
+export class AcervoListaComponent implements OnInit {
+  public acervos: Acervo[] = [];
 
   public paginacao = {} as Paginacao;
 
-  public patrimonioId = 0;
-  public patrimonioISBN = "";
+  public acervoId = 0;
+  public acervoISBN = "";
 
-  public argumento: string = "";
-  public opcaoPesquisa: string = "Todos";
+  public opcaoPesquisa: string = 'Todos' 
+  public argumento: string = ''
 
   public exibirImagem: boolean = true;
 
-  filtroPatrimonio() {
+  filtroAcervo() {
     console.log("Filtro");
-    this.getPatrimonios();
+    this.getAcervos();
   }
 
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private patrimonioService: PatrimonioService,
+    private acervoService: AcervoService,
     private spinnerService: NgxSpinnerService,
     private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.getPatrimonios();
+    this.getAcervos();
   }
 
   alterarImagem() {
     this.exibirImagem = !this.exibirImagem;
   }
 
-  public getPatrimonios(): void {
+  public getAcervos(): void {
     this.spinnerService.show();
 
-    this.patrimonioService
-      .getPatrimoniosPaginacao(
+    this.acervoService
+      .getAcervosPaginacao(
         this.paginacao.paginaCorrente,
         this.paginacao.itensPorPagina,
         this.argumento,
         this.opcaoPesquisa
       )
       .subscribe(
-        (retorno: ResultadoPaginado<Patrimonio[]>) => {
-          this.patrimonios = retorno.resultado;
+        (retorno: ResultadoPaginado<Acervo[]>) => {
+          this.acervos = retorno.resultado;
           this.paginacao = retorno.paginacao;
         },
         (error: any) => {
@@ -83,17 +76,17 @@ export class PatrimonioListaComponent implements OnInit {
 
   public abrirModal(
     event: any,
-    patrimonioId: number,
-    patrimonioISBN: string
+    acervoId: number,
+    acervoISBN: string
   ): void {
     event.stopPropagation();
-    this.patrimonioId = patrimonioId;
-    this.patrimonioISBN = patrimonioISBN;
+    this.acervoId = acervoId;
+    this.acervoISBN = acervoISBN;
     const dialogRef = this.dialog.open(DeleteModalComponent, {
       data: {
-        nomePagina: "Patrimônios",
-        id: this.patrimonioId,
-        argumento: this.patrimonioISBN,
+        nomePagina: "Acervos",
+        id: this.acervoId,
+        argumento: this.acervoISBN,
       },
     });
 
@@ -106,22 +99,22 @@ export class PatrimonioListaComponent implements OnInit {
   public confirmarDelecao(): void {
     this.spinnerService.show();
 
-    this.patrimonioService
-      .deletePatrimonio(this.patrimonioId)
+    this.acervoService
+      .deleteAcervo(this.acervoId)
       .subscribe(
         (result: any) => {
           if (result == null)
             this.toastrService.error(
-              "Patrimonio não pode se excluída.",
+              "Acervo não pode se excluído.",
               "Erro!"
             );
 
           if (result.message == "OK") {
             this.toastrService.success(
-              "Patrimonio excluído com sucesso",
+              "Acervo excluído com sucesso",
               "Excluído!"
             );
-            this.getPatrimonios();
+            this.getAcervos();
           }
         },
         (error: any) => {
@@ -132,12 +125,16 @@ export class PatrimonioListaComponent implements OnInit {
       .add(() => this.spinnerService.show());
   }
 
-  public editarPatrimonio(patrimonioId: number): void {
-    this.router.navigate([`patrimonios/detalhe/${patrimonioId}`]);
+  public editarAcervo(acerovId: number): void {
+    this.router.navigate([`acervos/edicao/${acerovId}`]);
+  }
+
+  public detalheAcervo(acerovId: number): void {
+    this.router.navigate([`acervos/detalhe/${acerovId}`]);
   }
 
   public alteracaoDePagina(event: any): void {
     //    this.pagination.currentPage = event.currentPage
-    this.getPatrimonios();
+    this.getAcervos();
   }
 }

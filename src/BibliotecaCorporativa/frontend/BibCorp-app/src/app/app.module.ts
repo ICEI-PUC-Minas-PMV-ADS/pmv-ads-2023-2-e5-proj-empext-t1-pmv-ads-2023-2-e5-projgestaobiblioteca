@@ -18,6 +18,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 
+import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -27,8 +28,13 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import {
+  AcervoComponent,
+  AcervoDetalheComponent,
+  AcervoEdicaoComponent,
+  AcervoListaComponent,
   CadastroUsuarioComponent,
   DeleteModalComponent,
   LoginComponent,
@@ -41,16 +47,19 @@ import {
   TitlebarComponent,
   UsuarioComponent,
 } from "./components";
+
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
-import { LoginService } from "./services/Login";
 import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.service";
-import { AcervoDetalheComponent } from "./components/acervo/acervoDetalhe";
-import { PatrimonioService, UsuarioService } from "./services";
-import { MatButtonModule } from "@angular/material/button";
+
+import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "./services";
+
 
 @NgModule({
   declarations: [
+    AcervoComponent,
     AcervoDetalheComponent,
+    AcervoEdicaoComponent,
+    AcervoListaComponent,
     AppComponent,
     CadastroUsuarioComponent,
     DeleteModalComponent,
@@ -83,6 +92,7 @@ import { MatButtonModule } from "@angular/material/button";
     MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatTooltipModule,
     NgSelectModule,
     NgxSpinnerModule,
     NgbPaginationModule,
@@ -95,12 +105,13 @@ import { MatButtonModule } from "@angular/material/button";
     }),
   ],
   providers: [
-    UsuarioService,
+    AcervoService,
     LoginService,
     MinhasReservasService,
     NgxSpinnerService,
     PatrimonioService,
     ToastrService,
+    UsuarioService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -3,7 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Acervo, Patrimonio } from 'src/app/models';
 import { AcervoService } from 'src/app/services';
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-acervoDetalhe',
@@ -14,14 +14,20 @@ import { Router } from '@angular/router'
 
 export class AcervoDetalheComponent implements OnInit {
   public acervo: Acervo 
+
+  public acervoParam: any = "";
+
   public comentarios: string
 
-  constructor(private acervoService: AcervoService,
+  constructor(
+    private activevateRouter: ActivatedRoute,
+    private acervoService: AcervoService,
     private toastrService: ToastrService,
     private router: Router,
     private spinnerService: NgxSpinnerService) { }
 
   public ngOnInit(): void {
+    this.acervoParam = this.activevateRouter.snapshot.paramMap.get("id");
     this.getAcervoById()
   }
 
@@ -29,7 +35,7 @@ export class AcervoDetalheComponent implements OnInit {
     this.spinnerService.show()
 
     this.acervoService
-      .getAcervoById(1)
+      .getAcervoById(+this.acervoParam)
       .subscribe(
         (retorno: Acervo) => {
           this.acervo = retorno
@@ -48,7 +54,7 @@ export class AcervoDetalheComponent implements OnInit {
 
       this.acervo.comentarios = this.comentarios
       this.acervoService
-        .updateAcervo(1, this.acervo)
+        .saveAcervo(this.acervo)
 
         .subscribe(
           (retorno: Acervo) => {

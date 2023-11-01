@@ -128,15 +128,15 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
     }
 
-    public async Task<IEnumerable<AcervoDto>> GetAcervosByISBNAsync(string ISBN)
+    public async Task<AcervoDto> GetAcervoByISBNAsync(string ISBN)
     {
       try
       {
-        var acervo = await _acervoPersistence.GetAcervosByISBNAsync(ISBN);
+        var acervo = await _acervoPersistence.GetAcervoByISBNAsync(ISBN);
 
         if (acervo == null) return null;
 
-        var acervoMapper = _mapper.Map<AcervoDto[]>(acervo);
+        var acervoMapper = _mapper.Map<AcervoDto>(acervo);
 
         return acervoMapper;
       }
@@ -146,6 +146,31 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
     }
     public async Task<ListaDePaginas<AcervoDto>> GetAcervosRecentesAsync(ParametrosPaginacao parametrosPaginacao)
+    {
+      try
+      {
+        var acervos = await _acervoPersistence.GetAcervosRecentesAsync(parametrosPaginacao);
+        Console.WriteLine("AquiService");
+
+        if (acervos == null) return null;
+
+        var acervosMappper = _mapper.Map<ListaDePaginas<AcervoDto>>(acervos);
+
+        acervosMappper.PaginaCorrente = acervos.PaginaCorrente;
+        acervosMappper.TotalDePaginas = acervos.TotalDePaginas;
+        acervosMappper.TamanhoDaPagina = acervos.TamanhoDaPagina;
+        acervosMappper.ContadorTotal = acervos.ContadorTotal;
+
+        return acervosMappper;
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception(e.Message);
+      }
+    }
+
+        public async Task<ListaDePaginas<AcervoDto>> GetAcervosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
     {
       try
       {

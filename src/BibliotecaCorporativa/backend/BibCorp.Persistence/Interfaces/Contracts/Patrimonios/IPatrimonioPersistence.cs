@@ -8,7 +8,8 @@ namespace BibCorp.Persistence.Interfaces.Contracts.Patrimonios
     {
         Task<IEnumerable<Patrimonio>> GetAllPatrimoniosAsync();
         Task<Patrimonio> GetPatrimonioByIdAsync(int patrimonioId);
-        Task<IEnumerable<Patrimonio>> GetPatrimonioByISBNAsync(string ISBN);
+        Task<IEnumerable<Patrimonio>> GetPatrimoniosByISBNAsync(string isbn);
         Task<ListaDePaginas<Patrimonio>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao);
+        Task<IEnumerable<Patrimonio>> GetAllPatrimoniosLivresAsync(string isbn);
     }
 }

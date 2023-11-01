@@ -66,6 +66,7 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
     {
       try
       {
+        Console.WriteLine("aquiiiiiiiii");
         var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosAsync();
 
         if (patrimonios == null) return null;
@@ -81,6 +82,24 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
       }
     }
 
+    public async Task<IEnumerable<PatrimonioDto>> GetAllPatrimoniosLivresAsync(string isbn)
+    {
+      try
+      {
+        var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosLivresAsync(isbn);
+
+        if (patrimonios == null) return null;
+
+        var patrimonioMapper = _mapper.Map<PatrimonioDto[]>(patrimonios);
+
+        return patrimonioMapper;
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception(e.Message);
+      }
+    }
     public async Task<PatrimonioDto> GetPatrimonioByIdAsync(int patrimonioId)
     {
       try
@@ -126,11 +145,11 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
     }
 
 
-    public async Task<IEnumerable<PatrimonioDto>> GetPatrimonioByISBNAsync(string ISBN)
+    public async Task<IEnumerable<PatrimonioDto>> GetPatrimoniosByISBNAsync(string ISBN)
     {
       try
       {
-        var patrimonio = await _patrimonioPersistence.GetPatrimonioByISBNAsync(ISBN);
+        var patrimonio = await _patrimonioPersistence.GetPatrimoniosByISBNAsync(ISBN);
 
         if (patrimonio == null) return null;
 

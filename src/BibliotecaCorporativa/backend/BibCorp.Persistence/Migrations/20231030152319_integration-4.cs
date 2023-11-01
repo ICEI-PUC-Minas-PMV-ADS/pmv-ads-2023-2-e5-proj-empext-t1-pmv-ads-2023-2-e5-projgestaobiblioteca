@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BibCorp.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class integration3 : Migration
+    public partial class integration4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

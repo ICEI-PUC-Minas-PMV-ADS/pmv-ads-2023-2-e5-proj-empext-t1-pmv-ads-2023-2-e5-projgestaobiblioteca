@@ -26,6 +26,17 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       return await query.ToListAsync();
     }
 
+    public async Task<IEnumerable<Patrimonio>> GetAllPatrimoniosLivresAsync(string isbn)
+    {
+      Console.WriteLine(isbn);
+      IQueryable<Patrimonio> query = _context.Patrimonios
+          .AsNoTracking()
+          .Where(p => p.ISBN == isbn && p.AcervoId == null)
+          .OrderBy(p => p.Id);
+
+      return await query.ToListAsync();
+    }
+
     public async Task<Patrimonio> GetPatrimonioByIdAsync(int patrimonioId)
     {
       IQueryable<Patrimonio> query = _context.Patrimonios
@@ -35,7 +46,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       return await query.FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Patrimonio>> GetPatrimonioByISBNAsync(string ISBN)
+    public async Task<IEnumerable<Patrimonio>> GetPatrimoniosByISBNAsync(string ISBN)
     {
       IQueryable<Patrimonio> query = _context.Patrimonios
             .AsNoTracking()

@@ -1,0 +1,102 @@
+<div class="d-flex flex-row bibcorp-bg-secondary m-0 p-3">
+  <div class="col">
+    <div class="rounded-5 ">
+      <div class="flex-fill m-0 p-0">
+        <div class="input-group m-0 ">
+          <div class="input-group-prepend ">
+            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa"
+              (change)="filtroAcervo()">
+              <option [ngValue]="'Todos'">Todos</option>
+              <option [ngValue]="'Autor'">Autor</option>
+              <option [ngValue]="'Resumo'">Resumo</option>
+              <option [ngValue]="'Titulo'">Título</option>
+            </select>
+          </div>
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento"
+            (change)="filtroAcervo()">
+          <!-- (input)="companyFilter($event.target)"-->
+          <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroAcervo()">
+            <mat-icon class="matIcon">search</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-0 ms-0 pt-0 ps-0">
+  <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active" routerLink="principal">
+    <span class="mr-2">&larr;</span> Voltar
+  </button>
+</div>
+
+<div class="card rounded-3 shadow-sm p-0 mt-0 bg-white">
+
+
+  <div style="min-height: 500px;">
+    <table class="table table-striped table-hover table-light rounded-3 ">
+      <thead class="table-primary">
+        <tr>
+          <th class="d-none d-md-table-cell d-flex justify-center">
+            <a class="text-white" (click)="alterarImagem()">
+              <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </a>
+          </th>
+          <th>#</th>
+          <th>ISBN</th>
+          <th>Gênero</th>
+          <th>Título</th>
+          <th>Publicação</th>
+          <th>Editora</th>
+          <th>Edição</th>
+          <th>Páginas</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="acervos && acervos.length">
+        <tr *ngFor="let acervo of acervos" (click)="editarAcervo(acervo.id)" style="cursor: pointer">
+          <td>
+            <img [(ngbCollapse)]="!exibirImagem" src="../../../../assets/Images/capaDefault.png" alt=""
+              [style.width.px]="30" [style.margin.px]="2">
+          </td>
+          <td>{{acervo.id}}</td>
+          <td>{{acervo.isbn}}</td>
+          <td>{{acervo.genero}}</td>
+          <td>{{acervo.titulo}}</td>
+          <td>{{acervo.anoPublicacao}}</td>
+          <td>{{acervo.editora}}</td>
+          <td>{{acervo.edicao}}</td>
+          <td>{{acervo.qtdPaginas}}</td>
+          <td>
+            <div class="btn-group mx-1">
+              <a class="text-danger" (click)="abrirModal($event, acervo.id, acervo.isbn)" matTooltip="Excluír">
+                <mat-icon>delete</mat-icon>
+              </a>
+            </div>
+            <div class="btn-group mx-1">
+              <a class="text-danger" (click)="detalheAcervo(acervo.id)" matTooltip="Detalhe">
+                <mat-icon>loupe</mat-icon>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!acervos.length">
+        <td colspan="12" class="text-center" class="text-center">
+          <h4>Nenhum acervo encontrado</h4>
+        </td>
+      </tfoot>
+    </table>
+  </div>
+  <div class="card-footer d-flex p-1 m-0 bibcorp-bg-primary" *ngIf="acervos.length">
+    <div class="justify-content-center m-auto p-0 m-0 mt-3">
+      <ngb-pagination [collectionSize]="paginacao.itensPorPagina" [page]="paginacao.paginaCorrente"
+        [maxSize]="paginacao.totalDePaginas" [rotate]="true" [boundaryLinks]="true" [ellipses]="false"
+        (pageChange)="alteracaoDePagina($event)"></ngb-pagination>
+    </div>
+  </div>
+
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+  </ngx-spinner>

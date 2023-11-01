@@ -10,4 +10,5 @@ export interface Patrimonio {
   dataCadastro: string
   dataAtualizacao: string
   dataIndisponibilidade: string
+  acervoId: number
 }

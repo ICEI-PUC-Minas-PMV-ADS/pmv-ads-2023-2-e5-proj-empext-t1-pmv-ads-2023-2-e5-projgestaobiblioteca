@@ -8,10 +8,11 @@ namespace BibCorp.Application.Services.Contracts.Acervos
     {
         Task<IEnumerable<AcervoDto>> GetAllAcervosAsync();
         Task<AcervoDto> GetAcervoByIdAsync(int acervoId);
-        Task<IEnumerable<AcervoDto>> GetAcervosByISBNAsync(string ISBN);
+        Task<AcervoDto> GetAcervoByISBNAsync(string ISBN);
         Task<AcervoDto> CreateAcervo(AcervoDto acervoDto);
         Task<AcervoDto> UpdateAcervo (int acervoId, AcervoDto acervoDto);
         Task<bool> DeleteAcervo(int acervoId);
         Task<ListaDePaginas<AcervoDto>> GetAcervosRecentesAsync(ParametrosPaginacao parametrosPaginacao);
+        Task<ListaDePaginas<AcervoDto>> GetAcervosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao);
     }
 }

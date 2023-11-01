@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 
-import { BsModalRef } from "ngx-bootstrap/modal";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
@@ -20,8 +19,6 @@ import { DeleteModalComponent } from "../../shared";
 export class PatrimonioListaComponent implements OnInit {
   animal: string;
   name: string;
-
-  public modalRef: BsModalRef;
 
   public patrimonios: Patrimonio[] = [];
   public PatrimonioFiltrados: any = [];

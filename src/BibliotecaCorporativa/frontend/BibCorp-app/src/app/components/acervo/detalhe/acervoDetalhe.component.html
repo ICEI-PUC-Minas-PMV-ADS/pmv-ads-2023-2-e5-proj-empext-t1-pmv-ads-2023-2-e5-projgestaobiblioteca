@@ -44,14 +44,16 @@
                               <td>{{i+1}}</td>
                               <td class="change-color">{{patrimonio.id}}</td>
                               <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button" routerLink="emprestar">Emprestar</button></td>
+                              <td><button class="btn btn-orange reserve-button" (click)="abrirDialog()" data-bs-toggle="modal" data-bs-target="modalEmprestar">Emprestar</button></td>
                           </tr>
                       </tbody>
                   </table>
               </div>
           </div>
       </div>
-
+  </div>
+</div>
+  
       <!-- Container de Sinopse  -->
       <div class="container mt-4">
           <div class="row">
@@ -64,10 +66,9 @@
                   </div>
               </div>
 
-              <!-- //Seção de comentários 
               <div class="col-lg-8 offset-lg-1 col-12 mt-4">
                   <h5>Comentários</h5>
-                  // Novo comentário 
+                 
                   <form class="mb-4">
                       <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                           <div class="d-flex flex-start w-100">
@@ -88,7 +89,7 @@
                       </div>
                   </form>
 
-                  // Comentários Recentes 
+                
                   <div class="mt-4">
                       <h6>Comentários Recentes</h6>
                       <br>
@@ -127,7 +128,7 @@
                   </div>
               </div>
           </div>
-      </div>-->
+      </div>
 
 
       <br><br>

@@ -53,6 +53,7 @@ import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.
 
 import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "./services";
 import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
+import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmpres
     TitlebarComponent,
     UsuarioComponent,
     modalEmprestarComponent,
+    ModalSucessoComponent,
   ],
   imports: [
     AppRoutingModule,

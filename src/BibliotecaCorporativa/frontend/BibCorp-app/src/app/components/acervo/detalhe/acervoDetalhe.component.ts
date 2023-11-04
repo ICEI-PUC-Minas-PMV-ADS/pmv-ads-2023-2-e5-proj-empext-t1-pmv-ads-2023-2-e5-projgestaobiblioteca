@@ -31,9 +31,10 @@ export class AcervoDetalheComponent implements OnInit {
 
   abrirDialog(){
     this.dialogRef.open(modalEmprestarComponent, {
-      data : { }
+      data : { }, id: 'Emprestar'
     });
   }
+
 
   public ngOnInit(): void {
     this.acervoParam = this.activevateRouter.snapshot.paramMap.get("id");

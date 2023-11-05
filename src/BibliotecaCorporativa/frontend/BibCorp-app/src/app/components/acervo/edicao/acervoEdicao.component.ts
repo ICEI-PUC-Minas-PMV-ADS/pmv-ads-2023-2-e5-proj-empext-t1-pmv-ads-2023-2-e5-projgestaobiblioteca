@@ -247,6 +247,7 @@ export class AcervoEdicaoComponent implements OnInit {
             console.log(patrimonios);
             this.patrimonios = patrimonios;
             this.ctrF.qtdeAcervos.setValue(this.patrimonios.length);
+            this.getGoogleBook(this.ctrF.isbn.value)
           } else
             this.toastrService.error(
               "Não existe patrimônio cadastrado para o ISBN informado",
@@ -260,7 +261,22 @@ export class AcervoEdicaoComponent implements OnInit {
       )
       .add(() => this.spinnerService.hide());
   }
-}
-function moment(arg0: string, arg1: string) {
-  throw new Error("Function not implemented.");
+
+  public getGoogleBook(isbn: string): void {
+    this.acervoService
+      .getGoogleBooks(isbn)
+      .subscribe(
+        (book: Acervo) => {
+          if (book != null) {
+            this.acervo = book
+            this.formAcervo.patchValue(this.acervo)
+          }
+        },
+        (error: any) => {
+          this.toastrService.error("Falha ao recuperar Acervo do Google Books ", "Erro!");
+          console.error(error);
+        }
+      )
+      .add(() => this.spinnerService.hide());
+  }
 }

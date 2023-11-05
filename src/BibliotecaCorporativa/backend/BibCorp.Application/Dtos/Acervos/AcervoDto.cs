@@ -38,6 +38,5 @@ namespace BibCorp.Application.Dto.Acervos
     public int QtdeEmTransito { get; set; }
     public int QtdeEmprestada { get; set; }
     public IEnumerable<PatrimonioDto> Patrimonios { get; set; }
-
   }
 }

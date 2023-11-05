@@ -21,6 +21,12 @@ export class AcervoService {
       .pipe(take(3))
   }
 
+  public getGoogleBooks (isbn: string): Observable<Acervo> {
+    console.log(this.baseURL)
+    return this.http.get<Acervo>(`${this.baseURL}External/${isbn}/googlebooks`)
+      .pipe(take(3))
+  }
+
   public getAcervoById (id: number): Observable<Acervo> {
     console.log(this.baseURL)
     return this.http.get<Acervo>(`${this.baseURL}${id}`)

@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { Injectable, NgModule } from "@angular/core";
+import { RouterModule, Routes, mapToCanActivate } from "@angular/router";
 
 import {
   AcervoComponent,
@@ -16,31 +16,55 @@ import { MinhasReservasComponent } from "./components/minhasReservas/minhasReser
 import { PerfilComponent } from "./components/usuario/perfil/perfil.component";
 import { AcervoDetalheComponent } from "./components/acervo/detalhe";
 import { AcervoListaComponent } from "./components/acervo/lista/acervoLista.component";
+import { AuthGuard } from "./util/security/guard";
+
+@Injectable({providedIn: 'root'})
+export class AdminGuard {
+  canActivate() {
+    return true;
+  }
+}
 
 const routes: Routes = [
-  { path: "principal", component: PrincipalComponent },
-  { path: "solicitacoes", component: MinhasReservasComponent },
+  { path: "", redirectTo: "principal", pathMatch: "full" },
 
-  { path: "acervos", redirectTo: "acervos/lista", pathMatch: "full" },
   {
-    path: "acervos",
-    component: AcervoComponent,
+    path: "",
+    runGuardsAndResolvers: "always",
+    canActivate: mapToCanActivate([AdminGuard]),
     children: [
-      { path: "detalhe/:id", component: AcervoDetalheComponent },
-      { path: "edicao/:id", component: AcervoEdicaoComponent },
-      { path: "novo", component: AcervoEdicaoComponent },
-      { path: "lista", component: AcervoListaComponent },
-    ],
-  },
+      {
+        path: "usuarios",
+        component: UsuarioComponent,
+        children: [{ path: "perfil", component: PerfilComponent }],
+      },
 
-  { path: "patrimonios", redirectTo: "patrimonios/lista", pathMatch: "full" },
-  {
-    path: "patrimonios",
-    component: PatrimonioComponent,
-    children: [
-      { path: "detalhe/:id", component: PatrimonioDetalheComponent },
-      { path: "novo", component: PatrimonioDetalheComponent },
-      { path: "lista", component: PatrimonioListaComponent },
+      { path: "acervos", redirectTo: "acervos/lista", pathMatch: "full" },
+      {
+        path: "acervos",
+        component: AcervoComponent,
+        children: [
+          { path: "detalhe/:id", component: AcervoDetalheComponent },
+          { path: "edicao/:id", component: AcervoEdicaoComponent },
+          { path: "novo", component: AcervoEdicaoComponent },
+          { path: "lista", component: AcervoListaComponent },
+        ],
+      },
+
+      {
+        path: "patrimonios",
+        redirectTo: "patrimonios/lista",
+        pathMatch: "full",
+      },
+      {
+        path: "patrimonios",
+        component: PatrimonioComponent,
+        children: [
+          { path: "detalhe/:id", component: PatrimonioDetalheComponent },
+          { path: "novo", component: PatrimonioDetalheComponent },
+          { path: "lista", component: PatrimonioListaComponent },
+        ],
+      },
     ],
   },
 
@@ -50,12 +74,13 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "cadastro", component: CadastroUsuarioComponent },
-      { path: "perfil", component: PerfilComponent },
     ],
   },
 
+  { path: "solicitacoes", component: MinhasReservasComponent },
+
+  { path: "principal", component: PrincipalComponent },
   { path: "**", redirectTo: "principal", pathMatch: "full" },
-  { path: "", redirectTo: "principal", pathMatch: "full" },
 ];
 
 @NgModule({

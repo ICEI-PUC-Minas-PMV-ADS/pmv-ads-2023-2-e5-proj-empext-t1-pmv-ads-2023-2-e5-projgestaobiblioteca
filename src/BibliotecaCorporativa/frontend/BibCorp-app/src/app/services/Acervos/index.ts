@@ -1,1 +1,1 @@
-export * from './Acervo.service'
+export * from './acervo.service'

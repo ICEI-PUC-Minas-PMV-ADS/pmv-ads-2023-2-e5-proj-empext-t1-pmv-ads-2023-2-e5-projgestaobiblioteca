@@ -11,8 +11,6 @@ namespace BibCorp.Application.Dto.Acervos
     [Display(Name = "Título do Acervo"),
       Required(ErrorMessage = "Campo {0} deverá ser informado!")]
     public string Titulo { get; set; }
-    [Display(Name = "Sub-título do Acervo"),
-    Required(ErrorMessage = "Campo {0} deverá ser informado!")]
     public string SubTitulo { get; set; }
     [Required(ErrorMessage = "Campo {0} deverá ser informado!")]
     public string Autor { get; set; }
@@ -40,6 +38,5 @@ namespace BibCorp.Application.Dto.Acervos
     public int QtdeEmTransito { get; set; }
     public int QtdeEmprestada { get; set; }
     public IEnumerable<PatrimonioDto> Patrimonios { get; set; }
-
   }
 }

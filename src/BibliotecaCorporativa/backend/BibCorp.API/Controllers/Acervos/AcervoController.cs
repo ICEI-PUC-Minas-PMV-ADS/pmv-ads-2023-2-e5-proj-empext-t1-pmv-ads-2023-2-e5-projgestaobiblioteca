@@ -4,6 +4,7 @@ using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Persistence.Utilities.Pages.Class;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace BibCorp.API.Controllers.Acervos;
 
@@ -12,9 +13,6 @@ namespace BibCorp.API.Controllers.Acervos;
 public class AcervoController : ControllerBase
 {
   private readonly IAcervoService _acervoService;
-  private readonly HttpClient _httpClient = new();
-  private AcervoGoogleBooksDto _googleBooksDto = new();
-  private readonly AcervoDto _acervoDto = new();
 
   public AcervoController
   (
@@ -89,9 +87,7 @@ public class AcervoController : ControllerBase
   {
     try
     {
-      var acervos = await _acervoService.GetAcervosByISBNAsync(ISBN);
-
-      if (acervos == null) return NotFound("Não existe acervos associados ao ISBN informado");
+      var acervos = await _acervoService.GetAcervoByISBNAsync(ISBN);
 
       return Ok(acervos);
     }
@@ -113,6 +109,11 @@ public class AcervoController : ControllerBase
   {
     try
     {
+      Console.WriteLine("create Acervo");
+      var acervo = await _acervoService.GetAcervoByISBNAsync(acervoDto.ISBN);
+
+      if (acervo != null) return BadRequest("Já existe um Acervo com o ISBN informado");
+
       var createdAcervo = await _acervoService.CreateAcervo(acervoDto);
 
       if (createdAcervo != null) return Ok(createdAcervo);
@@ -188,7 +189,7 @@ public class AcervoController : ControllerBase
   /// <response code="500">Erro interno</response>
 
   [HttpGet("Recentes")]
-  public async Task<IActionResult> GetAcervosRecentes([FromQuery]ParametrosPaginacao parametrosPaginacao)
+  public async Task<IActionResult> GetAcervosRecentes([FromQuery] ParametrosPaginacao parametrosPaginacao)
   {
     try
     {
@@ -207,43 +208,97 @@ public class AcervoController : ControllerBase
     }
   }
 
-/*
+  /// <summary>
+  /// Obtém os dados dos acervos cadastrados na emrpesa
+  /// </summary>
+  /// <response code="200">Dados dos acervos cadastrados</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("Paginacao")]
+  public async Task<IActionResult> GetAcervosPaginacao([FromQuery] ParametrosPaginacao parametrosPaginacao)
+  {
+    try
+    {
+      var acervos = await _acervoService.GetAcervosRecentesAsync(parametrosPaginacao);
+
+      if (acervos == null) return NotFound("Não existem acervos cadastrados");
+
+      Response.IncluirPaginacao(acervos.PaginaCorrente, acervos.TamanhoDaPagina, acervos.ContadorTotal, acervos.TotalDePaginas);
+
+      return Ok(acervos);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
+    }
+  }
+
   /// <summary>
   /// Realiza a consulta dos acervos no Google Books
   /// </summary>
-  /// <param name="arg">argumento de pesquisa </param>
+  /// <param name="isbn">número ISBN</param>
   /// <response code="200">Consulta ao Google Books realizada</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
-  [HttpGet("{arg}/googlebooks")]
-  public Task<IActionResult> GetAcervosGoogleBooks(string arg)
+  [HttpGet("External/{isbn}/googlebooks")]
+  public async Task<IActionResult> GetAcervosGoogleBooks(string isbn)
   {
     try
     {
-      var url = $"https://www.googleapis.com/books/v1/volumes?q={arg}";
+      var apikey = "AIzaSyAdqmSh-H-FC5TXVVEW0QBZaafCi7kI24E";
+      var url = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}";
 
-      _httpClient.BaseAddress = new Uri(url);
-
-      _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("consultar-googlebooks/json"));
-
-      System.Net.Http.HttpResponseMessage response = _httpClient.GetAsync(url).Result;
-
-      _googleBooksDto = response.Content.ReadFromJsonAsync<AcervoGoogleBooksDto>().Result;
-
-      if (response.IsSuccessStatusCode)
+      using (var httpClient = new HttpClient())
       {
+        var response = await httpClient.GetStringAsync(url);
+        var BooksInfo = JObject.Parse(response);
 
-        _acervoDto.ISBN = _googleBooksDto.ISBN;
+        if (!BooksInfo["items"].HasValues)
+        {
+          return null;
+        }
 
-        return Ok(_acervoDto);
+        string selfLink = BooksInfo["items"][0]["selfLink"].ToString();
+
+        response = await httpClient.GetStringAsync(selfLink);
+        var googleBooksInfo = JObject.Parse(response);
+
+        var volumeInfo = googleBooksInfo["volumeInfo"];
+
+
+        string dataString = volumeInfo["publishedDate"].ToString();
+
+        // Converter a string da data para um objeto DateTime
+        DateTime dataDateTime = DateTime.ParseExact(dataString, "yyyy-MM-dd", null);
+        Console.WriteLine(selfLink);
+
+        // Extrair o ano da data
+        string anoPublicacao = dataDateTime.Year.ToString();
+
+        var acervoDto = new AcervoDto
+        {
+          ISBN = volumeInfo["industryIdentifiers"]
+                .FirstOrDefault(x => x["type"].ToString() == "ISBN_13")?["identifier"].ToString(),
+          Titulo = volumeInfo["title"].ToString(),
+          SubTitulo = volumeInfo["subtitle"]?.ToString(),
+          Autor = string.Join(", ", volumeInfo["authors"]),
+          Resumo = volumeInfo["description"].ToString(),
+          AnoPublicacao = anoPublicacao,
+          Editora = volumeInfo["publisher"].ToString(),
+          QtdPaginas = int.Parse(volumeInfo["pageCount"].ToString())
+        };
+
+        return Ok(acervoDto);
       }
-      return BadRequest("Acervo não encontrado");
+
     }
     catch (Exception e)
     {
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervo por argumento de pesquisa. Erro: {e.Message}");
     }
-  } */
+  }
 
 }

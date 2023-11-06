@@ -1,79 +1,122 @@
-import { AppComponent } from './app.component'
+import { AppComponent } from "./app.component";
 
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from "./app-routing.module";
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { BrowserModule } from '@angular/platform-browser'
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
-
-import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { NgSelectModule } from '@ng-select/ng-select'
-
-import { NgxSpinnerModule } from 'ngx-spinner'
-import { ToastrModule } from 'ngx-toastr'
-
-import { MatSidenavModule } from '@angular/material/sidenav'
-import { MatIconModule } from '@angular/material/icon'
-import { MatInputModule } from '@angular/material/input'
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import {
-  NavBarComponent,
-  PrincipalComponent
-} from './components';
-import { LoginComponent } from './components/login/login.component';
-import { CadastroUsuarioComponent } from './components/cadastroUsuario/cadastroUsuario.component'
-import { LoginService } from './services/Usuarios/Login/Login.service'
-import { CadastroUsuarioService } from './services/Usuarios/CadastroUsuario/CadastroUsuario.service'
-import { DetalhesComponent } from './components/detalhes/detalhes.component'
-import { MinhasReservasComponent } from './components/minhasReservas/minhasReservas.component'
-import { PerfilComponent } from './components/perfil/perfil.component'
-import { MinhasReservasService } from './services/minhasReservas/minhasReservas.service'
+  NgbCollapseModule,
+  NgbPaginationModule,
+} from "@ng-bootstrap/ng-bootstrap";
+import { NgSelectModule } from "@ng-select/ng-select";
 
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { ToastrModule, ToastrService } from "ngx-toastr";
+
+import { MatButtonModule } from "@angular/material/button";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import {
+  AcervoComponent,
+  AcervoDetalheComponent,
+  AcervoEdicaoComponent,
+  AcervoListaComponent,
+  CadastroUsuarioComponent,
+  DeleteModalComponent,
+  LoginComponent,
+  NavBarComponent,
+  PatrimonioComponent,
+  PatrimonioDetalheComponent,
+  PatrimonioListaComponent,
+  PerfilComponent,
+  PrincipalComponent,
+  TitlebarComponent,
+  UsuarioComponent,
+} from "./components";
+
+import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
+import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.service";
+
+import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "./services";
+import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
+import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 
 @NgModule({
   declarations: [
+    AcervoComponent,
+    AcervoDetalheComponent,
+    AcervoEdicaoComponent,
+    AcervoListaComponent,
     AppComponent,
-    NavBarComponent,
-    PrincipalComponent,
-    LoginComponent,
     CadastroUsuarioComponent,
-    DetalhesComponent,
+    DeleteModalComponent,
+    LoginComponent,
+    NavBarComponent,
+    PatrimonioDetalheComponent,
+    PatrimonioListaComponent,
+    PatrimonioComponent,
+    PrincipalComponent,
     MinhasReservasComponent,
-    PerfilComponent
+    PerfilComponent,
+    TitlebarComponent,
+    UsuarioComponent,
+    modalEmprestarComponent,
+    ModalSucessoComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     NgbCollapseModule,
-    NgbModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatTooltipModule,
     NgSelectModule,
     NgxSpinnerModule,
+    NgbPaginationModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
-      positionClass: 'toast-bottom-right',
+      positionClass: "toast-bottom-right",
       preventDuplicates: true,
       progressBar: true,
-    })
+    }),
   ],
   providers: [
+    AcervoService,
     LoginService,
-    CadastroUsuarioService,
-    MinhasReservasService
+    MinhasReservasService,
+    NgxSpinnerService,
+    PatrimonioService,
+    ToastrService,
+    UsuarioService,
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

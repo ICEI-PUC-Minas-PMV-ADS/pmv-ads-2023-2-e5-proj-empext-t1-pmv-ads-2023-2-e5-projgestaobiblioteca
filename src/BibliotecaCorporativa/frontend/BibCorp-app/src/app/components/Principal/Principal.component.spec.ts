@@ -1,5 +1,5 @@
 import { async, type ComponentFixture, TestBed } from '@angular/core/testing'
-import { PrincipalComponent } from './principal.component'
+import { PrincipalComponent } from './Principal.component'
 
 describe('PrincipalComponent', () => {
   let component: PrincipalComponent

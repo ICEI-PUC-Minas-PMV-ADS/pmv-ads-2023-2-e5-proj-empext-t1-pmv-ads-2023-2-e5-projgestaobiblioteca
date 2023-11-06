@@ -2,12 +2,11 @@ import { type Patrimonio } from '../Patrimonios/Patrimonio'
 
 export interface Acervo {
   id: number
-  patrimonioId: number
-  iSBN: string
+  isbn: string
+  genero: string
   titulo: string
   autor: string
   subTitulo: string
-  genero: string
   resumo: string
   anoPublicacao: string
   dataCriacao: String
@@ -19,5 +18,5 @@ export interface Acervo {
   qtdeDisponivel: number
   qtdeEmTransito: number
   qtdeEmprestada: number
-  patrimonio: Patrimonio[]
+  patrimonios: Patrimonio[]
 }

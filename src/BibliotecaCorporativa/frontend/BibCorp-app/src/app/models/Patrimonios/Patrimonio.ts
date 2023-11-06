@@ -5,9 +5,10 @@ export interface Patrimonio {
   coluna: string
   prateleira: string
   posicao: string
-  iSBN: string
+  isbn: string
   status: boolean
   dataCadastro: string
   dataAtualizacao: string
   dataIndisponibilidade: string
+  acervoId: number
 }

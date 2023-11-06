@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using BibCorp.Domain.Models.Acervos;
 
 namespace BibCorp.Application.Dto.Patrimonios
 {
@@ -20,5 +21,7 @@ namespace BibCorp.Application.Dto.Patrimonios
         public string DataCadastro { get; set; }
         public string DataAtualizacao { get; set; }
         public string DataIndisponibilidade { get; set; }
+        public int? AcervoId { get; set; }
+        public Acervo Acervo { get; set; }
     }
 }

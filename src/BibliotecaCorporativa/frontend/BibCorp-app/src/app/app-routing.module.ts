@@ -1,27 +1,90 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Injectable, NgModule } from "@angular/core";
+import { RouterModule, Routes, mapToCanActivate } from "@angular/router";
 
-import { AcervoComponent, CadastroUsuarioComponent, LoginComponent, PrincipalComponent, DetalhesComponent } from './components';
-import { MinhasReservasComponent } from './components/minhasReservas/minhasReservas.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import {
+  AcervoComponent,
+  CadastroUsuarioComponent,
+  LoginComponent,
+  PrincipalComponent,
+  PatrimonioComponent,
+  PatrimonioDetalheComponent,
+  PatrimonioListaComponent,
+  UsuarioComponent,
+  AcervoEdicaoComponent,
+} from "./components";
+import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
+import { PerfilComponent } from "./components/usuario/perfil/perfil.component";
+import { AcervoDetalheComponent } from "./components/acervo/detalhe";
+import { AcervoListaComponent } from "./components/acervo/lista/acervoLista.component";
+import { AuthGuard } from "./util/security/guard";
+
+@Injectable({providedIn: 'root'})
+export class AdminGuard {
+  canActivate() {
+    return true;
+  }
+}
 
 const routes: Routes = [
-  { path: 'principal', component: PrincipalComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'cadastroUsuario', component: CadastroUsuarioComponent},
-  { path: 'acervo', component: AcervoComponent},
-  { path: 'detalhes', component: DetalhesComponent},
-  { path: 'solicitacoes', component: MinhasReservasComponent},
-  { path: 'perfil', component: PerfilComponent},
-  { path: '**', redirectTo: 'detalhes', pathMatch: 'full'},
-  { path: '', redirectTo: 'detalhes', pathMatch: 'full'},
+  { path: "", redirectTo: "principal", pathMatch: "full" },
 
+  {
+    path: "",
+    runGuardsAndResolvers: "always",
+    canActivate: mapToCanActivate([AdminGuard]),
+    children: [
+      {
+        path: "usuarios",
+        component: UsuarioComponent,
+        children: [{ path: "perfil", component: PerfilComponent }],
+      },
+
+      { path: "acervos", redirectTo: "acervos/lista", pathMatch: "full" },
+      {
+        path: "acervos",
+        component: AcervoComponent,
+        children: [
+          { path: "detalhe/:id", component: AcervoDetalheComponent },
+          { path: "edicao/:id", component: AcervoEdicaoComponent },
+          { path: "novo", component: AcervoEdicaoComponent },
+          { path: "lista", component: AcervoListaComponent },
+        ],
+      },
+
+      {
+        path: "patrimonios",
+        redirectTo: "patrimonios/lista",
+        pathMatch: "full",
+      },
+      {
+        path: "patrimonios",
+        component: PatrimonioComponent,
+        children: [
+          { path: "detalhe/:id", component: PatrimonioDetalheComponent },
+          { path: "novo", component: PatrimonioDetalheComponent },
+          { path: "lista", component: PatrimonioListaComponent },
+        ],
+      },
+    ],
+  },
+
+  {
+    path: "usuarios",
+    component: UsuarioComponent,
+    children: [
+      { path: "login", component: LoginComponent },
+      { path: "cadastro", component: CadastroUsuarioComponent },
+    ],
+  },
+
+  { path: "solicitacoes", component: MinhasReservasComponent },
+
+  { path: "principal", component: PrincipalComponent },
+  { path: "**", redirectTo: "principal", pathMatch: "full" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}

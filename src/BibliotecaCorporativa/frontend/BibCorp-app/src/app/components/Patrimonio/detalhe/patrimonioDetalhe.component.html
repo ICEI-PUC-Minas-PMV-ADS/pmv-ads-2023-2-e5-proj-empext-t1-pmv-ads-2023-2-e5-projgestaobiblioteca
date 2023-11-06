@@ -1,0 +1,150 @@
+<div class="container-fluid mt-0 ms-0 pt-0 ps-0">
+    <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active"  routerLink="principal">
+        <span class="mr-2">&larr;</span> Voltar
+    </button>
+
+    <form class="container-fluid mt-2 " [formGroup]="formPatrimonio">
+        <div class="card rounded shadow">
+            <div class="card-header rounded text-center text-white bibcorp-bg-secondary p-3">
+                <div class="h3">
+                    Formulário de Patrimônios
+                </div>
+            </div>
+            <div class="card-body p-0 mt-1 bg-white  text-black">
+                <div class="row m-0 p-9">
+                    <div class="col-md-8">
+                        <div class="h4 border-bottom mt-2">
+                            Dados do Patrimônio
+                        </div>
+                        <div class="card bibcorp-bg-white2 text-black p-2" *ngIf="editMode">
+                            <div class="h7 mt-2">
+                                Dados de Controle
+                            </div>
+                            <div class="form-row d-md-flex">
+                                <mat-form-field class="col-md-3 p-1" appearance="outline" disabled>
+                                    <mat-label>Patrimônio Id:</mat-label>
+                                    <input matInput type="text" formControlName="patrimonioId" [ngClass]="fieldValidator(ctrF.patrimonioId)"
+                                        readonly>
+                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.patrimonioId, '')}}</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                                    <mat-label>Situação:</mat-label>
+                                    <input matInput type="text" formControlName="statusTela"
+                                        [ngClass]="fieldValidator(ctrF.statusTela)"
+                                        [ngClass]="(ctrF.statusTela == 'Liberado') ? 'text-success' : 'text-danger'"
+                                        readonly>
+                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.statusTela,
+                                        '')}}</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                                    <mat-label>Data Cadastro:</mat-label>
+                                    <input matInput [matDatepicker]="dataCadastro" formControlName="dataCadastro"
+                                        [ngClass]="fieldValidator(ctrF.dataCadastro)" readonly>
+                                    <mat-datepicker-toggle matIconSuffix class="text-info"
+                                        [for]="dataCadastro"></mat-datepicker-toggle>
+                                    <mat-datepicker #dataCadastro disabled="true"></mat-datepicker>
+                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.dataCadastro,
+                                        "")}}</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                                    <mat-label>Data Atualização:</mat-label>
+                                    <input matInput [matDatepicker]="dataAtualizacao" formControlName="dataAtualizacao"
+                                        [ngClass]="fieldValidator(ctrF.dataAtualizacao)" readonly>
+                                    <mat-datepicker-toggle matIconSuffix class="text-info"
+                                        [for]="dataAtualizacao"></mat-datepicker-toggle>
+                                    <mat-datepicker #dataAtualizacao disabled="true"></mat-datepicker>
+                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.dataAtualizacao,
+                                        "")}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-row d-md-flex">
+                                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                                    <mat-label>Data Empréstimo:</mat-label>
+                                    <input matInput [matDatepicker]="dataIndisponibilidade"
+                                        formControlName="dataIndisponibilidade"
+                                        [ngClass]="fieldValidator(ctrF.dataIndisponibilidade)" readonly>
+                                    <mat-datepicker-toggle matIconSuffix class="text-info"
+                                        [for]="dataIndisponibilidade"></mat-datepicker-toggle>
+                                    <mat-datepicker #dataIndisponibilidade disabled="true"></mat-datepicker>
+                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.dataIndisponibilidade,
+                                        "")}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="h7 mt-2">
+                            Dados de Cadastro
+                        </div>
+                        <div class="form-row d-md-flex">
+                            <mat-form-field class="col-md-4 p-1" appearance="fill">
+                                <mat-label>Número ISBN:</mat-label>
+                                <input matInput type="text" formControlName="isbn"
+                                    [ngClass]="fieldValidator(ctrF.isbn)">
+                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.isbn, '')}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-8 p-1" appearance="fill">
+                                <mat-label>Localização:</mat-label>
+                                <input matInput type="text" formControlName="localizacao"
+                                    [ngClass]="fieldValidator(ctrF.localizacao)">
+                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.localizacao,
+                                    '')}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-row d-md-flex">
+                        </div>
+                        <div class="form-row d-md-flex">
+                            <mat-form-field class="col-md-3 p-1" appearance="fill">
+                                <mat-label>Sala:</mat-label>
+                                <input matInput type="text" formControlName="sala"
+                                    [ngClass]="fieldValidator(ctrF.sala)">
+                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.sala, '')}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-3 p-1" appearance="fill">
+                                <mat-label>Coluna:</mat-label>
+                                <input matInput type="text" formControlName="coluna"
+                                    [ngClass]="fieldValidator(ctrF.coluna)">
+                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.coluna, '')}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-3 p-1" appearance="fill">
+                                <mat-label>prateleira:</mat-label>
+                                <input matInput type="text" formControlName="prateleira"
+                                    [ngClass]="fieldValidator(ctrF.prateleira)">
+                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.prateleira, '')}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-3 p-1" appearance="fill">
+                                <mat-label>Posição:</mat-label>
+                                <input matInput type="text" formControlName="posicao"
+                                    [ngClass]="fieldValidator(ctrF.posicao)">
+                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.posicao, '')}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-row d-md-flex">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!--                        <input type="file" #file (change)="toggleImage($event)" style="display: none">  -->
+                        <div class="aligns-self-center text-center">
+                            <!--                          <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem upload imageDetail" (click)="file.click()"> -->
+                            <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem upload imageDetail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bibcorp-bg-secondary mt-1 ">
+                <div class="d-flex ">
+                    <button class="btn btn-danger ms-auto mx-1" (click)="clearForm()">
+                        Cancelar
+                    </button>
+                    <button class="btn btn-primary mx-1 px-4" [disabled]="!formPatrimonio.valid" (click)="saveChange()">
+                        {{editMode ? "Salvar" : "Criar"}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--
+<p>Form Value: {{formPatrimonio.value | json}}</p>
+<p>Form Status: {{formPatrimonio.status | json}}</p>
+-->

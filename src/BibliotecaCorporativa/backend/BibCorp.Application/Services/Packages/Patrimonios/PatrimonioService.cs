@@ -4,6 +4,7 @@ using BibCorp.Application.Dto.Patrimonios;
 using BibCorp.Application.Services.Contracts.Patrimonios;
 using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
+using BibCorp.Persistence.Utilities.Pages.Class;
 
 namespace BibCorp.Application.Services.Packages.Patrimonios
 {
@@ -65,6 +66,7 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
     {
       try
       {
+        Console.WriteLine("aquiiiiiiiii");
         var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosAsync();
 
         if (patrimonios == null) return null;
@@ -80,6 +82,24 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
       }
     }
 
+    public async Task<IEnumerable<PatrimonioDto>> GetAllPatrimoniosLivresAsync(string isbn)
+    {
+      try
+      {
+        var patrimonios = await _patrimonioPersistence.GetAllPatrimoniosLivresAsync(isbn);
+
+        if (patrimonios == null) return null;
+
+        var patrimonioMapper = _mapper.Map<PatrimonioDto[]>(patrimonios);
+
+        return patrimonioMapper;
+      }
+      catch (Exception e)
+      {
+
+        throw new Exception(e.Message);
+      }
+    }
     public async Task<PatrimonioDto> GetPatrimonioByIdAsync(int patrimonioId)
     {
       try
@@ -125,11 +145,11 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
     }
 
 
-    public async Task<IEnumerable<PatrimonioDto>> GetPatrimonioByISBNAsync(string ISBN)
+    public async Task<IEnumerable<PatrimonioDto>> GetPatrimoniosByISBNAsync(string ISBN)
     {
       try
       {
-        var patrimonio = await _patrimonioPersistence.GetPatrimonioByISBNAsync(ISBN);
+        var patrimonio = await _patrimonioPersistence.GetPatrimoniosByISBNAsync(ISBN);
 
         if (patrimonio == null) return null;
 
@@ -139,6 +159,30 @@ namespace BibCorp.Application.Services.Packages.Patrimonios
       }
       catch (Exception e)
       {
+        throw new Exception(e.Message);
+      }
+    }
+    public async Task<ListaDePaginas<PatrimonioDto>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
+    {
+      try
+      {
+        var patrimonios = await _patrimonioPersistence.GetPatrimoniosPaginacaoAsync(parametrosPaginacao);
+        Console.WriteLine("AquiService");
+
+        if (patrimonios == null) return null;
+
+        var patrimoniosMappper = _mapper.Map<ListaDePaginas<PatrimonioDto>>(patrimonios);
+
+        patrimoniosMappper.PaginaCorrente = patrimonios.PaginaCorrente;
+        patrimoniosMappper.TotalDePaginas = patrimonios.TotalDePaginas;
+        patrimoniosMappper.TamanhoDaPagina = patrimonios.TamanhoDaPagina;
+        patrimoniosMappper.ContadorTotal = patrimonios.ContadorTotal;
+
+        return patrimoniosMappper;
+      }
+      catch (Exception e)
+      {
+
         throw new Exception(e.Message);
       }
     }

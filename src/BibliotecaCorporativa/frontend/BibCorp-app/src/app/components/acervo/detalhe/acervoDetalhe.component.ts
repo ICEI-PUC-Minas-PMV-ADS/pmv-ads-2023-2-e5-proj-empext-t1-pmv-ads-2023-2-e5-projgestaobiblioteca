@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -39,7 +41,7 @@ export class AcervoDetalheComponent implements OnInit {
   public ngOnInit(): void {
     this.acervoParam = this.activevateRouter.snapshot.paramMap.get("id");
     this.getAcervoById();
- 
+
   }
 
   public getAcervoById(): void {

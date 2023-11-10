@@ -1,5 +1,12 @@
+<!-- TITULO -->
+<!-- <app-titulo [titulo]="'Solicitações'"></app-titulo> -->
+<app-titlebar
+  [title]="'Solicitações'"
+></app-titlebar>
+<!-- <router-outlet></router-outlet> -->
+
 <!-- FILTRO -->
-<!-- <div class="d-flex">
+ <div class="d-flex">
 
   <div class="flex-fill pr-3">
     <div class="input-group mb-2">
@@ -16,26 +23,28 @@
     </div>
   </div>
 
-</div> -->
-
-<!-- TITULO -->
-<!-- <app-titulo [titulo]="'Minhas Reservas'"></app-titulo> -->
+</div>
 
 <!-- CARDS -->
 <div class="container d-flex">
 <div class="row" *ngIf="acervos && acervos.length">
   <div *ngFor="let acervo of acervosFiltrados">
   <div class="card m-2" style="width: 18rem;">
-    <img class="card-img-top" src="../../../assets/PlaceHolder.png" alt="Card image cap" [style.width.px]="larguraImagem" [style.margin.px]="margemImagem">
+    <!-- <img class="card-img-top" src="../../../assets/Images/PlaceHolder.png" alt="Card image cap" [style.width.px]="larguraImagem" [style.margin.px]="margemImagem"> -->
     <div class="card-body">
-      <h5 class="card-title">{{acervo.titulo}}</h5>
-      <p class="card-text">DESCRIÇÃO DO LIVRO BLA BLA BLA</p>
+      <!-- <div *ngIf="titulos && titulos.length"> -->
+      <!-- <div *ngFor="let titulo of titulosFiltrados"> -->
+      <h5 class="card-title">Titulo</h5>
+      <p class="card-text">Descrição</p>
     </div>
+  <!-- </div> -->
+<!-- </div> -->
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">EMPRESTIMO: </li>
-      <li class="list-group-item">DEVOLUÇÃO: </li>
-      <li class="list-group-item">STATUS DO EMPRESTIMO:</li>
-      <li class="list-group-item">STATUS DO PATRIMONIO:</li>
+      <li class="list-group-item">EMPRESTIMO: {{acervo.dataEmprestimo}}</li>
+      <li class="list-group-item">DEVOLUÇÃO: {{acervo.dataDevolucao}}</li>
+      <li class="list-group-item">STATUS DO EMPRESTIMO: {{status(acervo)}}</li>
+      <!-- <li class="list-group-item">STATUS DO PATRIMONIO: </li> -->
+      <button type="button" class="btn btn-success btn-sm">Renovar / Solicitar novamente</button>
     </ul>
   </div>
 </div>

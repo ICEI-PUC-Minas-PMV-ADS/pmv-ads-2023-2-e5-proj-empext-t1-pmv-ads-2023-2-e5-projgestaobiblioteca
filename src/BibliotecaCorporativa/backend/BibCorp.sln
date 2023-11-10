@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibCorp.API", "BibCorp.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibCorp.Persistence", "BibCorp.Persistence\BibCorp.Persistence.csproj", "{3C48118F-371E-4D0C-9C14-4D59FF36E008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibCorp.Tests", "BibCorp.Tests\BibCorp.Tests.csproj", "{9751AC2D-96B0-4F91-915E-FEEBC968BBA0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

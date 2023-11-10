@@ -7,6 +7,8 @@ import { Acervo } from 'src/app/models';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MinhasReservasService } from 'src/app/services/minhasReservas/minhasReservas.service';
+import { Emprestimo } from 'src/app/models/Emprestimos';
+import { AcervoService } from 'src/app/services';
 
 
 @Component({
@@ -17,8 +19,15 @@ import { MinhasReservasService } from 'src/app/services/minhasReservas/minhasRes
 export class MinhasReservasComponent implements OnInit {
 
   // modalRef: BsModalRef;
-  public acervos: Acervo[] = [];
-  public acervosFiltrados: Acervo[] = [];
+  public acervos: Emprestimo[] = [];
+  public acervosFiltrados: Emprestimo[] = [];
+
+
+  public titulos: Acervo[] = [];
+  public titulosFiltrados: Acervo[] = [];
+
+  // public dt = new Date().toISOString();
+
 
   public larguraImagem = 75;
   public margemImagem = 2;
@@ -31,19 +40,23 @@ export class MinhasReservasComponent implements OnInit {
 
   public set filtroLista(value: string) {
     this.filtroListado = value;
-    this.acervosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.acervos;
+    // this.acervosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.acervos;
+
+    this.titulosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.titulos;
   }
+
 
   public filtrarReservas(filtrarPor: string): Acervo[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.acervos.filter(
+    return this.titulos.filter(
       livro => livro.titulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-      livro.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      livro.subTitulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
   constructor(
     private ReservasService: MinhasReservasService,
+    private AcervoService: AcervoService,
     // private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
@@ -51,13 +64,15 @@ export class MinhasReservasComponent implements OnInit {
 
   public ngOnInit(): void {
     this.spinner.show();
-    this.getPatrimonios();
+    // this.getPatrimonios();
+    this.getEmprestimos();
+    this.getAcervo();
   }
 
 
-  public getPatrimonios(): void {
-    this.ReservasService.getPatrimonio().subscribe({
-      next: (Response: Acervo[]) => {
+  public getEmprestimos(): void {
+    this.ReservasService.getEmprestimo().subscribe({
+      next: (Response: Emprestimo[]) => {
         this.acervos = Response;
         this.acervosFiltrados = this.acervos;
       },
@@ -67,6 +82,49 @@ export class MinhasReservasComponent implements OnInit {
       },
       complete: () => this.spinner.hide()
     });
+  }
+
+  public getAcervo(): void {
+    this.AcervoService.getAcervos().subscribe({
+      next: (Response: Acervo[]) => {
+        this.titulos = Response;
+        this.titulosFiltrados = this.titulos;
+      },
+      error: (error: any) => {
+        this.spinner.hide();
+        this.toastr.error('Erro ao Carregar', 'Erro!');
+      },
+      complete: () => this.spinner.hide()
+    });
+  }
+
+  //  public diaAtraso(emprestimo: Emprestimo): any {
+  //   // hoje = new Date();
+  //   let atraso = new Date(emprestimo.dataPrevistaDevolucao);
+
+  //   // return Math.floor((date - atraso) / (1000*60*60*24))
+  //   // return  (hoje - atraso)  / 1000 / 60 / 60 / 24;
+  //   return Math.abs(<any>new Date() - <any>new Date(atraso));
+  //  }
+
+  // public diaAtraso(): Emprestimo[] {
+  //   let atraso = this.acervos.dataPrevistaDevolucao
+  //   return x
+  // }
+
+  public renovar(): any {
+
+  }
+
+
+  public status(emprestimo: Emprestimo): any {
+    if (emprestimo.dataEmprestimo != null && emprestimo.dataDevolucao == null) {
+      return "Emprestado"
+    } else if(emprestimo.dataDevolucao != null) {
+      return "Devolvido"
+    } else if(emprestimo.qtdeDiasAtraso > 0 && emprestimo.dataDevolucao == null) {
+      return "Em atraso"
+    }
   }
 
 }

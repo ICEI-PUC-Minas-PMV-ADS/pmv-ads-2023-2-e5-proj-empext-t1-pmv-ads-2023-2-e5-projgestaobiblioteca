@@ -7,3 +7,6 @@ obj
 node_modules
 /backend/BibCorp.API/Pages
 bibcorpdb.db
+/backend/BibCorp.API/BibCorpDB.db
+/backend/BibCorp.API/BibCorpDB.db-shm
+/backend/BibCorp.API/BibCorpDB.db-wal

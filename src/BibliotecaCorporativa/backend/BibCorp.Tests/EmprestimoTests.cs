@@ -8,6 +8,7 @@ using BibCorp.Domain.Models.Emprestimos;
 using BibCorp.Application.Dto.Emprestimos;
 using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Domain.Models.Acervos;
+using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 
 namespace BibCorp.Tests
 {
@@ -16,12 +17,14 @@ namespace BibCorp.Tests
     public readonly EmprestimoService _emprestimoServices;
     private readonly Mock<ISharedPersistence> sharedPersistenceMock;
     private readonly Mock<IEmprestimoPersistence> emprestimoPersistenceMock;
+    private readonly Mock<IAcervoPersistence> acervoPersistenceMock;
     private readonly Mock<IMapper> mapperMock;
     private readonly EmprestimoFixture emprestimoFixture;
 
     public EmprestimoServiceTests()
     {
       emprestimoPersistenceMock = new Mock<IEmprestimoPersistence>();
+      acervoPersistenceMock = new Mock<IAcervoPersistence>();
       mapperMock = new Mock<IMapper>();
       emprestimoFixture = new EmprestimoFixture();
       sharedPersistenceMock = new Mock<ISharedPersistence>();
@@ -29,6 +32,7 @@ namespace BibCorp.Tests
 
       _emprestimoServices = new EmprestimoService(
           emprestimoPersistenceMock.Object,
+          acervoPersistenceMock.Object,
           mapperMock.Object
       );
 
@@ -51,7 +55,7 @@ namespace BibCorp.Tests
                 {
                     Id = src[0].Id,
                     UserName = src[0].UserName,
-                    Devolvido = src[0].Devolvido,
+                    //Devolvido = src[0].Devolvido,
                     DataEmprestimo = src[0].DataEmprestimo,
                     DataPrevistaDevolucao = src[0].DataPrevistaDevolucao,
                     QtdeDiasEmprestimo = src[0].QtdeDiasEmprestimo,
@@ -67,7 +71,7 @@ namespace BibCorp.Tests
                 {
                     Id = src[1].Id,
                     UserName = src[1].UserName,
-                    Devolvido = src[1].Devolvido,
+                    //Devolvido = src[1].Devolvido,
                     DataEmprestimo = src[1].DataEmprestimo,
                     DataPrevistaDevolucao = src[1].DataPrevistaDevolucao,
                     QtdeDiasEmprestimo = src[1].QtdeDiasEmprestimo,
@@ -134,7 +138,7 @@ namespace BibCorp.Tests
       {
             Id = src.Id,
             UserName = src.UserName,
-            Devolvido = src.Devolvido,
+            //Devolvido = src.Devolvido,
             DataEmprestimo = src.DataEmprestimo,
             DataPrevistaDevolucao = src.DataPrevistaDevolucao,
             QtdeDiasEmprestimo = src.QtdeDiasEmprestimo,
@@ -175,7 +179,7 @@ namespace BibCorp.Tests
       {
         Id = src.Id,
         UserName = src.UserName,
-        Devolvido = src.Devolvido,
+        //Devolvido = src.Devolvido,
         DataEmprestimo = src.DataEmprestimo,
         DataPrevistaDevolucao = src.DataPrevistaDevolucao,
         QtdeDiasEmprestimo = src.QtdeDiasEmprestimo,
@@ -214,7 +218,7 @@ namespace BibCorp.Tests
             {
               Id = src.Id,
               UserName = src.UserName,
-              Devolvido = src.Devolvido,
+              //Devolvido = src.Devolvido,
               DataEmprestimo = src.DataEmprestimo,
               DataPrevistaDevolucao = src.DataPrevistaDevolucao,
               QtdeDiasEmprestimo = src.QtdeDiasEmprestimo,
@@ -232,7 +236,7 @@ namespace BibCorp.Tests
             {
               Id = source.Id,
               UserName = source.UserName,
-              Devolvido = source.Devolvido,
+              //Devolvido = source.Devolvido,
               DataEmprestimo = source.DataEmprestimo,
               DataPrevistaDevolucao = source.DataPrevistaDevolucao,
               QtdeDiasEmprestimo = source.QtdeDiasEmprestimo,
@@ -283,7 +287,7 @@ namespace BibCorp.Tests
            {
              Id = src.Id,
              UserName = src.UserName,
-             Devolvido = src.Devolvido,
+             //Devolvido = src.Devolvido,
              DataEmprestimo = src.DataEmprestimo,
              DataPrevistaDevolucao = src.DataPrevistaDevolucao,
              QtdeDiasEmprestimo = src.QtdeDiasEmprestimo,
@@ -301,7 +305,7 @@ namespace BibCorp.Tests
             {
               Id = source.Id,
               UserName = source.UserName,
-              Devolvido = source.Devolvido,
+              //Devolvido = source.Devolvido,
               DataEmprestimo = source.DataEmprestimo,
               DataPrevistaDevolucao = source.DataPrevistaDevolucao,
               QtdeDiasEmprestimo = source.QtdeDiasEmprestimo,

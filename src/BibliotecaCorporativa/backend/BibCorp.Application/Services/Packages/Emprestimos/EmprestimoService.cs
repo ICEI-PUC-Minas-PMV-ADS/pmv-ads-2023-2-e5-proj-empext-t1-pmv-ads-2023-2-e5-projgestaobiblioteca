@@ -1,44 +1,68 @@
 using AutoMapper;
 using BibCorp.Application.Dto.Emprestimos;
+using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
+using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Domain.Models.Emprestimos;
+using BibCorp.Domain.Models.Acervos;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
+using BibCorp.Persistence.Interfaces.Contracts.Acervos;
+using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
 
 namespace BibCorp.Application.Services.Packages.Emprestimos
 {
   public class EmprestimoService : IEmprestimoService
   {
     private readonly IEmprestimoPersistence _emprestimoPersistence;
+    private readonly IAcervoPersistence _acervoPersistence;
+    private readonly IPatrimonioPersistence _patrimonioPersistence;
     private readonly IMapper _mapper;
     public EmprestimoService(
         IEmprestimoPersistence emprestimoPersistence,
+        IAcervoPersistence acervoPersistence,
+        IPatrimonioPersistence patrimonioPersistence,
         IMapper mapper)
     {
       _emprestimoPersistence = emprestimoPersistence;
+      _acervoPersistence = acervoPersistence;
+      _patrimonioPersistence = patrimonioPersistence;
       _mapper = mapper;
     }
     public async Task<EmprestimoDto> CreateEmprestimo(EmprestimoDto emprestimoDto)
     {
-      try
+
+      var acervo = await _acervoPersistence.GetAcervoByIdAsync(emprestimoDto.AcervoId);
+      var qtdeDisponivelAcervo = acervo.QtdeDisponivel;
+
+      if ( qtdeDisponivelAcervo > 0)
       {
-        var emprestimo = _mapper.Map<Emprestimo>(emprestimoDto);
-
-        _emprestimoPersistence.Create<Emprestimo>(emprestimo);
-
-        if (await _emprestimoPersistence.SaveChangesAsync())
+        try
         {
-          var emprestimoRetorno = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimo.Id);
+          var emprestimo = _mapper.Map<Emprestimo>(emprestimoDto);
 
-          return _mapper.Map<EmprestimoDto>(emprestimoRetorno);
+          _emprestimoPersistence.Create<Emprestimo>(emprestimo);
+
+          if (await _emprestimoPersistence.SaveChangesAsync())
+          {
+            var emprestimoRetorno = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimo.Id);
+
+            await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId);
+            await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId);
+
+            return _mapper.Map<EmprestimoDto>(emprestimoRetorno);
+          }
+
+          return null;
         }
+        catch (Exception e)
+        {
 
-        return null;
+          throw new Exception(e.Message);
+        }
       }
-      catch (Exception e)
-      {
 
-        throw new Exception(e.Message);
-      }
+      throw new Exception("Acervo não possui unidades disponíveis para empréstimo");
+
     }
 
     public async Task<bool> DeleteEmprestimo(int emprestimoId)

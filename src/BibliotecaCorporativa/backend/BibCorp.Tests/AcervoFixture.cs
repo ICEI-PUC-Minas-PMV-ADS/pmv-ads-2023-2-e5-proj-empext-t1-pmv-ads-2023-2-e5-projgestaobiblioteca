@@ -16,7 +16,7 @@ namespace BibCorp.Tests
         new Acervo
         {
           Id = 1,
-          PatrimonioId = 1,
+          //PatrimonioId = 1,
           ISBN = "9788532519474",
           Titulo = faker.Lorem.Words(20).ToString(),
           SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -34,7 +34,7 @@ namespace BibCorp.Tests
         new Acervo
         {
           Id = 1,
-          PatrimonioId = 1,
+          //PatrimonioId = 1,
           ISBN = "9788532519474",
           Titulo = faker.Lorem.Words(20).ToString(),
           SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -59,7 +59,7 @@ namespace BibCorp.Tests
         new Acervo
         {
           Id = 7,
-          PatrimonioId = 1,
+          //PatrimonioId = 1,
           ISBN = "9788532519474",
           Titulo = faker.Lorem.Words(20).ToString(),
           SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -89,7 +89,7 @@ namespace BibCorp.Tests
       new Acervo
       {
         Id = 26,
-        PatrimonioId = 1,
+        //PatrimonioId = 1,
         ISBN = "9788532519474",
         Titulo = faker.Lorem.Words(20).ToString(),
         SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -112,7 +112,7 @@ namespace BibCorp.Tests
       new AcervoDto
       {
         Id = 26,
-        PatrimonioId = 1,
+        //PatrimonioId = 1,
         ISBN = "9788532519474",
         Titulo = faker.Lorem.Words(20).ToString(),
         SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -137,7 +137,7 @@ namespace BibCorp.Tests
        new Acervo
        {
          Id = 26,
-         PatrimonioId = 1,
+         //PatrimonioId = 1,
          ISBN = "9788532519474",
          Titulo = faker.Lorem.Words(20).ToString(),
          SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -163,7 +163,7 @@ namespace BibCorp.Tests
       new Acervo
       {
         Id = 26,
-        PatrimonioId = 1,
+        //PatrimonioId = 1,
         ISBN = "9788532519474",
         Titulo = faker.Lorem.Words(20).ToString(),
         SubTitulo = faker.Lorem.Words(20).ToString(),
@@ -186,7 +186,7 @@ namespace BibCorp.Tests
       new AcervoDto
       {
         Id = 26,
-        PatrimonioId = 1,
+        //PatrimonioId = 1,
         ISBN = "9788532519474",
         Titulo = faker.Lorem.Words(20).ToString(),
         SubTitulo = faker.Lorem.Words(20).ToString(),

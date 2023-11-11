@@ -50,7 +50,7 @@ namespace BibCorp.Tests
                 new AcervoDto
                 {
                     Id = src[0].Id,
-                    PatrimonioId = src[0].PatrimonioId,
+                    //PatrimonioId = src[0].PatrimonioId,
                     ISBN = src[0].ISBN,
                     Titulo = src[0].Titulo,
                     SubTitulo = src[0].SubTitulo,
@@ -68,7 +68,7 @@ namespace BibCorp.Tests
                 new AcervoDto
                 {
                     Id = src[1].Id,
-                    PatrimonioId = src[1].PatrimonioId,
+                    //PatrimonioId = src[1].PatrimonioId,
                     ISBN = src[1].ISBN,
                     Titulo = src[1].Titulo,
                     SubTitulo = src[1].SubTitulo,
@@ -137,7 +137,7 @@ namespace BibCorp.Tests
       .Returns((Acervo src) => new AcervoDto
       {
         Id = src.Id,
-        PatrimonioId = src.PatrimonioId,
+        //PatrimonioId = src.PatrimonioId,
         ISBN = src.ISBN,
         Titulo = src.Titulo,
         SubTitulo = src.SubTitulo,
@@ -180,7 +180,7 @@ namespace BibCorp.Tests
       .Returns((Acervo src) => new AcervoDto
       {
         Id = src.Id,
-        PatrimonioId = src.PatrimonioId,
+        //PatrimonioId = src.PatrimonioId,
         ISBN = src.ISBN,
         Titulo = src.Titulo,
         SubTitulo = src.SubTitulo,
@@ -221,7 +221,7 @@ namespace BibCorp.Tests
             .Returns((AcervoDto src) => new Acervo
             {
               Id = src.Id,
-              PatrimonioId = src.PatrimonioId,
+              //PatrimonioId = src.PatrimonioId,
               ISBN = src.ISBN,
               Titulo = src.Titulo,
               SubTitulo = src.SubTitulo,
@@ -241,7 +241,7 @@ namespace BibCorp.Tests
             .Returns((Acervo source) => new AcervoDto
             {
               Id = source.Id,
-              PatrimonioId = source.PatrimonioId,
+              //PatrimonioId = source.PatrimonioId,
               ISBN = source.ISBN,
               Titulo = source.Titulo,
               SubTitulo = source.SubTitulo,
@@ -294,7 +294,7 @@ namespace BibCorp.Tests
            .Returns((AcervoDto src) => new Acervo
            {
              Id = src.Id,
-             PatrimonioId = src.PatrimonioId,
+             //PatrimonioId = src.PatrimonioId,
              ISBN = src.ISBN,
              Titulo = src.Titulo,
              SubTitulo = src.SubTitulo,
@@ -314,7 +314,7 @@ namespace BibCorp.Tests
             .Returns((Acervo source) => new AcervoDto
             {
               Id = source.Id,
-              PatrimonioId = source.PatrimonioId,
+              //PatrimonioId = source.PatrimonioId,
               ISBN = source.ISBN,
               Titulo = source.Titulo,
               SubTitulo = source.SubTitulo,

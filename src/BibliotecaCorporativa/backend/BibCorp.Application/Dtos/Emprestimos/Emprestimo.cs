@@ -7,8 +7,7 @@ namespace BibCorp.Application.Dto.Emprestimos
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-
-        public bool Devolvido { get; set; }
+        public StatusDto Status { get; set; }
         public string DataEmprestimo { get; set; }
         public string DataPrevistaDevolucao { get; set; }
         public int  QtdeDiasEmprestimo { get; set; }
@@ -18,5 +17,15 @@ namespace BibCorp.Application.Dto.Emprestimos
         public IEnumerable<AcervoDto> Acervos { get; set; }
         public int PatrimonioId { get; set; }
         public IEnumerable<PatrimonioDto> Patrimonios { get; set; }
+        public string LocalDeColeta { get; set;}
+        public string LocalDeEntrega { get; set;}
+    }
+
+     public enum StatusDto
+    {
+        Reservado = 1,
+        Emprestado = 2,
+        Devolvido = 3,
+        Renovado = 4
     }
 }

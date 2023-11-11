@@ -12,5 +12,6 @@ namespace BibCorp.Persistence.Interfaces.Contracts.Acervos
         Task<Acervo> GetAcervoByISBNAsync(string ISBN);
         Task<ListaDePaginas<Acervo>> GetAcervosRecentesAsync(ParametrosPaginacao parametrosPaginacao);
         Task<ListaDePaginas<Acervo>> GetAcervosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao);
+        Task<bool> UpdateAcervoAposEmprestimo(int acervoId);
     }
 }

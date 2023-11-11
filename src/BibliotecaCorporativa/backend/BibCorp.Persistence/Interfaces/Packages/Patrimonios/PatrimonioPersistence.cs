@@ -1,4 +1,6 @@
 
+using AutoMapper;
+using BibCorp.Domain.Models.Acervos;
 using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
@@ -11,11 +13,12 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
   public class PatrimonioPersistence : SharedPersistence, IPatrimonioPersistence
   {
     private readonly BibCorpContext _context;
+    private readonly IMapper _mapper;
 
-    public PatrimonioPersistence(BibCorpContext context) : base(context)
+    public PatrimonioPersistence(BibCorpContext context, IMapper mapper) : base(context)
     {
       _context = context;
-
+      _mapper = mapper;
     }
     public async Task<IEnumerable<Patrimonio>> GetAllPatrimoniosAsync()
     {
@@ -142,5 +145,23 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
       return await ListaDePaginas<Patrimonio>.CriarPaginaAsync(query, parametrosPaginacao.NumeroDaPagina, parametrosPaginacao.tamanhoDaPagina);
     }
+
+    public async Task<bool> UpdatePatrimonioAposEmprestimo(int patrimonioId)
+    {
+      IQueryable<Patrimonio> query = _context.Patrimonios
+                .AsNoTracking()
+                .Where(p => p.Id == patrimonioId);
+
+      var patrimonioAlterado = _mapper.Map<Patrimonio>(query.ToArrayAsync().Result.ElementAt(0));
+
+      patrimonioAlterado.Status = false;
+
+      Update(patrimonioAlterado);
+
+      return await SaveChangesAsync();
+
+    }
+
+
   }
 }

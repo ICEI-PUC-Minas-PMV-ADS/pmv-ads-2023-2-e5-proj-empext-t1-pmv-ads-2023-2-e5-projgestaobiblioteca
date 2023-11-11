@@ -16,7 +16,7 @@ namespace BibCorp.Tests
         {
           Id = 1,
           UserName = faker.Internet.UserName(),
-          Devolvido = true,
+          //Devolvido = true,
           DataEmprestimo = faker.Date.Recent().ToString(),
           DataPrevistaDevolucao = faker.Date.Recent().ToString(),
           QtdeDiasEmprestimo = faker.Random.Number(),
@@ -32,7 +32,7 @@ namespace BibCorp.Tests
         {
           Id = 2,
           UserName = faker.Internet.UserName(),
-          Devolvido = true,
+          //Devolvido = true,
           DataEmprestimo = faker.Date.Recent().ToString(),
           DataPrevistaDevolucao = faker.Date.Recent().ToString(),
           QtdeDiasEmprestimo = faker.Random.Number(),
@@ -55,7 +55,7 @@ namespace BibCorp.Tests
         {
           Id = 7,
           UserName = faker.Internet.UserName(),
-          Devolvido = true,
+          //Devolvido = true,
           DataEmprestimo = faker.Date.Recent().ToString(),
           DataPrevistaDevolucao = faker.Date.Recent().ToString(),
           QtdeDiasEmprestimo = faker.Random.Number(),
@@ -83,7 +83,7 @@ namespace BibCorp.Tests
       {
         Id = 26,
         UserName = faker.Internet.UserName(),
-        Devolvido = true,
+        //Devolvido = true,
         DataEmprestimo = faker.Date.Recent().ToString(),
         DataPrevistaDevolucao = faker.Date.Recent().ToString(),
         QtdeDiasEmprestimo = faker.Random.Number(),
@@ -104,7 +104,7 @@ namespace BibCorp.Tests
       {
         Id = 26,
         UserName = faker.Internet.UserName(),
-        Devolvido = true,
+        //Devolvido = true,
         DataEmprestimo = faker.Date.Recent().ToString(),
         DataPrevistaDevolucao = faker.Date.Recent().ToString(),
         QtdeDiasEmprestimo = faker.Random.Number(),
@@ -127,7 +127,7 @@ namespace BibCorp.Tests
        {
          Id = 26,
          UserName = faker.Internet.UserName(),
-         Devolvido = true,
+         //Devolvido = true,
          DataEmprestimo = faker.Date.Recent().ToString(),
          DataPrevistaDevolucao = faker.Date.Recent().ToString(),
          QtdeDiasEmprestimo = faker.Random.Number(),
@@ -151,7 +151,7 @@ namespace BibCorp.Tests
       {
         Id = 26,
         UserName = faker.Internet.UserName(),
-        Devolvido = true,
+        //Devolvido = true,
         DataEmprestimo = faker.Date.Recent().ToString(),
         DataPrevistaDevolucao = faker.Date.Recent().ToString(),
         QtdeDiasEmprestimo = faker.Random.Number(),
@@ -172,7 +172,7 @@ namespace BibCorp.Tests
       {
         Id = 26,
         UserName = faker.Internet.UserName(),
-        Devolvido = true,
+       //Devolvido = true,
         DataEmprestimo = faker.Date.Recent().ToString(),
         DataPrevistaDevolucao = faker.Date.Recent().ToString(),
         QtdeDiasEmprestimo = faker.Random.Number(),

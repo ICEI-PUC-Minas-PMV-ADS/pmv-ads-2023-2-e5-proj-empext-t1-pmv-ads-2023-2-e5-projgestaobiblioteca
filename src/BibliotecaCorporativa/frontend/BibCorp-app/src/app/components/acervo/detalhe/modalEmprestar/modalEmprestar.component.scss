@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   color: black;
-  width: 400px;
+  width: 440px;
   height: 300px;
   justify-content: space-between;
 }
@@ -33,4 +33,12 @@
 .btn-orange:hover {
   background-color: #FFB07D;
   color: white;
+}
+
+.emprestimo{
+  text-align: justify;
+}
+
+#local-entrega, #local-coleta{
+  height: 27px;
 }

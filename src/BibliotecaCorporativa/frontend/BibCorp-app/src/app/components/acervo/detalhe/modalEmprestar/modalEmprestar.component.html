@@ -1,41 +1,41 @@
 <div class="modal-content-vertical-large" id="Emprestar">
     <h3>Empréstimo</h3>
   
-    <div class="dropdown">
+    <div class="dropdown" class="emprestimo">
       <label for="local-entrega" style="width: 100%;">Local de entrega:</label>
-      <select id="local-entrega" class="custom-dropdown" style="width: 100%;">
-        <option value="belo-horizonte">Matriz</option>
-        <option value="sabara">Contorno</option>
-        <option value="sabara">Betim</option>
-        <option value="sabara">Caetes</option>
-        <option value="sabara">Galeria do Ouvidor</option>
-        <option value="sabara">Justinópolis</option>
-        <option value="sabara">Nova Lima</option>
-        <option value="sabara">Raposos</option>
-        <option value="sabara">Ribeirão das Neves</option>
-        <option value="sabara">Sabará</option>
-        <option value="sabara">Santa Luzia</option>
-        <option value="sabara">Venda Nova</option>
+      <select id="local-entrega" class="custom-dropdown" style="width: 100%;" [(ngModel)]="localEntrega">
+        <option value="Matriz">Matriz</option>
+        <option value="Contorno">Contorno</option>
+        <option value="Betim">Betim</option>
+        <option value="Caetes">Caetés</option>
+        <option value="Galeria do Ouvidor">Galeria do Ouvidor</option>
+        <option value="Justinopolis">Justinópolis</option>
+        <option value="Nova Lima">Nova Lima</option>
+        <option value="Raposos">Raposos</option>
+        <option value="Ribeirao das Neves">Ribeirão das Neves</option>
+        <option value="Sabara">Sabará</option>
+        <option value="Santa Luzia">Santa Luzia</option>
+        <option value="Venda Nova">Venda Nova</option>
       </select>
     </div>
   
     <div class="dropdown">
       <label for="local-coleta" style="width: 100%;">Local de coleta:</label>
-      <select id="local-coleta" class="custom-dropdown" style="width: 100%;">
-        <option value="belo-horizonte">Matriz</option>
-        <option value="sabara">Contorno</option>
-        <option value="sabara">Betim</option>
-        <option value="sabara">Caetes</option>
-        <option value="sabara">Galeria do Ouvidor</option>
-        <option value="sabara">Justinópolis</option>
-        <option value="sabara">Nova Lima</option>
-        <option value="sabara">Raposos</option>
-        <option value="sabara">Ribeirão das Neves</option>
-        <option value="sabara">Sabará</option>
-        <option value="sabara">Santa Luzia</option>
-        <option value="sabara">Venda Nova</option>
+      <select id="local-coleta" class="custom-dropdown" style="width: 100%;" [(ngModel)]="localColeta">
+        <option value="Matriz">Matriz</option>
+        <option value="Contorno">Contorno</option>
+        <option value="Betim">Betim</option>
+        <option value="Caetes">Caetés</option>
+        <option value="Galeria do Ouvidor">Galeria do Ouvidor</option>
+        <option value="Justinopolis">Justinópolis</option>
+        <option value="Nova Lima">Nova Lima</option>
+        <option value="Raposos">Raposos</option>
+        <option value="Ribeirao das Neves">Ribeirão das Neves</option>
+        <option value="Sabara">Sabará</option>
+        <option value="Santa Luzia">Santa Luzia</option>
+        <option value="Venda Nova">Venda Nova</option>
       </select>
     </div>
   
-    <button class="btn btn-orange" (click)="fecharModalEmprestarEAbrirModalSucesso()">Emprestar</button>
+    <button class="btn btn-orange" (click)="novoEmprestimo()">Emprestar</button>
   </div>

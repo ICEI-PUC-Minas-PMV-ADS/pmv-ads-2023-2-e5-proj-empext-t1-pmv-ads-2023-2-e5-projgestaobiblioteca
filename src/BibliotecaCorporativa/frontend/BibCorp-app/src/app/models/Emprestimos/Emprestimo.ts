@@ -1,10 +1,10 @@
 import { type Patrimonio } from '../Patrimonios/Patrimonio'
 import { type Acervo } from '../Acervos/Acervo'
 
-export interface Emprestimo {
+export class Emprestimo {
   Id: number
-  UserName: string
-  devolvido: boolean
+  userName: string
+  status: Status
   dataEmprestimo: string
   dataPrevistaDevolucao: string
   qtdeDiasEmprestimo: number
@@ -14,4 +14,13 @@ export interface Emprestimo {
   acervos: Acervo[]
   patrimonioId: number
   patrimonios: Patrimonio[]
+  localDeColeta: string
+  localDeEntrega: string
+}
+
+export enum Status{
+  Reservado = 1,
+  Emprestado = 2,
+  Devolvido = 3,
+  Renovado = 4
 }

@@ -31,9 +31,9 @@ export class AcervoDetalheComponent implements OnInit {
     private dialogRef : MatDialog
   ) { }
 
-  abrirDialog(){
+  abrirDialog(patrimonioId: number){
     this.dialogRef.open(modalEmprestarComponent, {
-      data : { }, id: 'Emprestar'
+      data : { patrimonioId: patrimonioId, acervoId: this.acervo.id, id: 'Emprestar'}
     });
   }
 

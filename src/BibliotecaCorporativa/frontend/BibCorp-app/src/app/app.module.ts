@@ -7,7 +7,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import {
   NgbCollapseModule,
@@ -54,6 +54,7 @@ import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.
 import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "./services";
 import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
+import { JwtInterceptor } from "./util";
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/
     PatrimonioService,
     ToastrService,
     UsuarioService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

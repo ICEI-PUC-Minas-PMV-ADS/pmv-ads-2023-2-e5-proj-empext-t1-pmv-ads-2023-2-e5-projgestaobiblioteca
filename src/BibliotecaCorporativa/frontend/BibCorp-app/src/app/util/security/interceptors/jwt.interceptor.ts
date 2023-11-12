@@ -1,31 +1,21 @@
-/*import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
-
-import { catchError, Observable, take, throwError } from 'rxjs';
-
-
-import { LoginLogoutService } from 'src/app/services';
-import { Users } from 'src/app/models';
-
-
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, catchError, take, throwError } from "rxjs";
+import { Usuario } from "src/app/models";
+import { LoginService } from "src/app/services";
 
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
   constructor(
-    private loginLogoutService: LoginLogoutService
+    private loginService: LoginService
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let userCurrent: Users;
+    let userCurrent: Usuario;
 
-    this.loginLogoutService.currentUser$
+    this.loginService.currentUser$
       .pipe(take(1))
       .subscribe (
         user => {
@@ -52,4 +42,3 @@ export class JwtInterceptor implements HttpInterceptor {
       ));
   }
 }
-*/

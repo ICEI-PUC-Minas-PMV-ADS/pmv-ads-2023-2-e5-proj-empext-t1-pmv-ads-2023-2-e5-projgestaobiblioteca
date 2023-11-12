@@ -46,9 +46,10 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
           {
             var emprestimoRetorno = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimo.Id);
 
-            await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId);
-            await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId);
-
+            if (await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId)){
+               await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId);
+            }
+           
             return _mapper.Map<EmprestimoDto>(emprestimoRetorno);
           }
 

@@ -29,6 +29,7 @@ public class UsuariosController : ControllerBase
     try
     {
       var claimUserName = User.GetUserNameClaim();
+      Console.WriteLine(claimUserName);
 
       if (claimUserName == null) return Unauthorized();
 

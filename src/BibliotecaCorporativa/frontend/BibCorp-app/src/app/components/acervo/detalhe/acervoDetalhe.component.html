@@ -42,7 +42,7 @@
                               <td>{{i+1}}</td>
                               <td class="change-color">{{patrimonio.id}}</td>
                               <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button" (click)="abrirDialog()" data-bs-toggle="modal" data-bs-target="modalEmprestar">Emprestar</button></td>
+                              <td><button class="btn btn-orange reserve-button" (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal" data-bs-target="modalEmprestar">Emprestar</button></td>
                           </tr>
                       </tbody>
                   </table>

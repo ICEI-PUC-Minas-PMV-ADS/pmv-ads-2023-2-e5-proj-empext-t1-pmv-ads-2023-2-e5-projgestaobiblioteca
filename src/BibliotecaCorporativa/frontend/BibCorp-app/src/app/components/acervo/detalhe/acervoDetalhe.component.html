@@ -28,13 +28,17 @@
           <div class="card text-white bibcorp-bg-secondary mb-3" style="max-width: 25rem;">
               <div class="card-header bibcorp-bg-secondary"></div>
               <div class="table-responsive">
+                <div id="titulo-tabelapatrimonios">
+                    <p>Exemplares</p>
+                </div>
+                
                   <table class="table bibcorp-bg-secondary">
                       <thead>
                           <tr class="change-color">
                               <th>#</th>
                               <th>ID</th>
                               <th>Status</th>
-                              <th>Empréstimo</th>
+                              <th>Opções</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -42,7 +46,7 @@
                               <td>{{i+1}}</td>
                               <td class="change-color">{{patrimonio.id}}</td>
                               <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button" (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal" data-bs-target="modalEmprestar">Emprestar</button></td>
+                              <td><button class="btn btn-orange reserve-button" (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
                           </tr>
                       </tbody>
                   </table>

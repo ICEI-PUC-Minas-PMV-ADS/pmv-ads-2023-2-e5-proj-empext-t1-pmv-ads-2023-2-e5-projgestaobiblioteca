@@ -54,9 +54,8 @@ export class modalEmprestarComponent implements OnInit {
       this.dialog.closeAll();
     }
 
-
     this.dialog.open(ModalSucessoComponent, {
-      data: {}, id: 'Sucesso'
+      data: {localEntrega: this.emprestimo.localDeEntrega}, id: 'Sucesso'
     });
   }
 
@@ -82,7 +81,7 @@ export class modalEmprestarComponent implements OnInit {
     this.spinnerService.show();
 
     this.patrimonioService
-      .getPatrimonioById(+this.acervoParam)
+      .getPatrimonioById(+this.patrimonioParam)
       .subscribe(
         (retorno: Patrimonio) => {
           this.patrimonio = retorno;
@@ -101,21 +100,24 @@ export class modalEmprestarComponent implements OnInit {
     this.spinnerService.show();
 
     this.emprestimo.dataEmprestimo = formatDate(new Date(), "dd/MM/YYYY", "en-US")
+
     let newDate = new Date(this.emprestimo.dataEmprestimo)
     let dataPrevista = newDate.setDate(newDate.getDate() + 30)
-
     this.emprestimo.dataPrevistaDevolucao = formatDate(dataPrevista, "dd/MM/YYYY", "en-US")
+
     this.emprestimo.dataDevolucao = ""
     this.emprestimo.qtdeDiasAtraso = 0
     this.emprestimo.qtdeDiasEmprestimo = 30
     this.emprestimo.status = 1
+
     this.emprestimo.acervoId = this.acervoParam
     this.emprestimo.patrimonioId = this.patrimonioParam
+
     this.emprestimo.localDeColeta = this.localColeta
     this.emprestimo.localDeEntrega = this.localEntrega
+    
     this.emprestimo.userName = this.usuarioAtivo.userName
-    console.log(this.emprestimo)
-
+    
     this.emprestimoService.createEmprestimo(this.emprestimo).subscribe(
       () => {
         this.fecharModalEmprestarEAbrirModalSucesso()

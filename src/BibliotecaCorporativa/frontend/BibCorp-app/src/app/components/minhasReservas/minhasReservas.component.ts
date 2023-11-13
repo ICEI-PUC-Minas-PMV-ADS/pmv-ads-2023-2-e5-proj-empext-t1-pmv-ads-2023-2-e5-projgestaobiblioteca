@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MinhasReservasService } from 'src/app/services/minhasReservas/minhasReservas.service';
 import { Emprestimo } from 'src/app/models/Emprestimos';
 import { AcervoService } from 'src/app/services';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
 
 
 @Component({
@@ -17,6 +19,7 @@ import { AcervoService } from 'src/app/services';
   styleUrls: ['./minhasReservas.component.css']
 })
 export class MinhasReservasComponent implements OnInit {
+  title = 'angular-material';
 
   // modalRef: BsModalRef;
   public acervos: Emprestimo[] = [];
@@ -59,8 +62,13 @@ export class MinhasReservasComponent implements OnInit {
     private AcervoService: AcervoService,
     // private modalService: BsModalService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private dialogRef : MatDialog
   ) { }
+
+  abrirDialog(){
+    this.dialogRef.open(ModalRenovarComponent);
+  }
 
   public ngOnInit(): void {
     this.spinner.show();

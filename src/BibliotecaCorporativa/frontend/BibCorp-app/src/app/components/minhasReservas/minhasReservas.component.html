@@ -44,7 +44,7 @@
       <li class="list-group-item">DEVOLUÇÃO: {{acervo.dataDevolucao}}</li>
       <li class="list-group-item">STATUS DO EMPRESTIMO: {{status(acervo)}}</li>
       <!-- <li class="list-group-item">STATUS DO PATRIMONIO: </li> -->
-      <button type="button" class="btn btn-success btn-sm">Renovar / Solicitar novamente</button>
+      <button type="button" class="btn btn-success btn-sm" (click)="abrirDialog()" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar / Solicitar novamente</button>
     </ul>
   </div>
 </div>

@@ -1,0 +1,78 @@
+.modal-content-vertical-large {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    width: 450px;
+    height: 350px;
+    justify-content: space-between;
+  }
+
+  .btn-orange {
+    background-color: #FF9D4E;
+    border: none;
+    transition: background-color 0.3s;
+    color: white;
+  }
+  
+  .btn-orange:hover {
+    background-color: #FFB07D;
+    color: white;
+  }
+
+  .modal-footer {
+    position:relative;
+    bottom: 0;
+    width: 80%; 
+    text-align: center;
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-bottom: 15px;
+}
+
+.titulo{
+  text-align: center;
+  margin-left: 50px;
+}
+
+.reserve-button {
+  width: 50%; 
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px; 
+}
+
+.book-image {
+  margin-top: 10px; 
+}
+
+.form-check {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-bottom: 50px;
+}
+
+.form-check input[type="radio"] {
+  margin-bottom: 10px;
+}
+
+.form-check label {
+  display: inline-block;
+}
+
+.book-info {
+  text-align: center;
+  margin-bottom: 50px; 
+}
+
+
+

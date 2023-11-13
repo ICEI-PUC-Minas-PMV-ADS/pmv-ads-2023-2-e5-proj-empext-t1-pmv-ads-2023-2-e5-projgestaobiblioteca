@@ -55,6 +55,7 @@ import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "
 import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 import { JwtInterceptor } from "./util";
+import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { JwtInterceptor } from "./util";
     UsuarioComponent,
     modalEmprestarComponent,
     ModalSucessoComponent,
+    ModalRenovarComponent,
   ],
   imports: [
     AppRoutingModule,

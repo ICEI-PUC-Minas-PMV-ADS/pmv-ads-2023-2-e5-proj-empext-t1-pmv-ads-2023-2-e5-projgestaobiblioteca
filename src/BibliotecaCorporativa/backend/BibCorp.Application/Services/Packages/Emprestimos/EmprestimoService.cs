@@ -34,7 +34,7 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       var acervo = await _acervoPersistence.GetAcervoByIdAsync(emprestimoDto.AcervoId);
       var qtdeDisponivelAcervo = acervo.QtdeDisponivel;
 
-      if ( qtdeDisponivelAcervo > 0)
+      if (qtdeDisponivelAcervo > 0)
       {
         try
         {
@@ -46,10 +46,11 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
           {
             var emprestimoRetorno = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimo.Id);
 
-            if (await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId)){
-               await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId);
+            if (await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId))
+            {
+              await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId);
             }
-           
+
             return _mapper.Map<EmprestimoDto>(emprestimoRetorno);
           }
 
@@ -202,6 +203,26 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       catch (Exception e)
       {
 
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<EmprestimoDto> RenovarEmprestimo(int emprestimoId)
+    {
+      try
+      {
+        var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
+
+        if (emprestimo == null) return null;
+
+        var emprestimoRenovado = await _emprestimoPersistence.RenovarEmprestimo(emprestimoId);
+
+        var emprestimoRenovadoMapper = _mapper.Map<EmprestimoDto>(emprestimoRenovado);
+
+        return emprestimoRenovadoMapper;
+      }
+      catch (Exception e)
+      {
         throw new Exception(e.Message);
       }
     }

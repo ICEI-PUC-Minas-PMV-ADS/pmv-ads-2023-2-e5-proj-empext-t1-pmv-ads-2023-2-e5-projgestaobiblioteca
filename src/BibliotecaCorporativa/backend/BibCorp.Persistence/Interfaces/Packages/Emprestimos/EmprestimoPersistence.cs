@@ -1,4 +1,6 @@
 
+using AutoMapper;
+using BibCorp.Domain.Models.Acervos;
 using BibCorp.Domain.Models.Emprestimos;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
@@ -10,10 +12,12 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
   public class EmprestimoPersistence : SharedPersistence, IEmprestimoPersistence
   {
     private readonly BibCorpContext _context;
+    private readonly IMapper _mapper;
 
-    public EmprestimoPersistence(BibCorpContext context) : base(context)
+    public EmprestimoPersistence(BibCorpContext context, IMapper mapper) : base(context)
     {
       _context = context;
+      _mapper = mapper;
 
     }
     public async Task<IEnumerable<Emprestimo>> GetAllEmprestimosAsync()
@@ -69,6 +73,36 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
             .OrderBy(e => e.Id);
 
       return await query.ToListAsync();
+    }
+
+    public async Task<Emprestimo> RenovarEmprestimo(int emprestimoId)
+    {
+      IQueryable<Emprestimo> query = _context.Emprestimos
+      .AsNoTracking()
+                .Where(e => e.Id == emprestimoId);
+
+      try
+      {
+        var emprestimoRenovado = _mapper.Map<Emprestimo>(query.ToArrayAsync().Result.ElementAt(0));
+
+        DateTime dataPrevistaDevolucaoAtual = DateTime.Parse(emprestimoRenovado.DataPrevistaDevolucao);
+
+        DateTime novaDataPrevistaDevolucao = dataPrevistaDevolucaoAtual.AddDays(30);
+
+        emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao.ToString("dd/MM/yyyy");
+
+        Update(emprestimoRenovado);
+
+        if (await SaveChangesAsync())
+        {
+          return emprestimoRenovado;
+        }
+        else throw new Exception("Não foi possível realizar a renovação do empréstimo");
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
     }
   }
 }

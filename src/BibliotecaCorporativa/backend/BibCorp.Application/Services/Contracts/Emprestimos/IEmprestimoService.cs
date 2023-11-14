@@ -13,5 +13,6 @@ namespace BibCorp.Application.Services.Contracts.Emprestimos
     Task<EmprestimoDto> CreateEmprestimo(EmprestimoDto acervoDto);
     Task<EmprestimoDto> UpdateEmprestimo(int emprestimoId, EmprestimoDto acervoDto);
     Task<bool> DeleteEmprestimo(int emprestimoId);
+    Task<EmprestimoDto> RenovarEmprestimo(int emprestimoId);
   }
 }

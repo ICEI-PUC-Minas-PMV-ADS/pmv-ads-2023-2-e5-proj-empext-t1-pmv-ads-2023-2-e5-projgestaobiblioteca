@@ -96,7 +96,6 @@ export class modalEmprestarComponent implements OnInit {
   }
 
   public novoEmprestimo(): void {
-    console.log("Aqui")
     this.spinnerService.show();
 
     this.emprestimo.dataEmprestimo = formatDate(new Date(), "dd/MM/YYYY", "en-US")

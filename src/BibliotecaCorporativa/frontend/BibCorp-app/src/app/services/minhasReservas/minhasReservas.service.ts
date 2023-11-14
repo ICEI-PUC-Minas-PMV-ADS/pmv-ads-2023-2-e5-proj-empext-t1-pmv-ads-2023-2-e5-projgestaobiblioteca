@@ -12,7 +12,7 @@ import { Emprestimo } from 'src/app/models/Emprestimos';
 export class MinhasReservasService {
 
   // baseURL = 'http://localhost:5283/api/Acervo';
-  baseURL = 'http://localhost:5283/api/Emprestimos';
+  baseURL = 'http://localhost:5283/api/Emprestimos/';
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +33,7 @@ export class MinhasReservasService {
   }
 
   getEmprestimoById(id: number): Observable<Emprestimo> {
-    return this.http.get<Emprestimo>(`${this.baseURL}/${id}`);
+    return this.http.get<Emprestimo>(`${this.baseURL}${id}`);
   }
 
   public novoEmprestimo(emprestimo: Emprestimo): Observable<Emprestimo> {

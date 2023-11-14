@@ -10,6 +10,7 @@ namespace BibCorp.Persistence.Interfaces.Contracts.Emprestimos
     Task<Emprestimo> GetEmprestimoByIdAsync(int emprestimoId);
     Task<IEnumerable<Emprestimo>> GetEmprestimosByUserNameAsync(string userName);
     Task<IEnumerable<Emprestimo>> GetEmprestimosByAcervoIdAsync(int acervoId);
-    Task<IEnumerable<Emprestimo>> GetEmprestimosByPatrimonioIdAsync(int patrimonioId);
+    Task<IEnumerable<Emprestimo>> GetEmprestimosByPatrimonioIdAsync(int patrimonioId);  
+    Task <Emprestimo> RenovarEmprestimo(int emprestimoId);
   }
 }

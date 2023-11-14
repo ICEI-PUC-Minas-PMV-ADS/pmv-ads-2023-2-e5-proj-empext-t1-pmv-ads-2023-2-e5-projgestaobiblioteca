@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -165,9 +165,10 @@ namespace BibCorp.Persistence.Migrations
                 name: "Emprestimos",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                      .Annotation("Sqlite:Autoincrement", true),
                     AcervoId = table.Column<int>(type: "INTEGER", nullable: false),
                     PatrimonioId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Id = table.Column<int>(type: "INTEGER", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: true),
                     Devolvido = table.Column<bool>(type: "INTEGER", nullable: false),
                     DataEmprestimo = table.Column<string>(type: "TEXT", nullable: true),

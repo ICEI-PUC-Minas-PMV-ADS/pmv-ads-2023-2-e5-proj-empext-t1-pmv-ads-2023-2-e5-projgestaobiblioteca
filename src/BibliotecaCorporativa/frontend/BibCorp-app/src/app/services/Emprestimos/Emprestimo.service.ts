@@ -15,13 +15,11 @@ export class EmprestimoService {
   ) { }
 
   public getEmprestimos (filtrarPor?: string, TipoFiltro?: string): Observable<Emprestimo[]> {
-    console.log(this.baseURL)
     return this.http.get<Emprestimo[]>(this.baseURL)
       .pipe(take(3))
   }
 
   public getEmprestimoById (id: number): Observable<Emprestimo> {
-    console.log(this.baseURL)
     return this.http.get<Emprestimo>(`${this.baseURL}${id}`)
                .pipe(take(3));
   }
@@ -32,14 +30,18 @@ export class EmprestimoService {
   }
 
   public saveEmprestimo (emprestimo: Emprestimo): Observable<Emprestimo> {
-    console.log(this.baseURL)
     return this.http.put<Emprestimo>(`${this.baseURL}${emprestimo.Id}`, emprestimo)
                .pipe(take(3));
   }
 
   public deleteEmprestimo(emprestimoId:number): Observable<any> {
-    return this.http.delete(`${this.baseURL}${emprestimoId}?acervo=${emprestimoId}`)
+    return this.http.delete(`${this.baseURL}${emprestimoId}?emprestimo=${emprestimoId}`)
     .pipe(take(3));
   }
+
+  public renovarEmprestimo (emprestimo: Emprestimo): Observable<Emprestimo> {
+    return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimo.Id}/Renovacao`,null)
+    .pipe(take(1));
+}
 
 }

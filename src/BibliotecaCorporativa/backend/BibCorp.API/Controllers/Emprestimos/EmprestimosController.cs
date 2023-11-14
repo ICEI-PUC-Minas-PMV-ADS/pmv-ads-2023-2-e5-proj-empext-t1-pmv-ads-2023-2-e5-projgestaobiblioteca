@@ -151,4 +151,30 @@ public class EmprestimosController : ControllerBase
     }
 
   }
+
+  /// <summary>
+  /// Realiza a renovação de um empréstimo por 30 dias
+  /// </summary>
+  /// <param name="emprestimoId">Identificador do empréstimo</param>
+  /// <response code="200">Empréstimo renovado com sucesso</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpPatch("{emprestimoId}/Renovacao")]
+  public async Task<IActionResult> RenovarEmprestimo(int emprestimoId)
+  {
+    try
+    {
+      var emprestimoRenovado = await _emprestimoService.RenovarEmprestimo(emprestimoId);
+
+      if (emprestimoRenovado == null) return NotFound("Não existe empréstimo cadastrado para renovação");
+
+      return Ok(emprestimoRenovado);
+    }
+    catch (Exception e)
+    {
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao renovar empréstimo. Erro: {e.Message}");
+    }
+
+  }
 }

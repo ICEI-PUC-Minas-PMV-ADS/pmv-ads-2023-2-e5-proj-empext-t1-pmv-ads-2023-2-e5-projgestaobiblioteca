@@ -45,9 +45,9 @@ namespace BibCorp.Persistence.Interfaces.Contexts
       });
 // Identity Framework Core
 
-      modelBuilder.Entity<Emprestimo>(empresa =>
+      modelBuilder.Entity<Emprestimo>(emprestimo =>
       {
-        empresa.HasKey(e => new { e.AcervoId, e.PatrimonioId });
+        emprestimo.HasKey(e => new { e.AcervoId, e.PatrimonioId });
       });
 
       modelBuilder.Entity<Acervo>(acervo =>

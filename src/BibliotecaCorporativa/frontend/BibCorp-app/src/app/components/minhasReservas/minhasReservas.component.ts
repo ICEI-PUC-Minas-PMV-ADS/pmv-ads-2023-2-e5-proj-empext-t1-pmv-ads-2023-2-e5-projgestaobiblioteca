@@ -11,6 +11,7 @@ import { Emprestimo } from 'src/app/models/Emprestimos';
 import { AcervoService, EmprestimoService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
+import { AlterarLocalComponent } from './alterarLocal';
 
 
 @Component({
@@ -72,6 +73,10 @@ export class MinhasReservasComponent implements OnInit {
     this.dialogRef.open(ModalRenovarComponent, {
       data : { patrimonioId: patrimonioId, acervoId: this.acervo.id, id: 'Renovar'}
     });
+  }
+
+  abrirDialogAlterar(){
+    this.dialogRef.open(AlterarLocalComponent);
   }
 
   public ngOnInit(): void {

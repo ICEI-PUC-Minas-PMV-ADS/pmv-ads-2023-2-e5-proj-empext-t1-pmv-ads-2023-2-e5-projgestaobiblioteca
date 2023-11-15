@@ -1,0 +1,45 @@
+.modal-content-vertical-large {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  width: 450px;
+  height: 350px;
+  justify-content: space-between;
+}
+
+.dropdown {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.custom-dropdown {
+  background-color: #f9f8fb;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px; 
+}
+
+.btn-orange {
+  background-color: #FF9D4E;
+  border: none;
+  transition: background-color 0.3s;
+  color: white;
+}
+
+.btn-orange:hover {
+  background-color: #FFB07D;
+  color: white;
+}
+
+.alterar{
+  text-align: left;
+  margin-left: 20px;
+}
+
+#local-entrega, #local-coleta{
+  height: 27px;
+}

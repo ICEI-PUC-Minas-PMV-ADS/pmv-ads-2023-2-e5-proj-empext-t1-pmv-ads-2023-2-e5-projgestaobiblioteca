@@ -215,6 +215,8 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
 
         if (emprestimo == null) return null;
 
+        if (emprestimo.Status == Status.Renovado) throw new Exception("Renovação não permitida pois o empréstimo já foi renovado anteriormente");
+
         var emprestimoRenovado = await _emprestimoPersistence.RenovarEmprestimo(emprestimoId);
 
         var emprestimoRenovadoMapper = _mapper.Map<EmprestimoDto>(emprestimoRenovado);

@@ -90,6 +90,8 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
         DateTime novaDataPrevistaDevolucao = dataPrevistaDevolucaoAtual.AddDays(30);
 
         emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao.ToString("dd/MM/yyyy");
+        emprestimoRenovado.Status = Status.Renovado;
+        emprestimoRenovado.QtdeDiasEmprestimo = emprestimoRenovado.QtdeDiasEmprestimo + 30;
 
         Update(emprestimoRenovado);
 

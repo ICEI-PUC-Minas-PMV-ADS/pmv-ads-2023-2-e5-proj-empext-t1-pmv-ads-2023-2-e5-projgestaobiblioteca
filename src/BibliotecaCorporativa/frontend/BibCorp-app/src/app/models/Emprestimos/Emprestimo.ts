@@ -11,9 +11,9 @@ export class Emprestimo {
   dataDevolucao: string
   qtdeDiasAtraso: number
   acervoId: number
-  acervos: Acervo[]
+  acervos: Acervo
   patrimonioId: number
-  patrimonios: Patrimonio[]
+  patrimonios: Patrimonio
   localDeColeta: string
   localDeEntrega: string
 }

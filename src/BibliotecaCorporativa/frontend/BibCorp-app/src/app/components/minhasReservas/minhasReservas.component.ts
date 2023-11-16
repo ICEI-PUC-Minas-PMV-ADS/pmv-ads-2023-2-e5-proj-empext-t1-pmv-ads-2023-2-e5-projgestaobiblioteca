@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MinhasReservasService } from 'src/app/services/minhasReservas/minhasReservas.service';
 import { Emprestimo } from 'src/app/models/Emprestimos';
-import { AcervoService } from 'src/app/services';
+import { AcervoService, EmprestimoService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
 
@@ -22,14 +22,17 @@ export class MinhasReservasComponent implements OnInit {
   title = 'angular-material';
 
   // modalRef: BsModalRef;
-  public acervos: Emprestimo[] = [];
-  public acervosFiltrados: Emprestimo[] = [];
+  public emprestimos: Emprestimo[] = [];
+  public emprestimosFiltrados: Emprestimo[] = [];
+
+  public acervos: Acervo[] = [];
+  public acervosFiltrados: Acervo[] = [];
+  public acervo: Acervo;
 
 
-  public titulos: Acervo[] = [];
-  public titulosFiltrados: Acervo[] = [];
+  // public titulos: Acervo[] = [];
+  // public titulosFiltrados: Acervo[] = [];
 
-  // public dt = new Date().toISOString();
 
 
   public larguraImagem = 75;
@@ -43,22 +46,21 @@ export class MinhasReservasComponent implements OnInit {
 
   public set filtroLista(value: string) {
     this.filtroListado = value;
-    // this.acervosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.acervos;
-
-    this.titulosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.titulos;
+     this.acervosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.acervos;
   }
 
 
   public filtrarReservas(filtrarPor: string): Acervo[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.titulos.filter(
+    return this.acervos.filter(
       livro => livro.titulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-      livro.subTitulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      livro.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
   constructor(
     private ReservasService: MinhasReservasService,
+    private EmprestimoService: EmprestimoService,
     private AcervoService: AcervoService,
     // private modalService: BsModalService,
     private toastr: ToastrService,
@@ -66,8 +68,10 @@ export class MinhasReservasComponent implements OnInit {
     private dialogRef : MatDialog
   ) { }
 
-  abrirDialog(){
-    this.dialogRef.open(ModalRenovarComponent);
+  abrirDialog(patrimonioId: number){
+    this.dialogRef.open(ModalRenovarComponent, {
+      data : { patrimonioId: patrimonioId, acervoId: this.acervo.id, id: 'Renovar'}
+    });
   }
 
   public ngOnInit(): void {
@@ -79,10 +83,10 @@ export class MinhasReservasComponent implements OnInit {
 
 
   public getEmprestimos(): void {
-    this.ReservasService.getEmprestimo().subscribe({
+    this.EmprestimoService.getEmprestimos().subscribe({
       next: (Response: Emprestimo[]) => {
-        this.acervos = Response;
-        this.acervosFiltrados = this.acervos;
+        this.emprestimos = Response;
+        this.emprestimosFiltrados = this.emprestimos;
       },
       error: (error: any) => {
         this.spinner.hide();
@@ -95,8 +99,8 @@ export class MinhasReservasComponent implements OnInit {
   public getAcervo(): void {
     this.AcervoService.getAcervos().subscribe({
       next: (Response: Acervo[]) => {
-        this.titulos = Response;
-        this.titulosFiltrados = this.titulos;
+        this.acervos = Response;
+        this.acervosFiltrados = this.acervos;
       },
       error: (error: any) => {
         this.spinner.hide();
@@ -105,25 +109,6 @@ export class MinhasReservasComponent implements OnInit {
       complete: () => this.spinner.hide()
     });
   }
-
-  //  public diaAtraso(emprestimo: Emprestimo): any {
-  //   // hoje = new Date();
-  //   let atraso = new Date(emprestimo.dataPrevistaDevolucao);
-
-  //   // return Math.floor((date - atraso) / (1000*60*60*24))
-  //   // return  (hoje - atraso)  / 1000 / 60 / 60 / 24;
-  //   return Math.abs(<any>new Date() - <any>new Date(atraso));
-  //  }
-
-  // public diaAtraso(): Emprestimo[] {
-  //   let atraso = this.acervos.dataPrevistaDevolucao
-  //   return x
-  // }
-
-  public renovar(): any {
-
-  }
-
 
   public status(emprestimo: Emprestimo): any {
     if (emprestimo.dataEmprestimo != null && emprestimo.dataDevolucao == null) {

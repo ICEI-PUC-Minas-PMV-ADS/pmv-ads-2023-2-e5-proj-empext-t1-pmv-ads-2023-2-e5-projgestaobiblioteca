@@ -1093,7 +1093,7 @@ Tela sendo populada com todos os livros da categoria **romance**
 </br>
 
 
-Tela sendo populada com todos os livros da categoria **Ficção Histórica**
+Tela sendo populada com todos os livros da categoria **ficção histórica**
 </br>
 <p align="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-FiccaoHist.png>

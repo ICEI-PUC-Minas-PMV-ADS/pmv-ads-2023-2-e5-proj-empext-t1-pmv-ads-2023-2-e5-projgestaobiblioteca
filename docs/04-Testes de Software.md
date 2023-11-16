@@ -1114,7 +1114,7 @@ Retorno de todos os livros registrados no banco de dados:
 
 **BDD:**<br/><br/>
 **Given** o usuário esteja na tela principal do site <br>
-**When** o filtro de pesquisa for acionado é mostrado os campos com as opções: Todos, Autor, Resumo e Título. <br>
+**When** o filtro de pesquisa for acionado é mostrado os campos com as opções: Todos(sem filtro), Autor, Resumo e Título. <br>
 **Then** a opção da pesquisa selecionada devem ser apresentada conforme o registro existente no banco de dados <br>
 
 **Evidências:**
@@ -1123,7 +1123,29 @@ Usuário visualiza as infromações de acordo com a opção de pesquisa selecion
 Tela sendo populada sem filtro de pesquisa
 </br>
 <p align="center">
-<img src=![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/assets/90655197/8863be7c-f2b1-40dc-9748-52e948a628fa)
->
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Semfiltropesquisa.png>
+</p>
+</br>
+
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
+Tela sendo populada utilizando o filtro de pesquisa: Autor
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/02%20Filtro-Autor.png>
+</p>
+</br>
+
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
+Tela sendo populada utilizando o filtro de pesquisa: Resumo
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/02%20Filtro-Resumo.png>
+</p>
+</br>
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
+Tela sendo populada utilizando o filtro de pesquisa: Título
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/02%20Filtro-T%C3%ADtulo.png>
 </p>
 </br>

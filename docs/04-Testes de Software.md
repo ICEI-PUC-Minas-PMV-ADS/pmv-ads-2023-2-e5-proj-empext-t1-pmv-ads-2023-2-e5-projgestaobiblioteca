@@ -1046,15 +1046,15 @@ Usuário visualiza as infromações do livro:
 </p>
 </br>
 
-## Detalhes Home Page - Filtro
+## Detalhes Home Page - Filtro Gênero
 
-**CTS1: Tela sendo populada com os livros cadastrados no Banco de Dados**
+**CTS2: Tela sendo populada com os livros cadastrados no Banco de Dados com seus respectivos gêneros**
 
 **Status do caso de teste:** Aprovado
 
 **BDD:**<br/><br/>
 **Given** o usuário esteja na tela principal do site <br>
-**When** o filtro de Gêneros for acionado nos é acerto campo com as opções: Todos, Técnico, Fantasia, Romance e Ficção Histórica. <br>
+**When** o filtro de Gêneros for acionado será mostrado os campos com as opções: Todos, Técnico, Fantasia, Romance e Ficção Histórica. <br>
 **Then** a opção do gênero selecionado devem ser apresentadas conforme o registro existente no banco de dados <br>
 
 **Evidências:**
@@ -1104,5 +1104,26 @@ Retorno de todos os livros registrados no banco de dados:
 </br>
 <p align="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/RetornoBdTodos.png>
+</p>
+</br>
+## Detalhes Home Page - Filtro Pesquisa
+
+**CTS3: Tela sendo populada com os livros cadastrados no Banco de Dados**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** o usuário esteja na tela principal do site <br>
+**When** o filtro de pesquisa for acionado é mostrado os campos com as opções: Todos, Autor, Resumo e Título. <br>
+**Then** a opção da pesquisa selecionada devem ser apresentada conforme o registro existente no banco de dados <br>
+
+**Evidências:**
+
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
+Tela sendo populada sem filtro de pesquisa
+</br>
+<p align="center">
+<img src=![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/assets/90655197/8863be7c-f2b1-40dc-9748-52e948a628fa)
+>
 </p>
 </br>

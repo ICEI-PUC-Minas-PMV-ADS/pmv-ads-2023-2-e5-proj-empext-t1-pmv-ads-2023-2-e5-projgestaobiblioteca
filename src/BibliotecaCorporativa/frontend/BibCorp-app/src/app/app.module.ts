@@ -56,6 +56,7 @@ import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmpres
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 import { JwtInterceptor } from "./util";
 import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
+import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
 
 @NgModule({
   declarations: [

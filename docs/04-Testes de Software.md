@@ -1119,7 +1119,7 @@ Retorno de todos os livros registrados no banco de dados:
 
 **Evidências:**
 
-Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:</br>
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
 
 Tela sendo populada sem filtro de pesquisa
 </br>
@@ -1128,7 +1128,7 @@ Tela sendo populada sem filtro de pesquisa
 </p>
 </br>
 
-Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:</br>
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
 
 Tela sendo populada utilizando o filtro de pesquisa: **Autor**
 </br>
@@ -1137,7 +1137,7 @@ Tela sendo populada utilizando o filtro de pesquisa: **Autor**
 </p>
 </br>
 
-Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:</br>
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
 
 Tela sendo populada utilizando o filtro de pesquisa: **Resumo**
 </br>
@@ -1145,7 +1145,7 @@ Tela sendo populada utilizando o filtro de pesquisa: **Resumo**
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/02%20Filtro-Resumo.png>
 </p>
 </br>
-Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:</br>
+Usuário visualiza as infromações de acordo com a opção de pesquisa selecionada:
 
 Tela sendo populada utilizando o filtro de pesquisa: **Título**
 </br>

@@ -1045,3 +1045,60 @@ Usuário visualiza as infromações do livro:
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Detalhes-evidencia.png>
 </p>
 </br>
+
+## Detalhes Home Page - Filtro
+
+**CTS1: Tela sendo populada com os livros cadastrados no Banco de Dados**
+
+**Status do caso de teste:** Aprovado
+
+**BDD:**<br/><br/>
+**Given** o usuário esteja na tela principal do site <br>
+**When** o filtro de Gêneros for acionado nos é acerto campo com as opções: Todos, Técnico, Fantasia, Romance e Ficção Histórica. <br>
+**Then** a opção do gênero selecionado devem ser apresentadas conforme o registro existente no banco de dados <br>
+
+**Evidências:**
+
+Usuário visualiza as infromações do livro de acordo com o gênero selecionado:
+**Todos**
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-Todos.png>
+</p>
+</br>
+
+**Técnico**
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-Tecnico.png>
+</p>
+</br>
+**Fantasia**
+
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-Fantasia.png>
+</p>
+</br>
+
+**Romance**
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-Romance.png>
+</p>
+</br>
+
+**Ficção Histórica**
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-FiccaoHist.png>
+</p>
+</br>
+
+Retorno de todos os livros registrados no banco de dados:
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/RetornoBdTodos.png>
+</p>
+</br>

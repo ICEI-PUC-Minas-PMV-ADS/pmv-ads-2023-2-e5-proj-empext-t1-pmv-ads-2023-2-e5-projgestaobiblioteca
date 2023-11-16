@@ -1060,7 +1060,7 @@ Usuário visualiza as infromações do livro:
 **Evidências:**
 
 Usuário visualiza as infromações do livro de acordo com o gênero selecionado:
-**Todos**
+Tela sendo populada com **todos** as categorias de livro
 
 </br>
 <p align="center">
@@ -1068,13 +1068,15 @@ Usuário visualiza as infromações do livro de acordo com o gênero selecionado
 </p>
 </br>
 
-**Técnico**
+Tela sendo populada com todos os livros da categoria **técnico**
+
 </br>
 <p align="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-Tecnico.png>
 </p>
 </br>
-**Fantasia**
+
+Tela sendo populada com todos os livros da categoria **fantasia**
 
 </br>
 <p align="center">
@@ -1082,14 +1084,16 @@ Usuário visualiza as infromações do livro de acordo com o gênero selecionado
 </p>
 </br>
 
-**Romance**
+
+Tela sendo populada com todos os livros da categoria **romance**
 </br>
 <p align="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-Romance.png>
 </p>
 </br>
 
-**Ficção Histórica**
+
+Tela sendo populada com todos os livros da categoria **Ficção Histórica**
 </br>
 <p align="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/01%20Filtro-FiccaoHist.png>

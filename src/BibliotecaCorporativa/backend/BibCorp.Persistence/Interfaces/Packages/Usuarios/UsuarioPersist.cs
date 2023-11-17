@@ -19,7 +19,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
     public async Task<IEnumerable<Usuario>> GetAllUsuariosAsync()
     {
       IQueryable<Usuario> query = _context.Users
-        .Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonios)
+        .Include(u => u.Emprestimos).ThenInclude(e => e.Patrimonio)
         .AsNoTracking()
         .OrderBy(u => u.Id);
 
@@ -30,7 +30,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
     {
       IQueryable<Usuario> query = _context.Users
         .Include(u => u.Emprestimos)
-        .ThenInclude(e => e.Patrimonios)
+        .ThenInclude(e => e.Patrimonio)
         .AsNoTracking()
         .OrderBy(u => u.Id)
         .Where(u => u.Nome.ToLower().Contains(nome.ToLower()));
@@ -42,7 +42,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
     {
       IQueryable<Usuario> query = _context.Users
        .Include(u => u.Emprestimos)
-       .ThenInclude(e => e.Patrimonios)
+       .ThenInclude(e => e.Patrimonio)
        .AsNoTracking()
        .Where(u => u.Id == usuarioId);
 
@@ -55,7 +55,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
 
       query = query
           .Include(u => u.Emprestimos)
-          .ThenInclude(e => e.Patrimonios)
+          .ThenInclude(e => e.Patrimonio)
           .AsNoTracking()
           .Where(c => c.UserName.ToLower() == userName.ToLower());
 

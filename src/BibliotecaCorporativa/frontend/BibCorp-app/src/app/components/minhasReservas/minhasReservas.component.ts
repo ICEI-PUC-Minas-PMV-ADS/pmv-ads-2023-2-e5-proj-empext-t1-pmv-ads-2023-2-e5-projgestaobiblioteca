@@ -59,7 +59,6 @@ export class MinhasReservasComponent implements OnInit {
   }
 
   constructor(
-    private ReservasService: MinhasReservasService,
     private EmprestimoService: EmprestimoService,
     private AcervoService: AcervoService,
     // private modalService: BsModalService,
@@ -68,10 +67,13 @@ export class MinhasReservasComponent implements OnInit {
     private dialogRef : MatDialog
   ) { }
 
-  abrirDialog(patrimonioId: number){
+  abrirDialog(emprestimoId: number, acervoTitulo: string, dataPrevistaDevolucao: string){
     this.dialogRef.open(ModalRenovarComponent, {
-      data : { patrimonioId: patrimonioId, acervoId: this.acervo.id, id: 'Renovar'}
+      data : { emprestimoId: emprestimoId, acervoTitulo: acervoTitulo, dataPrevistaDevolucao: dataPrevistaDevolucao, id: 'Renovar'}
+      
     });
+
+    
   }
 
   public ngOnInit(): void {
@@ -119,6 +121,7 @@ export class MinhasReservasComponent implements OnInit {
       return "Em atraso"
     }
   }
+
 
 }
 

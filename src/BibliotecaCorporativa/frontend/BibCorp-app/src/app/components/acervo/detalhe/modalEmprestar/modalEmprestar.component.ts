@@ -96,17 +96,18 @@ export class modalEmprestarComponent implements OnInit {
   }
 
   public novoEmprestimo(): void {
+
     this.spinnerService.show();
 
     this.emprestimo.dataEmprestimo = formatDate(new Date(), "dd/MM/YYYY", "en-US")
-
-    let newDate = new Date(this.emprestimo.dataEmprestimo)
+    let newDate = new Date()
     let dataPrevista = newDate.setDate(newDate.getDate() + 30)
     this.emprestimo.dataPrevistaDevolucao = formatDate(dataPrevista, "dd/MM/YYYY", "en-US")
-
     this.emprestimo.dataDevolucao = ""
+
     this.emprestimo.qtdeDiasAtraso = 0
     this.emprestimo.qtdeDiasEmprestimo = 30
+
     this.emprestimo.status = 1
 
     this.emprestimo.acervoId = this.acervoParam
@@ -114,9 +115,11 @@ export class modalEmprestarComponent implements OnInit {
 
     this.emprestimo.localDeColeta = this.localColeta
     this.emprestimo.localDeEntrega = this.localEntrega
-    
+
     this.emprestimo.userName = this.usuarioAtivo.userName
     
+    console.log(this.emprestimo)
+
     this.emprestimoService.createEmprestimo(this.emprestimo).subscribe(
       () => {
         this.fecharModalEmprestarEAbrirModalSucesso()

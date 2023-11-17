@@ -30,7 +30,7 @@ export class EmprestimoService {
   }
 
   public saveEmprestimo (emprestimo: Emprestimo): Observable<Emprestimo> {
-    return this.http.put<Emprestimo>(`${this.baseURL}${emprestimo.Id}`, emprestimo)
+    return this.http.put<Emprestimo>(`${this.baseURL}${emprestimo.id}`, emprestimo)
                .pipe(take(3));
   }
 
@@ -39,8 +39,8 @@ export class EmprestimoService {
     .pipe(take(3));
   }
 
-  public renovarEmprestimo (emprestimo: Emprestimo): Observable<Emprestimo> {
-    return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimo.Id}/Renovacao`,null)
+  public renovarEmprestimo (id: number): Observable<Emprestimo> {
+    return this.http.patch<Emprestimo>(`${this.baseURL}${id}/Renovacao`,null)
     .pipe(take(1));
 }
 

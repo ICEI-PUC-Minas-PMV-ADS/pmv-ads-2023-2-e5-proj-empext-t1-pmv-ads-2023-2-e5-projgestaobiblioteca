@@ -1,31 +1,17 @@
-<div class="modal-content-vertical-large" id="Renovar" style="display: flex; flex-direction: column; justify-content: space-between; height: 350px;">
+<div class="modal-content-vertical-large" id="Renovar">
+    
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="display: flex; flex-direction: column; height: 100%;">
-            <div class="modal-header" style="text-align: center;">
-                <h4 class="titulo">Solicitar novamente</h4>
-            </div>
-            <div class="modal-body" style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 class="titulo">Solicitar Renovação</h4>
+                <div class="orientacao">
+                    <p class="info"><b>Importante:</b> A renovação do empréstimo é permitida apenas uma vez</p>
+                </div>
+                <div></div>
                 <div style="text-align: left;">
-                    <img src="../../../../assets/Images/capaDefault.png" style="width: 90px;" alt="Imagem do livro" class="book-image">
-                    <p class="book-info">titulo</p>
+                    <p class="book-info"><b>Livro:</b> {{acervoTituloParam}}</p>
+                    <p class="book-info"><b>Data atual de devolução:</b>{{dataPrevistaDevolucaoParam}}</p>
                 </div>
-                <div style="text-align: right;">
-<div class="form-check">
-    <label class="checkmark">
-        <input type="radio" id="manterLocal" name="coleta" checked>
-        <span class="checkmark"></span> Manter local de coleta
-    </label>
-    <label class="checkmark">
-        <input type="radio" id="alterarLocal" name="coleta">
-        <span class="checkmark"></span> Alterar local de coleta
-    </label>
-</div>
-
                 </div>
-            </div>
             <div class="modal-footer" style="text-align: center;">
-                <button type="button" class="btn btn-orange reserve-button" data-dismiss="modal" style="margin-top: auto;">Renovar</button>
+                <button type="button" class="btn btn-orange reserve-button" data-dismiss="modal" style="margin-top: auto;" (click)="renovarEmprestimo()">Renovar</button>
             </div>
-        </div>
-    </div>
-</div>
+ </div>

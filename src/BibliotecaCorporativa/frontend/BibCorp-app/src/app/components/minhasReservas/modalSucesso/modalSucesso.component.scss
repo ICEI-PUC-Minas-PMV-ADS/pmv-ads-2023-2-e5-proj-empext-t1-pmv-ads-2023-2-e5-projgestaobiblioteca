@@ -1,0 +1,40 @@
+.custom-modal {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  width: 450px;
+  height: 350px;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 24px;
+  color: black;
+  margin: 0;
+  font-weight: bold;
+}
+
+.modal-subtitle {
+  font-size: 18px;
+  color: black;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.btn-orange {
+  background-color: #FF9D4E;
+  border: none;
+  transition: background-color 0.3s;
+  color: white;
+  width: 30%;
+  margin-top: 20px;
+}
+
+.btn-orange:hover {
+  background-color: #FFB07D;
+  color: white;
+}

@@ -1160,7 +1160,7 @@ Tela sendo populada utilizando o filtro de pesquisa: **Título**
 **BDD:**<br><br>
 
 **Given** O usuario que estiver na pagina de perfil e que 
-deseja atualizar seus dados atravez do formulario de perfil
+deseja atualizar seus dados atravez do formulario de perfil <br> 
 **When** o usuario preenche os campos obrigatorios e o botã
 Salvar for acionado <br>
 **Then** as novas infromações do usuario devem ser 

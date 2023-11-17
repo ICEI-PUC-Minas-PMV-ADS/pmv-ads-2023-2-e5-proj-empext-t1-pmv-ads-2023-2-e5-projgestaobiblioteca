@@ -1171,7 +1171,7 @@ Usuario não consegue salvar suas informações:
 
 </br>
 <p aling="center">
-<img src=> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/Evidència de Teste-Perfil do usuario .png> <br>
 
 **Observação** O botão não está disponível para salvar as 
 alterações do usuário.
@@ -1196,7 +1196,7 @@ Usuário visualiza solicitações, dadaos e o status de cada uma.
 
 </br>
 <p aling="center">
-<img src=> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciasdeTeste-Solicitacoes.png> <br>
 
 
 ## Renovar Empréstimo
@@ -1224,7 +1224,7 @@ Usuário visualiza a página modal e escolhe a opção desejada.
 
 </br>
 <p aling="center">
-<img src=> <br>
+<img src= =https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-RenovarEmprestimo.png> <br>
 
 **Observação** O botão não está disponível para salvar as 
 alterações do usuário.

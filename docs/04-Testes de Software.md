@@ -1158,6 +1158,7 @@ Tela sendo populada utilizando o filtro de pesquisa: **Título**
 **Status do caso de teste:** Reprovado 
 
 **BDD:**<br><br>
+
 **Given** O usuario que estiver na pagina de perfil e que 
 deseja atualizar seus dados atravez do formulario de perfil
 **When** o usuario preenche os campos obrigatorios e o botã
@@ -1183,6 +1184,7 @@ alterações do usuário.
 
 **Status do caso de teste:** Aprovado 
 **BDD:**<br><br>
+
 **Given** O usuario ira navegar pela pagina de solicitações <br>
 **When** o usuario aciona o botão Solicitações na barra lateral/
 Menu. <br>
@@ -1206,9 +1208,9 @@ novamente o livro.
 
 **Status do caso de teste:** Reprovado 
 **BDD:**<br><br>
+
 **Given** O usuario ira navegar pela pagina de solicitações
 <br>
-
 **When** o usuario aciona o botão Renovar/ Solicitar 
 novamente.  <br>
 **Then** o usuario é apresentado a uma pagina de renovação p

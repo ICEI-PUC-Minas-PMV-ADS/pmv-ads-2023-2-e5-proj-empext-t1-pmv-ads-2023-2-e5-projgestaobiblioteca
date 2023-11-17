@@ -23,8 +23,8 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Emprestimo>> GetAllEmprestimosAsync()
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
-          .Include(e => e.Acervos)
-          .Include(e => e.Patrimonios)
+          .Include(e => e.Acervo)
+          .Include(e => e.Patrimonio)
           .AsNoTracking()
           .OrderBy(e => e.Id);
 
@@ -34,8 +34,8 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<Emprestimo> GetEmprestimoByIdAsync(int emprestimoId)
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
-          .Include(e => e.Acervos)
-          .Include(e => e.Patrimonios)
+          .Include(e => e.Acervo)
+          .Include(e => e.Patrimonio)
           .AsNoTracking()
           .Where(a => a.Id == emprestimoId);
 
@@ -45,7 +45,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByUserNameAsync(string userName)
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
-          .Include(e => e.Patrimonios)
+          .Include(e => e.Patrimonio)
             .AsNoTracking()
             .Where(e => e.UserName == userName)
             .OrderBy(e => e.Id);
@@ -56,7 +56,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByAcervoIdAsync(int acervoId)
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
-          .Include(e => e.Patrimonios)
+          .Include(e => e.Patrimonio)
             .AsNoTracking()
             .Where(e => e.AcervoId == acervoId)
             .OrderBy(e => e.Id);
@@ -67,7 +67,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByPatrimonioIdAsync(int patrimonioId)
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
-          .Include(e => e.Patrimonios)
+          .Include(e => e.Patrimonio)
             .AsNoTracking()
             .Where(e => e.PatrimonioId == patrimonioId)
             .OrderBy(e => e.Id);

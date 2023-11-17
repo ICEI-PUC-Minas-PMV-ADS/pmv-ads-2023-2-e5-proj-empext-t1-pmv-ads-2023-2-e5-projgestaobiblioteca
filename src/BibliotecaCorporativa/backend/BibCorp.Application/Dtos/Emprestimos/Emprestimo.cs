@@ -14,9 +14,9 @@ namespace BibCorp.Application.Dto.Emprestimos
         public string DataDevolucao { get; set; }
         public int QtdeDiasAtraso { get; set; }
         public int AcervoId { get; set; }
-        public IEnumerable<AcervoDto> Acervos { get; set; }
+        public AcervoDto Acervo { get; set; }
         public int PatrimonioId { get; set; }
-        public IEnumerable<PatrimonioDto> Patrimonios { get; set; }
+        public PatrimonioDto Patrimonio { get; set; }
         public string LocalDeColeta { get; set;}
         public string LocalDeEntrega { get; set;}
     }

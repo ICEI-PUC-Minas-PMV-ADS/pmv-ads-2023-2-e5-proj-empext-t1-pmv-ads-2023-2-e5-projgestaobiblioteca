@@ -2,7 +2,7 @@ import { type Patrimonio } from '../Patrimonios/Patrimonio'
 import { type Acervo } from '../Acervos/Acervo'
 
 export class Emprestimo {
-  Id: number
+  id: number
   userName: string
   status: Status
   dataEmprestimo: string
@@ -11,9 +11,9 @@ export class Emprestimo {
   dataDevolucao: string
   qtdeDiasAtraso: number
   acervoId: number
-  acervos: Acervo
+  acervo: Acervo
   patrimonioId: number
-  patrimonios: Patrimonio
+  patrimonio: Patrimonio
   localDeColeta: string
   localDeEntrega: string
 }

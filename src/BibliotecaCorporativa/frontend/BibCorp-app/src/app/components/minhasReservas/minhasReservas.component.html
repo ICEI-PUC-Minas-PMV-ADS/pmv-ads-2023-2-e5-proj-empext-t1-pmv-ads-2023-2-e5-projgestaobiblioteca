@@ -1,7 +1,7 @@
 <!-- TITULO -->
 <!-- <app-titulo [titulo]="'Solicitações'"></app-titulo> -->
 <app-titlebar
-  [title]="'Solicitações'"
+  [title]="'Minhas solicitações'"
 ></app-titlebar>
 <!-- <router-outlet></router-outlet> -->
 
@@ -28,19 +28,19 @@
     <div *ngFor="let emprestimos of emprestimosFiltrados">
       <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
         <div class="card-header bibcorp-bg-secondary">
-          <P class="h5">Titulo: {{emprestimos.acervos.titulo}}</P>
-          <P class="h7">Autor: {{emprestimos.acervos.autor}}</P>
-          <p class="h7">Genero:{{emprestimos.acervos.genero}}</p>
+          <P class="h5">Título: {{emprestimos.acervo.titulo}}</P>
+          <P class="h7">Autor: {{emprestimos.acervo.autor}}</P>
+          <p class="h7">Gênero: {{emprestimos.acervo.genero}}</p>
         </div>
         <div class="card-body">
           <!-- <p class="h4 card-title">Subtitulo{{acervo.subTitulo}}</p>
           <textarea matInput style="min-height: 150px; min-width: 100%;"
             class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea> -->
-          <p class="card-text">Data do Emprestimo:  {{emprestimos.dataEmprestimo}}</p>
-          <p class="card-text">Data da Devolução:  {{emprestimos.dataPrevistaDevolucao}}</p>
-          <p class="card-text">Status do Emprestimo:  {{status(emprestimos)}}</p>
+          <p class="card-text">Data do empréstimo:  {{emprestimos.dataEmprestimo}}</p>
+          <p class="card-text">Data prevista de devolução:  {{emprestimos.dataPrevistaDevolucao}}</p>
+          <p class="card-text">Status do empréstimo:  {{status(emprestimos)}}</p>
         </div>
-        <button type="button" class="btn btn-success btn-sm" (click)="abrirDialog(emprestimos.patrimonios.id)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="abrirDialog(emprestimos.id, emprestimos.acervo.titulo, emprestimos.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
 
       </div>
     </div>

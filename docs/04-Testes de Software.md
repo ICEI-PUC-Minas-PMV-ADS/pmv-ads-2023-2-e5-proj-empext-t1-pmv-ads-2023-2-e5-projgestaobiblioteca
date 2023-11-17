@@ -1150,3 +1150,81 @@ Tela sendo populada utilizando o filtro de pesquisa: **Título**
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/02%20Filtro-T%C3%ADtulo.png>
 </p>
 </br>
+
+## Perfil de Usuário 
+
+**CTS1: Usuário - Tentando atualizar perfil**
+
+**Status do caso de teste:** Reprovado 
+
+**BDD:**<br><br>
+**Given** O usuario que estiver na pagina de perfil e que 
+deseja atualizar seus dados atravez do formulario de perfil
+**When** o usuario preenche os campos obrigatorios e o botã
+Salvar for acionado <br>
+**Then** as novas infromações do usuario devem ser 
+apresentadas<br>
+
+**Evidências** 
+
+Usuario não consegue salvar suas informações:
+
+</br>
+<p aling="center">
+<img src=> <br>
+
+**Observação** O botão não está disponível para salvar as 
+alterações do usuário.
+<br>
+
+## Solicitações 
+
+**CTS1** Usuário visualizando solicitações de emprestimos 
+
+**Status do caso de teste:** Aprovado 
+**BDD:**<br><br>
+**Given** O usuario ira navegar pela pagina de solicitações <br>
+**When** o usuario aciona o botão Solicitações na barra lateral/
+Menu. <br>
+**Then** o usuario é apresentado a suas solicitações de 
+emprestimos. 
+<br>
+
+**Evidências** 
+
+Usuário visualiza solicitações, dadaos e o status de cada uma.  
+
+</br>
+<p aling="center">
+<img src=> <br>
+
+
+## Renovar Empréstimo
+
+**CTS1** Usuário conseguindo renovar emprestimos e solicitar
+novamente o livro. 
+
+**Status do caso de teste:** Reprovado 
+**BDD:**<br><br>
+**Given** O usuario ira navegar pela pagina de solicitações
+<br>
+
+**When** o usuario aciona o botão Renovar/ Solicitar 
+novamente.  <br>
+**Then** o usuario é apresentado a uma pagina de renovação p
+escoher entre manter local de coleta ou alterar local de col
+dos emprestimos a serem renovados e aciona o botao renovar p
+salvar alterações. 
+<br>
+
+**Evidências** 
+
+Usuário visualiza a página modal e escolhe a opção desejada.
+
+
+</br>
+<p aling="center">
+<img src=> <br>
+
+**Observação** O botão não está disponível para salvar as 
+alterações do usuário.

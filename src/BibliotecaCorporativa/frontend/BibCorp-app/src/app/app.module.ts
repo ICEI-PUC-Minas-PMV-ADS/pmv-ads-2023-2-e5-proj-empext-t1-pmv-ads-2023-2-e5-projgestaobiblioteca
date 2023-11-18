@@ -80,6 +80,7 @@ import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal"
     modalEmprestarComponent,
     ModalSucessoComponent,
     ModalRenovarComponent,
+    AlterarLocalComponent
   ],
   imports: [
     AppRoutingModule,

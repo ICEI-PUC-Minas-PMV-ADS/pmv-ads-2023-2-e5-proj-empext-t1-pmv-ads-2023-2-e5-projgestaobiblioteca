@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalSucessoComponent } from './modalSucesso.component';
+import { ModalSucessoComponent } from './modalSucessoAlteracao.component';
 
 describe('ModalSucessoComponent', () => {
   let component: ModalSucessoComponent;

@@ -1,8 +1,10 @@
 .btn-orange {
     background-color: #FF9D4E;
-    border: none;
+    order: none;
     transition: background-color 0.3s;
     color: white;
+    margin: auto;
+    display: block;
   }
 
   .btn-orange:hover {
@@ -21,3 +23,4 @@
     background-color: #00BFFF;
     color: white;
   }
+

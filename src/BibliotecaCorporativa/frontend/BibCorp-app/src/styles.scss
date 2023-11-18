@@ -114,6 +114,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bibcorp-bg-white {
   background-color: white;
   opacity: .9;
+  color: black;
 }
 
 .bibcorp-bg-white2 {
@@ -162,5 +163,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .bibcorp-box {
   min-height: 500px;
+}
+
+.btn-blue {
+  background-color: #00BFFF;
+  border: none;
+  transition: background-color 0.3s;
+  color: white;
+  margin: auto;
+  display: block;
+}
+
+.btn-blue:hover {
+  background-color: #00BFFF;
+  color: white;
 }
 

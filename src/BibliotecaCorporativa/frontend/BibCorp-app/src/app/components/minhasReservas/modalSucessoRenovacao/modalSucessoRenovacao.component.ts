@@ -10,8 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-sucesso',
-  templateUrl: './modalSucesso.component.html',
-  styleUrls: ['./modalSucesso.component.scss']
+  templateUrl: './modalSucessoRenovacao.component.html',
+  styleUrls: ['./modalSucessoRenovacao.component.scss']
 })
 export class ModalSucessoComponent implements OnInit {
   title = 'angular-material';
@@ -31,10 +31,6 @@ export class ModalSucessoComponent implements OnInit {
     
     this.emprestimoIdParam = this.dataInput.emprestimoId;
     this.getEmprestimoById(this.emprestimoIdParam);
-    
-    console.log(this.novaDataPrevistaDevolucao)
-    console.log(this.emprestimoAtualizado.dataPrevistaDevolucao)
-    
   }
 
   voltarParaMinhasSolicitacoes() {

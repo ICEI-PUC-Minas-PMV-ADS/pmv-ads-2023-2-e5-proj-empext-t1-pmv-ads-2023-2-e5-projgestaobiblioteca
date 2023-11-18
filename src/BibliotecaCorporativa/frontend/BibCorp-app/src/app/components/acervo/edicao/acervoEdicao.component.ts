@@ -91,6 +91,7 @@ export class AcervoEdicaoComponent implements OnInit {
           Validators.maxLength(1200),
         ],
       ],
+      capaUrl: ["", Validators.required],
       anoPublicacao: [
         "",
         [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
@@ -281,4 +282,5 @@ export class AcervoEdicaoComponent implements OnInit {
       )
       .add(() => this.spinnerService.hide());
   }
+
 }

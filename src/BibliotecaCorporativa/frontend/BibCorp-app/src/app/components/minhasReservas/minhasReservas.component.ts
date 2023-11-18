@@ -11,7 +11,7 @@ import { Emprestimo } from 'src/app/models/Emprestimos';
 import { AcervoService, EmprestimoService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
-import { AlterarLocalComponent } from './alterarLocal';
+import { AlterarLocalComponent } from './alterarLocal/alterarLocal.component';
 
 
 @Component({
@@ -68,13 +68,18 @@ export class MinhasReservasComponent implements OnInit {
     private dialogRef : MatDialog
   ) { }
 
-  abrirDialog(emprestimoId: number, acervoTitulo: string, dataPrevistaDevolucao: string){
+  abrirDialogRenovacao(emprestimoId: number, acervoTitulo: string, dataPrevistaDevolucao: string){
     this.dialogRef.open(ModalRenovarComponent, {
       data : { emprestimoId: emprestimoId, acervoTitulo: acervoTitulo, dataPrevistaDevolucao: dataPrevistaDevolucao, id: 'Renovar'}
-      
-    });
 
-    
+    });
+  }
+
+  abrirDialogAlteracao(localDeColeta: string){
+    this.dialogRef.open(AlterarLocalComponent, {
+      data : { localDeColeta: localDeColeta, id: 'Alterar'}
+
+    });
   }
 
   abrirDialogAlterar(){

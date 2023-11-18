@@ -45,8 +45,8 @@
                           <tr *ngFor="let patrimonio of acervo.patrimonios; let i=index;">
                               <td>{{i+1}}</td>
                               <td class="change-color">{{patrimonio.id}}</td>
-                              <td class="status">Disponível</td>
-                              <td><button class="btn btn-orange reserve-button" (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
+                              <td class="status">{{obterStatusPatrimonio(patrimonio.status)}}</td>
+                              <td><button class="btn btn-orange reserve-button" [disabled]="!patrimonio.status"  (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
                           </tr>
                       </tbody>
                   </table>

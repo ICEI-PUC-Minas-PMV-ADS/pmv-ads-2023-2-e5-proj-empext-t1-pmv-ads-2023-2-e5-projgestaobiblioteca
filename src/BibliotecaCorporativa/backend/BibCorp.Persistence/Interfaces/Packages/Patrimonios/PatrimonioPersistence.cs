@@ -154,6 +154,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       var patrimonioAlterado = _mapper.Map<Patrimonio>(query.ToArrayAsync().Result.ElementAt(0));
 
       patrimonioAlterado.Status = false;
+      patrimonioAlterado.DataIndisponibilidade = DateTime.Now.ToString("dd/MM/yyyy");
 
       Update(patrimonioAlterado);
 

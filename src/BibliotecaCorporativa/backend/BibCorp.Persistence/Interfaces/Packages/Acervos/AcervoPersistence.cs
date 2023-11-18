@@ -1,11 +1,10 @@
-using System;
+using AutoMapper;
 using BibCorp.Domain.Models.Acervos;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
 using BibCorp.Persistence.Utilities.Pages.Class;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 namespace BibCorp.Persistence.Interfaces.Packages.Acervos
 {
@@ -14,7 +13,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
     private readonly BibCorpContext _context;
     private readonly IMapper _mapper;
 
-    public AcervoPersistence(BibCorpContext context, IMapper mapper ) : base(context)
+    public AcervoPersistence(BibCorpContext context, IMapper mapper) : base(context)
     {
       _context = context;
       _mapper = mapper;
@@ -171,22 +170,22 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
       return await ListaDePaginas<Acervo>.CriarPaginaAsync(query, parametrosPaginacao.NumeroDaPagina, parametrosPaginacao.tamanhoDaPagina);
     }
 
-     public async Task<bool> UpdateAcervoAposEmprestimo(int acervoId)
-     {
+    public async Task<bool> UpdateAcervoAposEmprestimo(int acervoId)
+    {
       IQueryable<Acervo> query = _context.Acervos
                 .AsNoTracking()
                 .Where(a => a.Id == acervoId);
 
-       var acervoAlterado = _mapper.Map<Acervo>(query.ToArrayAsync().Result.ElementAt(0));
+      var acervoAlterado = _mapper.Map<Acervo>(query.ToArrayAsync().Result.ElementAt(0));
 
-       acervoAlterado.QtdeDisponivel = acervoAlterado.QtdeDisponivel - 1;
-       acervoAlterado.QtdeEmprestada = acervoAlterado.QtdeEmprestada + 1;
+      acervoAlterado.QtdeDisponivel = acervoAlterado.QtdeDisponivel - 1;
+      acervoAlterado.QtdeEmprestada = acervoAlterado.QtdeEmprestada + 1;
 
       Update(acervoAlterado);
 
       return await SaveChangesAsync();
 
-      }
+    }
 
   }
 }

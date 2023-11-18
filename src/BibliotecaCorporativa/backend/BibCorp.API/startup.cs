@@ -1,6 +1,3 @@
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Reflection;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
@@ -17,6 +14,7 @@ using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contracts.Shared;
 using BibCorp.Persistence.Interfaces.Contracts.Usuarios;
+using BibCorp.Persistence.Interfaces.Packages;
 using BibCorp.Persistence.Interfaces.Packages.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Patrimonios;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
@@ -26,6 +24,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.Text;
+using System.Text.Json.Serialization;
 
 
 namespace BibiCorp.API
@@ -71,12 +72,12 @@ namespace BibiCorp.API
         .AddJwtBearer(options =>
           {
             options.TokenValidationParameters = new TokenValidationParameters
-              {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
-                ValidateIssuer = false,
-                ValidateAudience = false
-              };
+            {
+              ValidateIssuerSigningKey = true,
+              IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+              ValidateIssuer = false,
+              ValidateAudience = false
+            };
           });
 
       //Injeção das controllers
@@ -109,26 +110,30 @@ namespace BibiCorp.API
           .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
           .AddScoped<ISharedPersistence, SharedPersistence>();
 
+      services.Configure<PersistenceConfiguration>(x =>
+      {
+        x.PrazoRenovacao = Convert.ToInt32(Configuration["prazoRenovacao"]);
+      });
 
       services
                 .AddSwaggerGen(options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "OnPeople.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema OnPeople" });
+                  options.SwaggerDoc("v1", new OpenApiInfo { Title = "OnPeople.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema OnPeople" });
 
-                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                    options.IncludeXmlComments(xmlPath);
+                  var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                  var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                  options.IncludeXmlComments(xmlPath);
 
-                    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                    {
-                        Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
+                  options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                  {
+                    Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
                                         Exemplo: 'Bearer 12345abcdef'",
-                        Name = "Authorization",
-                        In = ParameterLocation.Header,
-                        Type = SecuritySchemeType.ApiKey,
-                        Scheme = "Bearer"
-                    });
-                    options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                  });
+                  options.AddSecurityRequirement(new OpenApiSecurityRequirement()
                     {
                         {
                             new OpenApiSecurityScheme {
@@ -169,7 +174,7 @@ namespace BibiCorp.API
               .AllowAnyOrigin()
               );
 
-      app.UseHttpsRedirection();  
+      app.UseHttpsRedirection();
 
       app.UseEndpoints(endpoints =>
       {

@@ -1,6 +1,5 @@
 
 using AutoMapper;
-using BibCorp.Domain.Models.Acervos;
 using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
@@ -128,7 +127,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
                         a.Posicao.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                         a.ISBN.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
         }
-    }
+      }
       else
       {
         if (parametrosPaginacao.PesquisarPor == "SituacaoEmprestado")

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Services.Contracts.Acervos;
@@ -170,7 +166,7 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
     }
 
-        public async Task<ListaDePaginas<AcervoDto>> GetAcervosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
+    public async Task<ListaDePaginas<AcervoDto>> GetAcervosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao)
     {
       try
       {

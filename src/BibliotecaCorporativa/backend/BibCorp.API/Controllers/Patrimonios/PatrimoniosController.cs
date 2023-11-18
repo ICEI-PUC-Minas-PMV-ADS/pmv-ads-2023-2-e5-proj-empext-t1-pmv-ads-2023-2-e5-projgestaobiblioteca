@@ -143,7 +143,7 @@ public class PatrimoniosController : ControllerBase
       var acervo = await _acervoService.GetAcervoByISBNAsync(patrimonioDto.ISBN);
 
       if (acervo != null) patrimonioDto.AcervoId = acervo.Id;
- 
+
       var createdPatrimonio = await _patrimonioService.CreatePatrimonio(patrimonioDto);
 
       if (createdPatrimonio != null) return Ok(createdPatrimonio);
@@ -211,7 +211,7 @@ public class PatrimoniosController : ControllerBase
 
   }
 
-  
+
   /// <summary>
   /// Obtém os dados dos patrimonios cadastrados na emrpesa com recurso de paginacao
   /// </summary>
@@ -220,7 +220,7 @@ public class PatrimoniosController : ControllerBase
   /// <response code="500">Erro interno</response>
 
   [HttpGet("Paginacao")]
-  public async Task<IActionResult> GetPatrimoniosPaginacao([FromQuery]ParametrosPaginacao parametrosPaginacao)
+  public async Task<IActionResult> GetPatrimoniosPaginacao([FromQuery] ParametrosPaginacao parametrosPaginacao)
   {
     try
     {

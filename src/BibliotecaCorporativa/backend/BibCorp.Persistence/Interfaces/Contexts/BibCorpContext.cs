@@ -18,7 +18,7 @@ namespace BibCorp.Persistence.Interfaces.Contexts
                                                   IdentityRoleClaim<int>,
                                                   IdentityUserToken<int>>
   {
-    public BibCorpContext(DbContextOptions<BibCorpContext> options) : base(options) {  }
+    public BibCorpContext(DbContextOptions<BibCorpContext> options) : base(options) { }
     public DbSet<Acervo> Acervos { get; set; }
     public DbSet<Patrimonio> Patrimonios { get; set; }
     public DbSet<Emprestimo> Emprestimos { get; set; }
@@ -27,7 +27,7 @@ namespace BibCorp.Persistence.Interfaces.Contexts
     {
       base.OnModelCreating(modelBuilder);
 
-// Identity Framework Core
+      // Identity Framework Core
       modelBuilder.Entity<UsuarioPapel>(
       usuarioPapel =>
       {
@@ -43,7 +43,7 @@ namespace BibCorp.Persistence.Interfaces.Contexts
                         .HasForeignKey(cf => cf.UserId)
                         .IsRequired();
       });
-// Identity Framework Core
+      // Identity Framework Core
 
       modelBuilder.Entity<Emprestimo>(emprestimo =>
       {

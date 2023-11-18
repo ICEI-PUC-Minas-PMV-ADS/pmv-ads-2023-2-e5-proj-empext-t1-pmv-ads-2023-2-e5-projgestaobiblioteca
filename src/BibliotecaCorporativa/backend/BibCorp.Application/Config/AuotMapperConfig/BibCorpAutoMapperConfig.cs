@@ -10,18 +10,19 @@ using BibCorp.Domain.Models.Usuarios;
 
 namespace BibCorp.Application.Config.AuotMapperConfig
 {
-    public class BibCorpAutoMapperConfig : Profile
+  public class BibCorpAutoMapperConfig : Profile
+  {
+    public BibCorpAutoMapperConfig()
     {
-        public BibCorpAutoMapperConfig() {
-            CreateMap<Acervo, AcervoDto>().ReverseMap();
+      CreateMap<Acervo, AcervoDto>().ReverseMap();
 
-            CreateMap<Patrimonio, PatrimonioDto>().ReverseMap();
+      CreateMap<Patrimonio, PatrimonioDto>().ReverseMap();
 
-            CreateMap<Emprestimo, EmprestimoDto>().ReverseMap();
+      CreateMap<Emprestimo, EmprestimoDto>().ReverseMap();
 
-            CreateMap<Usuario, UsuarioDto>().ReverseMap();
-            CreateMap<Usuario, UsuarioLoginDto>().ReverseMap();
-            CreateMap<Usuario, UsuarioUpdateDto>().ReverseMap();
-        }
+      CreateMap<Usuario, UsuarioDto>().ReverseMap();
+      CreateMap<Usuario, UsuarioLoginDto>().ReverseMap();
+      CreateMap<Usuario, UsuarioUpdateDto>().ReverseMap();
     }
+  }
 }

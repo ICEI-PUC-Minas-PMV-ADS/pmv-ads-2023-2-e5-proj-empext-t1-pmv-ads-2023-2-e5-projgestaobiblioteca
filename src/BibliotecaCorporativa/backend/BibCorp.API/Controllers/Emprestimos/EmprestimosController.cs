@@ -1,8 +1,7 @@
 
 using BibCorp.Application.Dto.Emprestimos;
-using BibCorp.Application.Dto.Patrimonios;
 using BibCorp.Application.Services.Contracts.Emprestimos;
-using BibCorp.Application.Services.Contracts.Patrimonios;
+using BibCorp.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibCorp.API.Controllers.Emprestimos;
@@ -170,6 +169,10 @@ public class EmprestimosController : ControllerBase
       if (emprestimoRenovado == null) return NotFound("Não existe empréstimo cadastrado para renovação");
 
       return Ok(emprestimoRenovado);
+    }
+    catch (CoreException e)
+    {
+      return this.StatusCode(StatusCodes.Status400BadRequest, e.Message);
     }
     catch (Exception e)
     {

@@ -1,12 +1,10 @@
 using AutoMapper;
 using BibCorp.Application.Dto.Emprestimos;
-using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
-using BibCorp.Application.Services.Contracts.Acervos;
+using BibCorp.Domain.Exceptions;
 using BibCorp.Domain.Models.Emprestimos;
-using BibCorp.Domain.Models.Acervos;
-using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
+using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorp.Persistence.Interfaces.Contracts.Patrimonios;
 
 namespace BibCorp.Application.Services.Packages.Emprestimos
@@ -209,24 +207,18 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
 
     public async Task<EmprestimoDto> RenovarEmprestimo(int emprestimoId)
     {
-      try
-      {
-        var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
+      var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
 
-        if (emprestimo == null) return null;
+      if (emprestimo == null) return null;
 
-        if (emprestimo.Status == Status.Renovado) throw new Exception("Renovação não permitida pois o empréstimo já foi renovado anteriormente");
+      if (emprestimo.Status == Status.Renovado) throw new CoreException("Renovação não permitida pois o empréstimo já foi renovado anteriormente");
 
-        var emprestimoRenovado = await _emprestimoPersistence.RenovarEmprestimo(emprestimoId);
+      var emprestimoRenovado = await _emprestimoPersistence.RenovarEmprestimo(emprestimoId);
 
-        var emprestimoRenovadoMapper = _mapper.Map<EmprestimoDto>(emprestimoRenovado);
+      var emprestimoRenovadoMapper = _mapper.Map<EmprestimoDto>(emprestimoRenovado);
 
-        return emprestimoRenovadoMapper;
-      }
-      catch (Exception e)
-      {
-        throw new Exception(e.Message);
-      }
+      return emprestimoRenovadoMapper;
+
     }
   }
 }

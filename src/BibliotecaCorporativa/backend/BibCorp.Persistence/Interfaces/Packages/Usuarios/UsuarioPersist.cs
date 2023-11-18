@@ -10,7 +10,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
   {
 
     private readonly BibCorpContext _context;
-    public UsuarioPersistence(BibCorpContext context): base(context)
+    public UsuarioPersistence(BibCorpContext context) : base(context)
     {
       _context = context;
 

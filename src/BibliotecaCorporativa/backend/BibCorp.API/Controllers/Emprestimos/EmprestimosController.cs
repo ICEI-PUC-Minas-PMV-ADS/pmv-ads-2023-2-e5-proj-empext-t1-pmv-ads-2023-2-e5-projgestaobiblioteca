@@ -90,6 +90,10 @@ public class EmprestimosController : ControllerBase
 
       return BadRequest("Ocorreu um erro ao tentar incluir o empréstimo");
     }
+    catch (CoreException e)
+    {
+      return this.StatusCode(StatusCodes.Status400BadRequest, e.Message);
+    }
     catch (Exception e)
     {
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao adicionar empréstimo. Erro: {e.Message}");

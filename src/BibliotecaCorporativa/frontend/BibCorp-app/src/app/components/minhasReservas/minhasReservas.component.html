@@ -40,8 +40,8 @@
           <p class="card-text">Data prevista de devolução:  {{emprestimos.dataPrevistaDevolucao}}</p>
           <p class="card-text">Status do empréstimo:  {{status(emprestimos)}}</p>
         </div>
-        <button type="button" class="btn btn-success btn-sm" (click)="abrirDialog(emprestimos.id, emprestimos.acervo.titulo, emprestimos.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
-
+        <button type="button" class="btn btn-orange button" (click)="abrirDialogRenovacao(emprestimos.id, emprestimos.acervo.titulo, emprestimos.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
+        <button type="button" class="btn btn-blue button" (click)="abrirDialogAlteracao(emprestimos.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
       </div>
     </div>
   </div>

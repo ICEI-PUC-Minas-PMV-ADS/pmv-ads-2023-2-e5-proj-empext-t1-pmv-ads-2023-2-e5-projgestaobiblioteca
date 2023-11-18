@@ -82,4 +82,11 @@ export class AcervoDetalheComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
+  public obterStatusPatrimonio(status: boolean): any{
+    if(status === false){
+      return ("Indisponível")
+    } else if(status === true){
+      return ("Disponível")
+    }
+  }
 }

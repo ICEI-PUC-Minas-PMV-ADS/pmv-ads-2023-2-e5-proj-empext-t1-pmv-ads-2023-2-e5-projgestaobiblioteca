@@ -125,8 +125,12 @@ export class modalEmprestarComponent implements OnInit {
         this.fecharModalEmprestarEAbrirModalSucesso()
       },
       (error: any) => {
-        this.toastrService.error("Ocorreu um erro ao tentar cadastrar o empréstimo");
-        console.error(error)
+        if(error.status === 400 && error.error == "Acervo não possui unidades disponíveis para empréstimo"){
+          this.toastrService.error("O livro escolhido não possui exemplares disponíveis para empréstimo no momento");
+        } else if(error.status === 500){
+          this.toastrService.error("Ocorreu um erro ao tentar cadastrar o empréstimo");
+        }
+
       }
     )
       .add(() => this.spinnerService.hide())

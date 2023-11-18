@@ -99,8 +99,25 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
         return emprestimoRenovado;
       }
       else throw new CoreException("Não foi possível realizar a renovação do empréstimo");
-
-
     }
+
+    public async Task<Emprestimo> AlteraLocalDeColeta(int emprestimoId, string novoLocalColeta)
+    {
+      var emprestimoAlterado = _context.Emprestimos
+      .AsNoTracking()
+                .FirstOrDefault(e => e.Id == emprestimoId);
+
+      emprestimoAlterado.LocalDeColeta = novoLocalColeta;
+   
+      Update(emprestimoAlterado);
+
+      if (await SaveChangesAsync())
+      {
+        return emprestimoAlterado;
+      }
+      else throw new CoreException("Não foi possível alterar o local de coleta");
+    }
+
+
   }
 }

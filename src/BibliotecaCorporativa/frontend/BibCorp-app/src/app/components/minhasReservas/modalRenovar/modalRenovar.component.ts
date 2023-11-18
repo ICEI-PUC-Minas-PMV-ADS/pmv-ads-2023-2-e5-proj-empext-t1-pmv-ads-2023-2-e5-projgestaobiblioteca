@@ -7,9 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EmprestimoService, UsuarioService } from 'src/app/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Acervo, Emprestimo, Patrimonio, Usuario } from 'src/app/models';
-import { formatDate } from '@angular/common';
-import { ModalSucessoComponent } from '../modalSucesso';
+import { Acervo, Emprestimo, Patrimonio } from 'src/app/models';
+import { ModalSucessoComponent } from '../modalSucessoRenovacao';
 
 @Component({
   selector: 'app-modal-renovar',
@@ -29,7 +28,6 @@ export class ModalRenovarComponent implements OnInit {
   constructor(
   private dialog: MatDialog,
   @Inject(MAT_DIALOG_DATA) public dataInput: { emprestimoId: number, acervoTitulo: string, dataPrevistaDevolucao: String, id: string},
-  private router: Router,
   private emprestimoService: EmprestimoService,
   private spinnerService: NgxSpinnerService,
   private toastrService: ToastrService,
@@ -45,8 +43,8 @@ export class ModalRenovarComponent implements OnInit {
 
 
   fecharModalRenovarEAbrirModalSucesso() {
-    const dialogRefRenovar = this.dataInput.id
-    if (dialogRefRenovar) {
+    const dialogRefAlterar = this.dataInput.id
+    if (dialogRefAlterar) {
       this.dialog.closeAll();
     }
 

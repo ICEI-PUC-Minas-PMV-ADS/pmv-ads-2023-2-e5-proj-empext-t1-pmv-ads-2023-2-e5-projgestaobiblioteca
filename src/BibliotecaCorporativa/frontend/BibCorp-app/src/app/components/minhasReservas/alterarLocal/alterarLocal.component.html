@@ -2,13 +2,12 @@
     <h4>Alterar local de coleta</h4>
   
     <div class="alterar">
-      <label for="local-entrega" style="width: 100%;">Local de entrega:</label>
-      <input id="local-entrega" class="custom-dropdown" style="width: 93%;" value="   ------" readonly />
+      <label for="local-entrega" style="width: 100%;">Local de coleta atual: <b>{{localColetaAtual}}</b></label>
     </div>
   
-    <div class="dropdown">
-      <label for="local-coleta" style="width: 100%;">Local de coleta:</label>
-      <select id="local-coleta" class="custom-dropdown" style="width: 100%;">
+    <div class="dropdown" class="emprestimo">
+      <label for="local-coleta" style="width: 100%;">Novo local de coleta:</label>
+      <select id="local-coleta" class="custom-dropdown" style="width: 100%;" [(ngModel)]="novoLocalColeta">
         <option value="Matriz">Matriz</option>
         <option value="Contorno">Contorno</option>
         <option value="Betim">Betim</option>
@@ -24,5 +23,5 @@
       </select>
     </div>
   
-    <button class=" btn btn-orange" id="botao" type="button" onclick="alert('Você alterou o local de coleta com sucesso!')">Alterar</button>
+    <button class=" btn btn-orange" id="botao" type="button" (click)="alterarLocalDeColeta()">Alterar local</button>
   </div>

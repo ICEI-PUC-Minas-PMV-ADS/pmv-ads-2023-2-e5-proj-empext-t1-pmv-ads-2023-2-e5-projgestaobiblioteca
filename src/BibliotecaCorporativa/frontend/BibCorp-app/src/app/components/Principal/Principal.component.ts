@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 import { NgxSpinnerService } from 'ngx-spinner'
 import { ToastrService } from 'ngx-toastr'
@@ -35,7 +36,8 @@ export class PrincipalComponent implements OnInit {
   constructor (
     private acervoService: AcervoService,
     private toastrService: ToastrService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private router: Router,
   ) { }
 
   public ngOnInit (): void {
@@ -47,7 +49,7 @@ export class PrincipalComponent implements OnInit {
     this.spinnerService.show()
 
     this.acervoService
-    .getAcervosRecentes(1, 4, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
+    .getAcervosRecentes(1, 8, this.argumento, this.opcaoPesquisa, this.opcaoGeneroRecentes)
     .subscribe(
       (retorno: ResultadoPaginado<Acervo[]>) => {
         this.acervosRecentes = retorno.resultado
@@ -84,6 +86,10 @@ export class PrincipalComponent implements OnInit {
       }
     )
     .add(() => this.spinnerService.hide())
+  }
+
+  public detalheAcervo(acervoId: number): void {
+    this.router.navigate([`acervos/detalhe/${acervoId}`]);
   }
 
 

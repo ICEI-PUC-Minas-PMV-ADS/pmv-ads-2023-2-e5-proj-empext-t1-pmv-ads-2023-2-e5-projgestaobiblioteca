@@ -63,8 +63,11 @@ public renovarEmprestimo(): void {
       this.fecharModalRenovarEAbrirModalSucesso()
     },
     (error: any) => {
-      this.toastrService.error("Ocorreu um erro ao tentar renovar o empréstimo");
-      console.error(error)
+      if(error.status === 400 && error.error == "Renovação não permitida pois o empréstimo já foi renovado anteriormente"){
+        this.toastrService.error("Não será possível realizar a renovação solicitada pois o empréstimo já foi renovado anteriormente");
+      } else if(error.status === 500){
+        this.toastrService.error("Ocorreu um erro ao tentar renovar o empréstimo");
+      }
     }
   )
     .add(() => this.spinnerService.hide())

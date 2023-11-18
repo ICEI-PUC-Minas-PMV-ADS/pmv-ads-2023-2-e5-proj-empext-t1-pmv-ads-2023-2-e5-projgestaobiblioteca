@@ -54,14 +54,14 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
 
           return null;
         }
-        catch (Exception e)
+        catch (CoreException e)
         {
 
-          throw new Exception(e.Message);
+          throw new CoreException(e.Message);
         }
       }
 
-      throw new Exception("Acervo não possui unidades disponíveis para empréstimo");
+      throw new CoreException("Acervo não possui unidades disponíveis para empréstimo");
 
     }
 

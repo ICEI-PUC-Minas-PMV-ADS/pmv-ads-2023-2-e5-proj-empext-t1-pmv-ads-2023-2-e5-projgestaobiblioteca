@@ -220,5 +220,21 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       return emprestimoRenovadoMapper;
 
     }
+
+    public async Task<EmprestimoDto> AlteraLocalDeColeta(int emprestimoId, string novoLocalColeta)
+    {
+      var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
+
+      if (emprestimo == null) return null;
+
+      if (emprestimo.Status == Status.Devolvido) throw new CoreException("Não é possível alterar o local de coleta de um empréstimo já devolvido");
+
+      var emprestimoAlterado = await _emprestimoPersistence.AlteraLocalDeColeta(emprestimoId, novoLocalColeta);
+
+      var emprestimoAlteradoMapper = _mapper.Map<EmprestimoDto>(emprestimoAlterado);
+
+      return emprestimoAlteradoMapper;
+
+    }
   }
 }

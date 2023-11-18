@@ -75,9 +75,9 @@ export class MinhasReservasComponent implements OnInit {
     });
   }
 
-  abrirDialogAlteracao(localDeColeta: string){
+  abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string){
     this.dialogRef.open(AlterarLocalComponent, {
-      data : { localDeColeta: localDeColeta, id: 'Alterar'}
+      data : { emprestimoId: emprestimoId, localDeColetaAtual: localDeColetaAtual, id: 'Alterar'}
       
     });
   }

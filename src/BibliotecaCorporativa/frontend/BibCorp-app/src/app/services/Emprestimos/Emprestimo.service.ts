@@ -44,4 +44,9 @@ export class EmprestimoService {
     .pipe(take(1));
 }
 
+public alterarLocalDeColeta (emprestimoId:number, novoLocalColeta: string ): Observable<Emprestimo> {
+  return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimoId}/${novoLocalColeta}/AlteraLocalDeColeta`,null)
+  .pipe(take(1));
+}
+
 }

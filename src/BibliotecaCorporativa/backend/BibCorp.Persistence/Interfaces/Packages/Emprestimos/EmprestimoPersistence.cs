@@ -47,6 +47,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByUserNameAsync(string userName)
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
+          .Include(e => e.Acervo)
           .Include(e => e.Patrimonio)
             .AsNoTracking()
             .Where(e => e.UserName == userName)

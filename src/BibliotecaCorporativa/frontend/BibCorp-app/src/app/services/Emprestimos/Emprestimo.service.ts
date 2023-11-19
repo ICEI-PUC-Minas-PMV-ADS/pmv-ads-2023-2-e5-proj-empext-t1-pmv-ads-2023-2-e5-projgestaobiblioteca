@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { type Observable, take } from 'rxjs'
@@ -21,6 +23,11 @@ export class EmprestimoService {
 
   public getEmprestimoById (id: number): Observable<Emprestimo> {
     return this.http.get<Emprestimo>(`${this.baseURL}${id}`)
+               .pipe(take(3));
+  }
+
+  public getEmprestimosByUserName (userName: string): Observable<Emprestimo[]> {
+    return this.http.get<Emprestimo[]>(`${this.baseURL}${userName}`)
                .pipe(take(3));
   }
 

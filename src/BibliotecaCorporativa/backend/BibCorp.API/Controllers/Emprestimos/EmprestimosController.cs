@@ -72,6 +72,34 @@ public class EmprestimosController : ControllerBase
     }
   }
 
+
+  /// <summary>
+  /// Obtém os dados dos empréstimos por usuário
+  /// </summary>
+  /// <param name="userName">Identificador do usuário</param>
+  /// <response code="200">Dados do empréstimo consultado</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("{userName}")]
+  public async Task<IActionResult> GetEmprestimoByUserName(string userName)
+  {
+    try
+    {
+      var emprestimo = await _emprestimoService.GetEmprestimosByUserNameAsync(userName);
+
+      if (emprestimo == null) return NotFound("Não existe empréstimo cadastrado para o nome de usuário informado");
+
+      return Ok(emprestimo);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimo por Usuário. Erro: {e.Message}");
+    }
+  }
+
+
   /// <summary>
   /// Realiza a inclusão de um novo empréstimo
   /// </summary>

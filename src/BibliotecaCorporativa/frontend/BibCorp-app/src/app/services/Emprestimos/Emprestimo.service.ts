@@ -27,7 +27,7 @@ export class EmprestimoService {
   }
 
   public getEmprestimosByUserName (userName: string): Observable<Emprestimo[]> {
-    return this.http.get<Emprestimo[]>(`${this.baseURL}${userName}`)
+    return this.http.get<Emprestimo[]>(`http://localhost:5283/api/Emprestimos/users/${userName}`)
                .pipe(take(3));
   }
 

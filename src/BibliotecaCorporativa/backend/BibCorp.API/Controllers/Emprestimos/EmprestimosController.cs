@@ -81,8 +81,8 @@ public class EmprestimosController : ControllerBase
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
-  [HttpGet("{userName}")]
-  public async Task<IActionResult> GetEmprestimoByUserName(string userName)
+  [HttpGet("users/{userName}")]
+  public async Task<IActionResult> GetEmprestimosByUserName(string userName)
   {
     try
     {

@@ -60,7 +60,7 @@
 
 
 
-  <div class="container d-flex">
+  <!-- <div class="container d-flex">
     <div class="row" *ngIf="emprestimos && emprestimos.length">
       <div  *ngFor="let emprestimos of emprestimosFiltrados">
         <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 30rem;">
@@ -69,11 +69,11 @@
             <P class="h7">Autor: {{emprestimos.acervo.autor}}</P>
           </div>
           <br>
-          <div class="card-body">
+          <div class="card-body"> -->
             <!-- <p class="h4 card-title">Subtitulo{{acervo.subTitulo}}</p>
             <textarea matInput style="min-height: 150px; min-width: 100%;"
               class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea> -->
-              <img src={{emprestimos.acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
+              <!-- <img src={{emprestimos.acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
               <br>
             <p class="card-text">Data da solicitação:  {{emprestimos.dataEmprestimo}}</p>
             <p class="card-text">Data prevista de devolução:  {{emprestimos.dataPrevistaDevolucao}}</p>
@@ -92,6 +92,43 @@
         </div>
       </div>
     </div>
-    </div>
+    </div> -->
 
-<!-- {{eventos | json}} -->
+    <div class="contianer bibcorp-box m-0 ps-3">
+      <div class="p-3">
+        <div class="row" *ngIf="emprestimos && emprestimos.length">
+          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
+              <div class="card text-black bibcorp-bg-white mb-3" style="max-width: 20rem;">
+                <div class="card-header text-white bibcorp-bg-secondary">
+                  <P class="h5">Título: {{emprestimo.patrimonio.localizacao}} </P>
+                  <P class="h7">Autor: {{emprestimo.userName}}</P>
+                </div>
+                <div class="card-body">
+                  <!--<p class="h4 card-title">{{acervo.subTitulo}}</p>
+                  <textarea matInput style="min-height: 150px; min-width: 100%;"
+                    class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>-->
+                    <img src={{acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
+                    <br>
+                    <p class="card-text">Data da solicitação:  {{emprestimo.dataEmprestimo}}</p>
+            <p class="card-text">Data prevista de devolução:  {{emprestimo.dataPrevistaDevolucao}}</p>
+            <p class="card-text">Status do empréstimo:  <b>{{status(emprestimo)}}</b></p>
+                </div>
+                <div class="buttons">
+                  <div class="buttonRenovacao">
+                    <button type="button" class="btn btn-orange button" (click)="abrirDialogRenovacao(emprestimo.id, emprestimo.acervo.titulo, emprestimo.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
+                  </div>
+                  <br>
+                  <div class="buttonAlteracao">
+                    <button type="button" class="btn btn-blue button" (click)="abrirDialogAlteracao(emprestimo.id, emprestimo.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
+                  </div>
+                  <br>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+        </div>
+
+
+
+<!-- {{emprest | json}} -->

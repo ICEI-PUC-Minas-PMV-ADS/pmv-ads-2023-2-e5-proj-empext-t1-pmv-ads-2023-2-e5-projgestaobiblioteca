@@ -93,4 +93,11 @@ export class PrincipalComponent implements OnInit {
   }
 
 
+ showDetailsButton: number | null = null;
+
+  favoritarAcervo(acervoId: number): void {
+    // Lógica de favoritar aqui
+    console.log('Livro favoritado:', acervoId);
+  } 
+
 }

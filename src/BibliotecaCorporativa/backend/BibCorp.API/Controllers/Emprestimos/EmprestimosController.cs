@@ -210,6 +210,36 @@ public class EmprestimosController : ControllerBase
     {
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao renovar empréstimo. Erro: {e.Message}");
     }
+  }
+
+  /// <summary>
+  /// Realiza a alteração do local de coleta do empréstimo
+  /// </summary>
+  /// <param name="emprestimoId">Identificador do empréstimo</param>
+  /// <param name="novoLocalColeta">Novo local de coleta</param>
+  /// <response code="200">Local de coleta atualizado com sucesso</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpPatch("{emprestimoId}/{novoLocalColeta}/AlteraLocalDeColeta")]
+  public async Task<IActionResult> AlteraLocalDeColeta(int emprestimoId, string novoLocalColeta)
+  {
+    try
+    {
+      var emprestimoAlterado = await _emprestimoService.AlteraLocalDeColeta(emprestimoId, novoLocalColeta);
+
+      if (emprestimoAlterado == null) return NotFound("Não existe empréstimo cadastrado para alteração");
+
+      return Ok(emprestimoAlterado);
+    }
+    catch (CoreException e)
+    {
+      return this.StatusCode(StatusCodes.Status400BadRequest, e.Message);
+    }
+    catch (Exception e)
+    {
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao alterar o empréstimo. Erro: {e.Message}");
+    }
 
   }
 }

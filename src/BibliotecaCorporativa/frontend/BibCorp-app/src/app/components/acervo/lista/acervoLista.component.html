@@ -56,8 +56,7 @@
       <tbody *ngIf="acervos && acervos.length">
         <tr *ngFor="let acervo of acervos" (click)="editarAcervo(acervo.id)" style="cursor: pointer">
           <td>
-            <img [(ngbCollapse)]="!exibirImagem" src="../../../../assets/Images/capaDefault.png" alt=""
-              [style.width.px]="30" [style.margin.px]="2">
+            <img [(ngbCollapse)]="!exibirImagem" src="{{acervo.capaUrl}}" alt="Capa do livro" style="width: 30px; height: 30px;">
           </td>
           <td>{{acervo.id}}</td>
           <td>{{acervo.isbn}}</td>

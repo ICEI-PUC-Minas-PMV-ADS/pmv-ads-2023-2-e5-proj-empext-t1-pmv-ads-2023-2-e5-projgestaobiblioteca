@@ -106,7 +106,8 @@ constructor(
 
   abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string){
     this.dialogRef.open(AlterarLocalComponent, {
-      data : { emprestimoId: emprestimoId, localDeColetaAtual: localDeColetaAtual, id: 'Alterar'}
+      data : {emprestimoId: emprestimoId, localDeColeta: localDeColetaAtual, id: 'Alterar'}
+
     });
   }
 
@@ -124,8 +125,8 @@ constructor(
   }
 
 
-  public getEmprestimos(user: string): void {
-    this.EmprestimoService.getEmprestimosByUserName(user).subscribe({
+  public getEmprestimos(userName: string): void {
+    this.EmprestimoService.getEmprestimosByUserName(userName).subscribe({
       next: (Response: Emprestimo[]) => {
         this.emprestimos = Response;
         this.emprestimosFiltrados = this.emprestimos;

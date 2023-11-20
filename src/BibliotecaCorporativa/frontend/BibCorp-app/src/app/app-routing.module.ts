@@ -16,9 +16,9 @@ import { MinhasReservasComponent } from "./components/minhasReservas/minhasReser
 import { PerfilComponent } from "./components/usuario/perfil/perfil.component";
 import { AcervoDetalheComponent } from "./components/acervo/detalhe";
 import { AcervoListaComponent } from "./components/acervo/lista/acervoLista.component";
-import { AuthGuard } from "./util/security/guard";
+import { AuthGuard } from "./shared/security/guard";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: "root" })
 export class AdminGuard {
   canActivate() {
     return true;

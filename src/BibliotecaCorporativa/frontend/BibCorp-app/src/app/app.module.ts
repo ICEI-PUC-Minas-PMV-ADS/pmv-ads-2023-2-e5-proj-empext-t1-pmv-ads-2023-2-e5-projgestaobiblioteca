@@ -36,15 +36,12 @@ import {
   AcervoEdicaoComponent,
   AcervoListaComponent,
   CadastroUsuarioComponent,
-  DeleteModalComponent,
   LoginComponent,
-  NavBarComponent,
   PatrimonioComponent,
   PatrimonioDetalheComponent,
   PatrimonioListaComponent,
   PerfilComponent,
   PrincipalComponent,
-  TitlebarComponent,
   UsuarioComponent,
 } from "./components";
 
@@ -54,9 +51,9 @@ import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.
 import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "./services";
 import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
-import { JwtInterceptor } from "./util";
 import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
 import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
+import { JwtInterceptor, SharedModule } from "./shared";
 
 @NgModule({
   declarations: [
@@ -66,16 +63,13 @@ import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal"
     AcervoListaComponent,
     AppComponent,
     CadastroUsuarioComponent,
-    DeleteModalComponent,
     LoginComponent,
-    NavBarComponent,
     PatrimonioDetalheComponent,
     PatrimonioListaComponent,
     PatrimonioComponent,
     PrincipalComponent,
     MinhasReservasComponent,
     PerfilComponent,
-    TitlebarComponent,
     UsuarioComponent,
     modalEmprestarComponent,
     ModalSucessoComponent,
@@ -92,7 +86,6 @@ import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal"
     NgbCollapseModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -105,6 +98,7 @@ import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal"
     NgxSpinnerModule,
     NgbPaginationModule,
     ReactiveFormsModule,
+    SharedModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: "toast-bottom-right",

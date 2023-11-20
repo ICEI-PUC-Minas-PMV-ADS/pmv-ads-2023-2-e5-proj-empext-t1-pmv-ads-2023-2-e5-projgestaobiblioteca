@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, take, map } from 'rxjs'
 import { Patrimonio } from 'src/app/models/Patrimonios/Patrimonio'
-import { ResultadoPaginado } from 'src/app/util'
+import { ResultadoPaginado } from 'src/app/shared'
 import { environment } from 'src/assets/environments/environments'
 
 @Injectable({
@@ -76,7 +76,7 @@ export class PatrimonioService {
         return resultadoPaginado
       }))
   }
-  
+
   public deletePatrimonio(patrimonioId:number): Observable<any> {
     return this.http.delete(`${this.baseURL}${patrimonioId}?patrimonio=${patrimonioId}`)
     .pipe(take(3));

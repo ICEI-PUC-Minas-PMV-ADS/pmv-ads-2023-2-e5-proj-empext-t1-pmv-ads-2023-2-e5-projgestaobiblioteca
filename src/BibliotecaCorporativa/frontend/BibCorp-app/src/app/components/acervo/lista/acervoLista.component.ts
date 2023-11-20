@@ -7,8 +7,7 @@ import { ToastrService } from "ngx-toastr";
 
 import { Acervo } from "src/app/models";
 import { AcervoService } from "src/app/services";
-import { Paginacao, ResultadoPaginado } from "src/app/util";
-import { DeleteModalComponent } from "../../shared";
+import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
 
 
 @Component({
@@ -24,7 +23,7 @@ export class AcervoListaComponent implements OnInit {
   public acervoId = 0;
   public acervoISBN = "";
 
-  public opcaoPesquisa: string = 'Todos' 
+  public opcaoPesquisa: string = 'Todos'
   public argumento: string = ''
 
   public exibirImagem: boolean = true;

@@ -7,8 +7,7 @@ import { ToastrService } from 'ngx-toastr'
 
 import { Acervo } from 'src/app/models'
 import { AcervoService } from 'src/app/services'
-
-import { Paginacao, ResultadoPaginado } from 'src/app/util'
+import { Paginacao, ResultadoPaginado } from 'src/app/shared'
 
 @Component({
   selector: 'app-principal',
@@ -25,7 +24,7 @@ export class PrincipalComponent implements OnInit {
 
   public generos: String[] = []
 
-  public opcaoPesquisa: string = 'Todos' 
+  public opcaoPesquisa: string = 'Todos'
   public opcaoGeneroRecentes: string = 'Todos'
   public argumento: string = ''
 
@@ -98,6 +97,6 @@ export class PrincipalComponent implements OnInit {
   favoritarAcervo(acervoId: number): void {
     // Lógica de favoritar aqui
     console.log('Livro favoritado:', acervoId);
-  } 
+  }
 
 }

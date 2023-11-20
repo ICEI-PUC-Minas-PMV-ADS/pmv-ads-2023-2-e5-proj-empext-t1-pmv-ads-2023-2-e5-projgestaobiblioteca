@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, take } from 'rxjs';
 import { Acervo } from 'src/app/models';
-import { ResultadoPaginado } from 'src/app/util';
+import { ResultadoPaginado } from 'src/app/shared';
 import { environment } from 'src/assets/environments/environments';
 
 @Injectable({

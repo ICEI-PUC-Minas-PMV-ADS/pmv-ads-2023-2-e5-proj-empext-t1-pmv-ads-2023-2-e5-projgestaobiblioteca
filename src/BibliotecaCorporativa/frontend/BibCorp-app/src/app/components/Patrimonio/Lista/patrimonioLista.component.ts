@@ -7,8 +7,7 @@ import { ToastrService } from "ngx-toastr";
 
 import { Patrimonio } from "src/app/models";
 import { PatrimonioService } from "src/app/services";
-import { Paginacao, ResultadoPaginado } from "src/app/util";
-import { DeleteModalComponent } from "../../shared";
+import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
 
 
 @Component({

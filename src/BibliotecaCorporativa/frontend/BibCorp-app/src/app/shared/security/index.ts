@@ -1,2 +1,2 @@
-export * from './interceptors'
 export * from './guard'
+export * from './interceptors'

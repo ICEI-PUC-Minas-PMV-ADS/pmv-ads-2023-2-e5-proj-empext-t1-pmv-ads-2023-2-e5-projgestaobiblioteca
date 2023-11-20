@@ -248,7 +248,7 @@ public class AcervoController : ControllerBase
   {
     try
     {
-      var apikey = "AIzaSyAdqmSh-H-FC5TXVVEW0QBZaafCi7kI24E";
+      //var apikey = "AIzaSyAdqmSh-H-FC5TXVVEW0QBZaafCi7kI24E";
       var url = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}";
 
       using (var httpClient = new HttpClient())

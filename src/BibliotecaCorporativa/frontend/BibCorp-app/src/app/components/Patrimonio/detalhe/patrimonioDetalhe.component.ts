@@ -125,7 +125,7 @@ export class PatrimonioDetalheComponent {
 
     this.patrimonio = { ...this.formPatrimonio.value };
 
-    this.patrimonio.status = true;
+    this.patrimonio.status = false;
     this.patrimonio.dataAtualizacao = new Date().toISOString();
     this.patrimonio.dataCadastro = new Date().toISOString();
 

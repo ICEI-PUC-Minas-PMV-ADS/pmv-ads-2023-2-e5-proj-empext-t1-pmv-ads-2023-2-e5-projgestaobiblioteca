@@ -25,8 +25,6 @@ namespace BibCorp.Application.Dto.Acervos
     [Display(Name = "Data de Criação / Cadastro do livro"),
     Required(ErrorMessage = "Campo {0} deverá ser informado no formato AAAAMMDD!")]
     public string DataCriacao { get; set; }
-    [Display(Name = "Título da Edição"),
-    Required(ErrorMessage = "Campo {0} deverá ser informado!")]
     public string Edicao { get; set; }
     [Display(Name = "Gênero"),
     Required(ErrorMessage = "Campo {0} deverá ser informado!")]

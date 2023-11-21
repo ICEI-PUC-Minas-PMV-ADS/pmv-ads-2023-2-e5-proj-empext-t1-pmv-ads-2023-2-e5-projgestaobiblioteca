@@ -26,12 +26,12 @@
                                     <input matInput type="text" formControlName="patrimonioId" [ngClass]="fieldValidator(ctrF.patrimonioId)"
                                         readonly>
                                     <mat-error class="invalid-feedback">{{messageReturned(ctrF.patrimonioId, '')}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                                  </mat-form-field>
+                                  <mat-form-field class="col-md-3 p-1" appearance="outline">
                                     <mat-label>Situação:</mat-label>
                                     <input matInput type="text" formControlName="statusTela"
                                         [ngClass]="fieldValidator(ctrF.statusTela)"
-                                        [ngClass]="(ctrF.statusTela == 'Liberado') ? 'text-success' : 'text-danger'"
+                                        (class)="(ctrF.statusTela == 'Liberado') ? 'text-success' : 'text-danger'"
                                         readonly>
                                     <mat-error class="invalid-feedback">{{messageReturned(ctrF.statusTela,
                                         '')}}</mat-error>

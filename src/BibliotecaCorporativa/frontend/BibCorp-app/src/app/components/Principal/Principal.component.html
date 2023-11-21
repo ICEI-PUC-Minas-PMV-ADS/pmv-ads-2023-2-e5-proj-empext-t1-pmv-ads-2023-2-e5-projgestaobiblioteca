@@ -8,7 +8,7 @@
       <div class="flex-fill m-0 p-0">
         <div class="input-group m-0 ">
           <div class="input-group-prepend ">
-            <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa"
+            <select class="bibcorp-select text-black border-0 p-3 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa"
               (change)="filtroAcervo()">
               <option [ngValue]="'Todos'">Todos</option>
               <option [ngValue]="'Autor'">Autor</option>
@@ -42,7 +42,7 @@
         </select>
       </div>
     </div>
-  
+
     <div class="row" *ngIf="acervosRecentes && acervosRecentes.length">
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let acervo of acervosRecentes; let i = index;">
         <div class="card bg-white mb-3" style="max-width: 20rem; height: 30rem; border-radius: 15px; overflow: hidden; position: relative;" (mouseenter)="showDetailsButton = i" (mouseleave)="showDetailsButton = null">
@@ -63,25 +63,25 @@
                     <mat-icon style="color: white;">favorite</mat-icon>
                   </div>
                 </button>
-               --> 
+               -->
               </div>
               <button *ngIf="showDetailsButton === i" type="button" class="btn btn-blue button" (click)="detalheAcervo(acervo.id)" matTooltip="Ver detalhes"
                 style="border-radius: 100%; font-size: 20px; margin-left: 3px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 
 
-                ">&rarr; 
+                ">&rarr;
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    
+
+
  <!--<textarea matInput style="min-height: 150px; min-width: 100%;"
                 class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>-->
 
-    
+
     <div *ngIf="!acervosRecentes.length" colspan="8" class="text-center">
       <h4>Nenhum acervo adicionado recentemente encontrado!</h4>
     </div>

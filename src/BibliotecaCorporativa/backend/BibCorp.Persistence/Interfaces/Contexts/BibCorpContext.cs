@@ -47,7 +47,11 @@ namespace BibCorp.Persistence.Interfaces.Contexts
 
       modelBuilder.Entity<Emprestimo>(emprestimo =>
       {
-        emprestimo.HasKey(e => new { e.AcervoId, e.PatrimonioId });
+        emprestimo.HasIndex(e => e.AcervoId);
+
+        emprestimo.HasIndex(e => e.PatrimonioId);
+
+        emprestimo.HasIndex(e => e.UserName);
       });
 
       modelBuilder.Entity<Acervo>(acervo =>

@@ -297,7 +297,7 @@ public class AcervoController : ControllerBase
     }
     catch (Exception e)
     {
-      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervo por argumento de pesquisa. Erro: {e.Message}");
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"IBSN não existe no Google Books. Erro: {e.Message}");
     }
   }
 

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20231120191625_Initial-Identity")]
+    [Migration("20231121002332_Initial-Identity")]
     partial class InitialIdentity
     {
         /// <inheritdoc />
@@ -83,10 +83,11 @@ namespace BibCorp.Persistence.Migrations
 
             modelBuilder.Entity("BibCorp.Domain.Models.Emprestimos.Emprestimo", b =>
                 {
-                    b.Property<int>("AcervoId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PatrimonioId")
+                    b.Property<int>("AcervoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DataDevolucao")
@@ -98,14 +99,14 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<string>("DataPrevistaDevolucao")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("LocalDeColeta")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LocalDeEntrega")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("PatrimonioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("QtdeDiasAtraso")
                         .HasColumnType("INTEGER");
@@ -122,9 +123,13 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<int?>("UsuarioId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("AcervoId", "PatrimonioId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcervoId");
 
                     b.HasIndex("PatrimonioId");
+
+                    b.HasIndex("UserName");
 
                     b.HasIndex("UsuarioId");
 

@@ -1,5 +1,4 @@
 export * from './Livros'
-export * from './Patrimonios'
 export * from './Usuarios'
 export * from './Login'
 export * from './Emprestimos'

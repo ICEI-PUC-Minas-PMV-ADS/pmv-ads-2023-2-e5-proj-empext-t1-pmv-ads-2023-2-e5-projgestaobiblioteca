@@ -2,7 +2,7 @@
 
 import { Component, OnInit, TemplateRef } from '@angular/core';
 // import { ModalModule } from 'ngx-bootstrap/modal';
-import { Patrimonio, UsuarioLogin } from 'src/app/models';
+import { UsuarioLogin } from 'src/app/models';
 import { Acervo } from 'src/app/models';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';

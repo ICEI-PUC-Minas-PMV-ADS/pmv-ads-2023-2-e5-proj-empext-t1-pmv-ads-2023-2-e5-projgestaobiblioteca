@@ -4,9 +4,8 @@ import { Router } from "@angular/router";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
+import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
 
-import { Patrimonio } from "src/app/models";
-import { PatrimonioService } from "src/app/services";
 import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
 
 
@@ -31,6 +30,8 @@ export class PatrimonioListaComponent implements OnInit {
   public opcaoPesquisa: string = "Todos";
 
   public exibirImagem: boolean = true;
+
+  public capaLivro = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU"
 
   filtroPatrimonio() {
     console.log("Filtro");
@@ -67,6 +68,8 @@ export class PatrimonioListaComponent implements OnInit {
         (retorno: ResultadoPaginado<Patrimonio[]>) => {
           this.patrimonios = retorno.resultado;
           this.paginacao = retorno.paginacao;
+
+          console.log(this.patrimonios)
         },
         (error: any) => {
           console.log("aqui 2");

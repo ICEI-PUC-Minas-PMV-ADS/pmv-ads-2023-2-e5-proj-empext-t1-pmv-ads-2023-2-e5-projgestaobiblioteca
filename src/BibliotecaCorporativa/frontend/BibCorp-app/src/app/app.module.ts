@@ -48,7 +48,7 @@ import {
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
 import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.service";
 
-import { AcervoService, LoginService, PatrimonioService, UsuarioService } from "./services";
+import { AcervoService, LoginService, UsuarioService } from "./services";
 import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
@@ -111,7 +111,6 @@ import { JwtInterceptor, SharedModule } from "./shared";
     LoginService,
     MinhasReservasService,
     NgxSpinnerService,
-    PatrimonioService,
     ToastrService,
     UsuarioService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

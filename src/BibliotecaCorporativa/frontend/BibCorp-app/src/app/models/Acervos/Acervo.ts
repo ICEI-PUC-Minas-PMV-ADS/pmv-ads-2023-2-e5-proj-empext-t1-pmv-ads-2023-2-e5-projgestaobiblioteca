@@ -1,4 +1,4 @@
-import { type Patrimonio } from '../Patrimonios/Patrimonio'
+import { type Patrimonio } from '../../patrimonios/models/patrimonio/Patrimonio'
 
 export interface Acervo {
   id: number

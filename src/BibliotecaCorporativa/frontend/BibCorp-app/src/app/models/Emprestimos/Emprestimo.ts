@@ -1,4 +1,4 @@
-import { type Patrimonio } from '../Patrimonios/Patrimonio'
+import { type Patrimonio } from '../../patrimonios/models/patrimonio/Patrimonio'
 import { type Acervo } from '../Acervos/Acervo'
 
 export class Emprestimo {

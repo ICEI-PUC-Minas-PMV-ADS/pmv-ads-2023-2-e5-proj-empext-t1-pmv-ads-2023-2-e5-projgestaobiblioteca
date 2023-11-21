@@ -221,9 +221,8 @@ namespace BibCorp.Persistence.Migrations
                 name: "Emprestimos",
                 columns: table => new
                 {
-                    AcervoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PatrimonioId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserName = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
                     DataEmprestimo = table.Column<string>(type: "TEXT", nullable: true),
@@ -231,13 +230,15 @@ namespace BibCorp.Persistence.Migrations
                     QtdeDiasEmprestimo = table.Column<int>(type: "INTEGER", nullable: false),
                     DataDevolucao = table.Column<string>(type: "TEXT", nullable: true),
                     QtdeDiasAtraso = table.Column<int>(type: "INTEGER", nullable: false),
+                    AcervoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PatrimonioId = table.Column<int>(type: "INTEGER", nullable: false),
                     LocalDeColeta = table.Column<string>(type: "TEXT", nullable: true),
                     LocalDeEntrega = table.Column<string>(type: "TEXT", nullable: true),
                     UsuarioId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Emprestimos", x => new { x.AcervoId, x.PatrimonioId });
+                    table.PrimaryKey("PK_Emprestimos", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Emprestimos_Acervos_AcervoId",
                         column: x => x.AcervoId,
@@ -300,9 +301,19 @@ namespace BibCorp.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Emprestimos_AcervoId",
+                table: "Emprestimos",
+                column: "AcervoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Emprestimos_PatrimonioId",
                 table: "Emprestimos",
                 column: "PatrimonioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Emprestimos_UserName",
+                table: "Emprestimos",
+                column: "UserName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Emprestimos_UsuarioId",

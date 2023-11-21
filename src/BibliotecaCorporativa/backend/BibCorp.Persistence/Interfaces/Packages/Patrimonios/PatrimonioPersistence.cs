@@ -22,6 +22,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Patrimonio>> GetAllPatrimoniosAsync()
     {
       IQueryable<Patrimonio> query = _context.Patrimonios
+          .Include(p => p.Acervo)
           .AsNoTracking()
           .OrderBy(p => p.Id);
 
@@ -32,6 +33,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     {
       Console.WriteLine(isbn);
       IQueryable<Patrimonio> query = _context.Patrimonios
+          .Include(p => p.Acervo)
           .AsNoTracking()
           .Where(p => p.ISBN == isbn && p.AcervoId == null)
           .OrderBy(p => p.Id);
@@ -42,8 +44,9 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<Patrimonio> GetPatrimonioByIdAsync(int patrimonioId)
     {
       IQueryable<Patrimonio> query = _context.Patrimonios
-                .AsNoTracking()
-                .Where(p => p.Id == patrimonioId);
+        .Include(p => p.Acervo)
+        .AsNoTracking()
+        .Where(p => p.Id == patrimonioId);
 
       return await query.FirstOrDefaultAsync();
     }
@@ -51,6 +54,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<IEnumerable<Patrimonio>> GetPatrimoniosByISBNAsync(string ISBN)
     {
       IQueryable<Patrimonio> query = _context.Patrimonios
+            .Include(p => p.Acervo)
             .AsNoTracking()
             .Where(p => p.ISBN == ISBN)
             .OrderBy(p => p.ISBN);
@@ -148,6 +152,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<bool> UpdatePatrimonioAposEmprestimo(int patrimonioId)
     {
       IQueryable<Patrimonio> query = _context.Patrimonios
+                .Include(p => p.Acervo)
                 .AsNoTracking()
                 .Where(p => p.Id == patrimonioId);
 

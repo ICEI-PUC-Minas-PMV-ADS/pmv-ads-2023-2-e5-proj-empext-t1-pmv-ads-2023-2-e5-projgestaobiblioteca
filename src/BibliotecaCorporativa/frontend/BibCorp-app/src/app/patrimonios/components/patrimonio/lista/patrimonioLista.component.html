@@ -61,8 +61,8 @@
       <tbody *ngIf="patrimonios && patrimonios.length">
         <tr *ngFor="let patrimonio of patrimonios" (click)="editarPatrimonio(patrimonio.id)" style="cursor: pointer">
           <td>
-            <img [(ngbCollapse)]="!exibirImagem" src="../../../../assets/Images/capaDefault.png" alt=""
-              [style.width.px]="30" [style.margin.px]="2">
+            <img [(ngbCollapse)]="!exibirImagem" [src]='(patrimonio.acervo != null) ?  patrimonio.acervo.capaUrl : capaLivro' alt=""
+              [style.width.px]="50" [style.margin.px]="2">
           </td>
           <td>{{patrimonio.id}}</td>
           <td>{{patrimonio.isbn}}</td>

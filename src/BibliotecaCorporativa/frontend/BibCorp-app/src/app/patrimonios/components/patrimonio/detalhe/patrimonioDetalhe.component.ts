@@ -10,8 +10,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { Acervo, Patrimonio } from "src/app/models";
-import { AcervoService, PatrimonioService } from "src/app/services";
+import { Acervo} from "src/app/models";
+import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
+import { AcervoService } from "src/app/services";
 import { FormValidator } from "src/app/util";
 
 @Component({
@@ -28,7 +29,7 @@ export class PatrimonioDetalheComponent {
 
   public editMode: Boolean = false;
 
-  public capaPatrimonio: string = "../../../../assets/Images/capaDefault.png";
+  public capaPatrimonio: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU";
 
   public get ctrF(): any {
     return this.formPatrimonio.controls;
@@ -111,6 +112,11 @@ export class PatrimonioDetalheComponent {
           this.ctrF.statusTela.setValue(
             this.patrimonio.status ? "Emprestado" : "Liberado"
           );
+
+          if (patrimonio.acervo?.capaUrl)
+            this.capaPatrimonio = patrimonio.acervo.capaUrl
+
+          console.log(patrimonio)
         },
         (error: any) => {
           this.toastrService.error("Falha ao recuperar Patrimonio", "Erro!");

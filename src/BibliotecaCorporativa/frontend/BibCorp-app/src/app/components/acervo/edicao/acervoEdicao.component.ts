@@ -12,8 +12,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { Acervo, Patrimonio } from "src/app/models";
-import { AcervoService, PatrimonioService } from "src/app/services";
+import { Acervo } from "src/app/models";
+import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
+import { AcervoService } from "src/app/services";
 import { FormValidator } from "src/app/util";
 
 @Component({

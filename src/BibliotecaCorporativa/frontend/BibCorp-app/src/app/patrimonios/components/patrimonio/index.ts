@@ -1,3 +1,3 @@
-export * from "./Lista";
+export * from "./lista";
 export * from "./detalhe";
 export * from "./patrimonio.component";

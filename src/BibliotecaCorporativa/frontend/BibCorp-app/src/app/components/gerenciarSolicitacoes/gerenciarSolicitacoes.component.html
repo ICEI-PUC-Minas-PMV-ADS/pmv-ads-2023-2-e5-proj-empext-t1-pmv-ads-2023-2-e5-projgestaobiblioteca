@@ -1,0 +1,71 @@
+<app-titlebar [title]="'Gerenciamento de empréstimos'"></app-titlebar>
+<router-outlet></router-outlet>
+
+<button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
+    <span class="mr-2" routerLink="principal">&larr; Voltar</span> 
+</button>
+
+<div class="table-responsive">
+    <div style="min-height: 500px;">
+        <table class="table table-striped table-hover table-light rounded-3 ">
+            <thead class="table-primary">
+                <tr>
+                    <th class="d-none d-md-table-cell d-flex justify-center">
+                        <a class="text-white" (click)="alterarImagem()">
+                            <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_on'}}</mat-icon>
+                        </a>
+                    </th>
+                    <th>#</th>
+                    <th>Título</th>
+                    <th>Destino</th>
+                    <th>Usuário</th>
+                    <th>Data de Solicitação</th>
+                    <th>Sala</th>
+                    <th>Prateleira</th>
+                    <th>Coluna</th>
+                    <th>Posição</th>
+                    <th>Status</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img [(ngbCollapse)]="!exibirImagem" src="acervo.capaUrl" alt="Capa do livro" [style.width.px]="50" [style.margin.px]="2">
+                    </td>
+                    <td>1}}</td>
+                    <td>Harry Potter dgfgfdgdfgdfgdfgdfgdfgdfgdfgfd}}</td>
+                    <td>Matriz dfgdfgdfgdfgdfgdfgdfgdfgfdg</td>
+                    <td>userUseraaaaaaaaaaaa}}</td>
+                    <td>10/12/2022}}</td>
+                    <td>P01}}</td>
+                    <td>S01}}</td>
+                    <td>C01}}</td>
+                    <td>P01}}</td>
+                    <td>aguardando aprovação}}</td>
+                    <td>
+                        <div class="btn-group mx-1">
+                            <a class="aprovar" matTooltip="Aprovar">
+                              <p style="color: white;">Aprovar</p>
+                            </a>
+                        </div>
+                        <div class="btn-group mx-1">
+                            <a class="recusar" matTooltip="Recusar">
+                                <p style="color: white;">Recusar</p>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <td colspan="12" class="text-center">
+                    <h4>Nenhum acervo encontrado</h4>
+                </td>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

@@ -17,6 +17,7 @@ import { PerfilComponent } from "./components/usuario/perfil/perfil.component";
 import { AcervoDetalheComponent } from "./components/acervo/detalhe";
 import { AcervoListaComponent } from "./components/acervo/lista/acervoLista.component";
 import { AuthGuard } from "./shared/security/guard";
+import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitacoes/gerenciarSolicitacoes.component";
 
 @Injectable({ providedIn: "root" })
 export class AdminGuard {
@@ -78,6 +79,8 @@ const routes: Routes = [
   },
 
   { path: "solicitacoes", component: MinhasReservasComponent },
+
+  { path: "gerenciar-solicitacoes", component: GerenciarSolicitacoesComponent },
 
   { path: "principal", component: PrincipalComponent },
   { path: "**", redirectTo: "principal", pathMatch: "full" },

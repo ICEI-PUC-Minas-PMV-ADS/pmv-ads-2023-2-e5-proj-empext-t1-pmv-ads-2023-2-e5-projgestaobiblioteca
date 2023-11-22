@@ -1,5 +1,5 @@
 <app-titlebar
-  [title]="'Home Page'"
+  [title]="'Página Inicial'"
 ></app-titlebar>
 
 <div class="d-flex flex-row bibcorp-bg-secondary m-0 p-3">
@@ -12,11 +12,11 @@
               (change)="filtroAcervo()">
               <option [ngValue]="'Todos'">Todos</option>
               <option [ngValue]="'Autor'">Autor</option>
-              <option [ngValue]="'Resumo'">Resumo</option>
+             <!-- <option [ngValue]="'Resumo'">Resumo</option> genero!!-->
               <option [ngValue]="'Titulo'">Título</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento"
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por título ou autor" [(ngModel)]="argumento"
             (change)="filtroAcervo()">
           <!-- (input)="companyFilter($event.target)"-->
           <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroAcervo()">
@@ -45,9 +45,9 @@
 
     <div class="row" *ngIf="acervosRecentes && acervosRecentes.length">
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let acervo of acervosRecentes; let i = index;">
-        <div class="card bg-white mb-3" style="max-width: 20rem; height: 30rem; border-radius: 15px; overflow: hidden; position: relative;" (mouseenter)="showDetailsButton = i" (mouseleave)="showDetailsButton = null">
+        <div class="card bg-white mb-3" style="max-width: 20rem; height: 35rem; border-radius: 15px; overflow: hidden; position: relative;" (mouseenter)="showDetailsButton = i" (mouseleave)="showDetailsButton = null">
           <div class="text-center" style="margin-top: 20px;">
-            <img src="{{acervo.capaUrl}}" alt="Capa do livro" style="width: 220px; height: 300px; border-radius: 15px; object-fit: cover; object-position: top;">
+            <img src="{{acervo.capaUrl}}" alt="Capa do livro" style="width: 200px; height: 300px; border-radius: 15px; object-fit: cover; object-position: top;">
           </div>
           <div class="card-body">
             <h5 class="card-title text-dark" style="font-size: 1.2rem;">{{acervo.titulo}}</h5>
@@ -66,10 +66,7 @@
                -->
               </div>
               <button *ngIf="showDetailsButton === i" type="button" class="btn btn-blue button" (click)="detalheAcervo(acervo.id)" matTooltip="Ver detalhes"
-                style="border-radius: 100%; font-size: 20px; margin-left: 3px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-
-
-                ">&rarr;
+                style="border-radius: 100%; font-size: 20px; margin-left: 3px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">&rarr;
               </button>
             </div>
           </div>
@@ -86,7 +83,8 @@
       <h4>Nenhum acervo adicionado recentemente encontrado!</h4>
     </div>
 
-    <div class="mt-5">
+    <!--
+         <div class="mt-5">
       <p class="h5">Lidos recentemente:</p>
       <div class="row" *ngIf="acervosLidos && acervosLidos.length">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let acervo of acervosLidos">
@@ -111,6 +109,8 @@
   </div>
 </div>
 
+    -->
+   
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
   <p style="font-size: 20px; color: white">Carregando...</p>
 </ngx-spinner>

@@ -12,7 +12,7 @@
               <option [ngValue]="'Titulo'">Título</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento"
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por título ou autor" [(ngModel)]="argumento"
             (change)="filtroAcervo()">
           <!-- (input)="companyFilter($event.target)"-->
           <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroAcervo()">
@@ -56,8 +56,7 @@
       <tbody *ngIf="acervos && acervos.length">
         <tr *ngFor="let acervo of acervos" (click)="editarAcervo(acervo.id)" style="cursor: pointer">
           <td>
-            <img [(ngbCollapse)]="!exibirImagem" src="{{acervo.capaUrl}}" alt="Capa do livro" style="width: 30px; height: 30px;">
-          </td>
+            <img [(ngbCollapse)]="!exibirImagem" src="{{acervo.capaUrl}}" alt="Capa do livro" [style.width.px]="50" [style.margin.px]="2">          </td>
           <td>{{acervo.id}}</td>
           <td>{{acervo.isbn}}</td>
           <td>{{acervo.genero}}</td>

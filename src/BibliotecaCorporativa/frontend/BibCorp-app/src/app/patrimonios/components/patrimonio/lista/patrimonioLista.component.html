@@ -17,7 +17,7 @@
               <option [ngValue]="'SituacaoLiberado'">Liberado</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="argumento" [(ngModel)]="argumento"
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por localização, sala, coluna, prateleira, posição, ISBN, emprestado ou liberado" [(ngModel)]="argumento"
             (change)="filtroPatrimonio()">
           <!-- (input)="companyFilter($event.target)"-->
           <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroPatrimonio()">

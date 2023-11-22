@@ -94,7 +94,8 @@
     </div>
     </div> -->
 
-    <div class="contianer bibcorp-box m-0 ps-3">
+    <!--
+          <div class="contianer bibcorp-box m-0 ps-3">
       <div class="p-3">
         <div class="row" *ngIf="emprestimos && emprestimos.length">
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
@@ -104,9 +105,9 @@
                   <P class="h7">Autor: {{emprestimo.userName}}</P>
                 </div>
                 <div class="card-body">
-                  <!--<p class="h4 card-title">{{acervo.subTitulo}}</p>
+                  <p class="h4 card-title">{{acervo.subTitulo}}</p>
                   <textarea matInput style="min-height: 150px; min-width: 100%;"
-                    class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>-->
+                    class="bibcorp-bg-primary text-white border-0 p-0 m-0" disabled>{{acervo.resumo}}</textarea>
                     <img src={{acervo.capaUrl}} alt="Capa do livro" style="max-width: 170px; max-width: 120px; width: fit-content; height: fit-content;margin: auto;display: block" >
                     <br>
                     <p class="card-text">Data da solicitação:  {{emprestimo.dataEmprestimo}}</p>
@@ -128,7 +129,40 @@
         </div>
         </div>
         </div>
+    -->
 
-
+    <div class="container bibcorp-box m-0 ps-3">
+      <div class="p-3">
+        <div class="row" *ngIf="emprestimos && emprestimos.length">
+          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
+            <div class="card bg-white mb-3" style="max-width: 20rem; height: 25rem; border-radius: 15px; overflow: hidden; position: relative;">
+              <div class="text-center" style="margin-top: 20px;">
+                <img src="{{emprestimo.acervo.capaUrl}}" alt="Capa do livro" style="width: 200px; height: 300px; border-radius: 15px; object-fit: cover; object-position: top;">
+              </div>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 class="card-title text-dark" style="font-size: 1.2rem;">Título: {{emprestimo.patrimonio.localizacao}}</h5>
+                  <h6 class="card-subtitle mb-2 text-dark" style="font-size: 1rem;">Autor: {{emprestimo.userName}}</h6>
+                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data da solicitação: {{emprestimo.dataEmprestimo}}</p>
+                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data prevista de devolução: {{emprestimo.dataPrevistaDevolucao}}</p>
+                  <p class="card-text text-dark" style="font-size: 0.9rem;">Status do empréstimo: {{status(emprestimo)}}</p>
+                </div>
+                <div class="buttons mt-auto">
+                  <div class="buttonRenovacao">
+                    <button type="button" class="btn btn-orange button" (click)="abrirDialogRenovacao(emprestimo.id, emprestimo.acervo.titulo, emprestimo.dataPrevistaDevolucao)" data-bs-toggle="modal" data-bs-target="modalRenovar">Renovar</button>
+                  </div>
+                  <br>
+                  <div class="buttonAlteracao">
+                    <button type="button" class="btn btn-blue button" (click)="abrirDialogAlteracao(emprestimo.id, emprestimo.localDeColeta)" data-bs-toggle="modal" data-bs-target="modalAlterar">Alterar local de coleta</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
 
 <!-- {{emprest | json}} -->

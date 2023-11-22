@@ -18,7 +18,7 @@ import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-minhasReservas',
   templateUrl: './minhasReservas.component.html',
-  styleUrls: ['./minhasReservas.component.css']
+  styleUrls: ['./minhasReservas.component.scss']
 })
 export class MinhasReservasComponent implements OnInit {
   title = 'angular-material';
@@ -33,8 +33,6 @@ export class MinhasReservasComponent implements OnInit {
 
   public usuarioLogado = false;
   public usuarioAtivo = {} as UsuarioLogin;
-
-
 
   public larguraImagem = 75;
   public margemImagem = 2;

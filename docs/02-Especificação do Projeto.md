@@ -59,5 +59,10 @@
 </p>
 </br>
 
-## Projeto da Base de Dados
+## Diagrama de Classes
 
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/DiagramClass.png>
+</p>
+</br>

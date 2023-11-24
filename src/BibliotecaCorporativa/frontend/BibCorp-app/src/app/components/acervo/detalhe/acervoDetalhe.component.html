@@ -1,72 +1,74 @@
+<div class="container mt-2 d-flex flex-column align-items-start">
+    <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
+        <span class="mr-2" routerLink="principal">&larr; Voltar</span>
+    </button>
 
-
-<button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
-  <span class="mr-2" routerLink="principal">&larr; Voltar</span> 
-</button>
-
-<!-- Container de informações do livro -->
-<div class="container mt-4">
-  <div class="row">
-      <div class="col-12 col-md-6">
-          <div class="card text-white bibcorp-bg-primary mb-3" style="max-width: 20rem;">
-              <div class="card-header bibcorp-bg-secondary">{{acervo.titulo}}</div>
-              <div class="card-body">
-                  <ul class="list-group list-group-flush custom-list">
-                      <li class="list-group-item bibcorp-bg-primary"><b>Autor:</b> {{acervo.autor}}</li>
-                      <li class="list-group-item bibcorp-bg-primary"><b>Edição:</b> {{acervo.edicao}}</li>
-                      <li class="list-group-item bibcorp-bg-primary"><b>Data de Publicação:</b>
-                          {{acervo.anoPublicacao}}</li>
-                      <li class="list-group-item bibcorp-bg-primary"><b>Editora:</b> {{acervo.editora}}</li>
-                      <li class="list-group-item bibcorp-bg-primary"><b>Páginas:</b> {{acervo.qtdPaginas}}</li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-
-      <!-- Tabela -->
-      <div class="col-12 col-md-6">
-          <div class="card text-white bibcorp-bg-secondary mb-3" style="max-width: 25rem;">
-              <div class="card-header bibcorp-bg-secondary"></div>
-              <div class="table-responsive">
-                <div id="titulo-tabelapatrimonios">
-                    <p>Exemplares</p>
+    <div class="position-relative">
+        <div class="row g-0">
+            <!-- Card das informações do livro e imagem -->
+            <div class="col-lg-7">
+                <div class="card bg-white mb-3" style="border: 20px solid #fff; border-radius: 15px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+                    <div class="card-body" style="background-color: #fff; color: #000; border-radius: 0 15px 15px 0; position: relative; border-top: none;">
+                        <h5 class="card-title" style="margin-left: 150px;">{{acervo.titulo}}</h5>
+                        <p style="margin-left: 150px; margin-top: 40px;"><b>Autor: </b> <span style="text-decoration: underline;">{{acervo.autor}}</span> <br>
+                            <b>Edição: </b>{{acervo.edicao}} <br>
+                            <b>Data de publicação: </b>{{acervo.anoPublicacao}} <br>
+                            <b>Editora: </b>{{acervo.editora}} <br>
+                            <b>Páginas: </b>{{acervo.qtdPaginas}}
+                        </p>
+                        <!-- Adicione outras informações relevantes aqui -->
+                    </div>
+                    <img src="{{acervo.capaUrl}}" alt="Capa do livro" class="img-fluid rounded-start" style="border-radius: 15px; object-fit: cover; object-position: top; width: 150px; height: 225px; position: absolute; top: 0; left: 0; margin-top: 10px;">
                 </div>
-                
-                  <table class="table bibcorp-bg-secondary">
-                      <thead>
-                          <tr class="change-color">
-                              <th>#</th>
-                              <th>ID</th>
-                              <th>Status</th>
-                              <th>Opções</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let patrimonio of acervo.patrimonios; let i=index;">
-                              <td>{{i+1}}</td>
-                              <td class="change-color">{{patrimonio.id}}</td>
-                              <td class="status">{{obterStatusPatrimonio(patrimonio.status)}}</td>
-                              <td><button class="btn btn-orange reserve-button" [disabled]="!patrimonio.status"  (click)="abrirDialog(patrimonio.id)" data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-      </div>
-  </div>
+            </div>
+
+            <!-- Card de exemplares -->
+            <div class="col-lg-5">
+                <div class="card bg-white text-dark" style="max-width: 20rem; margin-top: 20px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+                    <div class="card-header bg-white"></div>
+                    <div class="table-responsive">
+                        <div id="titulo-tabelapatrimonios">
+                            <p>Exemplares</p>
+                        </div>
+                        <table class="table bg-white">
+                            <thead>
+                                <tr class="change-color">
+                                    <th>#</th>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let patrimonio of acervo.patrimonios; let i=index;">
+                                    <td>{{i+1}}</td>
+                                    <td class="change-color">{{patrimonio.id}}</td>
+                                    <td class="status">{{obterStatusPatrimonio(patrimonio.status)}}</td>
+                                    <td><button class="btn btn-orange reserve-button" [disabled]="!patrimonio.status" (click)="abrirDialog(patrimonio.id)"
+                                            data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container de Sinopse -->
+        <div class="container mt-4" style="margin-bottom: 20px; ">
+            <div class="row">
+                <div class="col-lg-11 col-12">
+                    <div class="card bg-white mb-3 text-black" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+                        <div class="card-body">
+                            <h5 class="card-title">Sinopse</h5>
+                            <p class="card-text">{{acervo.resumo}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-  
-      <!-- Container de Sinopse  -->
-      <div class="container mt-4" style="margin-bottom: 20px;">
-          <div class="row">
-              <div class="col-lg-11 col-12">
-                  <div class="card bibcorp-bg-primary text-white">
-                      <div class="card-body">
-                          <h5 class="card-title">Resumo</h5>
-                          <p class="card-text">{{acervo.resumo}}</p>
-                      </div>
-                  </div>
-              </div>
 
             <!--
                 <div class="col-lg-8 offset-lg-1 col-12 mt-4">

@@ -1,71 +1,47 @@
-
-.bibcorp-body {
-  border-bottom-right-radius: 20px;
-}
-
-.bibcorp-dropdown {
-  border-radius: 20px;
-  margin-bottom: 10px;
-}
-
-//////////////////////////////////////////
-
-// Botão Voltar
 .btn-no-bg {
-  color: darkgray; 
-  border: none; 
-  padding-left: 50px; 
-  padding-top: 30px;
+  color: darkgray;
+  border: none;
+  padding-left: 50px;
+  padding-top: 20px;
 }
 
-// Botão Voltar - mouse passando por cima
+/* Botão Voltar - mouse passando por cima */
 .btn-no-bg:hover {
   color: black;
 }
 
-//card de informações
-.card{
+/* card de informações */
+.card {
   margin-left: 60px;
+  margin-top: 20px;
 }
 
-// cores da tabela
-.change-color th,td{
-  background-color: #0D4880;
+/* cores da tabela */
+.change-color th,
+td {
+  color: black;
+  background-color: white;
 }
 
-//Botão reservar
+/* Botão reservar */
 .btn-orange {
   background-color: #FF9D4E;
   border: none;
   transition: background-color 0.3s;
+  color: white;
 }
 
-//Botão reservar - mouse passando por cima
+/* Botão reservar - mouse passando por cima */
 .btn-orange:hover {
   background-color: #FFB07D;
-}
-
-// Status - indisponível
-.bold-red {
-  font-weight: bold;
-  color: red;
-}
-
-// Status - disponível
-.bold-green {
-  font-weight: bold;
-  color: green;
+  color: white;
 }
 
 ul.no-bullets {
   list-style-type: none;
 }
 
-#titulo-tabelapatrimonios{
+#titulo-tabelapatrimonios {
   font-weight: bold;
   text-align: center;
-
 }
-              
-
-

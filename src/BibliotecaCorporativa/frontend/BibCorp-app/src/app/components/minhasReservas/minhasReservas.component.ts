@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
 import { AlterarLocalComponent } from './alterarLocal/alterarLocal.component';
 import { NavigationEnd, Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -46,7 +47,7 @@ export class MinhasReservasComponent implements OnInit {
 
   public set filtroLista(value: string) {
     this.filtroListado = value;
-     this.acervosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.acervos;
+    this.acervosFiltrados = this.filtroLista ? this.filtrarReservas(this.filtroLista) : this.acervos;
   }
 
 
@@ -54,38 +55,38 @@ export class MinhasReservasComponent implements OnInit {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.acervos.filter(
       livro => livro.titulo.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-      livro.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+        livro.autor.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
   //----------------------------------------------VERIFICAÇÃO DE USUARIO e MÉTODOS--------------------------------------------------
 
-constructor(
+  constructor(
     private EmprestimoService: EmprestimoService,
     private AcervoService: AcervoService,
     // private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private dialogRef : MatDialog,
+    private dialogRef: MatDialog,
     public loginService: LoginService,
     private router: Router,
   ) {
     router.events
-    .subscribe(
-      (verifyUser) => {
-        if (verifyUser instanceof NavigationEnd)
-          this.loginService.currentUser$
-            .subscribe(
-              (userActive) => {
-                this.usuarioLogado = userActive !== null;
-                this.usuarioAtivo = { ...userActive};
-              }
-            )
-      }
-    )
-   }
+      .subscribe(
+        (verifyUser) => {
+          if (verifyUser instanceof NavigationEnd)
+            this.loginService.currentUser$
+              .subscribe(
+                (userActive) => {
+                  this.usuarioLogado = userActive !== null;
+                  this.usuarioAtivo = { ...userActive };
+                }
+              )
+        }
+      )
+  }
 
-// DELETAR APOS VALIDAÇÃO
+  // DELETAR APOS VALIDAÇÃO
   // constructor(
   //   private EmprestimoService: EmprestimoService,
   //   private AcervoService: AcervoService,
@@ -95,17 +96,17 @@ constructor(
   //   private dialogRef : MatDialog
   // ) { }
 
-  abrirDialogRenovacao(emprestimoId: number, acervoTitulo: string, dataPrevistaDevolucao: string){
+  abrirDialogRenovacao(emprestimoId: number, acervoTitulo: string, dataPrevistaDevolucao: string) {
     this.dialogRef.open(ModalRenovarComponent, {
-      data : { emprestimoId: emprestimoId, acervoTitulo: acervoTitulo, dataPrevistaDevolucao: dataPrevistaDevolucao, id: 'Renovar'}
+      data: { emprestimoId: emprestimoId, acervoTitulo: acervoTitulo, dataPrevistaDevolucao: dataPrevistaDevolucao, id: 'Renovar' }
 
     });
   }
 
-  abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string){
+  abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string) {
     this.dialogRef.open(AlterarLocalComponent, {
-      data : {emprestimoId: emprestimoId, localDeColeta: localDeColetaAtual, id: 'Alterar'}
-
+      data: { emprestimoId: emprestimoId, localDeColetaAtual: localDeColetaAtual, id: 'Alterar' }
+      
     });
   }
 
@@ -124,6 +125,7 @@ constructor(
       next: (Response: Emprestimo[]) => {
         this.emprestimos = Response;
         this.emprestimosFiltrados = this.emprestimos;
+        console.log(this.emprestimosFiltrados)
       },
       error: (error: any) => {
         this.spinner.hide();
@@ -147,7 +149,7 @@ constructor(
     });
   }
 
-// DELETAR APOS VALIDAÇÃO
+  // DELETAR APOS VALIDAÇÃO
   // public status(emprestimo: Emprestimo): any {
   //   if (emprestimo.dataEmprestimo != null && emprestimo.dataDevolucao == null) {
   //     return "Emprestado"
@@ -159,19 +161,27 @@ constructor(
   // }
 
   public status(emprestimo: Emprestimo): any {
-    if (emprestimo.status == 1) {
-      return "Reservado"
-  }else if (emprestimo.status == 2) {
-    return "Emprestado"
-  } else if (emprestimo.status == 3) {
-    return "Devolvido"
-  } else if (emprestimo.status == 4) {
-    return "Renovado"
-  } else return "ERRO: Status desconhecido"
 
-}
+    let dataAtual = formatDate(new Date(), "dd/MM/YYYY", "en-US")
 
-// DELETAR APOS VALIDAÇÃO
+    if (emprestimo.dataPrevistaDevolucao < dataAtual && emprestimo.dataDevolucao == null) {
+      return "Em atraso"
+    }
+    else if (emprestimo.status == 1) {
+      return "Aguardando aprovação da solicitação"
+    } else if (emprestimo.status == 2) {
+      return "Em andamento"
+    } else if (emprestimo.status == 3) {
+      return "Devolvido"
+    } else if (emprestimo.status == 4) {
+      return "Renovado"
+    } else if (emprestimo.status == 5) {
+      return "Não aprovado"
+    } else return "ERRO: Status desconhecido"
+
+  }
+
+  // DELETAR APOS VALIDAÇÃO
   // public status(emprestimo: Emprestimo): any {
   //   if (emprestimo.dataEmprestimo != null && emprestimo.dataDevolucao == null) {
   //     return "Emprestado"

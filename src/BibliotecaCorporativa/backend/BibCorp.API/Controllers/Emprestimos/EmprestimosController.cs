@@ -2,6 +2,7 @@
 using BibCorp.Application.Dto.Emprestimos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Domain.Exceptions;
+using BibCorp.Domain.Models.Emprestimos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibCorp.API.Controllers.Emprestimos;
@@ -81,7 +82,7 @@ public class EmprestimosController : ControllerBase
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
-  [HttpGet("users/{userName}")]
+  [HttpGet("Users/{userName}")]
   public async Task<IActionResult> GetEmprestimosByUserName(string userName)
   {
     try
@@ -226,7 +227,7 @@ public class EmprestimosController : ControllerBase
   {
     try
     {
-      var emprestimoAlterado = await _emprestimoService.AlteraLocalDeColeta(emprestimoId, novoLocalColeta);
+      var emprestimoAlterado = await _emprestimoService.AlterarLocalDeColeta(emprestimoId, novoLocalColeta);
 
       if (emprestimoAlterado == null) return NotFound("Não existe empréstimo cadastrado para alteração");
 
@@ -235,6 +236,59 @@ public class EmprestimosController : ControllerBase
     catch (CoreException e)
     {
       return this.StatusCode(StatusCodes.Status400BadRequest, e.Message);
+    }
+    catch (Exception e)
+    {
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao alterar o empréstimo. Erro: {e.Message}");
+    }
+
+  }
+
+  /// <summary>
+  /// Obtém os dados dos empréstimos por status
+  /// </summary>
+  /// <param name="status">Status do empréstimo</param>
+  /// <response code="200">Dados dos empréstimos consultados</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("Status")]
+  public async Task<IActionResult> GetEmprestimosByStatusAsync([FromQuery] TipoStatusEmprestimoDto[] status)
+  {
+    try
+    {
+      var emprestimos = await _emprestimoService.GetEmprestimosByStatusAsync(status);
+
+      if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados para os status informados");
+
+      return Ok(emprestimos);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimos. Erro: {e.Message}");
+    }
+  }
+
+  /// <summary>
+  /// Realiza o gerenciamento do empréstimo
+  /// </summary>
+  /// <param name="emprestimoId">Identificador do empréstimo</param>
+  /// <param name="gerenciamentoEmprestimoDto">Dados do gerenciamento</param>
+  /// <response code="200">Empréstimo atualizado com sucesso</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpPatch("{emprestimoId}/GerenciamentoEmprestimo")]
+  public async Task<IActionResult> GerenciarEmprestimos(int emprestimoId, [FromBody] GerenciamentoEmprestimo gerenciamentoEmprestimo)
+  {
+    try
+    {
+      var emprestimoAlterado = await _emprestimoService.GerenciarEmprestimos(emprestimoId, gerenciamentoEmprestimo);
+
+      if (emprestimoAlterado == null) return NotFound("Não existe empréstimo cadastrado para gerenciamento");
+
+      return Ok(emprestimoAlterado);
     }
     catch (Exception e)
     {

@@ -1,5 +1,6 @@
 using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Dto.Patrimonios;
+using BibCorp.Domain.Models.Emprestimos;
 
 namespace BibCorp.Application.Dto.Emprestimos
 {
@@ -7,7 +8,7 @@ namespace BibCorp.Application.Dto.Emprestimos
   {
     public int Id { get; set; }
     public string UserName { get; set; }
-    public StatusDto Status { get; set; }
+    public TipoStatusEmprestimoDto Status { get; set; }
     public string DataEmprestimo { get; set; }
     public string DataPrevistaDevolucao { get; set; }
     public int QtdeDiasEmprestimo { get; set; }
@@ -21,11 +22,4 @@ namespace BibCorp.Application.Dto.Emprestimos
     public string LocalDeEntrega { get; set; }
   }
 
-  public enum StatusDto
-  {
-    Reservado = 1,
-    Emprestado = 2,
-    Devolvido = 3,
-    Renovado = 4
-  }
 }

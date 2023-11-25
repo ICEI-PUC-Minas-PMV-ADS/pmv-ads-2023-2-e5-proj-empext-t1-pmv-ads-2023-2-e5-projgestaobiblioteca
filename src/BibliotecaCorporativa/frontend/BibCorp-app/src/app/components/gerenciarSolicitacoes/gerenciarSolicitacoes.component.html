@@ -2,7 +2,7 @@
 <router-outlet></router-outlet>
 
 <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
-    <span class="mr-2" routerLink="principal">&larr; Voltar</span> 
+    <span class="mr-2" routerLink="principal">&larr; Voltar</span>
 </button>
 
 <div class="table-responsive">
@@ -29,37 +29,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let emprestimo of emprestimos; let i=index;">
                     <td>
-                        <img [(ngbCollapse)]="!exibirImagem" src="acervo.capaUrl" alt="Capa do livro" [style.width.px]="50" [style.margin.px]="2">
+                        <img [(ngbCollapse)]="!exibirImagem" src={{emprestimo.acervo.capaUrl}} alt="Capa do livro"
+                            [style.width.px]="50" [style.margin.px]="2">
                     </td>
-                    <td>1}}</td>
-                    <td>Harry Potter dgfgfdgdfgdfgdfgdfgdfgdfgdfgfd}}</td>
-                    <td>Matriz dfgdfgdfgdfgdfgdfgdfgdfgfdg</td>
-                    <td>userUseraaaaaaaaaaaa}}</td>
-                    <td>10/12/2022}}</td>
-                    <td>P01}}</td>
-                    <td>S01}}</td>
-                    <td>C01}}</td>
-                    <td>P01}}</td>
-                    <td>aguardando aprovação}}</td>
+                    <td>{{i+1}}</td>
+                    <td>{{emprestimo.acervo.titulo}}</td>
+                    <td>{{emprestimo.localDeEntrega}}</td>
+                    <td>{{emprestimo.userName}}</td>
+                    <td>{{emprestimo.dataEmprestimo}}</td>
+                    <td>{{emprestimo.patrimonio.sala}}</td>
+                    <td>{{emprestimo.patrimonio.prateleira}}</td>
+                    <td>{{emprestimo.patrimonio.coluna}}</td>
+                    <td>{{emprestimo.patrimonio.posicao}}</td>
+                    <td>{{obterStatus(emprestimo.status)}}</td>
                     <td>
                         <div class="btn-group mx-1">
-                            <a class="aprovar" matTooltip="Aprovar">
-                              <p style="color: white;">Aprovar</p>
-                            </a>
+                            <button class="aprovar" matTooltip="Aprovar solicitação"
+                                style="color: white;" *ngIf="emprestimo.status== 1" (click)="gerenciarEmprestimo(emprestimo.id, 'Aprovar' )">Aprovar</button>
                         </div>
                         <div class="btn-group mx-1">
-                            <a class="recusar" matTooltip="Recusar">
-                                <p style="color: white;">Recusar</p>
-                            </a>
+                            <button class="recusar" matTooltip="Recusar solicitação"
+                                style="color: white;" *ngIf="emprestimo.status== 1" (click)="gerenciarEmprestimo(emprestimo.id,'Recusar')">Recusar</button>
+                        </div>
+                        <div class="btn-group mx-1">
+                            <button class="devolver" matTooltip="Acusar recebimento"
+                                style="color: white;" *ngIf="emprestimo.status== 2 || emprestimo.status== 4" (click)="gerenciarEmprestimo(emprestimo.id,'Devolver')">Devolução</button>
                         </div>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
-                <td colspan="12" class="text-center">
-                    <h4>Nenhum acervo encontrado</h4>
+                <td *ngIf="!emprestimos.length" colspan="12" class="text-center">
+                    <h4>Não existem empréstimos pendentes de atuação</h4>
                 </td>
             </tfoot>
         </table>

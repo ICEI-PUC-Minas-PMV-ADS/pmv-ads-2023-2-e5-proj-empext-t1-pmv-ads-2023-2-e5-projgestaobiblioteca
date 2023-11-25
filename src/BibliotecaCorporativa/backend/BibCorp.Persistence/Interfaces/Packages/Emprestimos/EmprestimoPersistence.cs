@@ -48,6 +48,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     {
       IQueryable<Emprestimo> query = _context.Emprestimos
           .Include(e => e.Patrimonio)
+          .Include(e => e.Acervo)
             .AsNoTracking()
             .Where(e => e.UserName == userName)
             .OrderBy(e => e.Id);
@@ -89,7 +90,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       var novaDataPrevistaDevolucao = dataPrevistaDevolucaoAtual.AddDays(_persistenceConfiguration.PrazoRenovacao);
 
       emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao.ToString("dd/MM/yyyy");
-      emprestimoRenovado.Status = Status.Renovado;
+      emprestimoRenovado.Status = TipoStatusEmprestimo.Renovado;
       emprestimoRenovado.QtdeDiasEmprestimo += _persistenceConfiguration.PrazoRenovacao;
 
       Update(emprestimoRenovado);
@@ -101,7 +102,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       else throw new CoreException("Não foi possível realizar a renovação do empréstimo");
     }
 
-    public async Task<Emprestimo> AlteraLocalDeColeta(int emprestimoId, string novoLocalColeta)
+    public async Task<Emprestimo> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta)
     {
       var emprestimoAlterado = _context.Emprestimos
       .AsNoTracking()
@@ -118,6 +119,52 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       else throw new CoreException("Não foi possível alterar o local de coleta");
     }
 
+    public Task<IEnumerable<Emprestimo>> GetEmprestimosByStatusAsync(TipoStatusEmprestimo[] status)
+    {
 
+      var emprestimosConsultados = new List<Emprestimo>();
+
+      foreach (var tipoStatusEmprestimo in status)
+      {
+        IQueryable<Emprestimo> query = _context.Emprestimos
+         .Include(e => e.Acervo)
+         .Include(e => e.Patrimonio)
+         .AsNoTracking()
+         .Where(e => e.Status == tipoStatusEmprestimo)
+         .OrderBy(e => e.Id);
+
+        emprestimosConsultados.AddRange(query);
+      }
+      return Task.FromResult<IEnumerable<Emprestimo>>(emprestimosConsultados);
+    }
+
+    public async Task<Emprestimo> GerenciarEmprestimos(int emprestimoId, GerenciamentoEmprestimo gerenciamentoEmprestimo)
+    {
+      var emprestimoAlterado = _context.Emprestimos
+      .AsNoTracking()
+                .FirstOrDefault(e => e.Id == emprestimoId);
+
+      if(gerenciamentoEmprestimo.Acao == TipoAcaoEmprestimo.Aprovar )
+      {
+        emprestimoAlterado.Status = TipoStatusEmprestimo.Emprestado;
+      }
+      else if(gerenciamentoEmprestimo.Acao == TipoAcaoEmprestimo.Recusar)
+      {
+        emprestimoAlterado.Status = TipoStatusEmprestimo.Recusado;
+      }
+      else if(gerenciamentoEmprestimo.Acao == TipoAcaoEmprestimo.Devolver)
+      {
+        emprestimoAlterado.Status = TipoStatusEmprestimo.Devolvido;
+        emprestimoAlterado.DataDevolucao = DateTime.Now.ToString("dd/MM/yyyy");
+      }
+
+      Update(emprestimoAlterado);
+
+      if (await SaveChangesAsync())
+      {
+        return emprestimoAlterado;
+      }
+      else throw new CoreException("Não foi possível efetuar o gerenciamento do empréstimo");
+    }
   }
 }

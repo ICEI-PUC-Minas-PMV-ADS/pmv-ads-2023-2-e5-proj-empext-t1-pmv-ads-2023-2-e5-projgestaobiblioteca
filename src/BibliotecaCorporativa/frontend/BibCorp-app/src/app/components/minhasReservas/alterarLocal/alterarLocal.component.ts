@@ -35,13 +35,13 @@ export class AlterarLocalComponent implements OnInit {
     this.emprestimoIdParam = this.dataInput.emprestimoId;
     this.localColetaAtual = this.dataInput.localDeColetaAtual;
     
-
   }
 
   fecharModalAlterarEAbrirModalSucesso() {
     const dialogRefAlterar = this.dataInput.emprestimoId
     if (dialogRefAlterar) {
       this.dialog.closeAll();
+      
     }
 
     this.dialog.open(ModalSucessoComponent, {

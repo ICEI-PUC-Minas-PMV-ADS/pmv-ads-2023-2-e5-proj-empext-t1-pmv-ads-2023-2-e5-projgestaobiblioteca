@@ -1,9 +1,10 @@
 /* eslint-disable */
 
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { type Observable, take } from 'rxjs'
 import { type Emprestimo } from 'src/app/models/Emprestimos/Emprestimo'
+import { GerenciamentoEmprestimo } from 'src/app/models/Emprestimos/GerenciamentoEmprestimo'
 import { environment } from 'src/assets/environments/environments'
 
 @Injectable({
@@ -16,6 +17,7 @@ export class EmprestimoService {
     private readonly http: HttpClient
   ) { }
 
+
   public getEmprestimos (filtrarPor?: string, TipoFiltro?: string): Observable<Emprestimo[]> {
     return this.http.get<Emprestimo[]>(this.baseURL)
       .pipe(take(3))
@@ -27,7 +29,7 @@ export class EmprestimoService {
   }
 
   public getEmprestimosByUserName (userName: string): Observable<Emprestimo[]> {
-    return this.http.get<Emprestimo[]>(`http://localhost:5283/api/Emprestimos/users/${userName}`)
+    return this.http.get<Emprestimo[]>(`${this.baseURL}Users/${userName}`)
                .pipe(take(3));
   }
 
@@ -54,6 +56,17 @@ export class EmprestimoService {
 public alterarLocalDeColeta (emprestimoId:number, novoLocalColeta: string ): Observable<Emprestimo> {
   return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimoId}/${novoLocalColeta}/AlteraLocalDeColeta`,null)
   .pipe(take(1));
+}
+
+public getEmprestimosPendentes (): Observable<Emprestimo[]> {
+
+  return this.http.get<Emprestimo[]>(`${this.baseURL}Status?status=Reservado&status=Emprestado&status=Renovado`)
+    .pipe(take(3))
+}
+
+public gerenciarEmprestimo(emprestimoId:number, gerenciamentoEmprestimo: GerenciamentoEmprestimo): Observable<Emprestimo> {
+  return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimoId}/GerenciamentoEmprestimo`, gerenciamentoEmprestimo)
+  .pipe(take(3));
 }
 
 }

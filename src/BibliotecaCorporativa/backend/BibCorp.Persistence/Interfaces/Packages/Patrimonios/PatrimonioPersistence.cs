@@ -151,15 +151,14 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
     public async Task<bool> UpdatePatrimonioAposEmprestimo(int patrimonioId)
     {
-      IQueryable<Patrimonio> query = _context.Patrimonios
+      var patrimonioAlterado = _context.Patrimonios
                 .Include(p => p.Acervo)
                 .AsNoTracking()
-                .Where(p => p.Id == patrimonioId);
+                .FirstOrDefault(p => p.Id == patrimonioId);
 
-      var patrimonioAlterado = _mapper.Map<Patrimonio>(query.ToArrayAsync().Result.ElementAt(0));
-
-      patrimonioAlterado.Status = false;
+      patrimonioAlterado.Status = true;
       patrimonioAlterado.DataIndisponibilidade = DateTime.Now.ToString("dd/MM/yyyy");
+      patrimonioAlterado.DataAtualizacao = DateTime.Now.ToString("dd/MM/yyyy");
 
       Update(patrimonioAlterado);
 

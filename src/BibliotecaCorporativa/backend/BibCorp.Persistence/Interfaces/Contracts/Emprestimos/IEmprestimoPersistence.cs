@@ -12,6 +12,8 @@ namespace BibCorp.Persistence.Interfaces.Contracts.Emprestimos
     Task<IEnumerable<Emprestimo>> GetEmprestimosByAcervoIdAsync(int acervoId);
     Task<IEnumerable<Emprestimo>> GetEmprestimosByPatrimonioIdAsync(int patrimonioId);
     Task<Emprestimo> RenovarEmprestimo(int emprestimoId);
-    Task<Emprestimo> AlteraLocalDeColeta(int emprestimoId, string novoLocalColeta);
+    Task<Emprestimo> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta);
+    Task<IEnumerable<Emprestimo>> GetEmprestimosByStatusAsync(TipoStatusEmprestimo[] status);
+    Task<Emprestimo> GerenciarEmprestimos(int emprestimoId, GerenciamentoEmprestimo gerenciamentoEmprestimo);
   }
 }

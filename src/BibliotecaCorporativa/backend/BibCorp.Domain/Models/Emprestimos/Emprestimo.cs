@@ -7,7 +7,7 @@ namespace BibCorp.Domain.Models.Emprestimos
   {
     public int Id { get; set; }
     public string UserName { get; set; }
-    public Status Status { get; set; }
+    public TipoStatusEmprestimo Status { get; set; }
     public string DataEmprestimo { get; set; }
     public string DataPrevistaDevolucao { get; set; }
     public int QtdeDiasEmprestimo { get; set; }

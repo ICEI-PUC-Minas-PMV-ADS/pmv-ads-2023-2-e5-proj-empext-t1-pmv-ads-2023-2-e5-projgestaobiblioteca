@@ -211,7 +211,7 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
 
       if (emprestimo == null) return null;
 
-      if (emprestimo.Status == Status.Renovado) throw new CoreException("Renovação não permitida pois o empréstimo já foi renovado anteriormente");
+      if (emprestimo.Status == TipoStatusEmprestimo.Renovado) throw new CoreException("Renovação não permitida pois o empréstimo já foi renovado anteriormente");
 
       var emprestimoRenovado = await _emprestimoPersistence.RenovarEmprestimo(emprestimoId);
 
@@ -221,20 +221,61 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
 
     }
 
-    public async Task<EmprestimoDto> AlteraLocalDeColeta(int emprestimoId, string novoLocalColeta)
+    public async Task<EmprestimoDto> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta)
     {
       var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
 
       if (emprestimo == null) return null;
 
-      if (emprestimo.Status == Status.Devolvido) throw new CoreException("Não é possível alterar o local de coleta de um empréstimo já devolvido");
+      if (emprestimo.Status == TipoStatusEmprestimo.Devolvido) throw new CoreException("Não é possível alterar o local de coleta de um empréstimo já devolvido");
 
-      var emprestimoAlterado = await _emprestimoPersistence.AlteraLocalDeColeta(emprestimoId, novoLocalColeta);
+      var emprestimoAlterado = await _emprestimoPersistence.AlterarLocalDeColeta(emprestimoId, novoLocalColeta);
 
       var emprestimoAlteradoMapper = _mapper.Map<EmprestimoDto>(emprestimoAlterado);
 
       return emprestimoAlteradoMapper;
 
+    }
+
+    public async Task<IEnumerable<EmprestimoDto>> GetEmprestimosByStatusAsync(TipoStatusEmprestimoDto[] status)
+    {
+      try
+      {
+        var statusMapper = _mapper.Map<TipoStatusEmprestimo[]>(status);
+
+        var emprestimos = await _emprestimoPersistence.GetEmprestimosByStatusAsync(statusMapper);
+
+        if (emprestimos == null) return null;
+
+        var emprestimoMapper = _mapper.Map<EmprestimoDto[]>(emprestimos);
+
+        return emprestimoMapper;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
+
+    public async Task<EmprestimoDto> GerenciarEmprestimos(int emprestimoId, GerenciamentoEmprestimo gerenciamentoEmprestimo)
+    {
+      try
+      {
+      
+        var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
+
+        if (emprestimo == null) return null;
+
+        var emprestimoAlterado = await _emprestimoPersistence.GerenciarEmprestimos(emprestimoId, gerenciamentoEmprestimo);
+
+        var emprestimoAlteradoMapper = _mapper.Map<EmprestimoDto>(emprestimoAlterado);
+
+        return emprestimoAlteradoMapper;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
     }
   }
 }

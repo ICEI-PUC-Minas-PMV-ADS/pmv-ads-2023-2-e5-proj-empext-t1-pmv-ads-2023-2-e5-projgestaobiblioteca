@@ -6,7 +6,7 @@
     <div class="card rounded shadow">
       <div class="card-header rounded text-center text-white bibcorp-bg-secondary p-3">
         <div class="h3">
-          Formulário de Perfil
+          Meu perfil
         </div>
       </div>
     </div>
@@ -18,16 +18,16 @@
             <div class="d-flex align-self-center pt-3">
               <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
                 <img
-                  src="https://img.freepik.com/vetores-premium/retrato-feminino-foto-de-perfil-de-mulher-avatar-de-cor_81894-6400.jpg"
+                  src="../../../../assets/Images/user_icon.png"
                   name="aboutme" width="120" height="120" class="rounded-circle">
               </a>
             </div>
             <div class="card-body">
               <div class="h4 text-center mb-3">@MJ</div>
-              <div class="h7 text-bold pb-1"><b>Nome:</b> Mary Jane Watson </div>
+              <div class="h7 text-bold pb-1" style="text-align: center;"><b>Nome:</b> Mary Jane Watson </div>
             </div>
-            <div class="card-footer bibcorp-bg-secondary">
-              <div class="card d-flex bibcorp-bg-secondary   g-0 m-0 p-0">
+            <div class="card-footer bibcorp-bg-primary">
+              <div class="card d-flex bibcorp-bg-primary   g-0 m-0 p-0">
                 <div class="card-header bibcorp-bg-secondary text-center shadow">
                   <div class="row">
                     <div class="col-12 text-center">
@@ -43,12 +43,12 @@
         <div class="col-lg-9">
           <div class="form-row d-md-flex">
             <mat-form-field class="col-6  p-1" appearance="fill">
-              <mat-label>Nome Completo:</mat-label>
+              <mat-label>Nome completo:</mat-label>
               <input matInput type="text" formControlName="nome" [ngClass]="fieldValidator(ctrF.nome)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.nome, '')}}</mat-error>
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
-              <mat-label>e-mail:</mat-label>
+              <mat-label>E-mail:</mat-label>
               <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.email, '')}}</mat-error>
             </mat-form-field>
@@ -60,13 +60,13 @@
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
-              <mat-label>Local:</mat-label>
+              <mat-label>Unidade:</mat-label>
               <input matInput type="text" formControlName="localizacao" [ngClass]="fieldValidator(ctrF.localizacao)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.localizacao, '')}}</mat-error>
             </mat-form-field>
           </div>
-          <h3 class="pt-3 border-bottom">Mudar Senha</h3>
-          <p>Caso mude de senha, preencha os campos abaixo:</p>
+          <h3 class="pt-3 border-bottom">Alterar Senha</h3>
+          <p>Para alterar a sua senha, preencha os campos abaixo:</p>
           <div class="form-row d-md-flex">
             <mat-form-field class="col-6  p-1" appearance="fill">
               <mat-label>Senha:</mat-label>
@@ -74,25 +74,14 @@
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
-              <mat-label>Confirmar Senha:</mat-label>
+              <mat-label>Confirmar senha:</mat-label>
               <input matInput type="text" formControlName="confirmPassword" [ngClass]="fieldValidator(ctrF.confirmPassword)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.confirmPassword, '')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
-
-        </div>
-        <div class="form-row">
-
-        <h3 class="pt-3 border-bottom">Livros Lidos</h3>
-        <form-group class="col-12">
-          <label>Livros Lidos</label>
-
-        </form-group>
-      </div>
-    </div>
-    <div class="card-footer bibcorp-bg-secondary mt-1 ">
-      <div class="d-flex ">
+    <div class="card-footer rounded bibcorp-bg-secondary mt-1 ">
+      <div class="d-flex " style="margin-right: 20px;">
           <button class="btn btn-danger ms-auto mx-1 my-3" (click)="resetForm($event)">
               Cancelar
           </button>
@@ -101,5 +90,4 @@
           </button>
       </div>
   </div>
-  </form>
 </div>

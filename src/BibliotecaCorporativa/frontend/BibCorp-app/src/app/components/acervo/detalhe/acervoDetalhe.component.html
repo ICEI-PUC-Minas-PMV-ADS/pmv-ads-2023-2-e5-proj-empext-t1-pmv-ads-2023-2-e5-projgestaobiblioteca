@@ -18,7 +18,7 @@
                         </p>
                         <!-- Adicione outras informações relevantes aqui -->
                     </div>
-                    <img src="{{acervo.capaUrl}}" alt="Capa do livro" class="img-fluid rounded-start" style="border-radius: 15px; object-fit: cover; object-position: top; width: 150px; height: 225px; position: absolute; top: 0; left: 0; margin-top: 10px;">
+                    <img src={{acervo.capaUrl}} alt="Capa do livro" class="img-fluid rounded-start" style="border-radius: 15px; object-fit: cover; object-position: top; width: 150px; height: 225px; position: absolute; top: 0; left: 0; margin-top: 10px;">
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                                     <td>{{i+1}}</td>
                                     <td class="change-color">{{patrimonio.id}}</td>
                                     <td class="status">{{obterStatusPatrimonio(patrimonio.status)}}</td>
-                                    <td><button class="btn btn-orange reserve-button" [disabled]="!patrimonio.status" (click)="abrirDialog(patrimonio.id)"
+                                    <td><button class="btn btn-orange reserve-button" [disabled]="patrimonio.status" (click)="abrirDialog(patrimonio.id)"
                                             data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
                                 </tr>
                             </tbody>

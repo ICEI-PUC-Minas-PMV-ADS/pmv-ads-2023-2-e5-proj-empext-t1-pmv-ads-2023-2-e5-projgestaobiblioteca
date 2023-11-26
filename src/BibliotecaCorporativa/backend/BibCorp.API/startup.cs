@@ -22,6 +22,7 @@ using BibCorp.Persistence.Interfaces.Packages.Usuarios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -46,7 +47,11 @@ namespace BibiCorp.API
       // Injeção do DBCONTEXT no projeto
       services
         .AddDbContext<BibCorpContext>(
-          context => context.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
+          context =>
+          {
+            context.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+            context.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+          }
       );
 
       // Injeção Identity
@@ -118,7 +123,7 @@ namespace BibiCorp.API
       services
                 .AddSwaggerGen(options =>
                 {
-                  options.SwaggerDoc("v1", new OpenApiInfo { Title = "OnPeople.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend do sistema OnPeople" });
+                  options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend da biblioteca corporativa da empress Prevenir" });
 
                   var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                   var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

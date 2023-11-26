@@ -5,8 +5,9 @@ import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { Acervo } from "src/app/models";
-import { AcervoService } from "src/app/services";
+import { Acervo, Usuario } from "src/app/models";
+import { UsuarioUpdate } from "src/app/models/Usuarios/UsuarioUpdate";
+import { AcervoService, UsuarioService } from "src/app/services";
 import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
 
 
@@ -28,6 +29,8 @@ export class AcervoListaComponent implements OnInit {
 
   public exibirImagem: boolean = true;
 
+  public showItensAdmin = false;
+
   filtroAcervo() {
     console.log("Filtro");
     this.getAcervos();
@@ -38,15 +41,40 @@ export class AcervoListaComponent implements OnInit {
     public dialog: MatDialog,
     private acervoService: AcervoService,
     private spinnerService: NgxSpinnerService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
+    this.getUserName();
     this.getAcervos();
   }
 
   alterarImagem() {
     this.exibirImagem = !this.exibirImagem;
+  }
+
+  public getUserName(): void {
+    this.spinnerService.show()
+
+    this.usuarioService
+    .getUsuarioByUserName()
+    .subscribe(
+      (usuarioLogado: UsuarioUpdate) => {
+        if (usuarioLogado.userName == "Admin") this.showItensAdmin = true;
+        else this.showItensAdmin = false;
+
+        console.log("Admin pode ver? ", this.showItensAdmin);
+      },
+      (error: any) => {
+        this.toastrService.error(
+          "Falha ao recuperar usuário logado.",
+          "Erro"
+        );
+        console.error(error);
+      }
+    )
+    .add(() => this.spinnerService.hide());
   }
 
   public getAcervos(): void {

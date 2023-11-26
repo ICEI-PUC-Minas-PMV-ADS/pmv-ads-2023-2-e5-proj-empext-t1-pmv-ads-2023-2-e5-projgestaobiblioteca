@@ -1,12 +1,12 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, take, map } from "rxjs";
-import { Patrimonio } from "src/app/patrimonios/models/patrimonio/Patrimonio";
-import { ResultadoPaginado } from "src/app/shared";
-import { environment } from "src/assets/environments/environments";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, map, take } from 'rxjs';
+import { ResultadoPaginado } from 'src/app/shared';
+import { environment } from 'src/assets/environments/environments';
+import { Patrimonio } from '../../models';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class PatrimonioService {
   baseURL = environment.apiURL + "Patrimonios/";

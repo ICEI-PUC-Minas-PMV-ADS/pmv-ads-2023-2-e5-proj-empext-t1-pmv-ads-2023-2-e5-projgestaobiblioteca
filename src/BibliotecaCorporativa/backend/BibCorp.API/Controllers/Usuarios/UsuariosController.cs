@@ -183,8 +183,11 @@ public class UsuariosController : ControllerBase
     {
       var claimUserName = User.GetUserNameClaim();
 
-      if (claimUserName == null) return Unauthorized();
+      if (claimUserName == null) return Unauthorized("Usuário Inválido.");
 
+      if (usuarioUpdateDto.UserName != claimUserName) return Unauthorized();
+
+      Console.WriteLine("Update Usuario " + claimUserName);
       var usuario = await _usuarioService.UpdateUsuario(usuarioUpdateDto);
 
       if (usuario == null) return NoContent();

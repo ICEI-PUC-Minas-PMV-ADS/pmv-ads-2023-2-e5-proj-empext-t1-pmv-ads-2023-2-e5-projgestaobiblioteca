@@ -1,1 +1,1 @@
-export * from './Patrimonio.service'
+export * from './patrimonio.service'

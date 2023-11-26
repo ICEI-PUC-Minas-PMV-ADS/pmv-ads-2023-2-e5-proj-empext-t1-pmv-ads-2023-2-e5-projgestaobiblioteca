@@ -62,6 +62,7 @@ namespace BibCorp.Application.Services.Packages.Usuarios
 
         if (usuarioUpdateDto.Password != null)
         {
+        Console.WriteLine("Usuario Service Update " + usuarioUpdateDto.Token);
           var token = await _userManager.GeneratePasswordResetTokenAsync(usuario);
 
           await _userManager.ResetPasswordAsync(usuario, token, usuarioUpdateDto.Password);

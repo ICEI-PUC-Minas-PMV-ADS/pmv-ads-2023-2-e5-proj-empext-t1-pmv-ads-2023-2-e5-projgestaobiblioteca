@@ -7,6 +7,7 @@ import { environment } from "src/assets/environments/environments";
 import { Usuario } from "src/app/models";
 
 import { LoginService } from "../Login";
+import { UsuarioUpdate } from "src/app/models/Usuarios/UsuarioUpdate";
 
 
 
@@ -30,9 +31,9 @@ export class UsuarioService {
     );
   }
 
-  public getUsuarioByUserName(): Observable<Usuario> {
+  public getUsuarioByUserName(): Observable<UsuarioUpdate> {
     return this.http
-      .get<Usuario>(this.baseURL + "getusername")
+      .get<UsuarioUpdate>(this.baseURL + "getusername")
       .pipe(take(1));
   }
 
@@ -42,9 +43,9 @@ export class UsuarioService {
       .pipe(take(1));
   }
 
-  public updateUser(model: Usuario): Observable<void> {
+  public updateUser(usuarioUpdaye: UsuarioUpdate): Observable<void> {
     return this.http
-      .put<Usuario>(this.baseURL + 'UpdateUsuario', model)
+      .put<Usuario>(this.baseURL + 'UpdateUsuario', usuarioUpdaye)
       .pipe(take(1),
         map((user: Usuario) => {
           this.loginService.setCurrentUser(user);

@@ -59,7 +59,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Usuarios
           .AsNoTracking()
           .Where(c => c.UserName.ToLower() == userName.ToLower());
 
-      return await query.SingleOrDefaultAsync();
+      return await query.FirstOrDefaultAsync();
     }
   }
 }

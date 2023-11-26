@@ -23,8 +23,8 @@
               </a>
             </div>
             <div class="card-body">
-              <div class="h4 text-center mb-3">@MJ</div>
-              <div class="h7 text-bold pb-1"><b>Nome:</b> Mary Jane Watson </div>
+              <div class="h4 text-center mb-3">{{usuario.email}}</div>
+              <div class="h7 text-bold pb-1"><b>Nome:</b> {{usuario.nome}} </div>
             </div>
             <div class="card-footer bibcorp-bg-secondary">
               <div class="card d-flex bibcorp-bg-secondary   g-0 m-0 p-0">
@@ -49,7 +49,7 @@
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
               <mat-label>e-mail:</mat-label>
-              <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
+              <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)" readonly>
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.email, '')}}</mat-error>
             </mat-form-field>
           </div>
@@ -58,11 +58,6 @@
               <mat-label>Telefone:</mat-label>
               <input matInput type="text" formControlName="phoneNumber" [ngClass]="fieldValidator(ctrF.phoneNumber)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="col-6  p-1" appearance="fill">
-              <mat-label>Local:</mat-label>
-              <input matInput type="text" formControlName="localizacao" [ngClass]="fieldValidator(ctrF.localizacao)">
-              <mat-error class="invalid-feedback">{{messageReturned(ctrF.localizacao, '')}}</mat-error>
             </mat-form-field>
           </div>
           <h3 class="pt-3 border-bottom">Mudar Senha</h3>
@@ -75,7 +70,7 @@
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
               <mat-label>Confirmar Senha:</mat-label>
-              <input matInput type="text" formControlName="confirmPassword" [ngClass]="fieldValidator(ctrF.confirmPassword)">
+              <input matInput type="password" formControlName="confirmPassword" [ngClass]="fieldValidator(ctrF.confirmPassword)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.confirmPassword, '')}}</mat-error>
             </mat-form-field>
           </div>
@@ -103,3 +98,8 @@
   </div>
   </form>
 </div>
+
+
+<p>Form Value: {{formPerfil.value | json}}</p>
+<p>Form Status: {{formPerfil.status | json}}</p>
+

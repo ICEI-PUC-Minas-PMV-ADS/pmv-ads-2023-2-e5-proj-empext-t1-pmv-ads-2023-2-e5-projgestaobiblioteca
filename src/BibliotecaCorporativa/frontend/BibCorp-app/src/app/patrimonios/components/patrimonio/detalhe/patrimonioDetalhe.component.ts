@@ -11,7 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
 import { Acervo} from "src/app/models";
-import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
+import { Patrimonio, PatrimonioService,  } from "src/app/patrimonios";
 import { AcervoService } from "src/app/services";
 import { FormValidator } from "src/app/util";
 

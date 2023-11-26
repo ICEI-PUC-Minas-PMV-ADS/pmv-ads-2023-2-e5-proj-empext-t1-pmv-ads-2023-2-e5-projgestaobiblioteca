@@ -7,7 +7,8 @@ import { AcervoService, EmprestimoService, UsuarioService } from 'src/app/servic
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
-import { Patrimonio, PatrimonioService } from 'src/app/patrimonios';
+import { Patrimonio, PatrimonioService,  } from 'src/app/patrimonios';
+import { UsuarioUpdate } from 'src/app/models/Usuarios/UsuarioUpdate';
 
 @Component({
   selector: 'app-pop-up',
@@ -24,7 +25,7 @@ export class modalEmprestarComponent implements OnInit {
   public emprestimo = {} as Emprestimo;
   public localEntrega: string;
   public localColeta: string;
-  public usuarioAtivo = {} as Usuario;
+  public usuarioAtivo = {} as UsuarioUpdate;
 
   constructor(
     private dialog: MatDialog,
@@ -140,7 +141,7 @@ export class modalEmprestarComponent implements OnInit {
   public getUsuarioAtivo(): void{
     this.spinnerService.show();
       this.usuarioService.getUsuarioByUserName().subscribe(
-        (usuario: Usuario) => {
+        (usuario: UsuarioUpdate) => {
           this.usuarioAtivo = usuario
         },
         (error: any) => {

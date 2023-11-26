@@ -30,20 +30,6 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import {
-  AcervoComponent,
-  AcervoDetalheComponent,
-  AcervoEdicaoComponent,
-  AcervoListaComponent,
-  CadastroUsuarioComponent,
-  LoginComponent,
-  PatrimonioComponent,
-  PatrimonioDetalheComponent,
-  PatrimonioListaComponent,
-  PerfilComponent,
-  PrincipalComponent,
-  UsuarioComponent,
-} from "./components";
 
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
 import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.service";
@@ -54,6 +40,8 @@ import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/
 import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
 import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
 import { JwtInterceptor, SharedModule } from "./shared";
+import { AcervoComponent, AcervoDetalheComponent, AcervoEdicaoComponent, AcervoListaComponent, CadastroUsuarioComponent, LoginComponent, PrincipalComponent, PerfilComponent, UsuarioComponent } from "./components";
+import { PatrimonioDetalheComponent, PatrimonioListaComponent, PatrimonioComponent } from "./patrimonios";
 
 @NgModule({
   declarations: [

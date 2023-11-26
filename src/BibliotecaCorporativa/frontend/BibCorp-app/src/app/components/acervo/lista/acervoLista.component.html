@@ -67,7 +67,7 @@
           <td>{{acervo.edicao}}</td>
           <td>{{acervo.qtdPaginas}}</td>
           <td>
-            <div class="btn-group mx-1">
+            <div class="btn-group mx-1" *ngIf="showItensAdmin">
               <a class="text-danger" (click)="abrirModal($event, acervo.id, acervo.isbn)" matTooltip="Excluír">
                 <mat-icon>delete</mat-icon>
               </a>

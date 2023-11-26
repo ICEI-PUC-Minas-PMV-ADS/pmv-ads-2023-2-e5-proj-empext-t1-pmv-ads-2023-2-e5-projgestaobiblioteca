@@ -55,6 +55,7 @@ import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/
 import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
 import { JwtInterceptor, SharedModule } from "./shared";
 import { GerenciarSolicitacoesComponent } from './components/gerenciarSolicitacoes/gerenciarSolicitacoes.component';
+import { homeAdminComponent } from './components/homeAdmin/homeAdmin.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { GerenciarSolicitacoesComponent } from './components/gerenciarSolicitaco
     ModalSucessoComponent,
     ModalRenovarComponent,
     AlterarLocalComponent,
-    GerenciarSolicitacoesComponent
+    GerenciarSolicitacoesComponent,
+    homeAdminComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,84 @@
+<div class="d-flex flex-row bibcorp-bg-secondary m-0 p-3">
+    <div class="col">
+      <div class="rounded-5 ">
+        <div class="flex-fill m-0 p-0">
+          <div class="input-group m-0 ">
+            <div class="input-group-prepend ">
+              <select class="bibcorp-select text-black border-0 p-2 ms-1 " id="pesquisarPor" [(ngModel)]="opcaoPesquisa"
+                (change)="filtroAcervo()">
+                <option [ngValue]="'Todos'">Todos</option>
+                <option [ngValue]="'Título do relatório'">Título do relatório</option>
+                <option [ngValue]="'Id'">ID</option>
+                <option [ngValue]="'Local físico'">Local físico</option>
+                <option [ngValue]="'Data de empréstimo'">Data de empréstimo</option>
+                <option [ngValue]="'Data de devolução'">Data de devolução</option>
+                <option [ngValue]="'Data prevista'">Data prevista</option>
+                <option [ngValue]="'Nome do usuário'">Nome do usuário</option>
+                <option [ngValue]="'Local de coleta'">Local de coleta</option>
+              </select>
+            </div>
+            <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por Título do relatório, ID, Local físico, Data de empréstimo, Data de devolução, Data prevista, Nome do usuário ou Local de coleta." [(ngModel)]="argumento"
+              (change)="filtroAcervo()">
+            <!-- (input)="companyFilter($event.target)"-->
+            <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroAcervo()">
+              <mat-icon class="matIcon">search</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid mt-0 ms-0 pt-0 ps-0">
+    <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active" routerLink="principal">
+      <span class="mr-2">&larr;</span> Voltar
+    </button>
+  </div>
+
+<div class="table-responsive">
+    <div style="min-height: 500px;">
+        <table class="table table-striped table-hover table-light rounded-3 ">
+            <thead class="table-primary">
+                <tr>
+                    <th class="d-none d-md-table-cell d-flex justify-center">
+                        <a class="text-white" (click)="alterarImagem()">
+                            <mat-icon>{{exibirImagem ? 'visibility' : 'visibility_on'}}</mat-icon>
+                        </a>
+                    </th>
+                    <th>#</th>
+                    <th>Título do relatório</th>
+                    <th>Local físico</th>
+                    <th>Data de empréstimo</th>
+                    <th>Data de devolução</th>
+                    <th>Data prevista</th>
+                    <th>Nome do usuário</th>
+                    <th>Local de coleta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img [(ngbCollapse)]="!exibirImagem" src="acervo.capaUrl" alt="Capa do livro" [style.width.px]="50" [style.margin.px]="2">
+                    </td>
+                    <td>1}}</td>
+                    <td>relatorio bla bla bla}}</td>
+                    <td>Matriz}}</td>
+                    <td>10/12/2022}}</td>
+                    <td>10/01/2023}}</td>
+                    <td>10/01/2023}}</td>
+                    <td>userUser}}</td>
+                    <td>Matriz}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <td colspan="12" class="text-center">
+                    <h4>Nenhum acervo encontrado</h4>
+                </td>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>

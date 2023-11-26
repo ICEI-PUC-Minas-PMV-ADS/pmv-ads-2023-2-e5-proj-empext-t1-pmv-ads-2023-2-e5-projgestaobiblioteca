@@ -6,7 +6,7 @@
           <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
             <img src="../../../assets/Images/backgroundImageBibCorp.jpg" class="rounded-circle"
             style="width: 25px; height: 25px;" alt="Avatar" />
-            usuarioAtivo.userName
+            {{usuarioAtivo.userName}}
           </a>
         </div>
         <div class="dropdown-menu" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
@@ -61,14 +61,14 @@
         </div>
       </li>-->
       <li class="nav-item dropdown">
-        <a class="h6 nav-link p-0 ms-4" (click)="logout()">
+        <a class="h4 nav-link p-0 ms-4" (click)="logout()">
           <mat-icon class="iconBadge2 mr-1">logout</mat-icon>
           Sair
         </a>
       </li>
       <!--Gerenciar é visão apenas do Admin-->
       <li class="nav-item" routerLinkActive="active">
-        <a class="h6 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
+        <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
           <mat-icon class="iconBadge mr-1">settings</mat-icon>
           Gerenciar
         </a>

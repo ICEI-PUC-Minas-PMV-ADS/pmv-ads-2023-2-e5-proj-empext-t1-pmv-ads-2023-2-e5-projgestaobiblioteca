@@ -14,6 +14,7 @@ import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
 import { AlterarLocalComponent } from './alterarLocal/alterarLocal.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
+import { isEmpty } from 'rxjs';
 
 
 @Component({
@@ -129,7 +130,7 @@ export class MinhasReservasComponent implements OnInit {
       },
       error: (error: any) => {
         this.spinner.hide();
-        this.toastr.error('Erro ao Carregar lista de empréstimos do usuario.', 'Erro!');
+        this.toastr.error('Erro ao buscar os empréstimos do usuario.', 'Erro!');
       },
       complete: () => this.spinner.hide()
     });
@@ -149,50 +150,31 @@ export class MinhasReservasComponent implements OnInit {
     });
   }
 
-  // DELETAR APOS VALIDAÇÃO
-  // public status(emprestimo: Emprestimo): any {
-  //   if (emprestimo.dataEmprestimo != null && emprestimo.dataDevolucao == null) {
-  //     return "Emprestado"
-  //   } else if(emprestimo.dataDevolucao != null) {
-  //     return "Devolvido"
-  //   } else if(emprestimo.qtdeDiasAtraso > 0 && emprestimo.dataDevolucao == null) {
-  //     return "Em atraso"
-  //   }
-  // }
-
   public status(emprestimo: Emprestimo): any {
 
-    let dataAtual = formatDate(new Date(), "dd/MM/YYYY", "en-US")
+    let data = new Date();
+    let dataAtual = data.toLocaleDateString()
 
-    if (emprestimo.dataPrevistaDevolucao < dataAtual && emprestimo.dataDevolucao == null) {
+    if (emprestimo.dataPrevistaDevolucao < dataAtual && (emprestimo.dataDevolucao == "" || emprestimo.dataDevolucao == null)) {
       return "Em atraso"
     }
     else if (emprestimo.status == 1) {
       return "Aguardando aprovação da solicitação"
-    } else if (emprestimo.status == 2) {
+    } 
+    else if (emprestimo.status == 2) {
       return "Em andamento"
-    } else if (emprestimo.status == 3) {
+    } 
+    else if (emprestimo.status == 3) {
       return "Devolvido"
-    } else if (emprestimo.status == 4) {
+    } 
+    else if (emprestimo.status == 4) {
       return "Renovado"
-    } else if (emprestimo.status == 5) {
+    } 
+    else if (emprestimo.status == 5) {
       return "Não aprovado"
-    } else return "ERRO: Status desconhecido"
-
+    } 
+    else return "-"
   }
-
-  // DELETAR APOS VALIDAÇÃO
-  // public status(emprestimo: Emprestimo): any {
-  //   if (emprestimo.dataEmprestimo != null && emprestimo.dataDevolucao == null) {
-  //     return "Emprestado"
-  //   } else if(emprestimo.dataDevolucao != null) {
-  //     return "Devolvido"
-  //   } else if(emprestimo.qtdeDiasAtraso > 0 && emprestimo.dataDevolucao == null) {
-  //     return "Em atraso"
-  //   }
-  // }
-
-
 
 }
 

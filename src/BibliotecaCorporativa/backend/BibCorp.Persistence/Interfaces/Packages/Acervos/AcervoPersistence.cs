@@ -1,5 +1,6 @@
 using AutoMapper;
 using BibCorp.Domain.Models.Acervos;
+using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
@@ -172,11 +173,9 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
 
     public async Task<bool> UpdateAcervoAposEmprestimo(int acervoId)
     {
-      IQueryable<Acervo> query = _context.Acervos
+      var acervoAlterado = _context.Acervos
                 .AsNoTracking()
-                .Where(a => a.Id == acervoId);
-
-      var acervoAlterado = _mapper.Map<Acervo>(query.ToArrayAsync().Result.ElementAt(0));
+                .FirstOrDefault(a => a.Id == acervoId);
 
       acervoAlterado.QtdeDisponivel = acervoAlterado.QtdeDisponivel - 1;
       acervoAlterado.QtdeEmprestada = acervoAlterado.QtdeEmprestada + 1;

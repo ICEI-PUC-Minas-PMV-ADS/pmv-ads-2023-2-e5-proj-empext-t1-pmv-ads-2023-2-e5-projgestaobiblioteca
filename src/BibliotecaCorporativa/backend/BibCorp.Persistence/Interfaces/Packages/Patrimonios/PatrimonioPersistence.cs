@@ -152,7 +152,6 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
     public async Task<bool> UpdatePatrimonioAposEmprestimo(int patrimonioId)
     {
       var patrimonioAlterado = _context.Patrimonios
-                .Include(p => p.Acervo)
                 .AsNoTracking()
                 .FirstOrDefault(p => p.Id == patrimonioId);
 

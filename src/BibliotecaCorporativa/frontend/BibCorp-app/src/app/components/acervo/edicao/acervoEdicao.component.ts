@@ -89,7 +89,7 @@ export class AcervoEdicaoComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(30),
-          Validators.maxLength(1200),
+          Validators.maxLength(2000),
         ],
       ],
       capaUrl: ["", Validators.required],
@@ -159,6 +159,7 @@ export class AcervoEdicaoComponent implements OnInit {
     this.spinnerService.show();
 
     this.acervo = { ...this.formAcervo.value };
+    console.log(this.acervo)
 
     this.acervo.dataCriacao = new Date()
       .toISOString()

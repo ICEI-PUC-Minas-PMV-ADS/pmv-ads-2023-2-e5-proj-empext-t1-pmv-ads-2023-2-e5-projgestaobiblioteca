@@ -31,6 +31,15 @@ export class ModalSucessoComponent implements OnInit {
       dialogRefSucesso.close();
     }
   }
+
+  consultarSolicitacoes() {
+    this.router.navigate(['/solicitacoes']); //direcionar para tela Meus Empréstimos/Minhas Reservas
+  
+    const dialogRefSucesso = this.dialog.getDialogById('Sucesso'); 
+    if (dialogRefSucesso) {
+      dialogRefSucesso.close();
+    }
+  }
   
 
 }

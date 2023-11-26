@@ -137,7 +137,7 @@
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
             <div class="card bg-white mb-3" style="max-width: 20rem; height: 25rem; border-radius: 15px; overflow: auto; position: relative;">
               <div class="text-center" style="margin-top: 20px;">
-                <img src="{{emprestimo.acervo.capaUrl}}" alt="Capa do livro" style="width: 150px; height: 250px; border-radius: 15px; object-fit: cover; object-position: top;">
+                <img src={{emprestimo.acervo.capaUrl}} alt="Capa do livro" style="width: 150px; height: 250px; border-radius: 15px; object-fit: cover; object-position: top;">
               </div>
               <div class="card-body">
                 <div>

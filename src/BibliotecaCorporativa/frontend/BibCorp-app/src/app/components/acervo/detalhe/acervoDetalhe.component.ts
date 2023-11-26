@@ -83,9 +83,9 @@ export class AcervoDetalheComponent implements OnInit {
   }
 
   public obterStatusPatrimonio(status: boolean): any{
-    if(status === false){
+    if(status === true){
       return ("Indisponível")
-    } else if(status === true){
+    } else if(status === false){
       return ("Disponível")
     }
   }

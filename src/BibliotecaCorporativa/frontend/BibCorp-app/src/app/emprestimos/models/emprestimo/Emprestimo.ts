@@ -1,5 +1,5 @@
-import { type Patrimonio } from '../../patrimonios/models/patrimonio/Patrimonio'
-import { type Acervo } from '../Acervos/Acervo'
+import { Acervo } from "src/app/acervos"
+import { Patrimonio } from "src/app/patrimonios"
 
 export class Emprestimo {
   id: number

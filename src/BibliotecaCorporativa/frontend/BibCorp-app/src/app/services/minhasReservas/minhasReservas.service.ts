@@ -2,7 +2,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, take } from "rxjs";
-import { Emprestimo } from "src/app/models/Emprestimos";
+import { Emprestimo } from "src/app/emprestimos";
 
 @Injectable({
   providedIn: "root",

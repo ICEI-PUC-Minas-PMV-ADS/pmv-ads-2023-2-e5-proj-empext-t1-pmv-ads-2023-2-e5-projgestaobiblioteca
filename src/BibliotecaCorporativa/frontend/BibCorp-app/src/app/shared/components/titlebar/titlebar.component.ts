@@ -3,8 +3,8 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { UsuarioLogin } from 'src/app/models';
 import { LoginService } from 'src/app/services';
+import { UsuarioLogin } from 'src/app/usuarios';
 
 
 

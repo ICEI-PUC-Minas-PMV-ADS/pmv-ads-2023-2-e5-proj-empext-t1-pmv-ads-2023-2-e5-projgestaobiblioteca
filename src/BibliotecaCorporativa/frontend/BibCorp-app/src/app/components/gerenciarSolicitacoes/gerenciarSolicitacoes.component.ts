@@ -1,37 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
 import { EmprestimoService } from "src/app/services";
-import { Emprestimo } from "src/app/models";
-import { GerenciamentoEmprestimo, TipoAcaoEmprestimo } from 'src/app/models/Emprestimos/GerenciamentoEmprestimo';
-
+import {
+  GerenciamentoEmprestimo,
+  TipoAcaoEmprestimo,
+} from "src/app/emprestimos/models/emprestimo/GerenciamentoEmprestimo";
+import { Emprestimo } from "src/app/emprestimos";
 
 @Component({
-  selector: 'app-gerenciar-solicitacoes',
-  templateUrl: './gerenciarSolicitacoes.component.html',
-  styleUrls: ['./gerenciarSolicitacoes.component.scss']
+  selector: "app-gerenciar-solicitacoes",
+  templateUrl: "./gerenciarSolicitacoes.component.html",
+  styleUrls: ["./gerenciarSolicitacoes.component.scss"],
 })
 export class GerenciarSolicitacoesComponent implements OnInit {
   public exibirImagem: boolean = true;
-  public emprestimos: Emprestimo[] = []
-  public emprestimo: Emprestimo
-  public emprestimoAlterado: Emprestimo
-  public gerenciamentoEmprestimo: GerenciamentoEmprestimo
-  public tipoAcaoEmprestimo: TipoAcaoEmprestimo
-  
+  public emprestimos: Emprestimo[] = [];
+  public emprestimo: Emprestimo;
+  public emprestimoAlterado: Emprestimo;
+  public gerenciamentoEmprestimo: GerenciamentoEmprestimo;
+  public tipoAcaoEmprestimo: TipoAcaoEmprestimo;
+
   constructor(
     private router: Router,
     private spinnerService: NgxSpinnerService,
     private toastrService: ToastrService,
-    private emprestimoService: EmprestimoService,
+    private emprestimoService: EmprestimoService
   ) {}
 
   ngOnInit(): void {
-   this.getEmprestimosPendentes();
-   this.gerenciamentoEmprestimo = new GerenciamentoEmprestimo
+    this.getEmprestimosPendentes();
+    this.gerenciamentoEmprestimo = new GerenciamentoEmprestimo();
   }
 
   public editarAcervo(acerovId: number): void {
@@ -49,53 +51,54 @@ export class GerenciarSolicitacoesComponent implements OnInit {
   public getEmprestimosPendentes(): void {
     this.spinnerService.show();
 
-    this.emprestimoService.getEmprestimosPendentes().subscribe(
-      (retorno: Emprestimo[]) => {
-        this.emprestimos = retorno;
-      },
-      (error: any) => {
-        this.toastrService.error("Erro ao carregar Patrimonio", 'Erro!');
-        console.error(error);
-      }
-    )
-    .add(() => this.spinnerService.hide());
-}
-
-public obterStatus(emprestimoStatus: number): any {
-
-   if(emprestimoStatus === 1){
-    return "Aguardando aprovação"
-   } else if (emprestimoStatus === 2 || emprestimoStatus === 4){
-    return "Aguardando devolução"
-   } else if (emprestimoStatus === 3 || emprestimoStatus === 5){
-    return "Solicitação concluída"
-  }
-}
-
-public gerenciarEmprestimo(emprestimoId: number, acao: string): void {
-  this.spinnerService.show();
-
-  if (acao === "Aprovar"){
-    console.log(this.gerenciamentoEmprestimo)
-    this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Aprovar
-    
-  } else if(acao === "Recusar"){
-    this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Recusar
-
-  } else if(acao === "Devolver"){
-    this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Devolver
+    this.emprestimoService
+      .getEmprestimosPendentes()
+      .subscribe(
+        (retorno: Emprestimo[]) => {
+          this.emprestimos = retorno;
+        },
+        (error: any) => {
+          this.toastrService.error("Erro ao carregar Patrimonio", "Erro!");
+          console.error(error);
+        }
+      )
+      .add(() => this.spinnerService.hide());
   }
 
-  this.emprestimoService.gerenciarEmprestimo(emprestimoId, this.gerenciamentoEmprestimo).subscribe(
-    (retorno: Emprestimo) => {
-      this.emprestimoAlterado = retorno;
-      this.ngOnInit();
-    },
-    (error: any) => {
-      this.toastrService.error("Erro ao gerenciar o empréstimo", 'Erro!');
-      console.error(error);
+  public obterStatus(emprestimoStatus: number): any {
+    if (emprestimoStatus === 1) {
+      return "Aguardando aprovação";
+    } else if (emprestimoStatus === 2 || emprestimoStatus === 4) {
+      return "Aguardando devolução";
+    } else if (emprestimoStatus === 3 || emprestimoStatus === 5) {
+      return "Solicitação concluída";
     }
-  )
-  .add(() => this.spinnerService.hide());
-}
+  }
+
+  public gerenciarEmprestimo(emprestimoId: number, acao: string): void {
+    this.spinnerService.show();
+
+    if (acao === "Aprovar") {
+      console.log(this.gerenciamentoEmprestimo);
+      this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Aprovar;
+    } else if (acao === "Recusar") {
+      this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Recusar;
+    } else if (acao === "Devolver") {
+      this.gerenciamentoEmprestimo.acao = TipoAcaoEmprestimo.Devolver;
+    }
+
+    this.emprestimoService
+      .gerenciarEmprestimo(emprestimoId, this.gerenciamentoEmprestimo)
+      .subscribe(
+        (retorno: Emprestimo) => {
+          this.emprestimoAlterado = retorno;
+          this.ngOnInit();
+        },
+        (error: any) => {
+          this.toastrService.error("Erro ao gerenciar o empréstimo", "Erro!");
+          console.error(error);
+        }
+      )
+      .add(() => this.spinnerService.hide());
+  }
 }

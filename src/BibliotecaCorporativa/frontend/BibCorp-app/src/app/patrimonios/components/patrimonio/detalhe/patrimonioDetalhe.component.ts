@@ -10,9 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { Acervo} from "src/app/models";
 import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
-import { AcervoService } from "src/app/services";
 import { FormValidator } from "src/app/util";
 
 @Component({
@@ -23,7 +21,6 @@ import { FormValidator } from "src/app/util";
 export class PatrimonioDetalheComponent {
   public formPatrimonio: FormGroup;
 
-  public acervo: Acervo;
   public patrimonio: Patrimonio;
   public patrimonioParam: any = "";
 
@@ -38,7 +35,6 @@ export class PatrimonioDetalheComponent {
   constructor(
     private activevateRouter: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private acervoService: AcervoService,
     private patrimonioService: PatrimonioService,
     private router: Router,
     private spinnerService: NgxSpinnerService,
@@ -134,10 +130,6 @@ export class PatrimonioDetalheComponent {
     this.patrimonio.status = false;
     this.patrimonio.dataAtualizacao = new Date().toISOString();
     this.patrimonio.dataCadastro = new Date().toISOString();
-
-    console.log("Acervo update", this.acervo);
-
-    if (this.acervo != null) this.patrimonio.acervoId = this.acervo.id;
 
     this.patrimonioService
       .createPatrimonio(this.patrimonio)

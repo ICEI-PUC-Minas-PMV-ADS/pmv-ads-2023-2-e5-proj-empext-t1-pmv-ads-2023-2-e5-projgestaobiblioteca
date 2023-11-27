@@ -1,9 +1,9 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap'
-import { Usuario } from './models';
 import { LoginService } from './services';
 import { Constants } from './util';
+import { Usuario } from './usuarios';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent {
   }
 
   showDrawer():boolean{
-    return this.router.url != '/usuarios/login' && this.router.url != '/usuarios/cadastro';  
+    return this.router.url != '/usuarios/login' && this.router.url != '/usuarios/cadastro';
 
   }
 
@@ -33,5 +33,5 @@ export class AppComponent {
 
     if (usuario)
       this.loginService.setCurrentUser(usuario);
-  } 
+  }
 }

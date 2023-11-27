@@ -2,12 +2,9 @@
 
 import { Component, OnInit, TemplateRef } from '@angular/core';
 // import { ModalModule } from 'ngx-bootstrap/modal';
-import { UsuarioLogin } from 'src/app/models';
-import { Acervo } from 'src/app/models';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MinhasReservasService } from 'src/app/services/minhasReservas/minhasReservas.service';
-import { Emprestimo } from 'src/app/models/Emprestimos';
 import { AcervoService, EmprestimoService, LoginService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
@@ -15,6 +12,12 @@ import { AlterarLocalComponent } from './alterarLocal/alterarLocal.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { isEmpty } from 'rxjs';
+
+import { Acervo } from 'src/app/acervos';
+
+import { Emprestimo } from 'src/app/emprestimos';
+
+import { UsuarioLogin } from 'src/app/usuarios';
 
 
 @Component({
@@ -107,7 +110,7 @@ export class MinhasReservasComponent implements OnInit {
   abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string) {
     this.dialogRef.open(AlterarLocalComponent, {
       data: { emprestimoId: emprestimoId, localDeColetaAtual: localDeColetaAtual, id: 'Alterar' }
-      
+
     });
   }
 
@@ -160,19 +163,19 @@ export class MinhasReservasComponent implements OnInit {
     }
     else if (emprestimo.status == 1) {
       return "Aguardando aprovação da solicitação"
-    } 
+    }
     else if (emprestimo.status == 2) {
       return "Em andamento"
-    } 
+    }
     else if (emprestimo.status == 3) {
       return "Devolvido"
-    } 
+    }
     else if (emprestimo.status == 4) {
       return "Renovado"
-    } 
+    }
     else if (emprestimo.status == 5) {
       return "Não aprovado"
-    } 
+    }
     else return "-"
   }
 

@@ -2,12 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ModalSucessoComponent } from '../modalSucesso/modalSucesso.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Acervo, Emprestimo, Usuario } from 'src/app/models';
 import { AcervoService, EmprestimoService, UsuarioService } from 'src/app/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
 import { Patrimonio, PatrimonioService } from 'src/app/patrimonios';
+import { Acervo } from 'src/app/acervos';
+import { Emprestimo } from 'src/app/emprestimos';
+import { Usuario } from 'src/app/usuarios';
 
 @Component({
   selector: 'app-pop-up',

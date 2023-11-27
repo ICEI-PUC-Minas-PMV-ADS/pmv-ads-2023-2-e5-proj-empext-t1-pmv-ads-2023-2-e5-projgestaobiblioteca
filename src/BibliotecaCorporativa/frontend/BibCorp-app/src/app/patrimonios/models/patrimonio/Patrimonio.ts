@@ -1,4 +1,4 @@
-import { Acervo } from "../../../models/Acervos";
+import { Acervo } from "src/app/acervos";
 
 export interface Patrimonio {
   id: number;

@@ -4,9 +4,8 @@ import { Observable, take, map } from "rxjs";
 
 import { environment } from "src/assets/environments/environments";
 
-import { Usuario } from "src/app/models";
-
 import { LoginService } from "../Login";
+import { Usuario } from "src/app/usuarios";
 
 
 

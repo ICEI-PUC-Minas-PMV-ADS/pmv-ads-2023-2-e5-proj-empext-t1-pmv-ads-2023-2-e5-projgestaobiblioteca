@@ -3,8 +3,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { type Observable, take } from 'rxjs'
-import { type Emprestimo } from 'src/app/models/Emprestimos/Emprestimo'
-import { GerenciamentoEmprestimo } from 'src/app/models/Emprestimos/GerenciamentoEmprestimo'
+import { type Emprestimo } from 'src/app/emprestimos/models/emprestimo/Emprestimo'
+import { GerenciamentoEmprestimo } from 'src/app/emprestimos/models/emprestimo/GerenciamentoEmprestimo'
 import { environment } from 'src/assets/environments/environments'
 
 @Injectable({

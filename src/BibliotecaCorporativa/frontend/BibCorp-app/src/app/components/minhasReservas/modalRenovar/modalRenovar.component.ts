@@ -7,9 +7,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { EmprestimoService, UsuarioService } from 'src/app/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Acervo, Emprestimo } from 'src/app/models';
 import { ModalSucessoComponent } from '../modalSucessoRenovacao';
 import { Patrimonio } from 'src/app/patrimonios';
+import { Acervo } from 'src/app/acervos';
+import { Emprestimo } from 'src/app/emprestimos';
 
 @Component({
   selector: 'app-modal-renovar',

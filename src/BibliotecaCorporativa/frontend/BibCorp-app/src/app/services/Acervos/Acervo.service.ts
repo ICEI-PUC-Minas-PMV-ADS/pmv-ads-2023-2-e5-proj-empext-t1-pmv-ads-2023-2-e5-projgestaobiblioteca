@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, take } from 'rxjs';
-import { Acervo } from 'src/app/models';
+import { Acervo } from 'src/app/acervos';
 import { ResultadoPaginado } from 'src/app/shared';
 import { environment } from 'src/assets/environments/environments';
 

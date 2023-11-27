@@ -1,6 +1,6 @@
-import { type Patrimonio } from '../../patrimonios/models/patrimonio/Patrimonio'
+import { Patrimonio } from "src/app/patrimonios"
 
-export interface Acervo {
+export class Acervo {
   id: number
   isbn: string
   genero: string

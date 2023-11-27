@@ -1,4 +1,3 @@
-export * from './Livros'
 export * from './Usuarios'
 export * from './Login'
 export * from './Emprestimos'

@@ -1,4 +1,4 @@
-import { type Emprestimo } from '../Emprestimos/Emprestimo'
+import { type Emprestimo } from '../../../emprestimos/models/emprestimo/Emprestimo'
 
 export class Usuario{
     nome: string

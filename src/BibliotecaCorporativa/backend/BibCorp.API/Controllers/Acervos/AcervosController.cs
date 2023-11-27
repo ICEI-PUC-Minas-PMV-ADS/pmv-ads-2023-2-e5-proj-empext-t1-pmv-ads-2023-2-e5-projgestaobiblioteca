@@ -10,11 +10,11 @@ namespace BibCorp.API.Controllers.Acervos;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AcervoController : ControllerBase
+public class AcervosController : ControllerBase
 {
   private readonly IAcervoService _acervoService;
 
-  public AcervoController
+  public AcervosController
   (
       IAcervoService acervoService
   )

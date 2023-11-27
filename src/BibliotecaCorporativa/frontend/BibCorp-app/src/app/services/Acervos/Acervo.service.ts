@@ -9,7 +9,7 @@ import { environment } from 'src/assets/environments/environments';
   providedIn: 'root'
 })
 export class AcervoService {
-  baseURL = environment.apiURL + 'Acervo/'
+  baseURL = environment.apiURL + 'Acervos/'
 
   constructor (
     private readonly http: HttpClient

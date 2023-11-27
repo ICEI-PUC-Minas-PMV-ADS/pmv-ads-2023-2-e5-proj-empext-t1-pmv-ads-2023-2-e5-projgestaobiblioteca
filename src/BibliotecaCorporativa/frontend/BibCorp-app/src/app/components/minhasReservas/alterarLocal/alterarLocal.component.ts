@@ -3,9 +3,9 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { EmprestimoService, UsuarioService } from 'src/app/services';
 import { ModalSucessoComponent } from '../modalSucessoAlteracao';
-import { Emprestimo } from 'src/app/emprestimos';
+import { Emprestimo, EmprestimoService } from 'src/app/emprestimos';
+import { UsuarioService } from 'src/app/usuarios';
 
 @Component({
   selector: 'app-alterar-local',

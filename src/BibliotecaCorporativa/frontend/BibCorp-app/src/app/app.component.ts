@@ -1,9 +1,8 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap'
-import { LoginService } from './services';
 import { Constants } from './util';
-import { Usuario } from './usuarios';
+import { LoginService, Usuario } from './usuarios';
 
 @Component({
   selector: 'app-root',

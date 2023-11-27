@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibCorp.Persistence.Migrations
 {
     [DbContext(typeof(BibCorpContext))]
-    [Migration("20231121002332_Initial-Identity")]
+    [Migration("20231127105955_Initial-Identity")]
     partial class InitialIdentity
     {
         /// <inheritdoc />

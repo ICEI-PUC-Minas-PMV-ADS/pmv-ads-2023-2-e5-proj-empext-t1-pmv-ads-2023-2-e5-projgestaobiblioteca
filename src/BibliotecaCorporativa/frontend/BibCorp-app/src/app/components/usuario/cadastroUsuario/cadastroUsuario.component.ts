@@ -7,8 +7,7 @@ import {
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { UsuarioService } from "src/app/services";
-import { Usuario } from "src/app/usuarios";
+import { Usuario, UsuarioService } from "src/app/usuarios";
 
 import { FormValidator } from "src/app/util";
 

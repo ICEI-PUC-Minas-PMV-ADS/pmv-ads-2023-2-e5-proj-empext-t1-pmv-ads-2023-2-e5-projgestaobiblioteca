@@ -2,10 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { EmprestimoService} from 'src/app/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Emprestimo } from 'src/app/emprestimos';
+import { Emprestimo, EmprestimoService } from 'src/app/emprestimos';
 
 
 @Component({

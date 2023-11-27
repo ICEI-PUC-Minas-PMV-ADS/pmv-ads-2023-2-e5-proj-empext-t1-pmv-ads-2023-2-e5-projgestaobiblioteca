@@ -1,14 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing'
-import { PatrimonioService } from './Patrimonio.service'
+import { TestBed, inject } from "@angular/core/testing";
+import { PatrimonioService } from "../..";
 
-describe('Service: Acervo', () => {
+
+describe("Service: Acervo", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PatrimonioService]
-    })
-  })
+      providers: [PatrimonioService],
+    });
+  });
 
-  it('should ...', inject([PatrimonioService], (service: PatrimonioService) => {
-    expect(service).toBeTruthy()
-  }))
-})
+  it("should ...", inject([PatrimonioService], (service: PatrimonioService) => {
+    expect(service).toBeTruthy();
+  }));
+});

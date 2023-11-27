@@ -4,8 +4,6 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 // import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MinhasReservasService } from 'src/app/services/minhasReservas/minhasReservas.service';
-import { AcervoService, EmprestimoService, LoginService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalRenovarComponent } from './modalRenovar/modalRenovar.component';
 import { AlterarLocalComponent } from './alterarLocal/alterarLocal.component';
@@ -13,11 +11,11 @@ import { NavigationEnd, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { isEmpty } from 'rxjs';
 
-import { Acervo } from 'src/app/acervos';
+import { Acervo, AcervoService } from 'src/app/acervos';
 
-import { Emprestimo } from 'src/app/emprestimos';
+import { Emprestimo, EmprestimoService } from 'src/app/emprestimos';
 
-import { UsuarioLogin } from 'src/app/usuarios';
+import { LoginService, UsuarioLogin } from 'src/app/usuarios';
 
 
 @Component({
@@ -66,8 +64,8 @@ export class MinhasReservasComponent implements OnInit {
   //----------------------------------------------VERIFICAÇÃO DE USUARIO e MÉTODOS--------------------------------------------------
 
   constructor(
-    private EmprestimoService: EmprestimoService,
-    private AcervoService: AcervoService,
+    private emprestimoService: EmprestimoService,
+    private acervoService: AcervoService,
     // private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -125,7 +123,7 @@ export class MinhasReservasComponent implements OnInit {
 
 
   public getEmprestimos(userName: string): void {
-    this.EmprestimoService.getEmprestimosByUserName(userName).subscribe({
+    this.emprestimoService.getEmprestimosByUserName(userName).subscribe({
       next: (Response: Emprestimo[]) => {
         this.emprestimos = Response;
         this.emprestimosFiltrados = this.emprestimos;
@@ -140,7 +138,7 @@ export class MinhasReservasComponent implements OnInit {
   }
 
   public getAcervo(): void {
-    this.AcervoService.getAcervos().subscribe({
+    this.acervoService.getAcervos().subscribe({
       next: (Response: Acervo[]) => {
         this.acervos = Response;
         this.acervosFiltrados = this.acervos;

@@ -3,8 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { LoginService } from "src/app/services";
-import { UsuarioLogin } from "src/app/usuarios";
+import { LoginService, UsuarioLogin } from "src/app/usuarios";
 import { FormValidator } from "src/app/util";
 
 @Component({

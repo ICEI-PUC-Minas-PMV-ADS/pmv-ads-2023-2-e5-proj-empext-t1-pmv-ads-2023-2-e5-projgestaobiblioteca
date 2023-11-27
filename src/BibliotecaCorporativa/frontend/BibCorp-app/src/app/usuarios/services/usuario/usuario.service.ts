@@ -1,18 +1,12 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, take, map } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, take, map } from 'rxjs';
+import { environment } from 'src/assets/environments/environments';
+import { LoginService, Usuario } from '../..';
 
-import { environment } from "src/assets/environments/environments";
-
-import { LoginService } from "../Login";
-import { Usuario } from "src/app/usuarios";
-
-
-
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class UsuarioService {
+
   public baseURL = environment.apiURL + "Usuarios/";
 
   public userLoged = {} as Usuario;
@@ -30,9 +24,7 @@ export class UsuarioService {
   }
 
   public getUsuarioByUserName(): Observable<Usuario> {
-    return this.http
-      .get<Usuario>(this.baseURL + "getusername")
-      .pipe(take(1));
+    return this.http.get<Usuario>(this.baseURL + "getusername").pipe(take(1));
   }
 
   public getUsuarioById(usuarioId: number): Observable<Usuario> {
@@ -42,12 +34,11 @@ export class UsuarioService {
   }
 
   public updateUser(model: Usuario): Observable<void> {
-    return this.http
-      .put<Usuario>(this.baseURL + 'UpdateUsuario', model)
-      .pipe(take(1),
-        map((user: Usuario) => {
-          this.loginService.setCurrentUser(user);
-        })
-      );
+    return this.http.put<Usuario>(this.baseURL + "UpdateUsuario", model).pipe(
+      take(1),
+      map((user: Usuario) => {
+        this.loginService.setCurrentUser(user);
+      })
+    );
   }
 }

@@ -4,12 +4,11 @@ import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { EmprestimoService } from "src/app/services";
 import {
   GerenciamentoEmprestimo,
   TipoAcaoEmprestimo,
 } from "src/app/emprestimos/models/emprestimo/GerenciamentoEmprestimo";
-import { Emprestimo } from "src/app/emprestimos";
+import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
 
 @Component({
   selector: "app-gerenciar-solicitacoes",

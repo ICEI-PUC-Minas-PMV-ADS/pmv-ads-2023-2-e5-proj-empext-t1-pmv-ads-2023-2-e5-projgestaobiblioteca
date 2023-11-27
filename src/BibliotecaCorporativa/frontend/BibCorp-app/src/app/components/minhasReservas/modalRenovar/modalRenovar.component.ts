@@ -4,13 +4,12 @@ import { Component, Inject, OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { EmprestimoService, UsuarioService } from 'src/app/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ModalSucessoComponent } from '../modalSucessoRenovacao';
 import { Patrimonio } from 'src/app/patrimonios';
 import { Acervo } from 'src/app/acervos';
-import { Emprestimo } from 'src/app/emprestimos';
+import { Emprestimo, EmprestimoService } from 'src/app/emprestimos';
 
 @Component({
   selector: 'app-modal-renovar',
@@ -33,7 +32,6 @@ export class ModalRenovarComponent implements OnInit {
   private emprestimoService: EmprestimoService,
   private spinnerService: NgxSpinnerService,
   private toastrService: ToastrService,
-  public usuarioService: UsuarioService,
   ) {  }
 
   ngOnInit(): void {

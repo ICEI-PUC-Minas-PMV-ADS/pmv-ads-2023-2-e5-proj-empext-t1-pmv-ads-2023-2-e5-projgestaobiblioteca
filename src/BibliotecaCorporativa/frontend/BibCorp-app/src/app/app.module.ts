@@ -46,9 +46,6 @@ import {
 } from "./components";
 
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
-import { MinhasReservasService } from "./services/minhasReservas/minhasReservas.service";
-
-import { AcervoService, LoginService, UsuarioService } from "./services";
 import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
@@ -56,6 +53,10 @@ import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal"
 import { JwtInterceptor, SharedModule } from "./shared";
 import { GerenciarSolicitacoesComponent } from './components/gerenciarSolicitacoes/gerenciarSolicitacoes.component';
 import { homeAdminComponent } from './components/homeAdmin/homeAdmin.component';
+import { AcervoModule } from "./acervos";
+import { UsuarioModule } from "./usuarios";
+import { PatrimonioModule } from "./patrimonios";
+import { EmprestimoModule } from "./emprestimos";
 
 @NgModule({
   declarations: [
@@ -109,14 +110,15 @@ import { homeAdminComponent } from './components/homeAdmin/homeAdmin.component';
       preventDuplicates: true,
       progressBar: true,
     }),
+
+    AcervoModule,
+    PatrimonioModule,
+    EmprestimoModule,
+    UsuarioModule,
   ],
   providers: [
-    AcervoService,
-    LoginService,
-    MinhasReservasService,
     NgxSpinnerService,
     ToastrService,
-    UsuarioService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],

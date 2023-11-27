@@ -4,9 +4,8 @@ import { Router } from '@angular/router'
 
 import { NgxSpinnerService } from 'ngx-spinner'
 import { ToastrService } from 'ngx-toastr'
-import { Acervo } from 'src/app/acervos'
+import { Acervo, AcervoService } from 'src/app/acervos'
 
-import { AcervoService } from 'src/app/services'
 import { Paginacao, ResultadoPaginado } from 'src/app/shared'
 
 @Component({

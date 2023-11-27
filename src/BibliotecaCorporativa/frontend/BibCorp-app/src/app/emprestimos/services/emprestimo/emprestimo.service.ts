@@ -1,16 +1,13 @@
-/* eslint-disable */
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, take } from 'rxjs';
+import { environment } from 'src/assets/environments/environments';
+import { Emprestimo } from '../..';
+import { GerenciamentoEmprestimo } from '../../models/emprestimo/GerenciamentoEmprestimo';
 
-import { HttpClient, HttpParams } from '@angular/common/http'
-import { Injectable } from '@angular/core'
-import { type Observable, take } from 'rxjs'
-import { type Emprestimo } from 'src/app/emprestimos/models/emprestimo/Emprestimo'
-import { GerenciamentoEmprestimo } from 'src/app/emprestimos/models/emprestimo/GerenciamentoEmprestimo'
-import { environment } from 'src/assets/environments/environments'
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EmprestimoService {
+
   baseURL = environment.apiURL + 'Emprestimos/'
 
   constructor (
@@ -25,12 +22,12 @@ export class EmprestimoService {
 
   public getEmprestimoById (id: number): Observable<Emprestimo> {
     return this.http.get<Emprestimo>(`${this.baseURL}${id}`)
-               .pipe(take(3));
+      .pipe(take(3));
   }
 
   public getEmprestimosByUserName (userName: string): Observable<Emprestimo[]> {
     return this.http.get<Emprestimo[]>(`${this.baseURL}Users/${userName}`)
-               .pipe(take(3));
+      .pipe(take(3));
   }
 
   public createEmprestimo(emprestimo: Emprestimo): Observable<Emprestimo> {
@@ -68,5 +65,4 @@ public gerenciarEmprestimo(emprestimoId:number, gerenciamentoEmprestimo: Gerenci
   return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimoId}/GerenciamentoEmprestimo`, gerenciamentoEmprestimo)
   .pipe(take(3));
 }
-
 }

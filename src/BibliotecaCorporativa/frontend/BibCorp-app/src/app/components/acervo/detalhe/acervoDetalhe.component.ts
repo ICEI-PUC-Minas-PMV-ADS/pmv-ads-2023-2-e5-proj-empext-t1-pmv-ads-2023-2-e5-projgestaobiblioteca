@@ -3,11 +3,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { AcervoService } from 'src/app/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { modalEmprestarComponent } from './modalEmprestar/modalEmprestar.component';
-import { Acervo } from 'src/app/acervos';
+import { Acervo, AcervoService } from 'src/app/acervos';
 
 @Component({
   selector: 'app-acervoDetalhe',

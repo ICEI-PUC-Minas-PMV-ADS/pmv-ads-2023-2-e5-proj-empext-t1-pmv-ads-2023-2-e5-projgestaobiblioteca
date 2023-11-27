@@ -19,7 +19,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavBarComponent,
   ],
   imports: [
-    AppRoutingModule,
     CommonModule,
     MatDialogModule,
     MatIconModule

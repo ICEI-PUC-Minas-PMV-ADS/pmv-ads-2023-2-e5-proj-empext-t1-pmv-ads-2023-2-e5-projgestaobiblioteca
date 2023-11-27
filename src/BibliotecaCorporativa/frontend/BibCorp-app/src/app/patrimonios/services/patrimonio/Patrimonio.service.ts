@@ -1,22 +1,17 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, take, map } from "rxjs";
-import { Patrimonio } from "src/app/patrimonios/models/patrimonio/Patrimonio";
 import { ResultadoPaginado } from "src/app/shared";
 import { environment } from "src/assets/environments/environments";
+import { Patrimonio } from "../..";
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class PatrimonioService {
   baseURL = environment.apiURL + "Patrimonios/";
 
   constructor(private readonly http: HttpClient) {}
 
-  public getPatrimonios(
-    fisltrarPor?: string,
-    TipoFiltro?: string
-  ): Observable<Patrimonio[]> {
+  public getPatrimonios(): Observable<Patrimonio[]> {
     console.log(this.baseURL);
     return this.http.get<Patrimonio[]>(this.baseURL).pipe(take(3));
   }

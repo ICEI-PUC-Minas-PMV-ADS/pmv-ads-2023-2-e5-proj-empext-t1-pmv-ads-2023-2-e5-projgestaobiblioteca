@@ -1,13 +1,11 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, take, map, ReplaySubject } from "rxjs";
-import { Usuario } from "src/app/usuarios/models/usuario/Usuario";
-import { environment } from "src/assets/environments/environments";
-import { Constants } from "src/app/util/constants";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ReplaySubject, Observable, take, map } from 'rxjs';
+import { Constants } from 'src/app/util';
+import { environment } from 'src/assets/environments/environments';
+import { Usuario } from '../..';
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class LoginService {
   public baseURL = environment.apiURL + "Usuarios/";
 

@@ -16,11 +16,13 @@ import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shar
 })
 export class AcervoListaComponent implements OnInit {
   public acervos: Acervo[] = [];
+  public acervo: Acervo;
 
   public paginacao = {} as Paginacao;
 
   public acervoId = 0;
   public acervoISBN = "";
+  public acervoAlocado = false;
 
   public opcaoPesquisa: string = 'Todos'
   public argumento: string = ''
@@ -78,20 +80,13 @@ export class AcervoListaComponent implements OnInit {
     acervoISBN: string
   ): void {
     event.stopPropagation();
+
     this.acervoId = acervoId;
     this.acervoISBN = acervoISBN;
-    const dialogRef = this.dialog.open(DeleteModalComponent, {
-      data: {
-        nomePagina: "Acervos",
-        id: this.acervoId,
-        argumento: this.acervoISBN,
-      },
-    });
+    console.log(this.acervoId)
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed", result);
-      if (result) this.confirmarDelecao();
-    });
+    this.validarAcervo(this.acervoId)
+    console.log("alocado? ", this.acervoAlocado)
   }
 
   public confirmarDelecao(): void {
@@ -120,7 +115,44 @@ export class AcervoListaComponent implements OnInit {
           console.error(error);
         }
       )
-      .add(() => this.spinnerService.show());
+      .add(() => this.spinnerService.hide());
+  }
+
+  public validarAcervo(acervoId: number): void {
+    this.spinnerService.show();
+
+    this.acervoService
+      .getAcervoById(acervoId)
+      .subscribe(
+        ( acervo: Acervo) => {
+          this.acervo = acervo;
+          console.log("valida ", this.acervo)
+          if ((this.acervo.qtdeEmTransito + this.acervo.qtdeEmprestada) > 0)
+            this.acervoAlocado = true
+
+          if (!this.acervoAlocado) {
+            const dialogRef = this.dialog.open(DeleteModalComponent, {
+              data: {
+                nomePagina: "Acervos",
+                id: this.acervoId,
+                argumento: this.acervoISBN,
+              },
+            });
+
+            dialogRef.afterClosed().subscribe((result) => {
+              console.log("The dialog was closed", result);
+              if (result) this.confirmarDelecao();
+            });
+          } else {
+            this.toastrService.info("Este livro está alocado em um empréstimo", "Informação!")
+          }
+        },
+        (error: any) => {
+          this.toastrService.error("Falha ao recuperar Acervo", `Erro! Status ${error.status}`);
+          console.error(error);
+        }
+      )
+      .add(() => this.spinnerService.hide());
   }
 
   public editarAcervo(acerovId: number): void {
@@ -132,7 +164,7 @@ export class AcervoListaComponent implements OnInit {
   }
 
   public alteracaoDePagina(event: any): void {
-    //    this.pagination.currentPage = event.currentPage
+    this.paginacao.paginaCorrente = event.currentPage
     this.getAcervos();
   }
 }

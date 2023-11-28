@@ -28,13 +28,9 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import {
-  AcervoComponent,
-  AcervoDetalheComponent,
-  AcervoEdicaoComponent,
-  AcervoListaComponent,
   CadastroUsuarioComponent,
   LoginComponent,
   PatrimonioComponent,
@@ -46,24 +42,44 @@ import {
 } from "./components";
 
 import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
-import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmprestar/modalEmprestar.component';
-import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
-import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
+import { ModalRenovarComponent } from "./components/minhasReservas/modalRenovar/modalRenovar.component";
 import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
-import { DeleteModalComponent, JwtInterceptor, NavBarComponent, TitlebarComponent } from "./shared";
-import { GerenciarSolicitacoesComponent } from './components/gerenciarSolicitacoes/gerenciarSolicitacoes.component';
-import { homeAdminComponent } from './components/homeAdmin/homeAdmin.component';
-import { AcervoModule } from "./acervos";
+import {
+  DeleteModalComponent,
+  JwtInterceptor,
+  NavBarComponent,
+  TitlebarComponent,
+} from "./shared";
+import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitacoes/gerenciarSolicitacoes.component";
+import { homeAdminComponent } from "./components/homeAdmin/homeAdmin.component";
 import { UsuarioModule } from "./usuarios";
-import { PatrimonioModule } from "./patrimonios";
 import { EmprestimoModule } from "./emprestimos";
+import {
+  AcervoComponent,
+  AcervoDetalheComponent,
+  AcervoListaComponent,
+  AcervoService,
+  ModalEmprestarComponent,
+  ModalSucessoComponent,
+} from "./acervos";
+import { AcervoEdicaoComponent } from "./acervos/components/edicao";
+import { PatrimonioService } from "./patrimonios";
 
 @NgModule({
   declarations: [
+    // Novos componentes ACERVOS
     AcervoComponent,
     AcervoDetalheComponent,
     AcervoEdicaoComponent,
     AcervoListaComponent,
+    ModalEmprestarComponent,
+    ModalSucessoComponent,
+
+    PatrimonioComponent,
+    PatrimonioDetalheComponent,
+    PatrimonioListaComponent,
+
+    // Componentes Angular
     AppComponent,
     CadastroUsuarioComponent,
     LoginComponent,
@@ -74,17 +90,15 @@ import { EmprestimoModule } from "./emprestimos";
     MinhasReservasComponent,
     PerfilComponent,
     UsuarioComponent,
-    modalEmprestarComponent,
-    ModalSucessoComponent,
     ModalRenovarComponent,
     AlterarLocalComponent,
     GerenciarSolicitacoesComponent,
     homeAdminComponent,
 
-// Shared Components
+    // Shared Components
     NavBarComponent,
     TitlebarComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -116,16 +130,15 @@ import { EmprestimoModule } from "./emprestimos";
       progressBar: true,
     }),
 
-    AcervoModule,
-    PatrimonioModule,
-    PatrimonioModule,
     EmprestimoModule,
     UsuarioModule,
   ],
   providers: [
+    AcervoService,
+    PatrimonioService,
     NgxSpinnerService,
     ToastrService,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

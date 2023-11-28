@@ -44,8 +44,8 @@
                                     <td>{{i+1}}</td>
                                     <td class="change-color">{{patrimonio.id}}</td>
                                     <td class="status">{{obterStatusPatrimonio(patrimonio.status)}}</td>
-                                    <td><button class="btn btn-orange reserve-button" [disabled]="patrimonio.status" (click)="abrirDialog(patrimonio.id)"
-                                            data-bs-toggle="modal" data-bs-target="modalEmprestar">Reservar</button></td>
+                                    <td><button class="btn btn-orange reserve-button" [disabled]="disabledReservar" (click)="abrirDialog(patrimonio.id)"
+                                            data-bs-toggle="modal" data-bs-target="modalEmprestar" >Reservar</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -73,7 +73,7 @@
             <!--
                 <div class="col-lg-8 offset-lg-1 col-12 mt-4">
                   <h5>Comentários</h5>
-             
+
                   <form class="mb-4">
                       <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                           <div class="d-flex flex-start w-100">
@@ -132,6 +132,6 @@
                   </div>
               </div>
           </div>
-      </div>-->  
+      </div>-->
 
       <br><br>

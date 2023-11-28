@@ -1,5 +1,5 @@
 export * from "./acervo";
-export * from "./principal";
+export * from "./Principal";
 export * from "./usuario";
 export * from "./usuario";
 export * from "../patrimonios/components/patrimonio";

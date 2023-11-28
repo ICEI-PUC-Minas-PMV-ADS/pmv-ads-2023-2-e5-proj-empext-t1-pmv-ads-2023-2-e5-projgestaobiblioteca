@@ -3,9 +3,9 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { ModalSucessoComponent } from '../modalSucessoAlteracao';
 import { Emprestimo, EmprestimoService } from 'src/app/emprestimos';
 import { UsuarioService } from 'src/app/usuarios';
+import { ModalSucessoAlteracaoComponent } from '../modalSucessoAlteracao';
 
 @Component({
   selector: 'app-alterar-local',
@@ -38,13 +38,13 @@ export class AlterarLocalComponent implements OnInit {
   }
 
   fecharModalAlterarEAbrirModalSucesso() {
-    const dialogRefAlterar = this.dataInput.emprestimoId
+    const dialogRefAlterar = this.dataInput.emprestimoId;
     if (dialogRefAlterar) {
       this.dialog.closeAll();
 
     }
 
-    this.dialog.open(ModalSucessoComponent, {
+    this.dialog.open(ModalSucessoAlteracaoComponent, {
       data: {emprestimoId: this.emprestimoIdParam}, id: 'Sucesso'
     });
   }
@@ -65,6 +65,6 @@ export class AlterarLocalComponent implements OnInit {
         }
       }
     )
-      .add(() => this.spinnerService.hide())
+      .add(() => this.spinnerService.hide());
   }
 }

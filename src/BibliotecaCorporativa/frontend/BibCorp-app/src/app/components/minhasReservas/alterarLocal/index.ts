@@ -1,1 +1,1 @@
-export * from "./alterarLocal.component";
+export * from './alterarLocal.component'

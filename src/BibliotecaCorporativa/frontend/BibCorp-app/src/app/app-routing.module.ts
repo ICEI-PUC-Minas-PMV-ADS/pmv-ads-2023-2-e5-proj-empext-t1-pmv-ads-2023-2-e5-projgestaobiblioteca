@@ -1,24 +1,12 @@
 import { Injectable, NgModule } from "@angular/core";
-import { RouterModule, Routes, mapToCanActivate } from "@angular/router";
-
-import {
-  AcervoComponent,
-  CadastroUsuarioComponent,
-  LoginComponent,
-  PrincipalComponent,
-  PatrimonioComponent,
-  PatrimonioDetalheComponent,
-  PatrimonioListaComponent,
-  UsuarioComponent,
-  AcervoEdicaoComponent,
-} from "./components";
-import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
-import { PerfilComponent } from "./components/usuario/perfil/perfil.component";
-import { AcervoDetalheComponent } from "./components/acervo/detalhe";
-import { AcervoListaComponent } from "./components/acervo/lista/acervoLista.component";
-import { AuthGuard } from "./shared/security/guard";
+import { Routes, mapToCanActivate, RouterModule } from "@angular/router";
+import { UsuarioComponent, PerfilComponent, AcervoComponent, AcervoDetalheComponent, AcervoEdicaoComponent, AcervoListaComponent, LoginComponent, CadastroUsuarioComponent, PrincipalComponent } from "./components";
 import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitacoes/gerenciarSolicitacoes.component";
 import { homeAdminComponent } from "./components/homeAdmin/homeAdmin.component";
+import { MinhasReservasComponent } from "./components/minhasReservas";
+import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaComponent } from "./patrimonios";
+import { AuthGuard } from "./shared";
+
 
 @Injectable({ providedIn: "root" })
 export class AdminGuard {
@@ -33,7 +21,7 @@ const routes: Routes = [
   {
     path: "",
     runGuardsAndResolvers: "always",
-    canActivate: mapToCanActivate([AdminGuard]),
+    canActivate: mapToCanActivate([AuthGuard]),
     children: [
       {
         path: "usuarios",

@@ -1,3 +1,3 @@
-export * from './titlebar'
-export * from './navBar'
-export * from './deleteModal'
+export * from "./titlebar";
+export * from "./navBar";
+export * from "./modal"

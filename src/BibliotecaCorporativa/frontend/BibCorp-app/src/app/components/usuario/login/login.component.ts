@@ -81,4 +81,10 @@ export class LoginComponent implements OnInit {
       )
       .add(() => this.spinnerService.hide());
   }
+
+  public reloadPrincipal(): void {
+    this.router.navigateByUrl("/principal");
+    location.replace("/princial");
+  }
+
 }

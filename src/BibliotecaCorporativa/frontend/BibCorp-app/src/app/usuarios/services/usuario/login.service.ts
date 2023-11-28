@@ -37,4 +37,9 @@ export class LoginService {
     this.currentUserSource.next(null as any);
     this.currentUserSource.complete();
   }
+
+  public userLoged(usuario: Usuario): void {
+    localStorage.setItem(Constants.LOCAL_STORAGE_NAME, JSON.stringify(usuario));
+    this.currentUserSource.next(usuario);
+  }
 }

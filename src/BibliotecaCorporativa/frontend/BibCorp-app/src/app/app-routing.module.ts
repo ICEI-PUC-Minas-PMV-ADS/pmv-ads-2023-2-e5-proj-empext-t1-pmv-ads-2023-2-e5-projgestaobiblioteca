@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: "",
     runGuardsAndResolvers: "always",
-    canActivate: mapToCanActivate([AuthGuard]),
+    canActivate: mapToCanActivate([AdminGuard]),
     children: [
       {
         path: "usuarios",

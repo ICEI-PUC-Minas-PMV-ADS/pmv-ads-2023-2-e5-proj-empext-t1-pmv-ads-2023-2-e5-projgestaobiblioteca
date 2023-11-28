@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { LoginService, Usuario, UsuarioService } from 'src/app/usuarios';
+import { NavigationEnd, Router } from '@angular/router'
+import { LoginService, Usuario } from 'src/app/usuarios';
 
 @Component({
   selector: 'app-navBar',
@@ -9,17 +9,33 @@ import { LoginService, Usuario, UsuarioService } from 'src/app/usuarios';
 })
 export class NavBarComponent implements OnInit {
   public isCollapsed = true
+
+  public usuarioLogado = false;
+
   public usuarioAtivo = {} as Usuario;
 
   constructor(
     private router: Router,
     private loginService: LoginService,
-    public usuarioService: UsuarioService,
-    ) { }
+    ) {
+      router.events
+      .subscribe(
+        (verifyUser) => {
+          if (verifyUser instanceof NavigationEnd)
+            this.loginService.currentUser$
+              .subscribe(
+                (userActive) => {
+                  this.usuarioAtivo = { ...userActive};
+                  console.log(this.usuarioAtivo.userName)
+                  this.usuarioLogado = this.usuarioAtivo.userName ? true : false
+                  console.log(this.usuarioLogado)
+                }
+              )
+        }
+      )
+    }
 
-  ngOnInit() {
-    this.getUsuarioAtivo();
-  }
+  ngOnInit() { console.log(this.usuarioLogado) }
 
   public logout(): void{
     this.loginService.logout();
@@ -27,14 +43,4 @@ export class NavBarComponent implements OnInit {
 
   }
 
-  public getUsuarioAtivo(): void{
-      this.usuarioService.getUsuarioByUserName().subscribe(
-        (usuario: Usuario) => {
-          this.usuarioAtivo = usuario
-        },
-        (error: any) => {
-          console.error(error)
-        }
-      )
-  }
 }

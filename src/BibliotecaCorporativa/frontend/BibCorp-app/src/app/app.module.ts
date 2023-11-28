@@ -31,28 +31,38 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
 import {
-  CadastroUsuarioComponent,
-  LoginComponent,
-  PerfilComponent,
-  PrincipalComponent,
-  UsuarioComponent,
-} from "./components";
-
-import { MinhasReservasComponent } from "./components/minhasReservas/minhasReservas.component";
-import { ModalRenovarComponent } from "./components/minhasReservas/modalRenovar/modalRenovar.component";
-import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
-import {
   DeleteModalComponent,
   JwtInterceptor,
   NavBarComponent,
   TitlebarComponent,
 } from "./shared";
-import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitacoes/gerenciarSolicitacoes.component";
-import { homeAdminComponent } from "./components/homeAdmin/homeAdmin.component";
-import { UsuarioModule } from "./usuarios";
-import { EmprestimoModule } from "./emprestimos";
-import { AcervoComponent,   AcervoDetalheComponent, AcervoEdicaoComponent, AcervoListaComponent, AcervoService, ModalEmprestarComponent, ModalSucessoComponent } from "./acervos";
-import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaComponent, PatrimonioService } from "./patrimonios";
+
+import {
+  AlterarLocalComponent,
+  EmprestimoService,
+  GerenciarSolicitacoesComponent,
+  MinhasReservasComponent,
+  ModalRenovarComponent,
+} from "./emprestimos";
+
+import {
+  AcervoComponent,
+  AcervoDetalheComponent,
+  AcervoEdicaoComponent,
+  AcervoListaComponent,
+  AcervoService,
+  ModalEmprestarComponent,
+  ModalSucessoComponent,
+} from "./acervos";
+
+import {
+  PatrimonioComponent,
+  PatrimonioDetalheComponent,
+  PatrimonioListaComponent,
+  PatrimonioService,
+} from "./patrimonios";
+import { HomeAdminComponent, PrincipalComponent } from "./home";
+import { CadastroUsuarioComponent, LoginComponent, PerfilComponent, UsuarioComponent } from "./usuarios";
 
 @NgModule({
   declarations: [
@@ -68,18 +78,21 @@ import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaCompone
     PatrimonioDetalheComponent,
     PatrimonioListaComponent,
 
-    // Componentes Angular
-    AppComponent,
-    CadastroUsuarioComponent,
-    LoginComponent,
-    PrincipalComponent,
-    MinhasReservasComponent,
-    PerfilComponent,
-    UsuarioComponent,
-    ModalRenovarComponent,
     AlterarLocalComponent,
     GerenciarSolicitacoesComponent,
-    homeAdminComponent,
+    MinhasReservasComponent,
+    ModalRenovarComponent,
+
+    PrincipalComponent,
+    HomeAdminComponent,
+
+    CadastroUsuarioComponent,
+    LoginComponent,
+    PerfilComponent,
+    UsuarioComponent,
+
+    // Componentes Angular
+    AppComponent,
 
     // Shared Components
     NavBarComponent,
@@ -115,12 +128,10 @@ import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaCompone
       preventDuplicates: true,
       progressBar: true,
     }),
-
-    EmprestimoModule,
-    UsuarioModule,
   ],
   providers: [
     AcervoService,
+    EmprestimoService,
     PatrimonioService,
     NgxSpinnerService,
     ToastrService,

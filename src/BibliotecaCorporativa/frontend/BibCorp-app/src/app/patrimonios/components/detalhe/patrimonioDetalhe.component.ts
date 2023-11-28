@@ -10,8 +10,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
-import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
+
 import { FormValidator } from "src/app/util";
+import { Patrimonio, PatrimonioService } from "../..";
 
 @Component({
   selector: "app-patrimonioDetalhe",
@@ -26,7 +27,8 @@ export class PatrimonioDetalheComponent {
 
   public editMode: Boolean = false;
 
-  public capaPatrimonio: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU";
+  public capaPatrimonio: string =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU";
 
   public get ctrF(): any {
     return this.formPatrimonio.controls;
@@ -110,9 +112,9 @@ export class PatrimonioDetalheComponent {
           );
 
           if (patrimonio.acervo?.capaUrl)
-            this.capaPatrimonio = patrimonio.acervo.capaUrl
+            this.capaPatrimonio = patrimonio.acervo.capaUrl;
 
-          console.log(patrimonio)
+          console.log(patrimonio);
         },
         (error: any) => {
           this.toastrService.error("Falha ao recuperar Patrimonio", "Erro!");

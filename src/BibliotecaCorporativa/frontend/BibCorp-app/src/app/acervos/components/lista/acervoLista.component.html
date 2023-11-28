@@ -66,12 +66,12 @@
           <td>{{acervo.edicao}}</td>
           <td>{{acervo.qtdPaginas}}</td>
           <td>
-            <div class="btn-group mx-1">
+            <div class="btn-group mx-1" *ngIf="usuarioAdmin">
               <a class="text-danger" (click)="abrirModal($event, acervo.id, acervo.isbn)" matTooltip="Excluír">
                 <mat-icon>delete</mat-icon>
               </a>
             </div>
-            <div class="btn-group mx-1">
+            <div class="btn-group mx-1" *ngIf="!usuarioAdmin">
               <a class="text-danger" (click)="detalheAcervo(acervo.id)" matTooltip="Detalhe">
                 <mat-icon>loupe</mat-icon>
               </a>

@@ -11,6 +11,7 @@ export class NavBarComponent implements OnInit {
   public isCollapsed = true
 
   public usuarioLogado = false;
+  public usuarioAdmin = false;
 
   public usuarioAtivo = {} as Usuario;
 
@@ -28,7 +29,9 @@ export class NavBarComponent implements OnInit {
                   this.usuarioAtivo = { ...userActive};
                   console.log(this.usuarioAtivo.userName)
                   this.usuarioLogado = this.usuarioAtivo.userName ? true : false
-                  console.log(this.usuarioLogado)
+
+                  this.usuarioAdmin = (this.usuarioAtivo.userName === "Admin")
+                  console.log(this.usuarioLogado, this.usuarioAdmin)
                 }
               )
         }

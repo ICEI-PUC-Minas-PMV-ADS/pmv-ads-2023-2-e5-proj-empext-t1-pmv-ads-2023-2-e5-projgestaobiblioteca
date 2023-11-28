@@ -4,9 +4,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { formatDate } from "@angular/common";
 import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
-import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
 import { Usuario, UsuarioService } from "src/app/usuarios";
 import { Acervo, AcervoService, ModalSucessoComponent } from "src/app/acervos";
+import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
 
 @Component({
   selector: "app-pop-up",

@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { Acervo, AcervoService } from "src/app/acervos";
 
 import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
+import { Usuario, UsuarioService } from "src/app/usuarios";
 
 
 @Component({
@@ -29,6 +30,8 @@ export class AcervoListaComponent implements OnInit {
 
   public exibirImagem: boolean = true;
 
+  public usuarioAdmin = false;
+
   filtroAcervo() {
     console.log("Filtro");
     this.getAcervos();
@@ -39,11 +42,26 @@ export class AcervoListaComponent implements OnInit {
     public dialog: MatDialog,
     private acervoService: AcervoService,
     private spinnerService: NgxSpinnerService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
+    this.getUserName();
     this.getAcervos();
+  }
+
+  public getUserName(): void {
+    this.spinnerService.show()
+
+    this.usuarioService
+      .getUsuarioByUserName()
+      .subscribe(
+        (usuario: Usuario) => {
+          if (usuario.userName === "Admin")
+            this.usuarioAdmin = true
+        }
+      )
   }
 
   alterarImagem() {

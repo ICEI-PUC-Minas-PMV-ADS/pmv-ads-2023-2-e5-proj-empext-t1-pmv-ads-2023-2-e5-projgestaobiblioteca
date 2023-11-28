@@ -8,11 +8,11 @@ import { Emprestimo, EmprestimoService } from 'src/app/emprestimos';
 
 
 @Component({
-  selector: 'app-modal-sucesso',
+  selector: 'app-modal-sucesso-alteracao',
   templateUrl: './modalSucessoAlteracao.component.html',
   styleUrls: ['./modalSucessoAlteracao.component.scss']
 })
-export class ModalSucessoComponent implements OnInit {
+export class ModalSucessoAlteracaoComponent implements OnInit {
   title = 'angular-material';
 
   public emprestimoAtualizado = {} as Emprestimo;

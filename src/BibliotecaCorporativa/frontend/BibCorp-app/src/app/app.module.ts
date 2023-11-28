@@ -50,7 +50,7 @@ import { modalEmprestarComponent } from './components/acervo/detalhe/modalEmpres
 import { ModalSucessoComponent } from './components/acervo/detalhe/modalSucesso/modalSucesso.component';
 import { ModalRenovarComponent } from './components/minhasReservas/modalRenovar/modalRenovar.component';
 import { AlterarLocalComponent } from "./components/minhasReservas/alterarLocal";
-import { JwtInterceptor, SharedModule } from "./shared";
+import { DeleteModalComponent, JwtInterceptor, NavBarComponent, TitlebarComponent } from "./shared";
 import { GerenciarSolicitacoesComponent } from './components/gerenciarSolicitacoes/gerenciarSolicitacoes.component';
 import { homeAdminComponent } from './components/homeAdmin/homeAdmin.component';
 import { AcervoModule } from "./acervos";
@@ -79,7 +79,12 @@ import { EmprestimoModule } from "./emprestimos";
     ModalRenovarComponent,
     AlterarLocalComponent,
     GerenciarSolicitacoesComponent,
-    homeAdminComponent
+    homeAdminComponent,
+
+// Shared Components
+    NavBarComponent,
+    TitlebarComponent,
+    DeleteModalComponent
   ],
   imports: [
     AppRoutingModule,
@@ -91,6 +96,7 @@ import { EmprestimoModule } from "./emprestimos";
     NgbCollapseModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -103,7 +109,6 @@ import { EmprestimoModule } from "./emprestimos";
     NgxSpinnerModule,
     NgbPaginationModule,
     ReactiveFormsModule,
-    SharedModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: "toast-bottom-right",
@@ -112,6 +117,7 @@ import { EmprestimoModule } from "./emprestimos";
     }),
 
     AcervoModule,
+    PatrimonioModule,
     PatrimonioModule,
     EmprestimoModule,
     UsuarioModule,

@@ -1,0 +1,1 @@
+export * from './homeAdmin.component'

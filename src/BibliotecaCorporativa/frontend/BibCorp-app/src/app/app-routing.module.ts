@@ -1,15 +1,6 @@
 import { Injectable, NgModule } from "@angular/core";
 import { Routes, mapToCanActivate, RouterModule } from "@angular/router";
-import {
-  UsuarioComponent,
-  PerfilComponent,
-  LoginComponent,
-  CadastroUsuarioComponent,
-  PrincipalComponent,
-} from "./components";
-import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitacoes/gerenciarSolicitacoes.component";
-import { homeAdminComponent } from "./components/homeAdmin/homeAdmin.component";
-import { MinhasReservasComponent } from "./components/minhasReservas";
+
 import { AuthGuard } from "./shared";
 import {
   AcervoComponent,
@@ -17,7 +8,17 @@ import {
   AcervoEdicaoComponent,
   AcervoListaComponent,
 } from "./acervos";
-import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaComponent } from "./patrimonios";
+import {
+  PatrimonioComponent,
+  PatrimonioDetalheComponent,
+  PatrimonioListaComponent,
+} from "./patrimonios";
+import {
+  GerenciarSolicitacoesComponent,
+  MinhasReservasComponent,
+} from "./emprestimos";
+import { HomeAdminComponent, PrincipalComponent } from "./home";
+import { CadastroUsuarioComponent, LoginComponent, PerfilComponent, UsuarioComponent } from "./usuarios";
 
 @Injectable({ providedIn: "root" })
 export class AdminGuard {
@@ -82,7 +83,7 @@ const routes: Routes = [
 
   { path: "gerenciar-solicitacoes", component: GerenciarSolicitacoesComponent },
 
-  { path: "home-admin", component: homeAdminComponent },
+  { path: "home-admin", component: HomeAdminComponent },
 
   { path: "principal", component: PrincipalComponent },
   { path: "**", redirectTo: "principal", pathMatch: "full" },

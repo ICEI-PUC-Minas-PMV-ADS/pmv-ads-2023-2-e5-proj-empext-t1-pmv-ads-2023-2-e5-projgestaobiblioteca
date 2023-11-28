@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
@@ -166,6 +164,7 @@ export class AcervoEdicaoComponent implements OnInit {
       .replace(/-/g, "");
 
     this.acervo.qtdeEmTransito = 0;
+    this.acervo.qtdeDisponivel += 1;
 
     this.acervoService
       .getAcervoByISBN(this.ctrF.isbn.value)
@@ -251,7 +250,8 @@ export class AcervoEdicaoComponent implements OnInit {
             console.log(patrimonios);
             this.patrimonios = patrimonios;
             this.ctrF.qtdeAcervos.setValue(this.patrimonios.length);
-            this.getGoogleBook(this.ctrF.isbn.value)
+            if (!this.editMode)
+              this.getGoogleBook(this.ctrF.isbn.value)
           } else
             this.toastrService.error(
               "Não existe patrimônio cadastrado para o ISBN informado",

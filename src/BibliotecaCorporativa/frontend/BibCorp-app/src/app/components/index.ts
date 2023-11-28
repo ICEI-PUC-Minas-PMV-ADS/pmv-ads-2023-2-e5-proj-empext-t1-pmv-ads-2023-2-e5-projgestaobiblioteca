@@ -1,4 +1,3 @@
-export * from "./acervo";
 export * from "./Principal";
 export * from "./usuario";
 export * from "./usuario";

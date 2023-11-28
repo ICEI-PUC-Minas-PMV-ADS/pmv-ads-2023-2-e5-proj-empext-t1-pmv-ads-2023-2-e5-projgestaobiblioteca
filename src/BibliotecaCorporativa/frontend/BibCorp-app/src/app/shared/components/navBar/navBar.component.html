@@ -19,10 +19,17 @@
         </li>
       </ng-class>
 
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" *ngIf="!usuarioAdmin">
         <a class="h4 nav-link p-0 ms-4" routerLink="/principal">
           <mat-icon class="iconBadge mr-1">home</mat-icon>
           Home
+        </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="active" *ngIf="usuarioAdmin">
+        <a class="h6 nav-link p-0 ms-4" routerLink="home-admin">
+          <mat-icon class="iconBadge mr-1">home</mat-icon>
+          Home-Admin
         </a>
       </li>
 
@@ -43,7 +50,7 @@
       </ng-class>
 
       <ng-class *ngIf="usuarioLogado">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="usuarioAdmin">
           <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
             <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
               <mat-icon class="iconBadge mr-1">book</mat-icon>
@@ -52,7 +59,7 @@
           </div>
           <div class="dropdown-menu" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
             <h6 class="dropdown-header">Navegar para</h6>
-            <a class="dropdown-item"  routerLink="patrimonios/novo">Novo</a>
+            <a class="dropdown-item"  routerLink="patrimonios/novo" >Novo</a>
             <a class="dropdown-item"  routerLink="patrimonios/lista">Lista</a>
           </div>
         </li>
@@ -65,7 +72,7 @@
           </div>
           <div class="dropdown-menu" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
             <h6 class="dropdown-header">Navegar para</h6>
-            <a class="dropdown-item"  routerLink="acervos/novo">Novo</a>
+            <a class="dropdown-item"  routerLink="acervos/novo" *ngIf="usuarioAdmin">Novo</a>
             <a class="dropdown-item"  routerLink="acervos/lista">Lista</a>
           </div>
         </li>
@@ -81,23 +88,17 @@
             <a class="dropdown-item"  routerLink="solicitacoes">Nova</a>
           </div>
         </li>-->
-        <li class="nav-item dropdown">
-          <a class="h4 nav-link p-0 ms-4" (click)="logout()">
-            <mat-icon class="iconBadge2 mr-1">logout</mat-icon>
-            Sair
-          </a>
-        </li>
         <!--Gerenciar é visão apenas do Admin-->
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="usuarioAdmin">
           <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
             <mat-icon class="iconBadge mr-1">settings</mat-icon>
             Gerenciar
           </a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="h6 nav-link p-0 ms-4" routerLink="home-admin">
-            <mat-icon class="iconBadge mr-1">home</mat-icon>
-            Home-Admin
+        <li class="nav-item dropdown">
+          <a class="h4 nav-link p-0 ms-4" (click)="logout()">
+            <mat-icon class="iconBadge2 mr-1">logout</mat-icon>
+            Sair
           </a>
         </li>
       </ng-class>

@@ -10,11 +10,6 @@ import {
 import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitacoes/gerenciarSolicitacoes.component";
 import { homeAdminComponent } from "./components/homeAdmin/homeAdmin.component";
 import { MinhasReservasComponent } from "./components/minhasReservas";
-import {
-  PatrimonioComponent,
-  PatrimonioDetalheComponent,
-  PatrimonioListaComponent,
-} from "./patrimonios";
 import { AuthGuard } from "./shared";
 import {
   AcervoComponent,
@@ -22,6 +17,7 @@ import {
   AcervoEdicaoComponent,
   AcervoListaComponent,
 } from "./acervos";
+import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaComponent } from "./patrimonios";
 
 @Injectable({ providedIn: "root" })
 export class AdminGuard {

@@ -10,8 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { Acervo, AcervoService } from "src/app/acervos";
-
 import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
+
 import { FormValidator } from "src/app/util";
 
 @Component({
@@ -156,7 +156,7 @@ export class AcervoEdicaoComponent implements OnInit {
     this.spinnerService.show();
 
     this.acervo = { ...this.formAcervo.value };
-    console.log(this.acervo)
+    console.log(this.acervo);
 
     this.acervo.dataCriacao = new Date()
       .toISOString()
@@ -250,8 +250,7 @@ export class AcervoEdicaoComponent implements OnInit {
             console.log(patrimonios);
             this.patrimonios = patrimonios;
             this.ctrF.qtdeAcervos.setValue(this.patrimonios.length);
-            if (!this.editMode)
-              this.getGoogleBook(this.ctrF.isbn.value)
+            if (!this.editMode) this.getGoogleBook(this.ctrF.isbn.value);
           } else
             this.toastrService.error(
               "Não existe patrimônio cadastrado para o ISBN informado",
@@ -272,16 +271,18 @@ export class AcervoEdicaoComponent implements OnInit {
       .subscribe(
         (book: Acervo) => {
           if (book != null) {
-            this.acervo = book
-            this.formAcervo.patchValue(this.acervo)
+            this.acervo = book;
+            this.formAcervo.patchValue(this.acervo);
           }
         },
         (error: any) => {
-          this.toastrService.error("Falha ao recuperar Acervo do Google Books ", "Erro!");
+          this.toastrService.error(
+            "Falha ao recuperar Acervo do Google Books ",
+            "Erro!"
+          );
           console.error(error);
         }
       )
       .add(() => this.spinnerService.hide());
   }
-
 }

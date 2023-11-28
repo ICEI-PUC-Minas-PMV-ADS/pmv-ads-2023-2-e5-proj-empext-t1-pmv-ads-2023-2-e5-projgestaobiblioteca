@@ -33,9 +33,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import {
   CadastroUsuarioComponent,
   LoginComponent,
-  PatrimonioComponent,
-  PatrimonioDetalheComponent,
-  PatrimonioListaComponent,
   PerfilComponent,
   PrincipalComponent,
   UsuarioComponent,
@@ -54,16 +51,8 @@ import { GerenciarSolicitacoesComponent } from "./components/gerenciarSolicitaco
 import { homeAdminComponent } from "./components/homeAdmin/homeAdmin.component";
 import { UsuarioModule } from "./usuarios";
 import { EmprestimoModule } from "./emprestimos";
-import {
-  AcervoComponent,
-  AcervoDetalheComponent,
-  AcervoListaComponent,
-  AcervoService,
-  ModalEmprestarComponent,
-  ModalSucessoComponent,
-} from "./acervos";
-import { AcervoEdicaoComponent } from "./acervos/components/edicao";
-import { PatrimonioService } from "./patrimonios";
+import { AcervoComponent,   AcervoDetalheComponent, AcervoEdicaoComponent, AcervoListaComponent, AcervoService, ModalEmprestarComponent, ModalSucessoComponent } from "./acervos";
+import { PatrimonioComponent, PatrimonioDetalheComponent, PatrimonioListaComponent, PatrimonioService } from "./patrimonios";
 
 @NgModule({
   declarations: [
@@ -83,9 +72,6 @@ import { PatrimonioService } from "./patrimonios";
     AppComponent,
     CadastroUsuarioComponent,
     LoginComponent,
-    PatrimonioDetalheComponent,
-    PatrimonioListaComponent,
-    PatrimonioComponent,
     PrincipalComponent,
     MinhasReservasComponent,
     PerfilComponent,

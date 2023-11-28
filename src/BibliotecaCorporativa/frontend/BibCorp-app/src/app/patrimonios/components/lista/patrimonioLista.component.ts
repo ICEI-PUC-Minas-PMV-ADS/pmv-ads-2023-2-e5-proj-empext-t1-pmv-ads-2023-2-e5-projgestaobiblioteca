@@ -4,10 +4,14 @@ import { Router } from "@angular/router";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
 
-import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
-
+import {
+  DeleteModalComponent,
+  Paginacao,
+  ResultadoPaginado,
+} from "src/app/shared";
+import { Patrimonio } from "../../models";
+import { PatrimonioService } from "../../services";
 
 @Component({
   selector: "app-patrimonioLista",
@@ -19,6 +23,7 @@ export class PatrimonioListaComponent implements OnInit {
   name: string;
 
   public patrimonios: Patrimonio[] = [];
+  public patrimonio: Patrimonio;
   public PatrimonioFiltrados: any = [];
 
   public paginacao = {} as Paginacao;
@@ -31,7 +36,8 @@ export class PatrimonioListaComponent implements OnInit {
 
   public exibirImagem: boolean = true;
 
-  public capaLivro = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU"
+  public capaLivro =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvSXCxMVWmCqcYHAvsrPZXmy2OkBeGy1-fbuCX2yfV5duFlE84Bk7C_APCxidn5u9cE0&usqp=CAU";
 
   filtroPatrimonio() {
     console.log("Filtro");
@@ -69,7 +75,7 @@ export class PatrimonioListaComponent implements OnInit {
           this.patrimonios = retorno.resultado;
           this.paginacao = retorno.paginacao;
 
-          console.log(this.patrimonios)
+          console.log(this.patrimonios);
         },
         (error: any) => {
           console.log("aqui 2");
@@ -88,18 +94,30 @@ export class PatrimonioListaComponent implements OnInit {
     event.stopPropagation();
     this.patrimonioId = patrimonioId;
     this.patrimonioISBN = patrimonioISBN;
-    const dialogRef = this.dialog.open(DeleteModalComponent, {
-      data: {
-        nomePagina: "Patrimônios",
-        id: this.patrimonioId,
-        argumento: this.patrimonioISBN,
-      },
-    });
+    this.patrimonioService
+      .getPatrimonioById(patrimonioId)
+      .subscribe(
+        (patrimonio: Patrimonio) => {
+          this.patrimonio = patrimonio
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed", result);
-      if (result) this.confirmarDelecao();
-    });
+          if (this.patrimonio.acervoId === null) {
+            const dialogRef = this.dialog.open(DeleteModalComponent, {
+              data: {
+                nomePagina: "Patrimônios",
+                id: this.patrimonioId,
+                argumento: this.patrimonioISBN,
+              },
+            });
+
+            dialogRef.afterClosed().subscribe((result) => {
+              console.log("The dialog was closed", result);
+              if (result) this.confirmarDelecao();
+            });
+          } else {
+            this.toastrService.info("Este patrimonio está associado a um acervo, não pode ser exclído!", "Informação!")
+          }
+        }
+      )
   }
 
   public confirmarDelecao(): void {

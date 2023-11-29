@@ -53,9 +53,10 @@ namespace BibCorp.Application.Services.Packages.Usuarios
     {
       try
       {
+        Console.WriteLine("Upodate usuario Service");
         var usuario = await _usuarioPersistence.GetUsuarioByUserNameAsync(usuarioUpdateDto.UserName);
 
-
+        Console.WriteLine("Usuario " + usuario.Id);
         if (usuario == null) return null;
 
         _mapper.Map(usuarioUpdateDto, usuario);

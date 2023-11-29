@@ -1,5 +1,6 @@
 
 using BibCorp.Application.Dto.Emprestimos;
+using BibCorp.Application.Dtos.Emprestimos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Domain.Exceptions;
 using BibCorp.Domain.Models.Emprestimos;
@@ -296,4 +297,31 @@ public class EmprestimosController : ControllerBase
     }
 
   }
+
+  /// <summary>
+  /// Obtém os dados dos empréstimos por status
+  /// </summary>
+  /// <param name="filtroEmprestimoDto">Filtros para pesquisa dos empréstimos</param>
+  /// <response code="200">Dados dos empréstimos consultados</response>
+  /// <response code="400">Parâmetros incorretos</response>
+  /// <response code="500">Erro interno</response>
+
+  [HttpGet("Emprestimos/Relatorio")]
+  public async Task<IActionResult> GetEmprestimosByFiltrosAsync([FromQuery] FiltroEmprestimoDto filtroEmprestimoDto)
+  {
+    try
+    {
+      var emprestimos = await _emprestimoService.GetEmprestimosByFiltrosAsync(filtroEmprestimoDto);
+
+      if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados para os filtros informados");
+
+      return Ok(emprestimos);
+    }
+    catch (Exception e)
+    {
+
+      return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimos. Erro: {e.Message}");
+    }
+  }
 }
+

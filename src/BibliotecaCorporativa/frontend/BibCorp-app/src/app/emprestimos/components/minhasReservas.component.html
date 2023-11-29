@@ -142,8 +142,8 @@
               <div class="card-body">
                 <div>
                   <h5 class="card-title text-dark" style="font-size: 1.0rem;">Livro: {{emprestimo.acervo.titulo}}</h5>
-                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data da solicitação: {{emprestimo.dataEmprestimo}}</p>
-                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data prevista de devolução: {{emprestimo.dataPrevistaDevolucao}}</p>
+                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data da solicitação: {{formatarData(emprestimo.dataEmprestimo)}}</p>
+                  <p class="card-text text-dark" style="font-size: 0.9rem;">Data prevista de devolução: {{formatarData(emprestimo.dataPrevistaDevolucao)}}</p>
                   <p class="card-text text-dark" style="font-size: 0.9rem;">Status do empréstimo: {{status(emprestimo)}}</p>
                   <div style="position: absolute; top: 5px; right: 10px; display: flex; flex-direction: row; align-items: center;"></div>
                 </div>

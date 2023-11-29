@@ -94,22 +94,23 @@ export class ModalEmprestarComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
+  public formatarData(data: Date): any{
+    var dataFormatada = formatDate(data, "yyyy-MM-dd'T'HH:mm:ss","en-US")
+
+    return dataFormatada
+  }
+
   public novoEmprestimo(): void {
     this.spinnerService.show();
 
-    this.emprestimo.dataEmprestimo = formatDate(
-      new Date(),
-      "dd/MM/YYYY",
-      "en-US"
-    );
-    let newDate = new Date();
-    let dataPrevista = newDate.setDate(newDate.getDate() + 30);
-    this.emprestimo.dataPrevistaDevolucao = formatDate(
-      dataPrevista,
-      "dd/MM/YYYY",
-      "en-US"
-    );
-    this.emprestimo.dataDevolucao = "";
+    let dataEmprestimo =  new Date();
+    this.emprestimo.dataEmprestimo = this.formatarData(dataEmprestimo);
+
+    let dataPrevista = new Date();
+    dataPrevista.setDate(dataPrevista.getDate() + 30)
+    this.emprestimo.dataPrevistaDevolucao = this.formatarData(dataPrevista)
+
+    this.emprestimo.dataDevolucao = null;
 
     this.emprestimo.qtdeDiasAtraso = 0;
     this.emprestimo.qtdeDiasEmprestimo = 30;

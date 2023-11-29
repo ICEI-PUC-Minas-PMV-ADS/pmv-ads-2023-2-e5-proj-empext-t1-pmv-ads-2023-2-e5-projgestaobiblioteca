@@ -1,5 +1,6 @@
 
 using BibCorp.Application.Dto.Emprestimos;
+using BibCorp.Application.Dtos.Emprestimos;
 using BibCorp.Domain.Models.Emprestimos;
 
 namespace BibCorp.Application.Services.Contracts.Emprestimos
@@ -18,5 +19,6 @@ namespace BibCorp.Application.Services.Contracts.Emprestimos
     Task<EmprestimoDto> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta);
     Task<IEnumerable<EmprestimoDto>> GetEmprestimosByStatusAsync(TipoStatusEmprestimoDto[] status);
     Task<EmprestimoDto> GerenciarEmprestimos(int emprestimoId, GerenciamentoEmprestimo gerenciamentoEmprestimo);
+    Task<IEnumerable<EmprestimoDto>> GetEmprestimosByFiltrosAsync(FiltroEmprestimoDto filtroEmprestimoDto);
   }
 }

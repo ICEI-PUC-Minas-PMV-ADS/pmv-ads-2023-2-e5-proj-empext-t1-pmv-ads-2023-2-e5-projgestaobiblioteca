@@ -5,10 +5,10 @@ export class Emprestimo {
   id: number;
   userName: string;
   status: Status;
-  dataEmprestimo: string;
-  dataPrevistaDevolucao: string;
+  dataEmprestimo: Date;
+  dataPrevistaDevolucao: Date;
   qtdeDiasEmprestimo: number;
-  dataDevolucao: string;
+  dataDevolucao: Date;
   qtdeDiasAtraso: number;
   acervoId: number;
   acervo: Acervo;

@@ -1,5 +1,6 @@
 using AutoMapper;
 using BibCorp.Application.Dto.Emprestimos;
+using BibCorp.Application.Dtos.Emprestimos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Domain.Exceptions;
 using BibCorp.Domain.Models.Emprestimos;
@@ -277,5 +278,26 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
         throw new Exception(e.Message);
       }
     }
+
+    public async Task<IEnumerable<EmprestimoDto>> GetEmprestimosByFiltrosAsync(FiltroEmprestimoDto filtroEmprestimoDto)
+    {
+      try
+      {
+        var filtroEmprestimoMapper = _mapper.Map<FiltroEmprestimo>(filtroEmprestimoDto);
+
+        var emprestimos = await _emprestimoPersistence.GetEmprestimosByFiltrosAsync(filtroEmprestimoMapper);
+
+        if (emprestimos == null) return null;
+
+        var emprestimoMapper = _mapper.Map<EmprestimoDto[]>(emprestimos);
+
+        return emprestimoMapper;
+      }
+      catch (Exception e)
+      {
+        throw new Exception(e.Message);
+      }
+    }
   }
 }
+

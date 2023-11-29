@@ -85,11 +85,11 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
                 .FirstOrDefault(e => e.Id == emprestimoId);
 
 
-      var dataPrevistaDevolucaoAtual = DateTime.Parse(emprestimoRenovado.DataPrevistaDevolucao);
+      var dataPrevistaDevolucaoAtual = emprestimoRenovado.DataPrevistaDevolucao;
 
       var novaDataPrevistaDevolucao = dataPrevistaDevolucaoAtual.AddDays(_persistenceConfiguration.PrazoRenovacao);
 
-      emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao.ToString("dd/MM/yyyy");
+      emprestimoRenovado.DataPrevistaDevolucao = novaDataPrevistaDevolucao;
       emprestimoRenovado.Status = TipoStatusEmprestimo.Renovado;
       emprestimoRenovado.QtdeDiasEmprestimo += _persistenceConfiguration.PrazoRenovacao;
 
@@ -155,7 +155,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
       else if(gerenciamentoEmprestimo.Acao == TipoAcaoEmprestimo.Devolver)
       {
         emprestimoAlterado.Status = TipoStatusEmprestimo.Devolvido;
-        emprestimoAlterado.DataDevolucao = DateTime.Now.ToString("dd/MM/yyyy");
+        emprestimoAlterado.DataDevolucao = DateTime.Now;
       }
 
       Update(emprestimoAlterado);
@@ -165,6 +165,39 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
         return emprestimoAlterado;
       }
       else throw new CoreException("Não foi possível efetuar o gerenciamento do empréstimo");
+    }
+
+    public async Task<IEnumerable<Emprestimo>> GetEmprestimosByFiltrosAsync(FiltroEmprestimo filtroEmprestimo)
+    {
+      if (filtroEmprestimo.Usuarios.Any()) {
+
+        var emprestimosConsultadosPorUsuario = new List<Emprestimo>();
+
+        foreach (var usuario in filtroEmprestimo.Usuarios)
+        {
+          IQueryable<Emprestimo> query = _context.Emprestimos
+         .Include(e => e.Acervo)
+         .Include(e => e.Patrimonio)
+         .AsNoTracking()
+         .Where(e => ((e.DataEmprestimo >= filtroEmprestimo.DataInicio && e.DataEmprestimo <= filtroEmprestimo.DataFim) && e.UserName == usuario))
+         .OrderByDescending(e => e.DataEmprestimo);
+          emprestimosConsultadosPorUsuario.AddRange(query);
+        }
+        return emprestimosConsultadosPorUsuario;
+      }
+
+      else
+      {
+        IQueryable<Emprestimo> emprestimosConsultadosPorData = _context.Emprestimos
+        .Include(e => e.Acervo)
+        .Include(e => e.Patrimonio)
+        .AsNoTracking()
+        .Where(e => (e.DataEmprestimo >= filtroEmprestimo.DataInicio && e.DataEmprestimo <= filtroEmprestimo.DataFim))
+        .OrderByDescending(e => e.DataEmprestimo);
+
+        return await emprestimosConsultadosPorData.ToListAsync();
+      }
+      
     }
   }
 }

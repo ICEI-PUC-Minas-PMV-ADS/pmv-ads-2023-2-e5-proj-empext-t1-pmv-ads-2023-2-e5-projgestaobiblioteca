@@ -96,7 +96,7 @@ export class MinhasReservasComponent implements OnInit {
   abrirDialogRenovacao(
     emprestimoId: number,
     acervoTitulo: string,
-    dataPrevistaDevolucao: string
+    dataPrevistaDevolucao: Date
   ) {
     this.dialogRef.open(ModalRenovarComponent, {
       data: {
@@ -157,12 +157,10 @@ export class MinhasReservasComponent implements OnInit {
   }
 
   public status(emprestimo: Emprestimo): any {
-    let data = new Date();
-    let dataAtual = data.toLocaleDateString();
-
+    let dataAtual = new Date();
     if (
       emprestimo.dataPrevistaDevolucao < dataAtual &&
-      (emprestimo.dataDevolucao == "" || emprestimo.dataDevolucao == null)
+      emprestimo.dataDevolucao == null
     ) {
       return "Em atraso";
     } else if (emprestimo.status == 1) {
@@ -176,5 +174,11 @@ export class MinhasReservasComponent implements OnInit {
     } else if (emprestimo.status == 5) {
       return "Não aprovado";
     } else return "-";
+  }
+
+  public formatarData(data: Date): any{
+    var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
+
+    return dataFormatada
   }
 }

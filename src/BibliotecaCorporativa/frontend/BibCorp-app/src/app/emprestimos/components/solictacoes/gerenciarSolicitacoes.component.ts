@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { formatDate } from "@angular/common";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
@@ -72,6 +73,12 @@ export class GerenciarSolicitacoesComponent implements OnInit {
     } else if (emprestimoStatus === 3 || emprestimoStatus === 5) {
       return "Solicitação concluída";
     }
+  }
+
+  public formatarData(data: Date): any{
+    var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
+
+    return dataFormatada
   }
 
   public gerenciarEmprestimo(emprestimoId: number, acao: string): void {

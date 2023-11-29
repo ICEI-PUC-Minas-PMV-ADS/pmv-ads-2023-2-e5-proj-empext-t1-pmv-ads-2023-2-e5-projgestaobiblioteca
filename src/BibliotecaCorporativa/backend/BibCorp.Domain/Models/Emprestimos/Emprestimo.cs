@@ -8,10 +8,10 @@ namespace BibCorp.Domain.Models.Emprestimos
     public int Id { get; set; }
     public string UserName { get; set; }
     public TipoStatusEmprestimo Status { get; set; }
-    public string DataEmprestimo { get; set; }
-    public string DataPrevistaDevolucao { get; set; }
+    public DateTime DataEmprestimo { get; set; }
+    public DateTime DataPrevistaDevolucao { get; set; }
     public int QtdeDiasEmprestimo { get; set; }
-    public string DataDevolucao { get; set; }
+    public DateTime ?DataDevolucao { get; set; }
     public int QtdeDiasAtraso { get; set; }
     public int AcervoId { get; set; }
     public Acervo Acervo { get; set; }

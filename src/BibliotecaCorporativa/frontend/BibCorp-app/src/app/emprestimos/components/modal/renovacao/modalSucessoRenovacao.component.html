@@ -1,7 +1,7 @@
  <div class="custom-modal" id="Sucesso">
     <h2 class="modal-title">A sua renovação foi realizada com sucesso!</h2>
     <p class="modal-subtitle">Nova data de devolução:</p>
-    <h5>{{novaDataPrevistaDevolucao}}</h5>
+    <h5>{{formatarData(novaDataPrevistaDevolucao)}}</h5>
     <img src="../../../../../assets/Images/check.png" alt="check" style="height: 40px; width: 40px; margin-top: 10px;">
     <button class="btn btn-orange" (click)="voltarParaMinhasSolicitacoes()">Voltar</button>
   </div>

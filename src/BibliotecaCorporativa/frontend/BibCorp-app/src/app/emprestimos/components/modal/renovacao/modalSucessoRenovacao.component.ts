@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { formatDate } from "@angular/common";
 import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -59,6 +60,12 @@ export class ModalSucessoComponent implements OnInit {
       )
 
       .add(() => this.spinnerService.hide());
+  }
+
+  public formatarData(data: Date): any{
+    var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
+
+    return dataFormatada
   }
 
 

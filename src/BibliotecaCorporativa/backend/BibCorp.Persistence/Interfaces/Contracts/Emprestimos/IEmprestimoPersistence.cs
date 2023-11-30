@@ -15,5 +15,6 @@ namespace BibCorp.Persistence.Interfaces.Contracts.Emprestimos
     Task<Emprestimo> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta);
     Task<IEnumerable<Emprestimo>> GetEmprestimosByStatusAsync(TipoStatusEmprestimo[] status);
     Task<Emprestimo> GerenciarEmprestimos(int emprestimoId, GerenciamentoEmprestimo gerenciamentoEmprestimo);
+    Task<IEnumerable<Emprestimo>> GetEmprestimosByFiltrosAsync(FiltroEmprestimo filtroEmprestimo);
   }
 }

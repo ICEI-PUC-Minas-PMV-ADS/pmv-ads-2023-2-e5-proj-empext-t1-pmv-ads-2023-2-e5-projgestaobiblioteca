@@ -27,6 +27,12 @@ export class HomeAdminComponent implements OnInit {
 
   public exibirImagem: boolean = true;
 
+  dataInicio: string;
+  dataFinal: string;
+  selectedUser: string;
+  showUserDropdown: boolean = false;
+  userOptions: string[] = ['Opção 1', 'Opção 2', 'Opção 3', 'Opção 4'];
+
   filtroAcervo() {
     console.log("Filtro");
     this.getAcervos();
@@ -47,6 +53,17 @@ export class HomeAdminComponent implements OnInit {
   alterarImagem() {
     this.exibirImagem = !this.exibirImagem;
   }
+
+
+  toggleUserDropdown() {
+    this.showUserDropdown = !this.showUserDropdown;
+  }
+
+  onUserOptionChange() {
+    // Lógica adicional, se necessário
+  }
+
+  selectedUsers: { [key: string]: boolean } = {};
 
   public getAcervos(): void {
     this.spinnerService.show();

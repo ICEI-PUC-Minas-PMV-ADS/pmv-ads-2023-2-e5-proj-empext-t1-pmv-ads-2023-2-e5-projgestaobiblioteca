@@ -1,10 +1,12 @@
- <div class="custom-modal" id="Sucesso">
- <div>
-  <h5 class="modal-title">A sua solicitação foi registrada com sucesso!</h5>
-  <img src="../../../../../assets/Images/check.png" alt="check" style="height: 40px; width: 40px; margin-top: 10px;">
- </div>
-    <p class="modal-subtitle">Após a aprovação da solicitação, a entrega será feita <b>em até 48h</b> no local de entrega selecionado: <b>Unidade {{localEntrega}}</b> </p>
-    <p class="modal-subtitle">Acompanhe o andamento da sua solicitação na opção 'Minhas Solicitacões' disponível no seu perfil</p>
-    <button class="btn btn-blue" (click)="consultarSolicitacoes()">Ver minhas solicitações</button>
-    <button class="btn btn-orange" (click)="voltarParaAcervoDetalhe()">Voltar</button>
+<div class="custom-modal" id="Sucesso">
+  <div style="position: relative; display: flex; justify-content: space-between; align-items: center;">
+    <h5 class="modal-title" style="margin-left: 5px;">Solicitação registrada com sucesso!</h5>
+    <!--<img src="../../../../../assets/Images/check.png" alt="check" style="height: 30px; width: 30px; position: absolute; top: 5px; right: 15px;">-->
   </div>
+  <p class="modal-subtitle">Após aprovação, entrega em até 48h na Unidade <strong>{{localEntrega}}</strong> </p>
+  <p class="modal-subtitle">Acompanhe o andamento no perfil,<br> em 'Minhas Solicitações'</p>
+  <div style="display: flex; justify-content: space-between; width: 100%;">
+    <button class="btn btn-blue" (click)="consultarSolicitacoes()">Ver Minhas Solicitações</button>
+    <button class="btn btn-orange" (click)="voltarParaAcervoDetalhe()" style="margin-top: 5px; width: 25%;">Voltar</button>
+  </div>
+</div>

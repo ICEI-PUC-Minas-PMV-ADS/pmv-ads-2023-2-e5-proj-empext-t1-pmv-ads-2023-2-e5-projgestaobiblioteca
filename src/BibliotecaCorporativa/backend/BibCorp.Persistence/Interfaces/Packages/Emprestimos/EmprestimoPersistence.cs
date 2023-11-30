@@ -197,7 +197,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
         return await emprestimosConsultadosPorData.ToListAsync();
       }
-      
+
     }
   }
 }

@@ -10,5 +10,4 @@ bibcorpDB.db
 BibCorpDB.db-wal
 .history
 migrations
-resources
-images
+

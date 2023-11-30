@@ -231,6 +231,9 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("FotoURL")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Localizacao")
                         .HasColumnType("TEXT");
 

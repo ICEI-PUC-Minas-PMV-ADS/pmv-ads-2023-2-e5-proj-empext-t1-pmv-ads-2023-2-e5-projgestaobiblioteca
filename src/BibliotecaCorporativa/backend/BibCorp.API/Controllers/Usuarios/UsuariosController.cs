@@ -181,11 +181,13 @@ public class UsuariosController : ControllerBase
   {
     try
     {
-      var claimUserName = User.GetUserNameClaim();
+      Console.WriteLine("Controller Usuario");
+      var usuario = await _usuarioService.GetUsuarioByIdAsync(User.GetUserIdClaim());
 
-      if (claimUserName == null) return Unauthorized();
+      if (usuario == null) return Unauthorized();
 
-      var usuario = await _usuarioService.UpdateUsuario(usuarioUpdateDto);
+      Console.WriteLine("claimUser " + usuario.Id + " " + usuarioUpdateDto.Id);
+      var usuarioUdpdated = await _usuarioService.UpdateUsuario(usuarioUpdateDto);
 
       if (usuario == null) return NoContent();
 
@@ -194,7 +196,7 @@ public class UsuariosController : ControllerBase
         userName = usuario.UserName,
         nome = usuario.Nome,
         id = usuario.Id,
-        token = _tokenService.CreateToken(usuario).Result
+        token = _tokenService.CreateToken(usuarioUdpdated).Result
       });
     }
     catch (Exception ex)

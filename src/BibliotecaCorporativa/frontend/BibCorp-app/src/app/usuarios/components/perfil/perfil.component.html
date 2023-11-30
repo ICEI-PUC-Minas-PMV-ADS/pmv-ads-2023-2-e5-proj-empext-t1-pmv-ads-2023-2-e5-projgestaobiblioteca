@@ -14,17 +14,17 @@
       <div class="row p-3">
         <div class="col-lg-3 pt-1">
           <div class="card mb-3 bibcorp-bg-primary">
-            <div class="card-header bibcorp-bg-secondary"></div>
+            <div class="card-header bibcorp-bg-secondary">
+              <input type="file" #file (change)="changePhoto($event)" style="display: none">
+            </div>
             <div class="d-flex align-self-center pt-3">
-              <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
-                <img
-                  src="../../../../assets/Images/user_icon.png"
-                  name="aboutme" width="120" height="120" class="rounded-circle">
-              </a>
+              <img [src]="fotoURL" (click)="file.click()" name="aboutme" width="120" height="120"
+                class="rounded-circle" style="cursor: pointer">
             </div>
             <div class="card-body">
-              <div class="h4 text-center mb-3">@MJ</div>
-              <div class="h7 text-bold pb-1" style="text-align: center;"><b>Nome:</b> Mary Jane Watson </div>
+              <div class="h4 text-center mb-3">{{ctrF.userName.value}}</div>
+              <div class="h4 text-center mb-3">{{ctrF.email.value}}</div>
+              <div class="h7 text-bold pb-1" style="text-align: center;"><b>Nome:</b> {{ctrF.nome.value}}</div>
             </div>
             <div class="card-footer bibcorp-bg-primary">
               <div class="card d-flex bibcorp-bg-primary   g-0 m-0 p-0">
@@ -49,7 +49,7 @@
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
               <mat-label>E-mail:</mat-label>
-              <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)">
+              <input matInput type="text" formControlName="email" [ngClass]="fieldValidator(ctrF.email)" readonly>
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.email, '')}}</mat-error>
             </mat-form-field>
           </div>
@@ -58,11 +58,6 @@
               <mat-label>Telefone:</mat-label>
               <input matInput type="text" formControlName="phoneNumber" [ngClass]="fieldValidator(ctrF.phoneNumber)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.phoneNumber, '')}}</mat-error>
-            </mat-form-field>
-            <mat-form-field class="col-6  p-1" appearance="fill">
-              <mat-label>Unidade:</mat-label>
-              <input matInput type="text" formControlName="localizacao" [ngClass]="fieldValidator(ctrF.localizacao)">
-              <mat-error class="invalid-feedback">{{messageReturned(ctrF.localizacao, '')}}</mat-error>
             </mat-form-field>
           </div>
           <h3 class="pt-3 border-bottom">Alterar Senha</h3>
@@ -75,19 +70,23 @@
             </mat-form-field>
             <mat-form-field class="col-6  p-1" appearance="fill">
               <mat-label>Confirmar senha:</mat-label>
-              <input matInput type="text" formControlName="confirmPassword" [ngClass]="fieldValidator(ctrF.confirmPassword)">
+              <input matInput type="password" formControlName="confirmPassword"
+                [ngClass]="fieldValidator(ctrF.confirmPassword)">
               <mat-error class="invalid-feedback">{{messageReturned(ctrF.confirmPassword, '')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
-    <div class="card-footer rounded bibcorp-bg-secondary mt-1 ">
-      <div class="d-flex " style="margin-right: 20px;">
-          <button class="btn btn-danger ms-auto mx-1 my-3" (click)="resetForm($event)">
+        <div class="card-footer rounded bibcorp-bg-secondary mt-1 ">
+          <div class="d-flex " style="margin-right: 20px;">
+            <button class="btn btn-danger ms-auto mx-1 my-3" (click)="resetForm($event)">
               Cancelar
-          </button>
-          <button class="btn btn-primary mx-1 px-4 my-3" [disabled]="!formPerfil.valid">
+            </button>
+            <button class="btn btn-primary mx-1 px-4 my-3" [disabled]="!formPerfil.valid">
               Salvar
-          </button>
+            </button>
+          </div>
+        </div>
       </div>
-  </div>
-</div>
+
+      <!-- <p>Form Value: {{formPerfil.value | json}}</p> -->
+      <!-- <p>Form Status: {{formPerfil.status | json}}</p> -->

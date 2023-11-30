@@ -1,6 +1,4 @@
-import { Emprestimo } from "src/app/emprestimos"
-
-export class Usuario{
+export class UsuarioUpdate{
     id: number
     nome: string
     localizacao: string
@@ -9,6 +7,5 @@ export class Usuario{
     userName:string
     phoneNumber:string
     fotoURL: string
-    Emprestimos: Emprestimo[]
     token: string
 }

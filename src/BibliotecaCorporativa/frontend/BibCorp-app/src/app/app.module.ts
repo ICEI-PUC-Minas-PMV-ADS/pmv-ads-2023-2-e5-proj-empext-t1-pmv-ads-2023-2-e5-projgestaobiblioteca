@@ -62,7 +62,15 @@ import {
   PatrimonioService,
 } from "./patrimonios";
 import { HomeAdminComponent, PrincipalComponent } from "./home";
-import { CadastroUsuarioComponent, LoginComponent, LoginService, PerfilComponent, UsuarioComponent, UsuarioService } from "./usuarios";
+import {
+  CadastroUsuarioComponent,
+  LoginComponent,
+  LoginService,
+  PerfilComponent,
+  UsuarioComponent,
+  UsuarioService,
+} from "./usuarios";
+import { UploadService } from "./upload";
 
 @NgModule({
   declarations: [
@@ -134,8 +142,9 @@ import { CadastroUsuarioComponent, LoginComponent, LoginService, PerfilComponent
     EmprestimoService,
     LoginService,
     PatrimonioService,
+    UploadService,
     UsuarioService,
-    
+
     NgxSpinnerService,
     ToastrService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

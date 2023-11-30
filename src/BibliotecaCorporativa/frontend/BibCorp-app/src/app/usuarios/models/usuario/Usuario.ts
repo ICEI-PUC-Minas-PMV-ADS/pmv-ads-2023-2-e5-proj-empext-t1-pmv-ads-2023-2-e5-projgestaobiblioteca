@@ -8,6 +8,7 @@ export class Usuario{
     password: string
     userName:string
     phoneNumber:string
+    fotoURL: string
     Emprestimos: Emprestimo[]
     token: string
 }

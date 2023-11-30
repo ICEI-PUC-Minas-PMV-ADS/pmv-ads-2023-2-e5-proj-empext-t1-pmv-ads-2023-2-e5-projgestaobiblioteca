@@ -6,5 +6,6 @@ export class UsuarioUpdate{
     password: string
     userName:string
     phoneNumber:string
+    fotoURL: string
     token: string
 }

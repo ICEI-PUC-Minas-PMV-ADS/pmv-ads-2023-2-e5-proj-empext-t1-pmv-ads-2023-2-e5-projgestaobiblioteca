@@ -25,6 +25,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OnPeople.API.Controllers.Uploads;
 using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -104,7 +105,8 @@ namespace BibiCorp.API
           .AddScoped<IPatrimonioService, PatrimonioService>()
           .AddScoped<IEmprestimoService, EmprestimoService>()
           .AddScoped<IUsuarioService, UsuarioService>()
-          .AddScoped<ITokenService, TokenService>();
+          .AddScoped<ITokenService, TokenService>()
+          .AddScoped<IUploadService, UploadService>();
 
 
       //Injeção das interfaces de Persistencias
@@ -178,6 +180,13 @@ namespace BibiCorp.API
               .AllowAnyMethod()
               .AllowAnyOrigin()
               );
+
+      //Injeção de diretivas para utilização de diretórios
+      app.UseStaticFiles(new StaticFileOptions()
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+        RequestPath = new PathString("/Resources")
+      });
 
       app.UseHttpsRedirection();
 

@@ -275,7 +275,7 @@ public class EmprestimosController : ControllerBase
   /// Realiza o gerenciamento do empréstimo
   /// </summary>
   /// <param name="emprestimoId">Identificador do empréstimo</param>
-  /// <param name="gerenciamentoEmprestimoDto">Dados do gerenciamento</param>
+  /// <param name="gerenciamentoEmprestimo">Dados do gerenciamento</param>
   /// <response code="200">Empréstimo atualizado com sucesso</response>
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>

@@ -11,7 +11,7 @@ namespace BibCorp.Domain.Models.Emprestimos
     public DateTime DataEmprestimo { get; set; }
     public DateTime DataPrevistaDevolucao { get; set; }
     public int QtdeDiasEmprestimo { get; set; }
-    public DateTime ?DataDevolucao { get; set; }
+    public DateTime? DataDevolucao { get; set; }
     public int QtdeDiasAtraso { get; set; }
     public int AcervoId { get; set; }
     public Acervo Acervo { get; set; }

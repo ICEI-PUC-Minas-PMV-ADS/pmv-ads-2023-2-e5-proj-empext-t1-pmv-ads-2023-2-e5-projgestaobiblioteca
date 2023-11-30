@@ -87,13 +87,13 @@ namespace BibCorp.Persistence.Migrations
                     b.Property<int>("AcervoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("DataDevolucao")
+                    b.Property<DateTime?>("DataDevolucao")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DataEmprestimo")
+                    b.Property<DateTime>("DataEmprestimo")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DataPrevistaDevolucao")
+                    b.Property<DateTime>("DataPrevistaDevolucao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LocalDeColeta")

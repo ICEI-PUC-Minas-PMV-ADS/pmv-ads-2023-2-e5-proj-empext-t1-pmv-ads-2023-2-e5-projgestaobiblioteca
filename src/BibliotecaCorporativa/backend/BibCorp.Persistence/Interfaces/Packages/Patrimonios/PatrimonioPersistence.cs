@@ -165,6 +165,22 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
     }
 
+    public async Task<bool> UpdatePatrimonioAposDevolucaoOuRecusa(int patrimonioId)
+    {
+      var patrimonioAlterado = _context.Patrimonios
+                .AsNoTracking()
+                .FirstOrDefault(p => p.Id == patrimonioId);
+
+      patrimonioAlterado.Status = false;
+      patrimonioAlterado.DataIndisponibilidade = null;
+      patrimonioAlterado.DataAtualizacao = DateTime.Now.ToString("dd/MM/yyyy");
+
+      Update(patrimonioAlterado);
+
+      return await SaveChangesAsync();
+
+    }
+
 
   }
 }

@@ -4,6 +4,7 @@ import { Observable, take } from 'rxjs';
 import { environment } from 'src/assets/environments/environments';
 import { Emprestimo } from '../..';
 import { GerenciamentoEmprestimo } from '../../models/emprestimo/GerenciamentoEmprestimo';
+import { FiltroEmprestimo } from '../../models/emprestimo/FiltroEmprestimo';
 
 @Injectable()
 export class EmprestimoService {
@@ -13,12 +14,6 @@ export class EmprestimoService {
   constructor (
     private readonly http: HttpClient
   ) { }
-
-
-  public getEmprestimos (filtrarPor?: string, TipoFiltro?: string): Observable<Emprestimo[]> {
-    return this.http.get<Emprestimo[]>(this.baseURL)
-      .pipe(take(3))
-  }
 
   public getEmprestimoById (id: number): Observable<Emprestimo> {
     return this.http.get<Emprestimo>(`${this.baseURL}${id}`)
@@ -55,14 +50,59 @@ public alterarLocalDeColeta (emprestimoId:number, novoLocalColeta: string ): Obs
   .pipe(take(1));
 }
 
-public getEmprestimosPendentes (): Observable<Emprestimo[]> {
+public getEmprestimosPendentes (statusPendentesDeAtuacao: string[]): Observable<Emprestimo[]> {
 
-  return this.http.get<Emprestimo[]>(`${this.baseURL}Status?status=Reservado&status=Emprestado&status=Renovado`)
-    .pipe(take(3))
+  let statusParametro: any = ""
+  let listaDeStatus: any = ""
+  let posicao: any = 0
+
+  statusPendentesDeAtuacao.forEach(status => {
+
+    if(posicao == 0){
+      statusParametro = `status=${status}`
+    } else{
+      statusParametro = `&status=${status}`
+    }
+    listaDeStatus += statusParametro
+    posicao = 1
+});
+  
+  return this.http.get<Emprestimo[]>(`${this.baseURL}Status?${listaDeStatus}`)
+    .pipe(take(3)) 
 }
 
 public gerenciarEmprestimo(emprestimoId:number, gerenciamentoEmprestimo: GerenciamentoEmprestimo): Observable<Emprestimo> {
   return this.http.patch<Emprestimo>(`${this.baseURL}${emprestimoId}/GerenciamentoEmprestimo`, gerenciamentoEmprestimo)
   .pipe(take(3));
+}
+
+public getAllEmprestimos (): Observable<Emprestimo[]> {
+  return this.http.get<Emprestimo[]>(this.baseURL)
+    .pipe(take(3))
+}
+
+public getEmprestimosFiltrados(filtroEmprestimo: FiltroEmprestimo): Observable<Emprestimo> {
+  
+  let usuarioParametro: any = ""
+  let listaDeUsuarios: any = ""
+
+  filtroEmprestimo.usuarios.forEach(usuario => {
+    
+    usuarioParametro = `&Usuarios=${usuario}`
+
+    listaDeUsuarios += usuarioParametro
+  
+  });
+  
+  if(filtroEmprestimo.usuarios != null){
+
+    return this.http.get<Emprestimo>(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}${listaDeUsuarios}`)
+    .pipe(take(3));
+  } 
+  else {
+    return this.http.get<Emprestimo>(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}`)
+    .pipe(take(3));
+  }
+ 
 }
 }

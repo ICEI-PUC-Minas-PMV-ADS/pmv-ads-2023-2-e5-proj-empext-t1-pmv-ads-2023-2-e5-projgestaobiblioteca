@@ -152,4 +152,10 @@ export class HomeAdminComponent implements OnInit {
     //    this.pagination.currentPage = event.currentPage
     this.getAcervos();
   }
+
+  
+
+
+
+
 }

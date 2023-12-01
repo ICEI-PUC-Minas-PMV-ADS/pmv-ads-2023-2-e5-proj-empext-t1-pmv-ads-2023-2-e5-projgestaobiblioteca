@@ -45,9 +45,9 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
           {
             var emprestimoRetorno = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimo.Id);
 
-            if (await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId))
+            if (await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId))
             {
-              await _patrimonioPersistence.UpdatePatrimonioAposEmprestimo(emprestimo.PatrimonioId);
+              await _acervoPersistence.UpdateAcervoAposEmprestimo(emprestimo.AcervoId);
             }
 
             return _mapper.Map<EmprestimoDto>(emprestimoRetorno);
@@ -268,6 +268,14 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
         if (emprestimo == null) return null;
 
         var emprestimoAlterado = await _emprestimoPersistence.GerenciarEmprestimos(emprestimoId, gerenciamentoEmprestimo);
+
+        if ( gerenciamentoEmprestimo.Acao == TipoAcaoEmprestimo.Devolver || gerenciamentoEmprestimo.Acao == TipoAcaoEmprestimo.Recusar)
+        {
+          if(await _patrimonioPersistence.UpdatePatrimonioAposDevolucaoOuRecusa(emprestimo.PatrimonioId))
+          {
+            await _acervoPersistence.UpdateAcervoAposDevolucaoOuRecusa(emprestimo.AcervoId);
+          }
+        }
 
         var emprestimoAlteradoMapper = _mapper.Map<EmprestimoDto>(emprestimoAlterado);
 

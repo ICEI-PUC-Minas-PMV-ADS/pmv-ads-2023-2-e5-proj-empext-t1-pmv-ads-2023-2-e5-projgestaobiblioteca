@@ -18,12 +18,20 @@
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
 |RF-001| O sistema deverá permitir o Login de usuários | ALTA | 
-|RF-002| O sistema deverá permitir a recuperação de senha   | MÉDIA |
-|RF-003| O sistema deverá permitir o cadastro/atualização de usuários (CRUD)   | ALTA |
-|RF-004| O sistema deverá permitir o gerenciamento do acervo (CRUD)   | ALTA |
-|RF-005| O sistema deverá permitir o gerenciamento de emprestimos (CRUD)   | ALTA |
-|RF-006| O sistema deverá registrar os livros lidos pelo usuario   | MÉDIA |
-|RF-007| O sistema deverá mostrar um Dashboard com informações relevantes ao administrador   | ALTA |
+|RF-002| O sistema deve permitir atualização de usuários | MÉDIA |
+|RF-003| O sistema deverá permitir o cadastro de usuários  | ALTA |
+|RF-004| O sistema deve permitir o usuário faça solicitações de empréstimos (CRUD) | ALTA |
+|RF-005|  O usuario deve realizar buscas de patrimônio por titulo e autor.    | ALTA |
+|RF-006|  O sistema deve permitir que o usuário possa alterar locais para a coleta dos empréstimos | ALTA |
+|RF-007| O sistema deve permitir que a empresa parceira tenha um acesso de administrador | ALTA |
+|RF-008|O sistema deve permitir que o administrador realize o gerenciamento dos acervos. (CRUD) | ALTA |
+|RF-009|O sistema deve permitir que o administrador realize o gerenciamento de empréstimos (CRUD)   | ALTA |
+|RF-010| O sistema deve registrar os livros lidos pelos usuários.| BAIXA |
+|RF-011| O sistema deve mostrar um relatório com informações relevantes ao administrador.  | ALTA |
+|RF-012| O sistema deve disponibilizar uma funcionalidade em
+que o administrador possa gerenciar as solicitações, de modo que possa atribuir um status de aprovar e reprovar.  | ALTA |
+|RF-013| O administrador pode cadastrar novos acervos, definindo suas descrições, assim como excluir os acervos já cadastrados | ALTA |
+
 
 ### Requisitos não Funcionais
 

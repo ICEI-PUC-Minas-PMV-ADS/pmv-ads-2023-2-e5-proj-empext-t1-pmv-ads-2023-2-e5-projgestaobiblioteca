@@ -1,9 +1,15 @@
-<div class="custom-modal" id="Sucesso">
-  <h6 class="modal-title" style="display: flex; align-items: center; justify-content: flex-end;">
+<div class="custom-modal" id="Sucesso" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+
+  <h6 class="modal-title" style="display: flex; align-items: center; margin-bottom: 20px;">
     Local de coleta alterado com sucesso!
     <img src="../../../../../assets/Images/check.png" alt="check" style="height: 20px; width: 20px; margin-left: 7px;">
   </h6>
-  <p class="modal-subtitle">Novo local de coleta:</p>
-  <h5>{{novaLocalColeta}}</h5>
+
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom:25px;">
+    <p class="modal-subtitle">Novo local de coleta:</p>
+    <h5 style="margin-bottom: 20px;">{{novaLocalColeta}}</h5>
+  </div>
+
   <button class="btn btn-orange" (click)="voltarParaMinhasSolicitacoes()">Voltar</button>
+
 </div>

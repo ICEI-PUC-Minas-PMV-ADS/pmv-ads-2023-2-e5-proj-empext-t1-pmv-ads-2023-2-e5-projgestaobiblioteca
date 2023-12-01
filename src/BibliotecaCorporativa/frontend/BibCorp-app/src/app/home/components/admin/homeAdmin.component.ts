@@ -64,8 +64,6 @@ export class HomeAdminComponent implements OnInit {
 
   selectedUsers: { [key: string]: boolean} = {};
 
-
-
   public getAllEmprestimos(): void {
     this.spinnerService.show();
 

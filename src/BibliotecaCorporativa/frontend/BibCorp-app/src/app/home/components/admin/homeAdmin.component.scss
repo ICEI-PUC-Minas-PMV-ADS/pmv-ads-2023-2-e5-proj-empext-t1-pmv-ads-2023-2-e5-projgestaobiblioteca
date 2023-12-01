@@ -6,12 +6,13 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #e20b0b;
-  border: 1px solid #ccc;
+  background-color: #ccc;
+  border: 1px solid #375a7f;
   padding: 5px;
   z-index: 1000;
-  display: block; 
+  display: block;
 }
+
 
 .dropdown div {
   cursor: pointer;
@@ -19,5 +20,16 @@
 }
 
 .dropdown div:hover {
-  background-color: #ccc;;
+  background-color: #375a7f;
+  border-radius: 4px;
+}
+
+.dropdown-toggle::after {
+  content: "";
+  border: solid transparent;
+  border-width: 0 4px 4px 4px;
+  border-color: #fff transparent transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px; /* Ajuste conforme necessário */
 }

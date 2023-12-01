@@ -186,5 +186,20 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
 
     }
 
+    public async Task<bool> UpdateAcervoAposDevolucaoOuRecusa(int acervoId)
+    {
+      var acervoAlterado = _context.Acervos
+                .AsNoTracking()
+                .FirstOrDefault(a => a.Id == acervoId);
+
+      acervoAlterado.QtdeDisponivel = acervoAlterado.QtdeDisponivel + 1;
+      acervoAlterado.QtdeEmprestada = acervoAlterado.QtdeEmprestada - 1;
+
+      Update(acervoAlterado);
+
+      return await SaveChangesAsync();
+
+    }
+
   }
 }

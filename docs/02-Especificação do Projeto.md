@@ -17,9 +17,9 @@
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| O sistema deverá permitir o Login de usuários | ALTA | 
+|RF-001| O sistema deve permitir o Login de usuários | ALTA | 
 |RF-002| O sistema deve permitir atualização de usuários | MÉDIA |
-|RF-003| O sistema deverá permitir o cadastro de usuários  | ALTA |
+|RF-003| O sistema deve permitir o cadastro de usuários  | ALTA |
 |RF-004| O sistema deve permitir o usuário faça solicitações de empréstimos (CRUD) | ALTA |
 |RF-005|  O usuario deve realizar buscas de patrimônio por titulo e autor.    | ALTA |
 |RF-006|  O sistema deve permitir que o usuário possa alterar locais para a coleta dos empréstimos | ALTA |

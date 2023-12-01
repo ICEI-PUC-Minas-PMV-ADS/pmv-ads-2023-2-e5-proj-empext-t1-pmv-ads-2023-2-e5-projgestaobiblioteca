@@ -42,4 +42,8 @@ export class UsuarioService {
       })
     );
   }
+
+  public getAllUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.baseURL + "GetUsuarios").pipe(take(1));
+  }
 }

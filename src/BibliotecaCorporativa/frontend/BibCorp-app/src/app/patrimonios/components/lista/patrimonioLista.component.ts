@@ -114,7 +114,7 @@ export class PatrimonioListaComponent implements OnInit {
               if (result) this.confirmarDelecao();
             });
           } else {
-            this.toastrService.info("Este patrimonio está associado a um acervo, não pode ser exclído!", "Informação!")
+            this.toastrService.info("Este patrimônio está associado à um acervo e não pode ser excluído!", "Informação!")
           }
         }
       )
@@ -129,7 +129,7 @@ export class PatrimonioListaComponent implements OnInit {
         (result: any) => {
           if (result == null)
             this.toastrService.error(
-              "Patrimonio não pode se excluída.",
+              "Patrimonio não pode se excluído.",
               "Erro!"
             );
 

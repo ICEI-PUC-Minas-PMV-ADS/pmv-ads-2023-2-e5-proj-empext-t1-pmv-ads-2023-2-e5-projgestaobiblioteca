@@ -156,14 +156,13 @@ export class MinhasReservasComponent implements OnInit {
     });
   }
 
-  public status(emprestimo: Emprestimo): any {
-    let dataAtual = new Date();
-    if (
-      emprestimo.dataPrevistaDevolucao < dataAtual &&
-      emprestimo.dataDevolucao == null
-    ) {
-      return "Em atraso";
-    } else if (emprestimo.status == 1) {
+  public obterStatus(emprestimo: Emprestimo): any {
+    let dataAtual = this.formatarData(new Date());
+  
+    if (this.formatarData(emprestimo.dataPrevistaDevolucao) < dataAtual &&
+      emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
+    ) { return "Em atraso";} 
+      else if (emprestimo.status == 1) {
       return "Aguardando aprovação da solicitação";
     } else if (emprestimo.status == 2) {
       return "Em andamento";
@@ -174,11 +173,16 @@ export class MinhasReservasComponent implements OnInit {
     } else if (emprestimo.status == 5) {
       return "Não aprovado";
     } else return "-";
+    
   }
 
   public formatarData(data: Date): any{
-    var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
 
+    if (data != null){
+      var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
+    } else{
+      dataFormatada = null
+    }
     return dataFormatada
   }
 }

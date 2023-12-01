@@ -2,7 +2,7 @@
 <router-outlet></router-outlet>
 
 <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active">
-    <span class="mr-2" routerLink="principal">&larr; Voltar</span>
+    <span class="mr-2" routerLink="/home-admin">&larr; Voltar</span>
 </button>
 
 <div class="table-responsive">
@@ -19,7 +19,7 @@
                     <th>Título</th>
                     <th>Destino</th>
                     <th>Usuário</th>
-                    <th>Data de Solicitação</th>
+                    <th>Data da solicitação</th>
                     <th>Sala</th>
                     <th>Prateleira</th>
                     <th>Coluna</th>
@@ -62,7 +62,7 @@
             </tbody>
             <tfoot>
                 <td *ngIf="!emprestimos.length" colspan="12" class="text-center">
-                    <h4>Não existem empréstimos pendentes de atuação</h4>
+                    <h6>Não foram encontrados empréstimos pendentes de atuação</h6>
                 </td>
             </tfoot>
         </table>

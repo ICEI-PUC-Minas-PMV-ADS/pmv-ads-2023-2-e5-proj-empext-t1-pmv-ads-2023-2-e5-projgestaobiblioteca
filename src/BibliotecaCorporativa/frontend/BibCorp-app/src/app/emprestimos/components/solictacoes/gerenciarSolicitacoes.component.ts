@@ -62,7 +62,7 @@ export class GerenciarSolicitacoesComponent implements OnInit {
           this.emprestimos = retorno;
         },
         (error: any) => {
-          this.toastrService.error("Erro ao carregar Patrimonio", "Erro!");
+          this.toastrService.error("Erro ao buscar os empréstimos pendentes de atuação", "Erro!");
           console.error(error);
         }
       )

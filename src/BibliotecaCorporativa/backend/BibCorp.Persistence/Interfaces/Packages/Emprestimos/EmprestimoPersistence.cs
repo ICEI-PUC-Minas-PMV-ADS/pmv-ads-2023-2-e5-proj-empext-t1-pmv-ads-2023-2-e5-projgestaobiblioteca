@@ -179,7 +179,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
          .Include(e => e.Acervo)
          .Include(e => e.Patrimonio)
          .AsNoTracking()
-         .Where(e => ((e.DataEmprestimo >= filtroEmprestimo.DataInicio && e.DataEmprestimo <= filtroEmprestimo.DataFim) && e.UserName == usuario))
+         .Where(e => ((e.DataEmprestimo.Date >= filtroEmprestimo.DataInicio.Date && e.DataEmprestimo.Date <= filtroEmprestimo.DataFim.Date) && e.UserName == usuario))
          .OrderByDescending(e => e.DataEmprestimo);
           emprestimosConsultadosPorUsuario.AddRange(query);
         }
@@ -192,7 +192,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
         .Include(e => e.Acervo)
         .Include(e => e.Patrimonio)
         .AsNoTracking()
-        .Where(e => (e.DataEmprestimo >= filtroEmprestimo.DataInicio && e.DataEmprestimo <= filtroEmprestimo.DataFim))
+        .Where(e => (e.DataEmprestimo.Date >= filtroEmprestimo.DataInicio.Date && e.DataEmprestimo.Date <= filtroEmprestimo.DataFim.Date))
         .OrderByDescending(e => e.DataEmprestimo);
 
         return await emprestimosConsultadosPorData.ToListAsync();

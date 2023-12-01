@@ -14,7 +14,7 @@
               <option [ngValue]="'Posicao'">Posicao</option>
               <option [ngValue]="'ISBN'">ISBN</option>
               <option [ngValue]="'SituacaoEmprestado'">Emprestado</option>
-              <option [ngValue]="'SituacaoLiberado'">Liberado</option>
+              <option [ngValue]="'SituacaoLiberado'">Disponível</option>
             </select>
           </div>
           <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por localização, sala, coluna, prateleira, posição, ISBN, emprestado ou liberado" [(ngModel)]="argumento"
@@ -30,7 +30,7 @@
 </div>
 
 <div class="container-fluid mt-0 ms-0 pt-0 ps-0">
-  <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active" routerLink="principal">
+  <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active" routerLink="/home-admin">
     <span class="mr-2">&larr;</span> Voltar
   </button>
 </div>
@@ -71,7 +71,7 @@
           <td>{{patrimonio.coluna}}</td>
           <td>{{patrimonio.prateleira}}</td>
           <td>{{patrimonio.posicao}}</td>
-          <td>{{(patrimonio.status) ? 'Empresatado' : 'Liberado'}}</td>
+          <td>{{(patrimonio.status) ? 'Emprestado' : 'Disponível'}}</td>
           <td>
             <div class="btn-group mx-1">
               <a class="text-danger" (click)="abrirModal($event, patrimonio.id, patrimonio.isbn)">

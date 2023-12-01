@@ -306,7 +306,7 @@ public class EmprestimosController : ControllerBase
   /// <response code="400">Parâmetros incorretos</response>
   /// <response code="500">Erro interno</response>
 
-  [HttpGet("Emprestimos/Relatorio")]
+  [HttpGet("Relatorio")]
   public async Task<IActionResult> GetEmprestimosByFiltrosAsync([FromQuery] FiltroEmprestimoDto filtroEmprestimoDto)
   {
     try

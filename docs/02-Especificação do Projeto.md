@@ -28,8 +28,7 @@
 |RF-009|O sistema deve permitir que o administrador realize o gerenciamento de empréstimos (CRUD)   | ALTA |
 |RF-010| O sistema deve registrar os livros lidos pelos usuários.| BAIXA |
 |RF-011| O sistema deve mostrar um relatório com informações relevantes ao administrador.  | ALTA |
-|RF-012| O sistema deve disponibilizar uma funcionalidade em
-que o administrador possa gerenciar as solicitações, de modo que possa atribuir um status de aprovar e reprovar.  | ALTA |
+|RF-012| O sistema deve disponibilizar uma funcionalidade em que o administrador possa gerenciar as solicitações, de modo que possa atribuir um status de aprovar e reprovar.  | ALTA |
 |RF-013| O administrador pode cadastrar novos acervos, definindo suas descrições, assim como excluir os acervos já cadastrados | ALTA |
 
 

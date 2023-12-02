@@ -17,7 +17,7 @@
               <option [ngValue]="'SituacaoLiberado'">Disponível</option>
             </select>
           </div>
-          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por localização, sala, coluna, prateleira, posição, ISBN, emprestado ou liberado" [(ngModel)]="argumento"
+          <input type="text" class="form-control border-0 m-0 pe-2" placeholder="Busque aqui por localização, sala, coluna, prateleira, posição, ISBN, emprestado ou disponível" [(ngModel)]="argumento"
             (change)="filtroPatrimonio()">
           <!-- (input)="companyFilter($event.target)"-->
           <button class="bibcorp-search bibcorp-bg-primary text-white border-0 pt-1" (click)="filtroPatrimonio()">
@@ -100,3 +100,4 @@
   <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="square-jelly-box">
     <p style="font-size: 20px; color: white">Carregando...</p>
   </ngx-spinner>
+

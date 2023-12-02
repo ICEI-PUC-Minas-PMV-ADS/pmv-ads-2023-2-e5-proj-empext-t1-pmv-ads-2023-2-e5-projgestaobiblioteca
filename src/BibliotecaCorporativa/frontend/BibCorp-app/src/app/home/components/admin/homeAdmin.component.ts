@@ -3,17 +3,11 @@ import { Component, OnInit } from "@angular/core";
 import { DateAdapter } from "@angular/material/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import * as moment from "moment";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { Emprestimo, EmprestimoService, FiltroEmprestimo } from "src/app/emprestimos";
+import { Emprestimo, FiltroEmprestimo, EmprestimoService } from "src/app/emprestimos";
 import { Paginacao } from "src/app/shared";
 import { Usuario, UsuarioService } from "src/app/usuarios";
-import { __values } from "tslib";
-
-
-
-
 
 
 @Component({
@@ -97,9 +91,9 @@ export class HomeAdminComponent implements OnInit {
 
     //let dataTemp = this.datePipe.transform(dataInicio, 'dd/MM/yyyy');
    // console.log('dataTemp')
-    moment.locale('pt-br')
-    this.filtroEmprestimo.dataInicio = moment(dataInicio).format('DD/MM/yyyy')
-    this.filtroEmprestimo.dataFim = moment(dataFim).format('DD/MM/yyyy')
+    
+    this.filtroEmprestimo.dataInicio = formatDate(dataInicio, "YYYY/MM/dd hh:mm:ss","en-US")
+    this.filtroEmprestimo.dataFim = formatDate(dataFim, "YYYY/MM/dd hh:mm:ss","en-US")
     console.log(this.filtroEmprestimo.dataInicio  )
     this.filtroEmprestimo.usuarios = listaDeUsuarios
 

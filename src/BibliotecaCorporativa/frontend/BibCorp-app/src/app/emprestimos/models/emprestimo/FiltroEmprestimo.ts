@@ -1,6 +1,6 @@
 export class FiltroEmprestimo {
-    dataInicio: Date
-    dataFim: Date
-    usuarios: String[]
+    dataInicio: string
+    dataFim: string
+    usuarios: string[]
   }
   

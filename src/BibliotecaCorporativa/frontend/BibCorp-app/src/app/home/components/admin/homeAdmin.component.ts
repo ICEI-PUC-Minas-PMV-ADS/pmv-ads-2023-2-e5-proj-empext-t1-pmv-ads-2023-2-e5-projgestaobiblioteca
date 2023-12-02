@@ -1,17 +1,19 @@
+import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { DateAdapter } from "@angular/material/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { formatDate } from "@angular/common";
-
+import * as moment from "moment";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { Acervo, AcervoService } from "src/app/acervos";
-
-import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
-import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
-import { FiltroEmprestimo } from "src/app/emprestimos/models/emprestimo/FiltroEmprestimo";
+import { Emprestimo, EmprestimoService, FiltroEmprestimo } from "src/app/emprestimos";
+import { Paginacao } from "src/app/shared";
 import { Usuario, UsuarioService } from "src/app/usuarios";
 import { __values } from "tslib";
+
+
+
+
 
 
 @Component({
@@ -40,8 +42,9 @@ export class HomeAdminComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
     private toastrService: ToastrService,
     private emprestimoService: EmprestimoService,
-    private usuarioService: UsuarioService
-  ) {}
+    private usuarioService: UsuarioService,
+    private dateAdapter: DateAdapter<any>
+  ) {this.dateAdapter.setLocale('pt-br')}
 
   ngOnInit(): void {
     this.getAllEmprestimos()
@@ -88,12 +91,16 @@ export class HomeAdminComponent implements OnInit {
     let listaDeUsuarios: any = ""
 
     Object.keys(selectedUsers).forEach(user =>{
-        usuarioParametro = `&Usuarios=${user}`
+        usuarioParametro = `&Usuario=${user}`
         listaDeUsuarios += usuarioParametro
     })
 
-    this.filtroEmprestimo.dataInicio = dataInicio
-    this.filtroEmprestimo.dataFim = dataFim
+    //let dataTemp = this.datePipe.transform(dataInicio, 'dd/MM/yyyy');
+   // console.log('dataTemp')
+    moment.locale('pt-br')
+    this.filtroEmprestimo.dataInicio = moment(dataInicio).format('DD/MM/yyyy')
+    this.filtroEmprestimo.dataFim = moment(dataFim).format('DD/MM/yyyy')
+    console.log(this.filtroEmprestimo.dataInicio  )
     this.filtroEmprestimo.usuarios = listaDeUsuarios
 
     this.emprestimoService
@@ -138,14 +145,13 @@ export class HomeAdminComponent implements OnInit {
   }
 
   public obterStatus(emprestimo: Emprestimo): any {
-    
     let dataAtual = this.formatarData(new Date());
 
     if (this.formatarData(emprestimo.dataPrevistaDevolucao) < dataAtual &&
       emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
-    ) { 
+    ) {
       return "Em atraso";
-    } 
+    }
       else if (emprestimo.status == 1) {
       return "Aguardando aprovação";
     } else if (emprestimo.status == 2) {
@@ -157,8 +163,8 @@ export class HomeAdminComponent implements OnInit {
     } else if (emprestimo.status == 5) {
       return "Não aprovado";
     } else return "-";
-    
-  }
+    
+  }
 
 
 }

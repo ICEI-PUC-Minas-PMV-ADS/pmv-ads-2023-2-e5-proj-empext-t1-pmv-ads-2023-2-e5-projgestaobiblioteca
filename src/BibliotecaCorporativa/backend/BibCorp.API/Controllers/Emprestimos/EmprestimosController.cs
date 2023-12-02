@@ -311,6 +311,7 @@ public class EmprestimosController : ControllerBase
   {
     try
     {
+      Console.Write("Controler Emrpestimo Filtros");
       var emprestimos = await _emprestimoService.GetEmprestimosByFiltrosAsync(filtroEmprestimoDto);
 
       if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados para os filtros informados");

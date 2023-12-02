@@ -135,7 +135,7 @@
       <div class="p-3">
         <div class="row" *ngIf="emprestimos && emprestimos.length">
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" *ngFor="let emprestimo of emprestimosFiltrados">
-            <div class="card bg-white mb-3" style="max-width: 20rem; height: 25rem; border-radius: 15px; overflow: auto; position: relative;">
+            <div class="card bg-white mb-3" style="max-width: 20rem; height: 37rem; border-radius: 15px; overflow: auto; position: relative;">
               <div class="text-center" style="margin-top: 20px;">
                 <img src={{emprestimo.acervo.capaUrl}} alt="Capa do livro" style="width: 150px; height: 250px; border-radius: 15px; object-fit: cover; object-position: top;">
               </div>
@@ -144,7 +144,7 @@
                   <h5 class="card-title text-dark" style="font-size: 1.0rem;">Livro: {{emprestimo.acervo.titulo}}</h5>
                   <p class="card-text text-dark" style="font-size: 0.9rem;">Data da solicitação: {{formatarData(emprestimo.dataEmprestimo)}}</p>
                   <p class="card-text text-dark" style="font-size: 0.9rem;">Data prevista de devolução: {{formatarData(emprestimo.dataPrevistaDevolucao)}}</p>
-                  <p class="card-text text-dark" style="font-size: 0.9rem;">Status do empréstimo: {{status(emprestimo)}}</p>
+                  <p class="card-text text-dark" style="font-size: 0.9rem;">Status do empréstimo: {{obterStatus(emprestimo)}}</p>
                   <div style="position: absolute; top: 5px; right: 10px; display: flex; flex-direction: row; align-items: center;"></div>
                 </div>
                 <div class="buttons mt-auto">

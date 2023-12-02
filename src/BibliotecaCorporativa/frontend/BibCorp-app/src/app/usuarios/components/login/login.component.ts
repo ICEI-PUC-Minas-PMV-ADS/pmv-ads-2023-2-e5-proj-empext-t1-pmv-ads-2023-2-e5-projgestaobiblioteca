@@ -67,8 +67,14 @@ export class LoginComponent implements OnInit {
       .login(this.model)
       .subscribe(
         () => {
-          this.router.navigateByUrl("/principal");
-          location.replace("/principal");
+          if(this.model.userName == "Admin"){
+            this.router.navigateByUrl("/home-admin");
+            location.replace("/home-admin");
+          } else{
+            this.router.navigateByUrl("/principal");
+            location.replace("/principal");
+          }
+          
         },
         (error: any) => {
           if (error.status == 401)

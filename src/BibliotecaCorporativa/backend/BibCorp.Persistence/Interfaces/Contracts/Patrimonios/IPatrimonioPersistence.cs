@@ -12,5 +12,6 @@ namespace BibCorp.Persistence.Interfaces.Contracts.Patrimonios
     Task<ListaDePaginas<Patrimonio>> GetPatrimoniosPaginacaoAsync(ParametrosPaginacao parametrosPaginacao);
     Task<IEnumerable<Patrimonio>> GetAllPatrimoniosLivresAsync(string isbn);
     Task<bool> UpdatePatrimonioAposEmprestimo(int patrimonioId);
+    Task<bool> UpdatePatrimonioAposDevolucaoOuRecusa(int patrimonioId);
   }
 }

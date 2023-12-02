@@ -5,16 +5,15 @@
         <li class="nav-item dropdown">
           <div class="nav-link  p-0 ms-3 show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
             <a class="h4 nav-link  dropdown-toggle p-0 ms-2">
-              <img [src]="fotoURL" class="rounded-circle"
-              style="width: 50px; height: 50px;">
+              <img [src]="fotoURL" class="rounded-circle" style="width: 50px; height: 50px;">
               {{usuarioAtivo.userName}}
             </a>
           </div>
           <div class="dropdown-menu" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
             <h6 class="dropdown-header">Navegar para</h6>
-            <a class="dropdown-item"  routerLink="usuarios/cadastro">Cadastro</a>
-            <a class="dropdown-item"  routerLink="solicitacoes">Minhas Solicitações</a>
-            <a class="dropdown-item"  routerLink="usuarios/perfil">Perfil</a>
+            <!-- Condição adicionada aqui -->
+            <a class="dropdown-item" *ngIf="!usuarioAdmin" routerLink="solicitacoes">Minhas Solicitações</a>
+            <a class="dropdown-item" routerLink="usuarios/perfil">Perfil</a>
           </div>
         </li>
       </ng-class>
@@ -29,7 +28,14 @@
       <li class="nav-item" routerLinkActive="active" *ngIf="usuarioAdmin">
         <a class="h6 nav-link p-0 ms-4" routerLink="home-admin">
           <mat-icon class="iconBadge mr-1">home</mat-icon>
-          Home-Admin
+          Home
+        </a>
+      </li>
+       <!--Gerenciar é visão apenas do Admin-->
+      <li class="nav-item" routerLinkActive="active" *ngIf="usuarioAdmin">
+        <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
+          <mat-icon class="iconBadge mr-1">settings</mat-icon>
+          Gerenciar
         </a>
       </li>
 
@@ -88,13 +94,6 @@
             <a class="dropdown-item"  routerLink="solicitacoes">Nova</a>
           </div>
         </li>-->
-        <!--Gerenciar é visão apenas do Admin-->
-        <li class="nav-item" routerLinkActive="active" *ngIf="usuarioAdmin">
-          <a class="h4 nav-link p-0 ms-4" routerLink="gerenciar-solicitacoes">
-            <mat-icon class="iconBadge mr-1">settings</mat-icon>
-            Gerenciar
-          </a>
-        </li>
         <li class="nav-item dropdown">
           <a class="h4 nav-link p-0 ms-4" (click)="logout()">
             <mat-icon class="iconBadge2 mr-1">logout</mat-icon>
@@ -105,3 +104,4 @@
     </ul>
   </div>
 </nav>
+

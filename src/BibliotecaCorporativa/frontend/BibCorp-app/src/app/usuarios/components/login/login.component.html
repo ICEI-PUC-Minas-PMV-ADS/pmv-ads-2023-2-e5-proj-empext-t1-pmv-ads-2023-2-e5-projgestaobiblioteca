@@ -21,9 +21,9 @@
                <input matInput type="password" formControlName="password" [ngClass]="fieldValidator(ctrF.password)">
                <mat-error class="invalid-feedback">{{messageReturned(ctrF.password, '')}}</mat-error>
             </mat-form-field>
-            <div class="pass-link m-0">
+            <!--<div class="pass-link m-0">
                <a [routerLink]="['/login']">Recuperar senha</a>
-            </div>
+            </div>-->
             <button class="btn btn-primary m-0 " [disabled]="!formLogin.valid">
                Entrar
             </button>

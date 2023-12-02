@@ -1,12 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { formatDate } from "@angular/common";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { Acervo, AcervoService } from "src/app/acervos";
 
 import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
+import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
+import { FiltroEmprestimo } from "src/app/emprestimos/models/emprestimo/FiltroEmprestimo";
+import { Usuario, UsuarioService } from "src/app/usuarios";
+import { __values } from "tslib";
 
 
 @Component({
@@ -15,124 +20,145 @@ import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shar
   styleUrls: ["./homeAdmin.component.scss"],
 })
 export class HomeAdminComponent implements OnInit {
-  public acervos: Acervo[] = [];
+  public emprestimos: Emprestimo[] = [];
+  public filtroEmprestimo: FiltroEmprestimo;
+  public usuarios: Usuario[] = [];
 
   public paginacao = {} as Paginacao;
 
-  public acervoId = 0;
-  public acervoISBN = "";
-
-  public opcaoPesquisa: string = 'Todos'
-  public argumento: string = ''
-
   public exibirImagem: boolean = true;
 
-  filtroAcervo() {
-    console.log("Filtro");
-    this.getAcervos();
-  }
+  dataInicio: Date;
+  dataFim: Date;
+  selectedUser: string;
+  showUserDropdown: boolean = false;
+  usuario: string[] = [];
 
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private acervoService: AcervoService,
     private spinnerService: NgxSpinnerService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private emprestimoService: EmprestimoService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
-    this.getAcervos();
+    this.getAllEmprestimos()
+    this.getAllusuarios()
+    this.filtroEmprestimo = new FiltroEmprestimo
   }
 
   alterarImagem() {
     this.exibirImagem = !this.exibirImagem;
   }
 
-  public getAcervos(): void {
+
+  toggleUserDropdown() {
+    this.showUserDropdown = !this.showUserDropdown;
+  }
+
+  onUserOptionChange() {
+    // Lógica adicional, se necessário
+  }
+
+  selectedUsers: { [key: string]: boolean} = {};
+
+  public getAllEmprestimos(): void {
     this.spinnerService.show();
 
-    this.acervoService
-      .getAcervosPaginacao(
-        this.paginacao.paginaCorrente,
-        this.paginacao.itensPorPagina,
-        this.argumento,
-        this.opcaoPesquisa
-      )
+    this.emprestimoService
+      .getAllEmprestimos()
       .subscribe(
-        (retorno: ResultadoPaginado<Acervo[]>) => {
-          this.acervos = retorno.resultado;
-          this.paginacao = retorno.paginacao;
+        (retorno: Emprestimo[]) => {
+          this.emprestimos = retorno;
         },
         (error: any) => {
-          console.log("aqui 2");
-          this.toastrService.error("Erro ao carregar Acervos", "Erro!");
+          this.toastrService.error("Erro ao buscar os empréstimos", "Erro!");
           console.error(error);
         }
       )
       .add(() => this.spinnerService.hide());
   }
 
-  public abrirModal(
-    event: any,
-    acervoId: number,
-    acervoISBN: string
-  ): void {
-    event.stopPropagation();
-    this.acervoId = acervoId;
-    this.acervoISBN = acervoISBN;
-    const dialogRef = this.dialog.open(DeleteModalComponent, {
-      data: {
-        nomePagina: "Acervos",
-        id: this.acervoId,
-        argumento: this.acervoISBN,
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed", result);
-      if (result) this.confirmarDelecao();
-    });
-  }
-
-  public confirmarDelecao(): void {
+  public getEmprestimosFiltrados(dataInicio: Date, dataFim: Date, selectedUsers: { [key: string]: boolean} = {}): void {
     this.spinnerService.show();
 
-    this.acervoService
-      .deleteAcervo(this.acervoId)
-      .subscribe(
-        (result: any) => {
-          if (result == null)
-            this.toastrService.error(
-              "Acervo não pode se excluído.",
-              "Erro!"
-            );
+    let usuarioParametro: any = ""
+    let listaDeUsuarios: any = ""
 
-          if (result.message == "OK") {
-            this.toastrService.success(
-              "Acervo excluído com sucesso",
-              "Excluído!"
-            );
-            this.getAcervos();
-          }
+    Object.keys(selectedUsers).forEach(user =>{
+        usuarioParametro = `&Usuarios=${user}`
+        listaDeUsuarios += usuarioParametro
+    })
+
+    this.filtroEmprestimo.dataInicio = dataInicio
+    this.filtroEmprestimo.dataFim = dataFim
+    this.filtroEmprestimo.usuarios = listaDeUsuarios
+
+    this.emprestimoService
+      .getEmprestimosFiltrados(this.filtroEmprestimo)
+      .subscribe(
+        (retorno: Emprestimo[]) => {
+          this.emprestimos = retorno;
         },
         (error: any) => {
-          this.toastrService.error(error.error, `Erro! Status ${error.status}`);
+          this.toastrService.error("Erro ao buscar os empréstimos filtrados", "Erro!");
           console.error(error);
         }
       )
-      .add(() => this.spinnerService.show());
+      .add(() => this.spinnerService.hide());
   }
 
-  public editarAcervo(acerovId: number): void {
-    this.router.navigate([`acervos/edicao/${acerovId}`]);
+  public getAllusuarios(): void {
+    this.spinnerService.show();
+
+    this.usuarioService
+      .getAllUsuarios()
+      .subscribe(
+        (retorno: Usuario[]) => {
+          this.usuarios = retorno;
+        },
+        (error: any) => {
+          this.toastrService.error("Erro ao buscar os usuários", "Erro!");
+          console.error(error);
+        }
+      )
+      .add(() => this.spinnerService.hide());
   }
 
-  public detalheAcervo(acerovId: number): void {
-    this.router.navigate([`acervos/detalhe/${acerovId}`]);
+  public formatarData(data: Date): any{
+
+    if (data != null){
+      var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
+    } else{
+      dataFormatada = null
+    }
+    return dataFormatada
   }
 
-  public alteracaoDePagina(event: any): void {
-    //    this.pagination.currentPage = event.currentPage
-    this.getAcervos();
+  public obterStatus(emprestimo: Emprestimo): any {
+    
+    let dataAtual = this.formatarData(new Date());
+
+    if (this.formatarData(emprestimo.dataPrevistaDevolucao) < dataAtual &&
+      emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
+    ) { 
+      return "Em atraso";
+    } 
+      else if (emprestimo.status == 1) {
+      return "Aguardando aprovação";
+    } else if (emprestimo.status == 2) {
+      return "Em andamento";
+    } else if (emprestimo.status == 3) {
+      return "Devolvido";
+    } else if (emprestimo.status == 4) {
+      return "Renovado";
+    } else if (emprestimo.status == 5) {
+      return "Não aprovado";
+    } else return "-";
+    
   }
+
+
 }

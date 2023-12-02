@@ -23,6 +23,7 @@ export class GerenciarSolicitacoesComponent implements OnInit {
   public emprestimoAlterado: Emprestimo;
   public gerenciamentoEmprestimo: GerenciamentoEmprestimo;
   public tipoAcaoEmprestimo: TipoAcaoEmprestimo;
+  public statusPendentesDeAtuacao: string[]
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class GerenciarSolicitacoesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.getEmprestimosPendentes();
     this.gerenciamentoEmprestimo = new GerenciamentoEmprestimo();
   }
@@ -51,14 +53,16 @@ export class GerenciarSolicitacoesComponent implements OnInit {
   public getEmprestimosPendentes(): void {
     this.spinnerService.show();
 
+    this.statusPendentesDeAtuacao = ["Reservado","Emprestado","Renovado"]
+
     this.emprestimoService
-      .getEmprestimosPendentes()
+      .getEmprestimosPendentes(this.statusPendentesDeAtuacao)
       .subscribe(
         (retorno: Emprestimo[]) => {
           this.emprestimos = retorno;
         },
         (error: any) => {
-          this.toastrService.error("Erro ao carregar Patrimonio", "Erro!");
+          this.toastrService.error("Erro ao buscar os empréstimos pendentes de atuação", "Erro!");
           console.error(error);
         }
       )

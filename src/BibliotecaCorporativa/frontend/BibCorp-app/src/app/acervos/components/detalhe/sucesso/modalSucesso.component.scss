@@ -25,18 +25,18 @@
   margin-top: 10px;
 }
 
+.btn {
+  height: 40px;
+}
+
 .btn-orange {
   background-color: #FF9D4E;
   border: none;
   transition: background-color 0.3s;
   color: white;
-  width: 30%;
-  margin-top: 1px;
-}
-
-.btn-orange:hover {
-  background-color: #FFB07D;
-  color: white;
+  width: 5px;
+  margin-right: 10px;
+  margin-bottom: 4px;
 }
 
 .btn-blue {
@@ -44,12 +44,11 @@
   border: none;
   transition: background-color 0.3s;
   color: white;
-  width: 50%;
-  margin-top: 10px;
-  margin-bottom: 7px;
+  width: 50px; /* Ajuste a largura desejada aqui */
+  margin-left: 10px;
 }
 
-.btn-blue:hover {
-  background-color: #00BFFF;
-  color: white;
+.custom-modal .btn-blue {
+  margin-left: 15px;
 }
+

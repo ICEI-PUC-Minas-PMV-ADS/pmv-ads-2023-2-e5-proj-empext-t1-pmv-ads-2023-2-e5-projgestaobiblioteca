@@ -7,7 +7,7 @@
   
     <div class="dropdown" class="emprestimo">
       <label for="local-coleta" style="width: 100%;">Novo local de coleta:</label>
-      <select id="local-coleta" class="custom-dropdown" style="width: 100%;" [(ngModel)]="novoLocalColeta">
+      <select id="local-coleta" class="custom-dropdown" style="width: 70%;" [(ngModel)]="novoLocalColeta">
         <option value="Matriz">Matriz</option>
         <option value="Contorno">Contorno</option>
         <option value="Betim">Betim</option>
@@ -23,5 +23,5 @@
       </select>
     </div>
   
-    <button class=" btn btn-orange" id="botao" type="button" (click)="alterarLocalDeColeta()">Alterar local</button>
+    <button class=" btn btn-orange" id="botao" type="button" (click)="alterarLocalDeColeta()">Alterar</button>
   </div>

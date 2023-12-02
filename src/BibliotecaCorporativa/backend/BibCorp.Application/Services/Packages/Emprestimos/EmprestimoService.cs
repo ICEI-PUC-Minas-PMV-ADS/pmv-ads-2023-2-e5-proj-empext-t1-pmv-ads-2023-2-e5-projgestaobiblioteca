@@ -291,6 +291,7 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
     {
       try
       {
+        Console.Write("Service Emrpestimo Filtros");
         var filtroEmprestimoMapper = _mapper.Map<FiltroEmprestimo>(filtroEmprestimoDto);
 
         var emprestimos = await _emprestimoPersistence.GetEmprestimosByFiltrosAsync(filtroEmprestimoMapper);

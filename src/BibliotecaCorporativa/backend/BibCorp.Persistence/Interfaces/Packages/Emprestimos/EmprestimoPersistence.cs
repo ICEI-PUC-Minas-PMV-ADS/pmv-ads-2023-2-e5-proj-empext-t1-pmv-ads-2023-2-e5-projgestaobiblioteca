@@ -169,6 +169,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByFiltrosAsync(FiltroEmprestimo filtroEmprestimo)
     {
+      Console.Write(filtroEmprestimo.DataInicio + "=================================");
       if (filtroEmprestimo.Usuarios.Any()) {
 
         var emprestimosConsultadosPorUsuario = new List<Emprestimo>();

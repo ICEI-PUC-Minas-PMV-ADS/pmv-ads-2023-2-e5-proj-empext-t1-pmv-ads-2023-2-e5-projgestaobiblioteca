@@ -1173,7 +1173,7 @@ Usuario salvando sua nova atualização:
 
 </br>
 <p aling="center">
-<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-Perfildousuario.png> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciasdeTeste-PerfildoUsuario.png> <br>
 
 
 ## Solicitações 
@@ -1196,7 +1196,7 @@ Usuário visualiza solicitações, dadaos e o status de cada uma.
 
 </br>
 <p aling="center">
-<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciasdeTeste-Solicitacoes.png> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvideciasdeTeste-MinhasSolicitacoes.png> <br>
 
 
 ## Renovar Empréstimo

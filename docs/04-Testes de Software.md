@@ -1155,9 +1155,10 @@ Tela sendo populada utilizando o filtro de pesquisa: **Título**
 
 **CTS1: Usuário - Tentando atualizar perfil**
 
-**Status do caso de teste:** Reprovado 
+**Status do caso de teste:** Aprovado <br>
 
-**BDD:**<br><br>
+**Cenário positivo:** O usuário atualiza senha. <br>
+**Cenário negativo:** O usuário não consegue atualizar e-mail, nome e telefone. <br> 
 
 **Given** O usuario que estiver na pagina de perfil e que 
 deseja atualizar seus dados atravez do formulario de perfil <br> 
@@ -1168,22 +1169,19 @@ apresentadas<br>
 
 **Evidências** 
 
-Usuario não consegue salvar suas informações:
+Usuario salvando sua nova atualização:
 
 </br>
 <p aling="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-Perfildousuario.png> <br>
 
-**Observação** O botão não está disponível para salvar as 
-alterações do usuário.
-<br>
 
 ## Solicitações 
 
 **CTS1** Usuário visualizando solicitações de emprestimos 
 
-**Status do caso de teste:** Aprovado 
-**BDD:**<br><br>
+**Status do caso de teste:** Aprovado <br>
+
 
 **Given** O usuario ira navegar pela pagina de solicitações <br>
 **When** o usuario aciona o botão Solicitações na barra lateral/
@@ -1203,19 +1201,17 @@ Usuário visualiza solicitações, dadaos e o status de cada uma.
 
 ## Renovar Empréstimo
 
-**CTS1** Usuário conseguindo renovar emprestimos e solicitar
-novamente o livro. 
+**CTS1** Usuário conseguindo renovar emprestimos. 
 
 **Status do caso de teste:** Reprovado 
 **BDD:**<br><br>
 
 **Given** O usuario ira navegar pela pagina de solicitações
 <br>
-**When** o usuario aciona o botão Renovar/ Solicitar 
-novamente.  <br>
-**Then** o usuario é apresentado a uma pagina de renovação p
+**When** o usuario aciona o botão Renovar.  <br>
+**Then** o usuario é apresentado a uma pagina de renovação para
 escoher entre manter local de coleta ou alterar local de col
-dos emprestimos a serem renovados e aciona o botao renovar p
+dos emprestimos a serem renovados e aciona o botao renovar para
 salvar alterações. 
 <br>
 
@@ -1228,5 +1224,4 @@ Usuário visualiza a página modal e escolhe a opção desejada.
 <p aling="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-RenovarEmprestimo.png> <br>
 
-**Observação** O botão não está disponível para salvar as 
-alterações do usuário.
+

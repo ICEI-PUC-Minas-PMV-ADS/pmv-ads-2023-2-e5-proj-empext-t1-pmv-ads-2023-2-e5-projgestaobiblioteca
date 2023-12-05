@@ -1203,7 +1203,7 @@ Usuário visualiza solicitações, dadaos e o status de cada uma.
 
 **CTS1** Usuário conseguindo renovar emprestimos. 
 
-**Status do caso de teste:** Reprovado 
+**Status do caso de teste:** Aprovado 
 **BDD:**<br><br>
 
 **Given** O usuario ira navegar pela pagina de solicitações
@@ -1223,5 +1223,62 @@ Usuário visualiza a página modal e escolhe a opção desejada.
 </br>
 <p aling="center">
 <img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-RenovarEmprestimos.png> <br>
+
+# Perfil Administrador 
+
+## Gerenciando Solicitações 
+
+**CTS1** Usuário conseguindo gerenciar solicitacoes emprestimos. 
+
+**Status do caso de teste:** Aprovado 
+**BDD:**<br><br>
+
+**Given** O Administrador ira navegar pela pagina de gerenciar na barra lateral da pagima
+<br>
+**When** o Administrador visualiza as solicitações de emprestimos  <br>
+**Then** o Administrador escolhe em recusar ou aprovar emprestimo.
+<br>
+
+**Evidências** 
+
+Administrador visualiza a página escolhe a opção desejada.
+
+
+</br>
+<p aling="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-gerenciarsolicitacoesAmin.png> <br>
+
+<br>
+
+Tela exibindo função Devolução do acervo
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvudenciadeTeste-GerenciarAdmin.png>
+</p>
+</br>
+
+
+## Página Inicial 
+
+**CTS1** Administrador conseguindo visualizar emprestimos e seus status. 
+
+**Status do caso de teste:** Aprovado 
+
+
+**Given** O Administrador realizou o login. 
+<br>
+**When**  Ira visualizar a pagina inicial <br>
+**Then** O Administrador poderá visualizar status, usar filros de usuario e data 
+<br>
+
+**Evidências** 
+
+Administrador visualiza a página inicial e escolhe a opção desejada para filtrar 
+
+
+</br>
+<p aling="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTestes-Paginainicialadmin.png> <br>
+
 
 

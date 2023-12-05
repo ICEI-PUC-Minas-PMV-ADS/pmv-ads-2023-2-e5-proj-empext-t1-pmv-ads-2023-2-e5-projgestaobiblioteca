@@ -1155,9 +1155,10 @@ Tela sendo populada utilizando o filtro de pesquisa: **Título**
 
 **CTS1: Usuário - Tentando atualizar perfil**
 
-**Status do caso de teste:** Reprovado 
+**Status do caso de teste:** Aprovado <br>
 
-**BDD:**<br><br>
+**Cenário positivo:** O usuário atualiza senha. <br>
+**Cenário negativo:** O usuário não consegue atualizar e-mail, nome e telefone. <br> 
 
 **Given** O usuario que estiver na pagina de perfil e que 
 deseja atualizar seus dados atravez do formulario de perfil <br> 
@@ -1168,22 +1169,19 @@ apresentadas<br>
 
 **Evidências** 
 
-Usuario não consegue salvar suas informações:
+Usuario salvando sua nova atualização:
 
 </br>
 <p aling="center">
-<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-Perfildousuario.png> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciasdeTeste-PerfildoUsuario.png> <br>
 
-**Observação** O botão não está disponível para salvar as 
-alterações do usuário.
-<br>
 
 ## Solicitações 
 
 **CTS1** Usuário visualizando solicitações de emprestimos 
 
-**Status do caso de teste:** Aprovado 
-**BDD:**<br><br>
+**Status do caso de teste:** Aprovado <br>
+
 
 **Given** O usuario ira navegar pela pagina de solicitações <br>
 **When** o usuario aciona o botão Solicitações na barra lateral/
@@ -1198,24 +1196,22 @@ Usuário visualiza solicitações, dadaos e o status de cada uma.
 
 </br>
 <p aling="center">
-<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciasdeTeste-Solicitacoes.png> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvideciasdeTeste-MinhasSolicitacoes.png> <br>
 
 
 ## Renovar Empréstimo
 
-**CTS1** Usuário conseguindo renovar emprestimos e solicitar
-novamente o livro. 
+**CTS1** Usuário conseguindo renovar emprestimos. 
 
-**Status do caso de teste:** Reprovado 
+**Status do caso de teste:** Aprovado 
 **BDD:**<br><br>
 
 **Given** O usuario ira navegar pela pagina de solicitações
 <br>
-**When** o usuario aciona o botão Renovar/ Solicitar 
-novamente.  <br>
-**Then** o usuario é apresentado a uma pagina de renovação p
+**When** o usuario aciona o botão Renovar.  <br>
+**Then** o usuario é apresentado a uma pagina de renovação para
 escoher entre manter local de coleta ou alterar local de col
-dos emprestimos a serem renovados e aciona o botao renovar p
+dos emprestimos a serem renovados e aciona o botao renovar para
 salvar alterações. 
 <br>
 
@@ -1226,7 +1222,63 @@ Usuário visualiza a página modal e escolhe a opção desejada.
 
 </br>
 <p aling="center">
-<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-RenovarEmprestimo.png> <br>
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-RenovarEmprestimos.png> <br>
 
-**Observação** O botão não está disponível para salvar as 
-alterações do usuário.
+# Perfil Administrador 
+
+## Gerenciando Solicitações 
+
+**CTS1** Usuário conseguindo gerenciar solicitacoes emprestimos. 
+
+**Status do caso de teste:** Aprovado 
+**BDD:**<br><br>
+
+**Given** O Administrador ira navegar pela pagina de gerenciar na barra lateral da pagima
+<br>
+**When** o Administrador visualiza as solicitações de emprestimos  <br>
+**Then** o Administrador escolhe em recusar ou aprovar emprestimo.
+<br>
+
+**Evidências** 
+
+Administrador visualiza a página escolhe a opção desejada.
+
+
+</br>
+<p aling="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTeste-gerenciarsolicitacoesAmin.png> <br>
+
+<br>
+
+Tela exibindo função Devolução do acervo
+</br>
+<p align="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvudenciadeTeste-GerenciarAdmin.png>
+</p>
+</br>
+
+
+## Página Inicial 
+
+**CTS1** Administrador conseguindo visualizar emprestimos e seus status. 
+
+**Status do caso de teste:** Aprovado 
+
+
+**Given** O Administrador realizou o login. 
+<br>
+**When**  Ira visualizar a pagina inicial <br>
+**Then** O Administrador poderá visualizar status, usar filros de usuario e data 
+<br>
+
+**Evidências** 
+
+Administrador visualiza a página inicial e escolhe a opção desejada para filtrar 
+
+
+</br>
+<p aling="center">
+<img src=https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t1-pmv-ads-2023-2-e5-projgestaobiblioteca/blob/main/docs/img/EvidenciadeTestes-Paginainicialadmin.png> <br>
+
+
+

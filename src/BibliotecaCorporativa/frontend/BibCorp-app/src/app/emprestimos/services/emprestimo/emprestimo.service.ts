@@ -82,11 +82,12 @@ export class EmprestimoService {
   }
 
   public getEmprestimosFiltrados(filtroEmprestimo: FiltroEmprestimo): Observable<Emprestimo[]> {
-
+console.log(filtroEmprestimo)
+console.log(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}${filtroEmprestimo.usuarios}`)
     if (filtroEmprestimo.usuarios != null) {
       return this.http.get<Emprestimo[]>(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}${filtroEmprestimo.usuarios}`)
         .pipe(take(3));
-    } 
+    }
     else {
       return this.http.get<Emprestimo[]>(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}`)
         .pipe(take(3));

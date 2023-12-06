@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("Eu aqui passei")
     this.validation();
   }
 
@@ -74,7 +75,7 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl("/principal");
             location.replace("/principal");
           }
-          
+
         },
         (error: any) => {
           if (error.status == 401)

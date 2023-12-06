@@ -169,9 +169,10 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByFiltrosAsync(FiltroEmprestimo filtroEmprestimo)
     {
-      Console.Write(filtroEmprestimo.DataInicio + "=================================");
+
       if (filtroEmprestimo.Usuarios.Any()) {
 
+      Console.WriteLine("=====================================");
         var emprestimosConsultadosPorUsuario = new List<Emprestimo>();
 
         foreach (var usuario in filtroEmprestimo.Usuarios)
@@ -189,6 +190,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
       else
       {
+        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         IQueryable<Emprestimo> emprestimosConsultadosPorData = _context.Emprestimos
         .Include(e => e.Acervo)
         .Include(e => e.Patrimonio)

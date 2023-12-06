@@ -85,17 +85,17 @@ export class HomeAdminComponent implements OnInit {
     let listaDeUsuarios: any = ""
 
     Object.keys(selectedUsers).forEach(user =>{
-        usuarioParametro = `&Usuario=${user}`
+        usuarioParametro = `&Usuarios=${user}`
         listaDeUsuarios += usuarioParametro
     })
 
     //let dataTemp = this.datePipe.transform(dataInicio, 'dd/MM/yyyy');
    // console.log('dataTemp')
-    
-    this.filtroEmprestimo.dataInicio = formatDate(dataInicio, "YYYY/MM/dd hh:mm:ss","en-US")
-    this.filtroEmprestimo.dataFim = formatDate(dataFim, "YYYY/MM/dd hh:mm:ss","en-US")
-    console.log(this.filtroEmprestimo.dataInicio  )
+
+    this.filtroEmprestimo.dataInicio = formatDate(dataInicio, "YYYY-MM-dd","en-US")
+    this.filtroEmprestimo.dataFim = formatDate(dataFim, "YYYY-MM-dd","en-US")
     this.filtroEmprestimo.usuarios = listaDeUsuarios
+    console.log(this.filtroEmprestimo.usuarios, " --- ",listaDeUsuarios)
 
     this.emprestimoService
       .getEmprestimosFiltrados(this.filtroEmprestimo)

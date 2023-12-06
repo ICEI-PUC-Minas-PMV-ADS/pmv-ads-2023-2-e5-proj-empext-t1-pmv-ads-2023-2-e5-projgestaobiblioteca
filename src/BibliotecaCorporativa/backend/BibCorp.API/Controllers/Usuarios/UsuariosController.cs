@@ -22,8 +22,8 @@ public class UsuariosController : ControllerBase
     _usuarioService = usuarioService;
   }
 
-  [HttpGet("GetUserName")]
   [AllowAnonymous]
+  [HttpGet("GetUserName")]
   public async Task<IActionResult> GetUsuarioByUserName()
   {
     try

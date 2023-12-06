@@ -28,7 +28,7 @@ export class AdminGuard {
 }
 
 const routes: Routes = [
-  { path: "", redirectTo: "principal", pathMatch: "full" },
+  { path: "", redirectTo: "usuarios/login", pathMatch: "full" },
 
   {
     path: "",

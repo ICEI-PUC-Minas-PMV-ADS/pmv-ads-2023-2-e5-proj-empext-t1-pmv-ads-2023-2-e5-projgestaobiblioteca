@@ -2,6 +2,7 @@
 using AutoMapper;
 using BibCorp.Domain.Exceptions;
 using BibCorp.Domain.Models.Emprestimos;
+using BibCorp.Domain.Models.Usuarios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Emprestimos;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
@@ -169,11 +170,40 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
     public async Task<IEnumerable<Emprestimo>> GetEmprestimosByFiltrosAsync(FiltroEmprestimo filtroEmprestimo)
     {
+      var emprestimosConsultadosPorUsuario = new List<Emprestimo>();
+      var emprestimosConsultadosPorStatus = new List<Emprestimo>();
+      var emprestimosConsultadosPorUsuarioEStatus = new List<Emprestimo>();
 
-      if (filtroEmprestimo.Usuarios.Any()) {
 
-      Console.WriteLine("=====================================");
-        var emprestimosConsultadosPorUsuario = new List<Emprestimo>();
+      if (filtroEmprestimo.Usuarios.Any() && filtroEmprestimo.Status.Any())
+      {
+
+        foreach (var usuario in filtroEmprestimo.Usuarios)
+        {
+          IQueryable<Emprestimo> query = _context.Emprestimos
+         .Include(e => e.Acervo)
+         .Include(e => e.Patrimonio)
+         .AsNoTracking()
+         .Where(e => ((e.DataEmprestimo.Date >= filtroEmprestimo.DataInicio.Date && e.DataEmprestimo.Date <= filtroEmprestimo.DataFim.Date) && e.UserName == usuario))
+         .OrderByDescending(e => e.DataEmprestimo);
+          emprestimosConsultadosPorUsuario.AddRange(query);
+        }
+
+        foreach(var emprestimo in emprestimosConsultadosPorUsuario)
+        {
+          foreach(var status in filtroEmprestimo.Status)
+          {
+            if (emprestimo.Status == status)
+            {
+              emprestimosConsultadosPorUsuarioEStatus.Add(emprestimo);
+            }
+          }
+        }
+        return emprestimosConsultadosPorUsuarioEStatus;
+
+      }
+
+      else if (filtroEmprestimo.Usuarios.Any()) {
 
         foreach (var usuario in filtroEmprestimo.Usuarios)
         {
@@ -188,9 +218,23 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
         return emprestimosConsultadosPorUsuario;
       }
 
+      else if (filtroEmprestimo.Status.Any())
+      {
+        foreach (var status in filtroEmprestimo.Status)
+        {
+          IQueryable<Emprestimo> query = _context.Emprestimos
+         .Include(e => e.Acervo)
+         .Include(e => e.Patrimonio)
+         .AsNoTracking()
+         .Where(e => ((e.DataEmprestimo.Date >= filtroEmprestimo.DataInicio.Date && e.DataEmprestimo.Date <= filtroEmprestimo.DataFim.Date) && e.Status == status))
+         .OrderByDescending(e => e.DataEmprestimo);
+          emprestimosConsultadosPorStatus.AddRange(query);
+        }
+        return emprestimosConsultadosPorStatus;
+      }
+
       else
       {
-        Console.WriteLine("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         IQueryable<Emprestimo> emprestimosConsultadosPorData = _context.Emprestimos
         .Include(e => e.Acervo)
         .Include(e => e.Patrimonio)
@@ -200,7 +244,6 @@ namespace BibCorp.Persistence.Interfaces.Packages.Patrimonios
 
         return await emprestimosConsultadosPorData.ToListAsync();
       }
-
     }
   }
 }

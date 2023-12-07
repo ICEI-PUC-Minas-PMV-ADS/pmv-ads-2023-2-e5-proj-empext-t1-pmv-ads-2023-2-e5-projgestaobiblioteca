@@ -299,7 +299,7 @@ public class EmprestimosController : ControllerBase
   }
 
   /// <summary>
-  /// Obtém os dados dos empréstimos por status
+  /// Obtém os dados dos empréstimos conforme o filtro realizado
   /// </summary>
   /// <param name="filtroEmprestimoDto">Filtros para pesquisa dos empréstimos</param>
   /// <response code="200">Dados dos empréstimos consultados</response>

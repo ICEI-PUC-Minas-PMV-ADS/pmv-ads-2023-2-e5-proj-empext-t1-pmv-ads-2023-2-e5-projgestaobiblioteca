@@ -1,3 +1,5 @@
+using BibCorp.Application.Dto.Emprestimos;
+using BibCorp.Domain.Models.Emprestimos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace BibCorp.Application.Dtos.Emprestimos
     public DateTime DataInicio { get; set; }
     public DateTime DataFim { get; set; }
     public List<string> Usuarios { get; set; }
+    public List<TipoStatusEmprestimoDto> Status { get; set; }
 
 
   }

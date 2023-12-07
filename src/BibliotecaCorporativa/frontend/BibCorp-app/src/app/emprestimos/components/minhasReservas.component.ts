@@ -157,9 +157,11 @@ export class MinhasReservasComponent implements OnInit {
   }
 
   public obterStatus(emprestimo: Emprestimo): any {
-    let dataAtual = this.formatarData(new Date());
+    
+    let dataAtual = new Date()
+    let dataPrevistaDevolucao = emprestimo.dataPrevistaDevolucao;
   
-    if (this.formatarData(emprestimo.dataPrevistaDevolucao) < dataAtual &&
+    if (dataPrevistaDevolucao < dataAtual &&
       emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
     ) { return "Em atraso";} 
       else if (emprestimo.status == 1) {

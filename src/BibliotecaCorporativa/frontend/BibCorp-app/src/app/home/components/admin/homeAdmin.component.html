@@ -1,16 +1,16 @@
 <app-titlebar
-  [title]="'Página Inicial'"
+  [title]="'Histórico dos empréstimos'"
 ></app-titlebar>
 
 <div class="d-flex justify-content-center align-items-center mb-3">
-  <mat-form-field appearance="fill" style="margin-right: 10px; height: 65px; margin-top: 30px;">
+  <mat-form-field appearance="fill" style="margin-right: 10px; height: 65px; margin-top: 60px;">
     <mat-label>Data de início</mat-label>
     <input matInput [matDatepicker]="picker" placeholder="Escolha uma data" [(ngModel)]="dataInicio" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field appearance="fill" style="margin-right: 10px; height: 65px; margin-top: 30px;">
+  <mat-form-field appearance="fill" style="margin-right: 10px; height: 65px; margin-top: 60px;">
     <mat-label>Data final</mat-label>
     <input matInput [matDatepicker]="picker2" placeholder="Escolha uma data" [(ngModel)]="dataFim" required>
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -18,7 +18,7 @@
   </mat-form-field>
 
   <div class="dropdown-container" style="margin-right: 10px;">
-    <div (click)="toggleUserDropdown()" class="dropdown-toggle" class="btn btn-primary"style=" height: 40px; width: 100px; padding: 7px; color: white; border-radius: 8px; margin-top: 10px;">
+    <div (click)="toggleUserDropdown()" class="dropdown-toggle" class="btn btn-primary"style=" height: 40px; width: 200px; padding: 7px; color: white; border-radius: 8px; margin-top: 40px;">
       Usuários <span class="arrow" style="font-size: 10px;">&#9660; </span>
     </div>
     <div *ngIf="showUserDropdown" class="dropdown">
@@ -30,10 +30,27 @@
       </div>
     </div>
   </div>
-  <button style="margin-top: 10px;" class="btn btn-primary" (click)="getEmprestimosFiltrados(dataInicio, dataFim, selectedUsers)" [disabled]="!dataInicio || !dataFim">Aplicar filtros</button>
+  <div class="dropdown-container" style="margin-right: 10px;">
+    <div (click)="toggleStatusDropdown()" class="dropdown-toggle" class="btn btn-primary"style=" height: 40px; width: 200px; padding: 7px; color: white; border-radius: 8px; margin-top: 40px;">
+      Status<span class="arrow" style="font-size: 10px;">&#9660; </span>
+    </div>
+    <div *ngIf="showStatusDropdown" class="dropdown">
+      <div *ngFor="let status of status">
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedStatus[status]" (change)="onUserOptionChange()">
+          {{ status }}
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
 
-      <div style="min-height: 500px;">
+<div>
+  <button style="margin-top: 10px;margin-left: 370px;margin-bottom: 30px;width: 170px" class="btn btn-primary" (click)="getEmprestimosFiltrados(dataInicio, dataFim, selectedUsers, selectedStatus)" [disabled]="!dataInicio || !dataFim">Aplicar filtros</button>
+  <button style="margin-top: 10px; margin-left: 10px; margin-bottom: 30px;width: 170px" class="btn btn-primary" (click)="ngOnInit()"[disabled]="!dataInicio || !dataFim">Limpar filtros</button>
+</div>
+
+      <div style="min-height: 500px;margin-top: 25px">
           <table class="table table-striped table-hover table-light rounded-3 ">
               <thead class="table-primary">
                   <tr>
@@ -51,7 +68,7 @@
                           <th>Data prevista de devolução</th>
                           <th>Data de devolução</th>
                           <th>Usuário</th>
-                          <th>Situação</th>
+                          <th>Status</th>
                       </tr>
                   </thead>
               <tbody>

@@ -5,10 +5,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { Emprestimo, FiltroEmprestimo, EmprestimoService } from "src/app/emprestimos";
+import { Emprestimo, FiltroEmprestimo, EmprestimoService, Status } from "src/app/emprestimos";
 import { Paginacao } from "src/app/shared";
 import { Usuario, UsuarioService } from "src/app/usuarios";
-
 
 @Component({
   selector: "app-home-admin",
@@ -27,8 +26,14 @@ export class HomeAdminComponent implements OnInit {
   dataInicio: Date;
   dataFim: Date;
   selectedUser: string;
+  selectedSituaco: Status;
   showUserDropdown: boolean = false;
+  showStatusDropdown: boolean = false;
   usuario: string[] = [];
+  status: string[] = [];
+
+  selectedUsers: { [key: string]: boolean} = {};
+  selectedStatus: { [key: string]: boolean} = {};
 
   constructor(
     private router: Router,
@@ -42,24 +47,30 @@ export class HomeAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEmprestimos()
-    this.getAllusuarios()
+    this.getAllUsuarios()
+    this.obterSituacoes()
     this.filtroEmprestimo = new FiltroEmprestimo
+    this.selectedUsers = {};
+    this.selectedStatus = {};
+    this.showUserDropdown = false;
+    this.showStatusDropdown = false;
   }
 
   alterarImagem() {
     this.exibirImagem = !this.exibirImagem;
   }
 
-
   toggleUserDropdown() {
-    this.showUserDropdown = !this.showUserDropdown;
+    this.showUserDropdown = !this.showUserDropdown
+  }
+
+  toggleStatusDropdown() {
+    this.showStatusDropdown = !this.showStatusDropdown
   }
 
   onUserOptionChange() {
     // Lógica adicional, se necessário
   }
-
-  selectedUsers: { [key: string]: boolean} = {};
 
   public getAllEmprestimos(): void {
     this.spinnerService.show();
@@ -78,24 +89,28 @@ export class HomeAdminComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
-  public getEmprestimosFiltrados(dataInicio: Date, dataFim: Date, selectedUsers: { [key: string]: boolean} = {}): void {
+  public getEmprestimosFiltrados(dataInicio: Date, dataFim: Date, selectedUsers: { [key: string]: boolean} = {}, selectedStatus: { [key: string]: boolean} = {}): void {
     this.spinnerService.show();
 
     let usuarioParametro: any = ""
     let listaDeUsuarios: any = ""
+    let statusParametro: any = ""
+    let listaDeStatus: any = ""
 
     Object.keys(selectedUsers).forEach(user =>{
         usuarioParametro = `&Usuarios=${user}`
         listaDeUsuarios += usuarioParametro
     })
 
-    //let dataTemp = this.datePipe.transform(dataInicio, 'dd/MM/yyyy');
-   // console.log('dataTemp')
+    Object.keys(selectedStatus).forEach(status =>{
+      statusParametro = `&Status=${status}`
+      listaDeStatus += statusParametro
+  })
 
     this.filtroEmprestimo.dataInicio = formatDate(dataInicio, "YYYY-MM-dd","en-US")
     this.filtroEmprestimo.dataFim = formatDate(dataFim, "YYYY-MM-dd","en-US")
     this.filtroEmprestimo.usuarios = listaDeUsuarios
-    console.log(this.filtroEmprestimo.usuarios, " --- ",listaDeUsuarios)
+    this.filtroEmprestimo.status = listaDeStatus
 
     this.emprestimoService
       .getEmprestimosFiltrados(this.filtroEmprestimo)
@@ -111,7 +126,7 @@ export class HomeAdminComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
-  public getAllusuarios(): void {
+  public getAllUsuarios(): void {
     this.spinnerService.show();
 
     this.usuarioService
@@ -128,6 +143,12 @@ export class HomeAdminComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
+  public obterSituacoes(): void{
+
+    this.status = ["Reservado","Emprestado","Devolvido","Renovado","Recusado"]
+   
+  }
+
   public formatarData(data: Date): any{
 
     if (data != null){
@@ -139,26 +160,25 @@ export class HomeAdminComponent implements OnInit {
   }
 
   public obterStatus(emprestimo: Emprestimo): any {
-    let dataAtual = this.formatarData(new Date());
+    
+    let dataAtual = new Date()
+    let dataPrevistaDevolucao = emprestimo.dataPrevistaDevolucao;
 
-    if (this.formatarData(emprestimo.dataPrevistaDevolucao) < dataAtual &&
+    if (dataPrevistaDevolucao < dataAtual &&
       emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
     ) {
       return "Em atraso";
     }
       else if (emprestimo.status == 1) {
-      return "Aguardando aprovação";
+      return "Reservado";
     } else if (emprestimo.status == 2) {
-      return "Em andamento";
+      return "Emprestado";
     } else if (emprestimo.status == 3) {
       return "Devolvido";
     } else if (emprestimo.status == 4) {
       return "Renovado";
     } else if (emprestimo.status == 5) {
-      return "Não aprovado";
+      return "Recusado";
     } else return "-";
-    
-  }
-
-
+}
 }

@@ -143,6 +143,9 @@ export class AcervoEdicaoComponent implements OnInit {
           this.formAcervo.patchValue(this.acervo);
           this.ctrF.acervoId.setValue(this.acervo.id);
           this.getPatrimonios();
+
+          if (this.acervo.capaUrl)
+            this.capaPatrimonio = this.acervo.capaUrl
         },
         (error: any) => {
           this.toastrService.error("Falha ao recuperar Acervo", "Erro!");

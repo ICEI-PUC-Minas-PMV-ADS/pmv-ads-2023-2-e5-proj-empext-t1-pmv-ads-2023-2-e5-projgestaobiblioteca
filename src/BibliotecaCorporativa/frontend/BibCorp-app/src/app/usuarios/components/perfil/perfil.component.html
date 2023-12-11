@@ -22,7 +22,7 @@
                 <img [src]="fotoURL" (click)="file.click()" name="aboutme" width="120" height="120" class="rounded-circle" style="cursor: pointer">
                 <img src="../../../../assets/Images/edit.png" alt="Editar" (click)="file.click()" style="cursor: pointer; width: 20px; height: 20px; position: absolute; top: 100px; left: 110px;">
               </div>
-            </div>                            
+            </div>
             <div class="card-body">
               <div class="h4 text-center mb-3">{{ctrF.userName.value}}</div>
               <div class="h4 text-center mb-3">{{ctrF.email.value}}</div>
@@ -33,7 +33,7 @@
                 <div class="card-header bibcorp-bg-secondary text-center shadow">
                   <div class="row">
                     <div class="col-12 text-center">
-                      <div class="h5">1342</div>
+                      <div class="h5">{{countLidos}}</div>
                       <div class="h6 text-muted">Total de Livros Lidos</div>
                     </div>
                   </div>

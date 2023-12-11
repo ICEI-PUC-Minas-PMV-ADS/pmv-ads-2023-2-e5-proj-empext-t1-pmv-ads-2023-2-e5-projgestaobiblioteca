@@ -13,6 +13,7 @@ import { UsuarioUpdate } from "../../models";
 import { ToastrService } from "ngx-toastr";
 import { UploadService } from "src/app/upload";
 import { environment } from "src/assets/environments/environments";
+import { EmprestimoService } from "src/app/emprestimos";
 
 @Component({
   selector: "app-perfil",
@@ -28,6 +29,8 @@ export class PerfilComponent implements OnInit {
   public fotoURL: string = "../../../../assets/Images/download.png";
   public file: File[];
 
+  public countLidos = 0;
+
   public get ctrF(): any {
     return this.formPerfil.controls;
   }
@@ -37,7 +40,8 @@ export class PerfilComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
     private toastrService: ToastrService,
     private usuarioService: UsuarioService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private emprestimoService: EmprestimoService
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +79,7 @@ export class PerfilComponent implements OnInit {
           this.formPerfil.patchValue(this.usuario);
           this.fotoURL = (this.usuario.fotoURL === null) ? "../../../../../assets/Images/not-available.png" : environment.fotoURL + this.usuario.fotoURL
           console.log(this.fotoURL);
+          this.getEmprestimos(this.usuario.userName);
         },
         (error: any) => {
           this.toastrService.error(
@@ -168,5 +173,23 @@ export class PerfilComponent implements OnInit {
         }
       )
       .add(() => this.spinnerService.hide());
+  }
+
+  public getEmprestimos(username: string): void {
+    this.spinnerService.show()
+
+    this.emprestimoService
+    .getEmprestimosByUserName(username)
+    .subscribe(
+      (emprestimos) => {
+        var emprestimoArray = emprestimos.filter((emprestimo) => emprestimo.status === 3)
+        this.countLidos = emprestimoArray.length
+      },
+      (error: any) => {
+        this.toastrService.error(error.error, `Erro! Status ${error.status}`);
+        console.error(error);
+      }
+    )
+    .add(() => this.spinnerService.hide());
   }
 }

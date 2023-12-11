@@ -13,6 +13,7 @@ import { ToastrService } from "ngx-toastr";
 
 import { FormValidator } from "src/app/util";
 import { Patrimonio, PatrimonioService } from "../..";
+import { Acervo, AcervoService } from "src/app/acervos";
 
 @Component({
   selector: "app-patrimonioDetalhe",
@@ -40,7 +41,8 @@ export class PatrimonioDetalheComponent {
     private patrimonioService: PatrimonioService,
     private router: Router,
     private spinnerService: NgxSpinnerService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private acervoService: AcervoService
   ) {}
 
   ngOnInit() {
@@ -138,6 +140,7 @@ export class PatrimonioDetalheComponent {
       .subscribe(
         (novoPatrimonio: Patrimonio) => {
           this.toastrService.success("Patrimonio cadastrado!", "Sucesso!");
+          this.getAcervo(this.patrimonio.isbn)
           window.location.reload;
           this.router.navigateByUrl(
             `/patrimonios/detalhe/${novoPatrimonio.id}`
@@ -168,6 +171,24 @@ export class PatrimonioDetalheComponent {
         },
         (error: any) => {
           this.toastrService.error("Falha ao atualizar Patrimônio.", "Erro!");
+          console.error(error);
+        }
+      )
+      .add(() => this.spinnerService.hide());
+  }
+
+  public getAcervo(isbn: string): void {
+    this.spinnerService.show();
+
+    this.acervoService
+      .getAcervoByISBN(isbn)
+      .subscribe(
+        (acervo: Acervo) => {
+          if (acervo.capaUrl)
+            this.capaPatrimonio = this.acervoService.baseURL
+        },
+        (error: any) => {
+          this.toastrService.error("Falha ao recuperar Acervo por ISBN.", "Erro!");
           console.error(error);
         }
       )

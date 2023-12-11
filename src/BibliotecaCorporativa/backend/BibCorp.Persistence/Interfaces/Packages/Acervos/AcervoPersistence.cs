@@ -1,6 +1,5 @@
 using AutoMapper;
 using BibCorp.Domain.Models.Acervos;
-using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Shared;

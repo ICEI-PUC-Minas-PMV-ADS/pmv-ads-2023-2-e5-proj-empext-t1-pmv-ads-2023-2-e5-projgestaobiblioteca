@@ -29,7 +29,6 @@ public class UsuariosController : ControllerBase
     try
     {
       var claimUserName = User.GetUserNameClaim();
-      Console.WriteLine(claimUserName);
 
       if (claimUserName == null) return Unauthorized();
 
@@ -41,7 +40,6 @@ public class UsuariosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar conta. Erro: {e.Message}");
     }
   }
@@ -150,7 +148,6 @@ public class UsuariosController : ControllerBase
   {
     try
     {
-      Console.WriteLine(usuarioLoginDto);
       var usuario = await _usuarioService.GetUsuarioByUserNameAsync(usuarioLoginDto.UserName);
 
       if (usuario == null) return Unauthorized("Conta não cadastrada");
@@ -181,12 +178,10 @@ public class UsuariosController : ControllerBase
   {
     try
     {
-      Console.WriteLine("Controller Usuario");
       var usuario = await _usuarioService.GetUsuarioByIdAsync(User.GetUserIdClaim());
 
       if (usuario == null) return Unauthorized();
 
-      Console.WriteLine("claimUser " + usuario.Id + " " + usuarioUpdateDto.Id);
       var usuarioUdpdated = await _usuarioService.UpdateUsuario(usuarioUpdateDto);
 
       if (usuario == null) return NoContent();

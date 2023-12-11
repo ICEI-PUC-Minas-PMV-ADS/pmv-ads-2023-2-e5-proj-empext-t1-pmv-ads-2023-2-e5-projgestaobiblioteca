@@ -1,11 +1,14 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
+
+import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
+
 import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
-import { UsuarioService } from "src/app/usuarios";
 import { ModalSucessoAlteracaoComponent } from "../modal/alteracao";
+import { UsuarioService } from "src/app/usuarios";
 
 @Component({
   selector: "app-alterar-local",

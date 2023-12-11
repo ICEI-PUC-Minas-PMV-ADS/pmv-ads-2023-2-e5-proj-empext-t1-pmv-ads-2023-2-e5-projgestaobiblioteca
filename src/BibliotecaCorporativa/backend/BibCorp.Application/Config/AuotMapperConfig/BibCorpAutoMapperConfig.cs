@@ -19,11 +19,11 @@ namespace BibCorp.Application.Config.AuotMapperConfig
 
       CreateMap<Patrimonio, PatrimonioDto>().ReverseMap();
 
-      CreateMap<Emprestimo, EmprestimoDto>().ReverseMap();
-
       CreateMap<Usuario, UsuarioDto>().ReverseMap();
       CreateMap<Usuario, UsuarioLoginDto>().ReverseMap();
       CreateMap<Usuario, UsuarioUpdateDto>().ReverseMap();
+
+      CreateMap<Emprestimo, EmprestimoDto>().ReverseMap();
       CreateMap<FiltroEmprestimo, FiltroEmprestimoDto>().ReverseMap();
     }
   }

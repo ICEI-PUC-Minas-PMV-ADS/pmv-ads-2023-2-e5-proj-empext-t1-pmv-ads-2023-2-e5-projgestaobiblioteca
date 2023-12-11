@@ -1,3 +1,4 @@
+using BibCorp.API.Controllers.Uploads;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Application.Services.Contracts.Emprestimos;
 using BibCorp.Application.Services.Contracts.Patrimonios;
@@ -25,7 +26,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OnPeople.API.Controllers.Uploads;
 using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -88,74 +88,75 @@ namespace BibiCorp.API
 
       //Injeção das controllers
       services
-          .AddControllers()
+        .AddControllers()
 
-          // Já leva os enum convertidos na query
-          .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
+        // Já leva os enum convertidos na query
+        .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
 
-          // Eliminar loop infinito da estrutura
-          .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+        // Eliminar loop infinito da estrutura
+        .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
       //InjeÇão do mapeamento automático de campos (DTO)
-      services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+      services
+        .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
       //Injeção dos serviços de persistencias
       services
-          .AddScoped<IAcervoService, AcervoService>()
-          .AddScoped<IPatrimonioService, PatrimonioService>()
-          .AddScoped<IEmprestimoService, EmprestimoService>()
-          .AddScoped<IUsuarioService, UsuarioService>()
-          .AddScoped<ITokenService, TokenService>()
-          .AddScoped<IUploadService, UploadService>();
+        .AddScoped<IAcervoService, AcervoService>()
+        .AddScoped<IPatrimonioService, PatrimonioService>()
+        .AddScoped<IEmprestimoService, EmprestimoService>()
+        .AddScoped<IUsuarioService, UsuarioService>()
+        .AddScoped<ITokenService, TokenService>()
+        .AddScoped<IUploadService, UploadService>();
 
 
       //Injeção das interfaces de Persistencias
       services
-          .AddScoped<IAcervoPersistence, AcervoPersistence>()
-          .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>()
-          .AddScoped<IEmprestimoPersistence, EmprestimoPersistence>()
-          .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
-          .AddScoped<ISharedPersistence, SharedPersistence>();
+        .AddScoped<IAcervoPersistence, AcervoPersistence>()
+        .AddScoped<IPatrimonioPersistence, PatrimonioPersistence>()
+        .AddScoped<IEmprestimoPersistence, EmprestimoPersistence>()
+        .AddScoped<IUsuarioPersistence, UsuarioPersistence>()
+        .AddScoped<ISharedPersistence, SharedPersistence>();
 
       services.Configure<PersistenceConfiguration>(x =>
-      {
-        x.PrazoRenovacao = Convert.ToInt32(Configuration["prazoRenovacao"]);
-      });
+        {
+          x.PrazoRenovacao = Convert.ToInt32(Configuration["prazoRenovacao"]);
+        });
 
       services
-                .AddSwaggerGen(options =>
-                {
-                  options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend da biblioteca corporativa da empresa Prevenir" });
+        .AddSwaggerGen(options =>
+        {
+          options.SwaggerDoc("v1", new OpenApiInfo { Title = "BibCorp.API", Version = "v1", Description = "API responsável por implementar as funcionalidades de backend da biblioteca corporativa da empresa Prevenir" });
 
-                  var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                  var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                  options.IncludeXmlComments(xmlPath);
+          var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+          var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+          options.IncludeXmlComments(xmlPath);
 
-                  options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                  {
-                    Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
-                                        Exemplo: 'Bearer 12345abcdef'",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                  });
-                  options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                    {
-                        {
-                            new OpenApiSecurityScheme {
-                                Reference = new OpenApiReference {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                },
-                                Scheme = "oauth2",
-                                Name = "Bearer",
-                                In = ParameterLocation.Header
-                            },
-                            new List<string>()
-                        }
-                    });
-                });
+          options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+          {
+            Description = @"JWT Authorization header usando Beares. Entre com 'Bearer [espaço] em seguida coloque seu token.
+                                Exemplo: 'Bearer 12345abcdef'",
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer"
+          });
+          options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+            {
+              {
+                new OpenApiSecurityScheme {
+                  Reference = new OpenApiReference {
+                      Type = ReferenceType.SecurityScheme,
+                      Id = "Bearer"
+                  },
+                  Scheme = "oauth2",
+                  Name = "Bearer",
+                  In = ParameterLocation.Header
+                },
+                new List<string>()
+              }
+            });
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

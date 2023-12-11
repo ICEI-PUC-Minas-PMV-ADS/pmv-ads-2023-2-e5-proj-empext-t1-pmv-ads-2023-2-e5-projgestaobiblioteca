@@ -1,20 +1,15 @@
-/* eslint-disable */
-
 import { Component, OnInit, TemplateRef } from "@angular/core";
-// import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
+
 import { MatDialog } from "@angular/material/dialog";
-import { ModalRenovarComponent } from "./modal/renovar/modalRenovar.component";
-import { AlterarLocalComponent } from "./local/alterarLocal.component";
+
 import { NavigationEnd, Router } from "@angular/router";
 import { formatDate } from "@angular/common";
-import { isEmpty } from "rxjs";
 
 import { Acervo, AcervoService } from "src/app/acervos";
-
-import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
-
+import { AlterarLocalComponent, Emprestimo, EmprestimoService, ModalRenovarComponent } from "src/app/emprestimos";
 import { LoginService, UsuarioLogin } from "src/app/usuarios";
 
 @Component({
@@ -67,7 +62,6 @@ export class MinhasReservasComponent implements OnInit {
   constructor(
     private emprestimoService: EmprestimoService,
     private acervoService: AcervoService,
-    // private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private dialogRef: MatDialog,
@@ -83,17 +77,7 @@ export class MinhasReservasComponent implements OnInit {
     });
   }
 
-  // DELETAR APOS VALIDAÇÃO
-  // constructor(
-  //   private EmprestimoService: EmprestimoService,
-  //   private AcervoService: AcervoService,
-  //   // private modalService: BsModalService,
-  //   private toastr: ToastrService,
-  //   private spinner: NgxSpinnerService,
-  //   private dialogRef : MatDialog
-  // ) { }
-
-  abrirDialogRenovacao(
+  public abrirDialogRenovacao(
     emprestimoId: number,
     acervoTitulo: string,
     dataPrevistaDevolucao: Date
@@ -108,7 +92,7 @@ export class MinhasReservasComponent implements OnInit {
     });
   }
 
-  abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string) {
+  public abrirDialogAlteracao(emprestimoId: number, localDeColetaAtual: string) {
     this.dialogRef.open(AlterarLocalComponent, {
       data: {
         emprestimoId: emprestimoId,
@@ -157,13 +141,12 @@ export class MinhasReservasComponent implements OnInit {
   }
 
   public obterStatus(emprestimo: Emprestimo): any {
-    
     let dataAtual = new Date()
     let dataPrevistaDevolucao = emprestimo.dataPrevistaDevolucao;
-  
+
     if (dataPrevistaDevolucao < dataAtual &&
       emprestimo.dataDevolucao == null && (emprestimo.status == 2 || emprestimo.status == 4)
-    ) { return "Em atraso";} 
+    ) { return "Em atraso";}
       else if (emprestimo.status == 1) {
       return "Aguardando aprovação da solicitação";
     } else if (emprestimo.status == 2) {
@@ -175,11 +158,9 @@ export class MinhasReservasComponent implements OnInit {
     } else if (emprestimo.status == 5) {
       return "Não aprovado";
     } else return "-";
-    
   }
 
   public formatarData(data: Date): any{
-
     if (data != null){
       var dataFormatada = formatDate(data, "dd/MM/YYYY","en-US")
     } else{

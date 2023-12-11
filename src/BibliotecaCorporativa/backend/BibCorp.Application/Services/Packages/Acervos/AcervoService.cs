@@ -37,7 +37,6 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -57,7 +56,6 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -75,7 +73,6 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -161,7 +158,6 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -186,7 +182,6 @@ namespace BibCorp.Application.Services.Packages.Acervos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }

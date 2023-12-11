@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable, take } from 'rxjs';
 import { environment } from 'src/assets/environments/environments';
-import { Emprestimo } from '../..';
-import { GerenciamentoEmprestimo } from '../../models/emprestimo/GerenciamentoEmprestimo';
-import { FiltroEmprestimo } from '../../models/emprestimo/FiltroEmprestimo';
+import { Emprestimo, FiltroEmprestimo, GerenciamentoEmprestimo } from '../..';
 
 @Injectable()
 export class EmprestimoService {
@@ -94,7 +93,7 @@ export class EmprestimoService {
     } else if(filtroEmprestimo.status != null){
       return this.http.get<Emprestimo[]>(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}${filtroEmprestimo.status}`)
         .pipe(take(3));
-        
+
     } else {
       return this.http.get<Emprestimo[]>(`${this.baseURL}Relatorio?DataInicio=${filtroEmprestimo.dataInicio}&DataFim=${filtroEmprestimo.dataFim}`)
         .pipe(take(3));

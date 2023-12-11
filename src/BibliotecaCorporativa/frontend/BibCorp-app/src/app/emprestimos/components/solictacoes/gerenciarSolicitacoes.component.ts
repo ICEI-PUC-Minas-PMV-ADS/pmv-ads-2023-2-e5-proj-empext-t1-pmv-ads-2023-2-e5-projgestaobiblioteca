@@ -33,7 +33,6 @@ export class GerenciarSolicitacoesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     this.getEmprestimosPendentes();
     this.gerenciamentoEmprestimo = new GerenciamentoEmprestimo();
   }

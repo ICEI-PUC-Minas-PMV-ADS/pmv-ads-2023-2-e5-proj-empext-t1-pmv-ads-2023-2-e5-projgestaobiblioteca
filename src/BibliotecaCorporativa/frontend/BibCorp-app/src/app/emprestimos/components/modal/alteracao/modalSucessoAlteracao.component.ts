@@ -19,18 +19,18 @@ export class ModalSucessoAlteracaoComponent implements OnInit {
   public novaLocalColeta: any = "";
   public emprestimoIdParam: any = "";
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataInput: { emprestimoId: number },
-  private router: Router,
-  private emprestimoService: EmprestimoService,
-  private spinnerService: NgxSpinnerService,
-  private toastrService: ToastrService,
-  private dialog: MatDialog) {  }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dataInput: { emprestimoId: number },
+    private router: Router,
+    private emprestimoService: EmprestimoService,
+    private spinnerService: NgxSpinnerService,
+    private toastrService: ToastrService,
+    private dialog: MatDialog
+  ) {  }
 
   ngOnInit(): void {
-
     this.emprestimoIdParam = this.dataInput.emprestimoId;
     this.getEmprestimoById(this.emprestimoIdParam);
-
   }
 
   voltarParaMinhasSolicitacoes() {
@@ -56,11 +56,7 @@ export class ModalSucessoAlteracaoComponent implements OnInit {
           this.toastrService.error("Erro ao carregar emprestimo", 'Erro!');
           console.error(error);
         }
-
       )
-
       .add(() => this.spinnerService.hide());
   }
-
-
 }

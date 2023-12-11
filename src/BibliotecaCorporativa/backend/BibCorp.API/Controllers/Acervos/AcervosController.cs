@@ -3,11 +3,13 @@ using BibCorp.API.Packages.Extensions.Pages;
 using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Services.Contracts.Acervos;
 using BibCorp.Persistence.Utilities.Pages.Class;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace BibCorp.API.Controllers.Acervos;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class AcervosController : ControllerBase
@@ -31,6 +33,7 @@ public class AcervosController : ControllerBase
   /// <response code="500">Erro interno</response>
 
   [HttpGet]
+  [AllowAnonymous]
   public async Task<IActionResult> GetAllAcervos()
   {
     try
@@ -43,7 +46,6 @@ public class AcervosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
     }
   }
@@ -69,7 +71,6 @@ public class AcervosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervo por Id. Erro: {e.Message}");
     }
   }
@@ -93,7 +94,6 @@ public class AcervosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervo por ISBN. Erro: {e.Message}");
     }
   }
@@ -109,7 +109,6 @@ public class AcervosController : ControllerBase
   {
     try
     {
-      Console.WriteLine("create Acervo");
       var acervo = await _acervoService.GetAcervoByISBNAsync(acervoDto.ISBN);
 
       if (acervo != null) return BadRequest("Já existe um Acervo com o ISBN informado");
@@ -189,6 +188,7 @@ public class AcervosController : ControllerBase
   /// <response code="500">Erro interno</response>
 
   [HttpGet("Recentes")]
+  [AllowAnonymous]
   public async Task<IActionResult> GetAcervosRecentes([FromQuery] ParametrosPaginacao parametrosPaginacao)
   {
     try
@@ -203,7 +203,6 @@ public class AcervosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
     }
   }
@@ -230,7 +229,6 @@ public class AcervosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
     }
   }
@@ -262,18 +260,13 @@ public class AcervosController : ControllerBase
         }
 
         string selfLink = BooksInfo["items"][0]["selfLink"].ToString();
-
         response = await httpClient.GetStringAsync(selfLink);
         var googleBooksInfo = JObject.Parse(response);
-
         var volumeInfo = googleBooksInfo["volumeInfo"];
-
-
         string dataString = volumeInfo["publishedDate"].ToString();
 
         // Converter a string da data para um objeto DateTime
         DateTime dataDateTime = DateTime.ParseExact(dataString, "yyyy-MM-dd", null);
-        Console.WriteLine(selfLink);
 
         // Extrair o ano da data
         string anoPublicacao = dataDateTime.Year.ToString();

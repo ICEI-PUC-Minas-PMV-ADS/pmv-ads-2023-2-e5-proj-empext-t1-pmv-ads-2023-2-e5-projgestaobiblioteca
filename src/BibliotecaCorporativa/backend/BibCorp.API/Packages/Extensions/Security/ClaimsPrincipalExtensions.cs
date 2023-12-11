@@ -14,6 +14,5 @@ namespace BibCorp.API.Extensions.Users
     {
       return int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
     }
-
   }
 }

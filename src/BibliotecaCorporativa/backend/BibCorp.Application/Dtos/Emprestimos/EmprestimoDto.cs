@@ -1,6 +1,5 @@
 using BibCorp.Application.Dto.Acervos;
 using BibCorp.Application.Dto.Patrimonios;
-using BibCorp.Domain.Models.Emprestimos;
 
 namespace BibCorp.Application.Dto.Emprestimos
 {
@@ -21,5 +20,4 @@ namespace BibCorp.Application.Dto.Emprestimos
     public string LocalDeColeta { get; set; }
     public string LocalDeEntrega { get; set; }
   }
-
 }

@@ -46,12 +46,11 @@ public class PatrimoniosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimônios. Erro: {e.Message}");
     }
   }
   /// <summary>
-  /// Obtém os dados de todos os patrimônios que possuem o mesmo ISBN 
+  /// Obtém os dados de todos os patrimônios que possuem o mesmo ISBN
   /// </summary>
   /// <param name="isbn">Identificador do Acervo no Patrimônio</param>
   /// <response code="200">Dados dos patrimônios cadastrados</response>
@@ -63,7 +62,6 @@ public class PatrimoniosController : ControllerBase
   {
     try
     {
-      Console.WriteLine("Acervo ISBN " + isbn);
       var patrimonios = await _patrimonioService.GetPatrimoniosByISBNAsync(isbn);
 
       if (patrimonios == null) return NotFound("Não existem patrimônios cadastrados para este ISBN");
@@ -72,12 +70,11 @@ public class PatrimoniosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimônios. Erro: {e.Message}");
     }
   }
   /// <summary>
-  /// Obtém os dados de todos os patrimônios que não estão associados a um acervo a partir de um ISBN 
+  /// Obtém os dados de todos os patrimônios que não estão associados a um acervo a partir de um ISBN
   /// </summary>
   /// <param name="isbn">Identificador do Acervo no Patrimônio</param>
   /// <response code="200">Dados dos patrimônios cadastrados</response>
@@ -97,7 +94,6 @@ public class PatrimoniosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimônios. Erro: {e.Message}");
     }
   }
@@ -123,7 +119,6 @@ public class PatrimoniosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar patrimônio por Id. Erro: {e.Message}");
     }
   }
@@ -208,7 +203,6 @@ public class PatrimoniosController : ControllerBase
     {
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir patrimônio. Erro: {e.Message}");
     }
-
   }
 
 
@@ -234,7 +228,6 @@ public class PatrimoniosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar acervos. Erro: {e.Message}");
     }
   }

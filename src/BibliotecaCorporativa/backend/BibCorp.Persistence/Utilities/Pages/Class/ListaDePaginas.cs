@@ -9,10 +9,7 @@ namespace BibCorp.Persistence.Utilities.Pages.Class
     public int TamanhoDaPagina { get; set; }
     public int ContadorTotal { get; set; }
 
-    public ListaDePaginas()
-    {
-
-    }
+    public ListaDePaginas() {}
     public ListaDePaginas(List<T> itens, int contador, int numeroDaPagina, int tamanhoDaPagina)
     {
       ContadorTotal = contador;

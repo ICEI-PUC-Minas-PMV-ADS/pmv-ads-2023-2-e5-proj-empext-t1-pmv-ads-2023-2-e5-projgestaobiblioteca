@@ -13,6 +13,7 @@ import { UsuarioUpdate } from "../../models";
 import { ToastrService } from "ngx-toastr";
 import { UploadService } from "src/app/upload";
 import { environment } from "src/assets/environments/environments";
+import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
 
 @Component({
   selector: "app-perfil",
@@ -23,10 +24,13 @@ export class PerfilComponent implements OnInit {
   public formPerfil: FormGroup;
 
   public usuario: UsuarioUpdate;
+  public emprestimos: Emprestimo[] = []
 
   public fotoUpload: string = "not-available.png";
   public fotoURL: string = "../../../../assets/Images/download.png";
   public file: File[];
+
+  public contLidos: number = 0
 
   public get ctrF(): any {
     return this.formPerfil.controls;
@@ -37,7 +41,8 @@ export class PerfilComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
     private toastrService: ToastrService,
     private usuarioService: UsuarioService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private emprestimoService: EmprestimoService
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +80,7 @@ export class PerfilComponent implements OnInit {
           this.formPerfil.patchValue(this.usuario);
           this.fotoURL = (this.usuario.fotoURL === null) ? "../../../../../assets/Images/not-available.png" : environment.fotoURL + this.usuario.fotoURL
           console.log(this.fotoURL);
+          this.getEmprestimos();
         },
         (error: any) => {
           this.toastrService.error(
@@ -168,5 +174,22 @@ export class PerfilComponent implements OnInit {
         }
       )
       .add(() => this.spinnerService.hide());
+  }
+
+  public getEmprestimos(): void {
+    this.spinnerService.show();
+
+    this.emprestimoService
+      .getEmprestimosByUserName(this.usuario.userName)
+      .subscribe(
+        (emprestimos) => {
+          this.emprestimos = emprestimos
+
+          var emprestimoArray = this.emprestimos.filter((emprestimo) => emprestimo.status === 3)
+
+          this.contLidos = emprestimoArray.length
+
+        }
+      )
   }
 }

@@ -256,6 +256,10 @@ export class AcervoEdicaoComponent implements OnInit {
               "Não existe patrimônio cadastrado para o ISBN informado",
               "Erro!"
             );
+            if (this.ctrF.capaUrl.value)
+              {
+                this.capaPatrimonio = this.ctrF.capaUrl.value
+              }
         },
         (error: any) => {
           this.toastrService.error("Falha ao recuperar Patrimonios ", "Erro!");

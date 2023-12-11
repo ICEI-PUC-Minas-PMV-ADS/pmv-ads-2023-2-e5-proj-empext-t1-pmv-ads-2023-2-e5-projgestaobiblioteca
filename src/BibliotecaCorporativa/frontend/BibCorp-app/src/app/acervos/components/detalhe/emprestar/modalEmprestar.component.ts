@@ -1,12 +1,14 @@
 import { Component, Inject, OnInit } from "@angular/core";
+import { formatDate } from "@angular/common";
 import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { formatDate } from "@angular/common";
-import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
-import { Usuario, UsuarioService } from "src/app/usuarios";
+
 import { Acervo, AcervoService, ModalSucessoComponent } from "src/app/acervos";
+import { Emprestimo, EmprestimoService } from "src/app/emprestimos";
 import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
+import { Usuario, UsuarioService } from "src/app/usuarios";
 
 @Component({
   selector: "app-pop-up",
@@ -39,6 +41,7 @@ export class ModalEmprestarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsuarioAtivo();
+
     this.acervoParam = this.dataInput.acervoId;
     this.getAcervoById();
 
@@ -46,7 +49,7 @@ export class ModalEmprestarComponent implements OnInit {
     this.getPatrimonioById();
   }
 
-  fecharModalEmprestarEAbrirModalSucesso() {
+  public fecharEmprestarAbrirSucesso() {
     const dialogRefEmprestar = this.dataInput.id;
     if (dialogRefEmprestar) {
       this.dialog.closeAll();
@@ -64,9 +67,8 @@ export class ModalEmprestarComponent implements OnInit {
     this.acervoService
       .getAcervoById(+this.acervoParam)
       .subscribe(
-        (retorno: Acervo) => {
-          this.acervo = retorno;
-          console.log(this.acervo);
+        (acervo: Acervo) => {
+          this.acervo = acervo;
         },
         (error: any) => {
           this.toastrService.error("Erro ao carregar Acervo", "Erro!");
@@ -84,7 +86,6 @@ export class ModalEmprestarComponent implements OnInit {
       .subscribe(
         (retorno: Patrimonio) => {
           this.patrimonio = retorno;
-          console.log(this.patrimonio);
         },
         (error: any) => {
           this.toastrService.error("Erro ao carregar Patrimonio", "Erro!");
@@ -94,21 +95,22 @@ export class ModalEmprestarComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
-  public formatarData(data: Date): any{
-    var dataFormatada = formatDate(data, "yyyy-MM-dd'T'HH:mm:ss","en-US")
+  public formatarData(data: Date): any {
+    var dataFormatada = formatDate(data, "yyyy-MM-dd'T'HH:mm:ss", "en-US");
 
-    return dataFormatada
+    return dataFormatada;
   }
 
   public novoEmprestimo(): void {
     this.spinnerService.show();
 
-    let dataEmprestimo =  new Date();
+    let dataEmprestimo = new Date();
     this.emprestimo.dataEmprestimo = this.formatarData(dataEmprestimo);
 
     let dataPrevista = new Date();
-    dataPrevista.setDate(dataPrevista.getDate() + 30)
-    this.emprestimo.dataPrevistaDevolucao = this.formatarData(dataPrevista)
+    dataPrevista.setDate(dataPrevista.getDate() + 30);`
+    `
+    this.emprestimo.dataPrevistaDevolucao = this.formatarData(dataPrevista);
 
     this.emprestimo.dataDevolucao = null;
 
@@ -125,27 +127,18 @@ export class ModalEmprestarComponent implements OnInit {
 
     this.emprestimo.userName = this.usuarioAtivo.userName;
 
-    console.log(this.emprestimo);
-
     this.emprestimoService
       .createEmprestimo(this.emprestimo)
       .subscribe(
         () => {
-          this.fecharModalEmprestarEAbrirModalSucesso();
+          this.fecharEmprestarAbrirSucesso();
         },
         (error: any) => {
-          if (
-            error.status === 400 &&
-            error.error ==
-              "Acervo não possui unidades disponíveis para empréstimo"
-          ) {
-            this.toastrService.error(
-              "O livro escolhido não possui exemplares disponíveis para empréstimo no momento"
-            );
+          if ( error.status === 400 &&
+               error.error == "Acervo não possui unidades disponíveis para empréstimo") {
+            this.toastrService.error("O livro escolhido não possui exemplares disponíveis para empréstimo no momento");
           } else if (error.status === 500) {
-            this.toastrService.error(
-              "Ocorreu um erro ao tentar cadastrar o empréstimo"
-            );
+            this.toastrService.error("Ocorreu um erro ao tentar cadastrar o empréstimo");
           }
         }
       )

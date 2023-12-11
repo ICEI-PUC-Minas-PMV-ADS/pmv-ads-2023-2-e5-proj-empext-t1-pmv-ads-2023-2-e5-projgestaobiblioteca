@@ -6,14 +6,11 @@ namespace BibCorp.Tests
 {
   public class PatrimonioFixture
   {
-
     Faker faker =new Faker();
     public List<Patrimonio> ObterPatrimoniosMock()
     {
-      return new List<Patrimonio>
-      {
-        new Patrimonio
-        {
+      return new List<Patrimonio> {
+        new Patrimonio {
           Id = 1,
           Localizacao = "Matriz",
           Sala = null,
@@ -27,10 +24,8 @@ namespace BibCorp.Tests
           DataCadastro = faker.Date.Recent().ToString(),
           DataAtualizacao = faker.Date.Recent().ToString(),
           DataIndisponibilidade = null
-
         },
-        new Patrimonio
-        {
+        new Patrimonio {
           Id = 2,
           Localizacao = "Matriz",
           Sala = null,
@@ -50,11 +45,8 @@ namespace BibCorp.Tests
 
     public Patrimonio ObterApenasUmPatrimonioMock(int patrimonioId)
     {
-      if (patrimonioId == 7)
-      {
-        return
-        new Patrimonio
-        {
+      if (patrimonioId == 7) {
+        return new Patrimonio {
           Id = 7,
           Localizacao = "Matriz",
           Sala = "77",
@@ -72,7 +64,6 @@ namespace BibCorp.Tests
       }
 
       return null;
-
     }
     public List<Patrimonio> ObterListaVaziaDePatrimoniosMock()
     {
@@ -81,9 +72,7 @@ namespace BibCorp.Tests
 
     public Patrimonio CriarPatrimonioValidoMock()
     {
-      return
-      new Patrimonio
-      {
+      return new Patrimonio {
         Id = 26,
         Localizacao = "Matriz",
         Sala = "77",
@@ -103,9 +92,7 @@ namespace BibCorp.Tests
 
     public PatrimonioDto CriarPatrimonioValidoDtoMock()
     {
-      return
-      new PatrimonioDto
-      {
+      return new PatrimonioDto {
         Id = 26,
         Localizacao = "Matriz",
         Sala = "77",
@@ -120,16 +107,12 @@ namespace BibCorp.Tests
         DataAtualizacao = faker.Date.Recent().ToString(),
         DataIndisponibilidade = null
       };
-
     }
 
     public Patrimonio ObtePatrimonioCriadoMock(int patrimonioId)
     {
-      if (patrimonioId == 26)
-      {
-        return
-       new Patrimonio
-       {
+      if (patrimonioId == 26) {
+        return new Patrimonio {
          Id = 26,
          Localizacao = "Matriz",
          Sala = "77",
@@ -147,14 +130,11 @@ namespace BibCorp.Tests
       }
 
       return null;
-
     }
 
     public Patrimonio CriarPatrimonioInvalidoMock()
     {
-      return
-      new Patrimonio
-      {
+      return new Patrimonio {
         Localizacao = "Matriz",
         Sala = "77",
         Coluna = "177",
@@ -168,14 +148,11 @@ namespace BibCorp.Tests
         DataAtualizacao = faker.Date.Recent().ToString(),
         DataIndisponibilidade = null
       };
-
     }
 
     public PatrimonioDto CriarPatrimonioInvalidoDtoMock()
     {
-      return
-      new PatrimonioDto
-      {
+      return new PatrimonioDto {
         Localizacao = "Matriz",
         Sala = "77",
         Coluna = "177",
@@ -189,7 +166,6 @@ namespace BibCorp.Tests
         DataAtualizacao = faker.Date.Recent().ToString(),
         DataIndisponibilidade = null
       };
-
     }
   }
 }

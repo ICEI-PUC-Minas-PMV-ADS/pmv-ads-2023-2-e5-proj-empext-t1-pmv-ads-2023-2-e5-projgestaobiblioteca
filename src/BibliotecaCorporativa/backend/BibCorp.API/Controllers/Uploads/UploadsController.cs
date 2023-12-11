@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using BibCorp.Application.Services.Contracts.Usuarios;
 using BibCorp.API.Extensions.Users;
 
-namespace OnPeople.API.Controllers.Uploads
+namespace BibCorp.API.Controllers.Uploads
 {
     [Authorize]
     [Route("api/[controller]")]

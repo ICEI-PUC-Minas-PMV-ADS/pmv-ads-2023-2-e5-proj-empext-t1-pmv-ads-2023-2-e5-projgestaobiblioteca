@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 
+import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { Acervo, AcervoService } from "src/app/acervos";
 
+import { Acervo, AcervoService } from "src/app/acervos";
 import { DeleteModalComponent, Paginacao, ResultadoPaginado } from "src/app/shared";
 import { Usuario, UsuarioService } from "src/app/usuarios";
+
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AcervoListaComponent implements OnInit {
 
   public usuarioAdmin = false;
 
-  filtroAcervo() {
+  public filtroAcervo() {
     console.log("Filtro");
     this.getAcervos();
   }
@@ -60,11 +61,17 @@ export class AcervoListaComponent implements OnInit {
         (usuario: Usuario) => {
           if (usuario.userName === "Admin")
             this.usuarioAdmin = true
+        },
+        (error: any) => {
+          console.log("aqui 2");
+          this.toastrService.error("Erro ao carregar Usuário", "Erro!");
+          console.error(error);
         }
       )
+      .add(() => this.spinnerService.hide());
   }
 
-  alterarImagem() {
+  public alterarImagem() {
     this.exibirImagem = !this.exibirImagem;
   }
 
@@ -92,11 +99,7 @@ export class AcervoListaComponent implements OnInit {
       .add(() => this.spinnerService.hide());
   }
 
-  public abrirModal(
-    event: any,
-    acervoId: number,
-    acervoISBN: string
-  ): void {
+  public abrirModal(event: any, acervoId: number, acervoISBN: string): void {
     event.stopPropagation();
 
     this.acervoId = acervoId;
@@ -115,10 +118,7 @@ export class AcervoListaComponent implements OnInit {
       .subscribe(
         (result: any) => {
           if (result == null)
-            this.toastrService.error(
-              "Acervo não pode se excluído.",
-              "Erro!"
-            );
+            this.toastrService.error("Acervo não pode se excluído.", "Erro!");
 
           if (result.message == "OK") {
             this.toastrService.success(

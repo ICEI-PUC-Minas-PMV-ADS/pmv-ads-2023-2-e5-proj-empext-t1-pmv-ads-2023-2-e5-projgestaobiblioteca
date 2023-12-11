@@ -1,158 +1,152 @@
 <div class="container-fluid mt-0 ms-0 pt-0 ps-0">
-    <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active" routerLink="/home-admin">
-        <span class="mr-2">&larr;</span> Voltar
-    </button>
+  <button type="button" class="btn btn-no-bg text-start mt-2 ms-3" routerLinkActive="active" routerLink="/home-admin">
+    <span class="mr-2">&larr;</span> Voltar
+  </button>
 
-    <form class="container-fluid mt-2 " [formGroup]="formAcervo">
-        <div class="card rounded shadow">
-            <div class="card-header rounded text-center text-white bibcorp-bg-secondary p-3">
-                <div class="h3">
-                    Formulário de Acervos
-                </div>
-            </div>
-            <div class="card-body p-0 mt-1 bg-white  text-black">
-                <div class="row m-0 p-9">
-                    <div class="col-md-8">
-                        <div class="h4 border-bottom mt-2">
-                            Dados do Acervo
-                        </div>
-                        <!-- <div class="card bibcorp-bg-white2 text-black p-2" *ngIf="editMode"> -->
-                        <div class="card bibcorp-bg-white2 text-black p-2">
-                            <div class="h7 mt-2">
-                                Dados de Controle
-                            </div>
-                            <div class="form-row d-md-flex">
-                                <mat-form-field class="col-md-3 p-1" appearance="outline" disabled>
-                                    <mat-label>Acervo Id:</mat-label>
-                                    <input matInput type="text" formControlName="acervoId"
-                                        [ngClass]="fieldValidator(ctrF.acervoId)" readonly>
-                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.acervoId,
-                                        '')}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="col-md-3 p-1" appearance="outline">
-                                    <mat-label>Qtde Acervos:</mat-label>
-                                    <input matInput type="text" formControlName="qtdeAcervos"
-                                        [ngClass]="fieldValidator(ctrF.qtdeAcervos)" readonly>
-                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdeAcervos, '')}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="col-md-3 p-1" appearance="outline">
-                                    <mat-label>Qtd Disponível:</mat-label>
-                                    <input matInput type="text" formControlName="qtdeDisponivel"
-                                        [ngClass]="fieldValidator(ctrF.qtdeDisponivel)" readonly>
-                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdeDisponivel, '')}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="col-md-3 p-1" appearance="outline">
-                                    <mat-label>Qtd Emprestado:</mat-label>
-                                    <input matInput type="text" formControlName="qtdeEmprestada"
-                                        [ngClass]="fieldValidator(ctrF.qtdeEmprestada)" readonly>
-                                    <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdeEmprestada, '')}}</mat-error>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="h7 mt-2">
-                            Dados de Cadastro
-                        </div>
-                        <div class="form-row d-md-flex">
-                            <mat-form-field class="col-md-4 p-1" appearance="fill">
-                                <mat-label>Número ISBN:</mat-label>
-                                <input matInput type="text" formControlName="isbn" [ngClass]="fieldValidator(ctrF.isbn)"
-                                    (change)="getPatrimonios()">
-                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.isbn, '')}}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-4 p-1" appearance="fill">
-                                <mat-label>Genero:</mat-label>
-                                <input matInput type="text" formControlName="genero"
-                                    [ngClass]="fieldValidator(ctrF.genero)">
-                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.genero,
-                                    '')}}</mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="form-row d-md-flex">
-                            <mat-form-field class="col p-1" appearance="fill">
-                                <mat-label>Título do Livro:</mat-label>
-                                <input matInput type="text" formControlName="titulo"
-                                    [ngClass]="fieldValidator(ctrF.titulo)">
-                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.titulo, '')}}</mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="form-row d-md-flex">
-                            <mat-form-field class="col p-1" appearance="fill">
-                                <mat-label>Sub-título do livro:</mat-label>
-                                <input matInput type="text" formControlName="subTitulo"
-                                    [ngClass]="fieldValidator(ctrF.subTitulo)">
-                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.subTitulo, '')}}</mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="form-row d-md-flex">
-                            <mat-form-field class="col p-1" appearance="fill">
-                                <mat-label>Autor(es):</mat-label>
-                                <input matInput type="text" formControlName="autor"
-                                    [ngClass]="fieldValidator(ctrF.autor)">
-                                <mat-error class="invalid-feedback">{{messageReturned(ctrF.autor, '')}}</mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!--                        <input type="file" #file (change)="toggleImage($event)" style="display: none">  -->
-                        <div class="aligns-self-center text-center">
-                            <!--                          <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem upload imageDetail" (click)="file.click()"> -->
-                            <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem upload imageDetail">
-                        </div>
-                    </div>
-                    <div class="form-row d-md-flex">
-                        <mat-form-field class="col p-1" appearance="fill">
-                            <mat-label>Resumo</mat-label>
-                            <textarea matInput type="text" formControlName="resumo"   [ngClass]="fieldValidator(ctrF.resumo)"></textarea>
-                            <mat-error class="invalid-feedback">{{messageReturned(ctrF.resumo, '')}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="form-row d-md-flex">
-                        <mat-form-field class="col p-1" appearance="fill">
-                            <mat-label>Link com a imagem do livro</mat-label>
-                            <input matInput type="text" formControlName="capaUrl"   [ngClass]="fieldValidator(ctrF.capaUrl)">
-                            <mat-error class="invalid-feedback">{{messageReturned(ctrF.capaUrl, '')}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="form-row d-md-flex">
-                        <mat-form-field class="col-md-3 p-1" appearance="fill">
-                            <mat-label>Ano Publicacao:</mat-label>
-                            <input matInput type="text" formControlName="anoPublicacao"
-                                [ngClass]="fieldValidator(ctrF.anoPublicacao)">
-                            <mat-error class="invalid-feedback">{{messageReturned(ctrF.anoPublicacao, '')}}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-md-3 p-1" appearance="fill">
-                            <mat-label>Edição:</mat-label>
-                            <input matInput type="text" formControlName="edicao"
-                                [ngClass]="fieldValidator(ctrF.edicao)">
-                            <mat-error class="invalid-feedback">{{messageReturned(ctrF.edicao, '')}}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-md-3 p-1" appearance="fill">
-                            <mat-label>Editora:</mat-label>
-                            <input matInput type="text" formControlName="editora"
-                                [ngClass]="fieldValidator(ctrF.editora)">
-                            <mat-error class="invalid-feedback">{{messageReturned(ctrF.editora, '')}}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="col-md-3 p-1" appearance="fill">
-                            <mat-label>Quantidade de Páginas:</mat-label>
-                            <input matInput type="number" formControlName="qtdPaginas"
-                                [ngClass]="fieldValidator(ctrF.qtdPaginas)">
-                            <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdPaginas, '')}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bibcorp-bg-secondary mt-1 ">
-                <div class="d-flex ">
-                    <button class="btn btn-danger ms-auto mx-1" (click)="clearForm()">
-                        Limpar
-                    </button>
-                    <button class="btn btn-primary mx-1 px-4" [disabled]="!formAcervo.valid" (click)="saveChange()">
-                        {{editMode ? "Salvar" : "Criar"}}
-                    </button>
-                </div>
-            </div>
+  <form class="container-fluid mt-2 " [formGroup]="formAcervo">
+    <div class="card rounded shadow">
+      <div class="card-header rounded text-center text-white bibcorp-bg-secondary p-3">
+        <div class="h3">
+          Formulário de Acervos
         </div>
-    </form>
+      </div>
+      <div class="card-body p-0 mt-1 bg-white  text-black">
+        <div class="row m-0 p-9">
+          <div class="col-md-8">
+            <div class="h4 border-bottom mt-2">
+              Dados do Acervo
+            </div>
+            <!-- <div class="card bibcorp-bg-white2 text-black p-2" *ngIf="editMode"> -->
+            <div class="card bibcorp-bg-white2 text-black p-2">
+              <div class="h7 mt-2">
+                Dados de Controle
+              </div>
+              <div class="form-row d-md-flex">
+                <mat-form-field class="col-md-3 p-1" appearance="outline" disabled>
+                  <mat-label>Acervo Id:</mat-label>
+                  <input matInput type="text" formControlName="acervoId" [ngClass]="fieldValidator(ctrF.acervoId)"
+                    readonly>
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.acervoId,
+                    '')}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                  <mat-label>Qtde Acervos:</mat-label>
+                  <input matInput type="text" formControlName="qtdeAcervos" [ngClass]="fieldValidator(ctrF.qtdeAcervos)"
+                    readonly>
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdeAcervos, '')}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                  <mat-label>Qtd Disponível:</mat-label>
+                  <input matInput type="text" formControlName="qtdeDisponivel"
+                    [ngClass]="fieldValidator(ctrF.qtdeDisponivel)" readonly>
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdeDisponivel, '')}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3 p-1" appearance="outline">
+                  <mat-label>Qtd Emprestado:</mat-label>
+                  <input matInput type="text" formControlName="qtdeEmprestada"
+                    [ngClass]="fieldValidator(ctrF.qtdeEmprestada)" readonly>
+                  <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdeEmprestada, '')}}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="h7 mt-2">
+              Dados de Cadastro
+            </div>
+            <div class="form-row d-md-flex">
+              <mat-form-field class="col-md-4 p-1" appearance="fill">
+                <mat-label>Número ISBN:</mat-label>
+                <input matInput type="text" formControlName="isbn" [ngClass]="fieldValidator(ctrF.isbn)"
+                  (change)="getPatrimonios()">
+                <mat-error class="invalid-feedback">{{messageReturned(ctrF.isbn, '')}}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-md-4 p-1" appearance="fill">
+                <mat-label>Genero:</mat-label>
+                <input matInput type="text" formControlName="genero" [ngClass]="fieldValidator(ctrF.genero)">
+                <mat-error class="invalid-feedback">{{messageReturned(ctrF.genero,
+                  '')}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row d-md-flex">
+              <mat-form-field class="col p-1" appearance="fill">
+                <mat-label>Título do Livro:</mat-label>
+                <input matInput type="text" formControlName="titulo" [ngClass]="fieldValidator(ctrF.titulo)">
+                <mat-error class="invalid-feedback">{{messageReturned(ctrF.titulo, '')}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row d-md-flex">
+              <mat-form-field class="col p-1" appearance="fill">
+                <mat-label>Sub-título do livro:</mat-label>
+                <input matInput type="text" formControlName="subTitulo" [ngClass]="fieldValidator(ctrF.subTitulo)">
+                <mat-error class="invalid-feedback">{{messageReturned(ctrF.subTitulo, '')}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row d-md-flex">
+              <mat-form-field class="col p-1" appearance="fill">
+                <mat-label>Autor(es):</mat-label>
+                <input matInput type="text" formControlName="autor" [ngClass]="fieldValidator(ctrF.autor)">
+                <mat-error class="invalid-feedback">{{messageReturned(ctrF.autor, '')}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <!--                        <input type="file" #file (change)="toggleImage($event)" style="display: none">  -->
+            <div class="aligns-self-center text-center">
+              <!--                          <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem upload imageDetail" (click)="file.click()"> -->
+              <img class="imageDetail" [src]="capaPatrimonio" alt="Card imagem upload imageDetail">
+            </div>
+          </div>
+          <div class="form-row d-md-flex">
+            <mat-form-field class="col p-1" appearance="fill">
+              <mat-label>Resumo</mat-label>
+              <textarea matInput type="text" formControlName="resumo"
+                [ngClass]="fieldValidator(ctrF.resumo)"></textarea>
+              <mat-error class="invalid-feedback">{{messageReturned(ctrF.resumo, '')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-row d-md-flex">
+            <mat-form-field class="col p-1" appearance="fill">
+              <mat-label>Link com a imagem do livro</mat-label>
+              <input matInput type="text" formControlName="capaUrl" [ngClass]="fieldValidator(ctrF.capaUrl)">
+              <mat-error class="invalid-feedback">{{messageReturned(ctrF.capaUrl, '')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-row d-md-flex">
+            <mat-form-field class="col-md-3 p-1" appearance="fill">
+              <mat-label>Ano Publicacao:</mat-label>
+              <input matInput type="text" formControlName="anoPublicacao"
+                [ngClass]="fieldValidator(ctrF.anoPublicacao)">
+              <mat-error class="invalid-feedback">{{messageReturned(ctrF.anoPublicacao, '')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 p-1" appearance="fill">
+              <mat-label>Edição:</mat-label>
+              <input matInput type="text" formControlName="edicao" [ngClass]="fieldValidator(ctrF.edicao)">
+              <mat-error class="invalid-feedback">{{messageReturned(ctrF.edicao, '')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 p-1" appearance="fill">
+              <mat-label>Editora:</mat-label>
+              <input matInput type="text" formControlName="editora" [ngClass]="fieldValidator(ctrF.editora)">
+              <mat-error class="invalid-feedback">{{messageReturned(ctrF.editora, '')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 p-1" appearance="fill">
+              <mat-label>Quantidade de Páginas:</mat-label>
+              <input matInput type="number" formControlName="qtdPaginas" [ngClass]="fieldValidator(ctrF.qtdPaginas)">
+              <mat-error class="invalid-feedback">{{messageReturned(ctrF.qtdPaginas, '')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bibcorp-bg-secondary mt-1 ">
+        <div class="d-flex ">
+          <button class="btn btn-danger ms-auto mx-1" (click)="clearForm()">
+            Limpar
+          </button>
+          <button class="btn btn-primary mx-1 px-4" [disabled]="!formAcervo.valid" (click)="saveChange()">
+            {{editMode ? "Salvar" : "Criar"}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <!--

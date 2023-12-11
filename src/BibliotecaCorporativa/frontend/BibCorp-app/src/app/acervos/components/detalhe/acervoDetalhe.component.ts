@@ -1,14 +1,13 @@
+import { ActivatedRoute } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { ActivatedRoute } from "@angular/router";
-import { MatDialog } from "@angular/material/dialog";
-import {
-  Acervo,
-  AcervoService,
-  ModalEmprestarComponent,
-} from "src/app/acervos";
+
+import { Acervo, AcervoService, ModalEmprestarComponent } from "src/app/acervos";
 import { Usuario, UsuarioService } from "src/app/usuarios";
+
 
 @Component({
   selector: "app-acervoDetalhe",
@@ -34,7 +33,7 @@ export class AcervoDetalheComponent implements OnInit {
     private usuarioService: UsuarioService
   ) {}
 
-  abrirDialog(patrimonioId: number) {
+  public abrirDialog(patrimonioId: number) {
     this.dialogRef.open(ModalEmprestarComponent, {
       data: {
         patrimonioId: patrimonioId,
@@ -93,16 +92,14 @@ export class AcervoDetalheComponent implements OnInit {
     this.spinnerService.show();
 
     this.acervo.comentarios = this.comentarios;
+
     this.acervoService
       .saveAcervo(this.acervo)
       .subscribe(
-        (retorno: Acervo) => {
-          this.acervo = retorno;
+        (acervo: Acervo) => {
+          this.acervo = acervo;
           console.log(this.acervo);
-          this.toastrService.success(
-            "Comentário incluído para o acervo!",
-            "Salvo!"
-          );
+          this.toastrService.success("Comentário incluído para o acervo!", "Salvo!");
         },
         (error: any) => {
           this.toastrService.error("Erro ao salvar acervo", "Erro!");

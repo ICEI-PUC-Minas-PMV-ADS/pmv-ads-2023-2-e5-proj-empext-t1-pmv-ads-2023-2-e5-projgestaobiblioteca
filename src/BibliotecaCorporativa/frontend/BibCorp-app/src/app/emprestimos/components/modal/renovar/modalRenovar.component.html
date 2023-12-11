@@ -1,17 +1,18 @@
 <div class="modal-content-vertical-large" id="Renovar">
-    
-    <div class="modal-dialog" role="document">
-        <h4 class="titulo">Solicitar Renovação</h4>
-                <div class="orientacao">
-                    <p class="info"><b>Importante:</b> A renovação do empréstimo é permitida apenas uma vez</p>
-                </div>
-                <div></div>
-                <div style="text-align: left;">
-                    <p class="book-info"><b>Livro:</b> {{acervoTituloParam}}</p>
-                    <p class="book-info"><b>Data atual de devolução:</b> {{formatarData(dataPrevistaDevolucaoParam)}}</p>
-                </div>
-                </div>
-            <div class="modal-footer" style="text-align: center;">
-                <button type="button" class="btn btn-orange reserve-button" data-dismiss="modal" style="margin-top: auto;" (click)="renovarEmprestimo()">Renovar</button>
-            </div>
- </div>
+
+  <div class="modal-dialog" role="document">
+    <h4 class="titulo">Solicitar Renovação</h4>
+    <div class="orientacao">
+      <p class="info"><b>Importante:</b> A renovação do empréstimo é permitida apenas uma vez</p>
+    </div>
+    <div></div>
+    <div style="text-align: left;">
+      <p class="book-info"><b>Livro:</b> {{acervoTituloParam}}</p>
+      <p class="book-info"><b>Data atual de devolução:</b> {{formatarData(dataPrevistaDevolucaoParam)}}</p>
+    </div>
+  </div>
+  <div class="modal-footer" style="text-align: center;">
+    <button type="button" class="btn btn-orange reserve-button" data-dismiss="modal" style="margin-top: auto;"
+      (click)="renovarEmprestimo()">Renovar</button>
+  </div>
+</div>

@@ -29,7 +29,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
     }
     public async Task<EmprestimoDto> CreateEmprestimo(EmprestimoDto emprestimoDto)
     {
-
       var acervo = await _acervoPersistence.GetAcervoByIdAsync(emprestimoDto.AcervoId);
       var qtdeDisponivelAcervo = acervo.QtdeDisponivel;
 
@@ -38,7 +37,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
         try
         {
           var emprestimo = _mapper.Map<Emprestimo>(emprestimoDto);
-
           _emprestimoPersistence.Create<Emprestimo>(emprestimo);
 
           if (await _emprestimoPersistence.SaveChangesAsync())
@@ -57,13 +55,10 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
         }
         catch (CoreException e)
         {
-
           throw new CoreException(e.Message);
         }
       }
-
       throw new CoreException("Acervo não possui unidades disponíveis para empréstimo");
-
     }
 
     public async Task<bool> DeleteEmprestimo(int emprestimoId)
@@ -81,10 +76,10 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
+
     public async Task<IEnumerable<EmprestimoDto>> GetAllEmprestimosAsync()
     {
       try
@@ -99,7 +94,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -139,7 +133,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
           var emprestimoMapper = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoUpdate.Id);
           return _mapper.Map<EmprestimoDto>(emprestimoMapper);
         }
-
         return null;
       }
       catch (Exception e)
@@ -163,7 +156,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -182,7 +174,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -201,7 +192,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       }
       catch (Exception e)
       {
-
         throw new Exception(e.Message);
       }
     }
@@ -215,11 +205,9 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       if (emprestimo.Status == TipoStatusEmprestimo.Renovado) throw new CoreException("Renovação não permitida pois o empréstimo já foi renovado anteriormente");
 
       var emprestimoRenovado = await _emprestimoPersistence.RenovarEmprestimo(emprestimoId);
-
       var emprestimoRenovadoMapper = _mapper.Map<EmprestimoDto>(emprestimoRenovado);
 
       return emprestimoRenovadoMapper;
-
     }
 
     public async Task<EmprestimoDto> AlterarLocalDeColeta(int emprestimoId, string novoLocalColeta)
@@ -231,11 +219,9 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       if (emprestimo.Status == TipoStatusEmprestimo.Devolvido) throw new CoreException("Não é possível alterar o local de coleta de um empréstimo já devolvido");
 
       var emprestimoAlterado = await _emprestimoPersistence.AlterarLocalDeColeta(emprestimoId, novoLocalColeta);
-
       var emprestimoAlteradoMapper = _mapper.Map<EmprestimoDto>(emprestimoAlterado);
 
       return emprestimoAlteradoMapper;
-
     }
 
     public async Task<IEnumerable<EmprestimoDto>> GetEmprestimosByStatusAsync(TipoStatusEmprestimoDto[] status)
@@ -243,7 +229,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       try
       {
         var statusMapper = _mapper.Map<TipoStatusEmprestimo[]>(status);
-
         var emprestimos = await _emprestimoPersistence.GetEmprestimosByStatusAsync(statusMapper);
 
         if (emprestimos == null) return null;
@@ -262,7 +247,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
     {
       try
       {
-      
         var emprestimo = await _emprestimoPersistence.GetEmprestimoByIdAsync(emprestimoId);
 
         if (emprestimo == null) return null;
@@ -292,7 +276,6 @@ namespace BibCorp.Application.Services.Packages.Emprestimos
       try
       {
         var filtroEmprestimoMapper = _mapper.Map<FiltroEmprestimo>(filtroEmprestimoDto);
-
         var emprestimos = await _emprestimoPersistence.GetEmprestimosByFiltrosAsync(filtroEmprestimoMapper);
 
         if (emprestimos == null) return null;

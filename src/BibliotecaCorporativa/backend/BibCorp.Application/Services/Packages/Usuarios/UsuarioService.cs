@@ -25,7 +25,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       _userManager = userManager;
       _signInManager = signInManager;
       _mapper = mapper;
-
     }
     public async Task<UsuarioUpdateDto> CreateUsuario(UsuarioDto usuarioDto)
     {
@@ -43,7 +42,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao criar a Conta. Erro: {e.Message}");
       }
 
@@ -56,7 +54,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
         Console.WriteLine("Upodate usuario Service");
         var usuario = await _usuarioPersistence.GetUsuarioByUserNameAsync(usuarioUpdateDto.UserName);
 
-        Console.WriteLine("Usuario " + usuario.Id);
         if (usuario == null) return null;
 
         _mapper.Map(usuarioUpdateDto, usuario);
@@ -64,7 +61,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
         if (usuarioUpdateDto.Password != null)
         {
           var token = await _userManager.GeneratePasswordResetTokenAsync(usuario);
-
           await _userManager.ResetPasswordAsync(usuario, token, usuarioUpdateDto.Password);
         }
 
@@ -74,14 +70,12 @@ namespace BibCorp.Application.Services.Packages.Usuarios
         {
           //opcional pois vc pode ou não retornar algo após salvar mudanças.
           var usuarioRetorno = await _usuarioPersistence.GetUsuarioByUserNameAsync(usuario.UserName);
-
           return _mapper.Map<UsuarioUpdateDto>(usuarioRetorno);
         }
         return null;
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao alterar Contas e token. Erro: {e.Message}");
       }
     }
@@ -98,7 +92,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao recuperar Contas por nome. Erro: {e.Message}");
       }
     }
@@ -115,7 +108,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao recuperar Contas. Erro: {e.Message}");
       }
     }
@@ -132,7 +124,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao recuperar Conta por Id da conta. Erro: {e.Message}");
       }
     }
@@ -149,7 +140,6 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao recuperar Conta por UserName. Erro: {e.Message}");
       }
     }
@@ -159,11 +149,10 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       try
       {
         return await _userManager.Users
-                                 .AnyAsync(user => user.UserName.ToLower() == userName.ToLower());
+          .AnyAsync(user => user.UserName.ToLower() == userName.ToLower());
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao verificar se a conta existe. Erro: {e.Message}");
       }
     }
@@ -173,15 +162,12 @@ namespace BibCorp.Application.Services.Packages.Usuarios
       try
       {
         var usuario = await _userManager.Users
-                                        .SingleOrDefaultAsync(
-                                          usuario => usuario.UserName.ToLower() == usuarioUpdateDto.UserName.ToLower()
-                                        );
+          .SingleOrDefaultAsync(usuario => usuario.UserName.ToLower() == usuarioUpdateDto.UserName.ToLower());
 
         return await _signInManager.CheckPasswordSignInAsync(usuario, senha, false);
       }
       catch (Exception e)
       {
-
         throw new Exception($"Falha ao validar Conta e Senha. Erro: {e.Message}");
       }
     }

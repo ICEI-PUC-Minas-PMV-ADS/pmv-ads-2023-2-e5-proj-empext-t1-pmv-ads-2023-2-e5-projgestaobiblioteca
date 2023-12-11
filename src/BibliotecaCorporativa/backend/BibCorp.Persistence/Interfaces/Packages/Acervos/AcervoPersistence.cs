@@ -1,6 +1,5 @@
 using AutoMapper;
 using BibCorp.Domain.Models.Acervos;
-using BibCorp.Domain.Models.Patrimonios;
 using BibCorp.Persistence.Interfaces.Contexts;
 using BibCorp.Persistence.Interfaces.Contracts.Acervos;
 using BibCorp.Persistence.Interfaces.Packages.Shared;
@@ -33,9 +32,9 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
     public async Task<Acervo> GetAcervoByIdAsync(int acervoId)
     {
       IQueryable<Acervo> query = _context.Acervos
-         .Include(a => a.Patrimonios)
-                .AsNoTracking()
-                .Where(a => a.Id == acervoId);
+        .Include(a => a.Patrimonios)
+        .AsNoTracking()
+        .Where(a => a.Id == acervoId);
 
       return await query.FirstOrDefaultAsync();
     }
@@ -43,10 +42,10 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
     public async Task<Acervo> GetAcervoByISBNAsync(string ISBN)
     {
       IQueryable<Acervo> query = _context.Acervos
-          .Include(a => a.Patrimonios)
-            .AsNoTracking()
-            .Where(a => a.ISBN == ISBN)
-            .OrderBy(a => a.ISBN);
+        .Include(a => a.Patrimonios)
+        .AsNoTracking()
+        .Where(a => a.ISBN == ISBN)
+        .OrderBy(a => a.ISBN);
 
       return await query.FirstOrDefaultAsync();
     }
@@ -54,32 +53,23 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
     public async Task<ListaDePaginas<Acervo>> GetAcervosRecentesAsync(ParametrosPaginacao parametrosPaginacao)
     {
       IQueryable<Acervo> query = _context.Acervos
-          .Include(a => a.Patrimonios)
-          .AsNoTracking()
-          .OrderByDescending(a => a.DataCriacao);
+        .Include(a => a.Patrimonios)
+        .AsNoTracking()
+        .OrderByDescending(a => a.DataCriacao);
 
-      if (parametrosPaginacao.Genero == "Todos")
-      {
-        if (parametrosPaginacao.Argumento != null)
-        {
-          if (parametrosPaginacao.PesquisarPor == "Autor")
-          {
+      if (parametrosPaginacao.Genero == "Todos") {
+        if (parametrosPaginacao.Argumento != null) {
+          if (parametrosPaginacao.PesquisarPor == "Autor") {
             query = _context.Acervos
               .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-          }
-          else if (parametrosPaginacao.PesquisarPor == "Resumo")
-          {
+          } else if (parametrosPaginacao.PesquisarPor == "Resumo") {
             query = _context.Acervos
               .Where(a => a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-          }
-          else if (parametrosPaginacao.PesquisarPor == "Titulo")
-          {
+          } else if (parametrosPaginacao.PesquisarPor == "Titulo") {
             query = _context.Acervos
               .Where(a => a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                           a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-          }
-          else
-          {
+          } else {
             query = _context.Acervos
               .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                           a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
@@ -87,32 +77,22 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
                           a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
           }
         }
-      }
-      else if (parametrosPaginacao.Genero != null)
-      {
-        if (parametrosPaginacao.Argumento != null)
-        {
-          if (parametrosPaginacao.PesquisarPor == "Autor")
-          {
+      } else if (parametrosPaginacao.Genero != null) {
+        if (parametrosPaginacao.Argumento != null) {
+          if (parametrosPaginacao.PesquisarPor == "Autor") {
             query = _context.Acervos
               .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
                           a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-          }
-          else if (parametrosPaginacao.PesquisarPor == "Resumo")
-          {
+          } else if (parametrosPaginacao.PesquisarPor == "Resumo") {
             query = _context.Acervos
               .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
                           a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-          }
-          else if (parametrosPaginacao.PesquisarPor == "Titulo")
-          {
+          } else if (parametrosPaginacao.PesquisarPor == "Titulo") {
             query = _context.Acervos
               .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
                           (a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                            a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower())));
-          }
-          else
-          {
+          } else {
             query = _context.Acervos
               .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()) &&
                           (a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
@@ -120,9 +100,7 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
                           a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                           a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower())));
           }
-        }
-        else
-        {
+        } else {
           query = _context.Acervos
             .Where(a => a.Genero.ToLower().Contains(parametrosPaginacao.Genero.ToLower()));
 
@@ -139,33 +117,24 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
           .AsNoTracking()
           .OrderByDescending(a => a.Id);
 
-      if (parametrosPaginacao.Argumento != null)
-      {
-        if (parametrosPaginacao.PesquisarPor == "Autor")
-        {
+      if (parametrosPaginacao.Argumento != null) {
+        if (parametrosPaginacao.PesquisarPor == "Autor") {
           query = _context.Acervos
             .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-        }
-        else if (parametrosPaginacao.PesquisarPor == "Resumo")
-        {
+        } else if (parametrosPaginacao.PesquisarPor == "Resumo") {
           query = _context.Acervos
             .Where(a => a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-        }
-        else if (parametrosPaginacao.PesquisarPor == "Titulo")
-        {
+        } else if (parametrosPaginacao.PesquisarPor == "Titulo") {
           query = _context.Acervos
             .Where(a => a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                         a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
-        }
-        else
-        {
+        } else {
           query = _context.Acervos
             .Where(a => a.Autor.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                         a.Resumo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                         a.Titulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()) ||
                         a.SubTitulo.ToLower().Contains(parametrosPaginacao.Argumento.ToLower()));
         }
-
       }
 
       return await ListaDePaginas<Acervo>.CriarPaginaAsync(query, parametrosPaginacao.NumeroDaPagina, parametrosPaginacao.tamanhoDaPagina);
@@ -183,7 +152,6 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
       Update(acervoAlterado);
 
       return await SaveChangesAsync();
-
     }
 
     public async Task<bool> UpdateAcervoAposDevolucaoOuRecusa(int acervoId)
@@ -198,8 +166,6 @@ namespace BibCorp.Persistence.Interfaces.Packages.Acervos
       Update(acervoAlterado);
 
       return await SaveChangesAsync();
-
     }
-
   }
 }

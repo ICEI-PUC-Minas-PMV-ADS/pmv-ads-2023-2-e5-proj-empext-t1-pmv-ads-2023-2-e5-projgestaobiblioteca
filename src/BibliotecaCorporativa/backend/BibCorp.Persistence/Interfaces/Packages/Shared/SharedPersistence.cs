@@ -9,7 +9,6 @@ namespace BibCorp.Persistence.Interfaces.Packages.Shared
     public SharedPersistence(BibCorpContext context)
     {
       _context = context;
-
     }
     public void Create<T>(T entity) where T : class
     {

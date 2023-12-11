@@ -43,7 +43,6 @@ public class EmprestimosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimos. Erro: {e.Message}");
     }
   }
@@ -69,7 +68,6 @@ public class EmprestimosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimo por Id. Erro: {e.Message}");
     }
   }
@@ -96,7 +94,6 @@ public class EmprestimosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimo por Usuário. Erro: {e.Message}");
     }
   }
@@ -266,7 +263,6 @@ public class EmprestimosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimos. Erro: {e.Message}");
     }
   }
@@ -295,7 +291,6 @@ public class EmprestimosController : ControllerBase
     {
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao alterar o empréstimo. Erro: {e.Message}");
     }
-
   }
 
   /// <summary>
@@ -311,7 +306,6 @@ public class EmprestimosController : ControllerBase
   {
     try
     {
-
       var emprestimos = await _emprestimoService.GetEmprestimosByFiltrosAsync(filtroEmprestimoDto);
 
       if (emprestimos == null) return NotFound("Não existem empréstimos cadastrados para os filtros informados");
@@ -320,7 +314,6 @@ public class EmprestimosController : ControllerBase
     }
     catch (Exception e)
     {
-
       return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao recuperar empréstimos. Erro: {e.Message}");
     }
   }

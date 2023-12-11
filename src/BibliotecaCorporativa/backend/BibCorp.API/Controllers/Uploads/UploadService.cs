@@ -1,4 +1,4 @@
-namespace OnPeople.API.Controllers.Uploads
+namespace BibCorp.API.Controllers.Uploads
 {
     public class UploadService : IUploadService
     {

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
@@ -5,10 +6,10 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
+
 import { Acervo, AcervoService } from "src/app/acervos";
 import { Patrimonio, PatrimonioService } from "src/app/patrimonios";
 
@@ -61,48 +62,17 @@ export class AcervoEdicaoComponent implements OnInit {
   public formValidator(): void {
     this.formAcervo = this.formBuilder.group({
       acervoId: [""],
-      isbn: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(13),
-        ],
-      ],
+      isbn: ["", [ Validators.required, Validators.minLength(10), Validators.maxLength(13) ]],
       qtdeAcervos: ["0"],
-      genero: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(20),
-        ],
-      ],
+      genero: ["", [ Validators.required, Validators.minLength(5), Validators.maxLength(20) ]],
       titulo: ["", Validators.required],
       subTitulo: [""],
       autor: ["", Validators.required],
-      resumo: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(30),
-          Validators.maxLength(2000),
-        ],
-      ],
+      resumo: ["", [ Validators.required, Validators.minLength(30), Validators.maxLength(2000) ]],
       capaUrl: ["", Validators.required],
-      anoPublicacao: [
-        "",
-        [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
-      ],
+      anoPublicacao: ["", [ Validators.required, Validators.minLength(4), Validators.maxLength(4) ]],
       dataCriacao: [new Date().toISOString().slice(0, 10).replace(/-/g, "")],
-      editora: [
-        "",
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(50),
-        ],
-      ],
+      editora: ["", [ Validators.required, Validators.minLength(4), Validators.maxLength(50), ]],
       edicao: ["", Validators.maxLength(15)],
       qtdPaginas: ["0"],
       qtdeDisponivel: ["0"],

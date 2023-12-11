@@ -28,7 +28,6 @@ export class ModalSucessoComponent implements OnInit {
   private dialog: MatDialog) {  }
 
   ngOnInit(): void {
-
     this.emprestimoIdParam = this.dataInput.emprestimoId;
     this.getEmprestimoById(this.emprestimoIdParam);
   }
@@ -56,9 +55,7 @@ export class ModalSucessoComponent implements OnInit {
           this.toastrService.error("Erro ao carregar emprestimo", 'Erro!');
           console.error(error);
         }
-
       )
-
       .add(() => this.spinnerService.hide());
   }
 
@@ -67,6 +64,4 @@ export class ModalSucessoComponent implements OnInit {
 
     return dataFormatada
   }
-
-
 }
